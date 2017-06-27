@@ -9,10 +9,11 @@
       .directive('pageTop', pageTop);
 
   /** @ngInject */
-  function pageTop() {
+  function pageTop($rootScope) {
     return {
       restrict: 'E',
-      templateUrl: 'app/theme/components/pageTop/pageTop.html'
+      //templateUrl: 'app/theme/components/pageTop/pageTop.html'
+        templateUrl: $rootScope.theme.t_pageTop
     };
   }
 

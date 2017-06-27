@@ -23,8 +23,8 @@
           },
         })
         .state('evaluaciones.informacion', {
-          url: '/evaluaciones',
-          templateUrl: 'app/modules/evaluaciones/evaluaciones.html',
+          url: '/informacion',
+          templateUrl: 'theme/modules/evaluation/information',
           title: 'Información',
           sidebarMeta: {
             order: 0,

@@ -24,7 +24,7 @@
         })
         .state('vacaciones.informacion', {
           url: '/información',
-          templateUrl: 'app/modules/vacaciones/vacaciones.html',
+          templateUrl: 'theme/modules/vacations/information',
           title: 'Información',
           sidebarMeta: {
             order: 0,
@@ -32,19 +32,41 @@
         })
         .state('vacaciones.solicitar', {
           url: '/solicitar',
-          templateUrl: 'app/modules/vacaciones/formularios/solicitarVacaciones.html',
-          title: 'Solicitar',
+          templateUrl: 'theme/modules/vacations/solicitar_vacaciones',
+          title: 'Solicitar Vacaciones',
           sidebarMeta: {
             order: 0,
           },
         })
         .state('vacaciones.solicitudes', {
           url: '/solicitudes',
-          templateUrl: 'app/modules/vacaciones/solicitudes/solicitudes.html',
+          templateUrl: 'theme/modules/vacations/solicitudes',
           title: 'Solicitudes',
           sidebarMeta: {
             order: 100,
           },
+        })
+        .state("vacaciones.detalle_autorizar",{
+            url: "/ver_recibida",
+            params: {
+                id_absence_received: null
+            },
+            templateUrl: function (stateParams){
+                    //return 'theme/modules/absence/show_absence_received/' + stateParams.id_request_received;
+                    return 'theme/modules/vacations/mostrar_solicitud_recibida';
+            },
+            title: 'Solicitud Recibida',
+        })
+        .state("vacaciones.detalle_solicitud",{
+            url: "/ver_propia",
+            params: {
+                id_onw_request: null
+            },
+            templateUrl: function (stateParams){
+                    //return 'theme/modules/absence/mostrar_solicitud_propia/' + stateParams.id_onw_request;
+                    return 'theme/modules/vacations/mostrar_solicitud_propia';
+            },
+            title: 'Solicitud Propia',
         });
     $urlRouterProvider.when('/vacaciones','/vacaciones/informacion');
   }

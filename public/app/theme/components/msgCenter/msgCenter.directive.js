@@ -9,10 +9,11 @@
       .directive('msgCenter', msgCenter);
 
   /** @ngInject */
-  function msgCenter() {
+  function msgCenter($rootScope) {
     return {
       restrict: 'E',
-      templateUrl: 'app/theme/components/msgCenter/msgCenter.html',
+      //templateUrl: 'app/theme/components/msgCenter/msgCenter.html',
+        templateUrl: $rootScope.theme.t_msgCenter,
       controller: 'MsgCenterCtrl'
     };
   }

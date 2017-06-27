@@ -22,7 +22,7 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    background: url("../assets/img/blur-bg.jpg") no-repeat center center;
+    /*background: url("../assets/img/blur-bg.jpg") no-repeat center center;*/
     background-size: cover;
     will-change: transform;
     z-index: -1; }
@@ -47,7 +47,13 @@ body {
     outline: none;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    color: #209e91;
+    color: #DDDDDD;
     display: inline-block; }
     .page-not-found-modal a:hover {
       color: #1b867b; }
+
+#c {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

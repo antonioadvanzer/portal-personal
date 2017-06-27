@@ -1,3 +1,27 @@
+/*html, body {
+  font-family: "Questrial", sans-serif;
+  display: table;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  min-width: 320px;
+  line-height: 1em;
+  font-size: 1.2em;
+  color: #fff;
+  background: #F3F3F3;
+  overflow: hidden;
+  /*background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjAlIiBjeT0iMCUiIHI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMGFjZGQiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDM1NDQiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');*
+  background: -moz-radial-gradient(top left, #F3F3F3 0%, #F1F1F1 100%);
+  background: -webkit-radial-gradient(top left, #F3F3F3 0%, #F1F1F1 100%);
+  background: radial-gradient(top left, #F3F3F3 0%, #F1F1F1 100%);
+}*/
+
+#c {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 @font-face {
   font-family: 'socicon';
   src: url("../assets/fonts/socicon.eot");
@@ -290,10 +314,10 @@ a {
           transform: scale(1.2); }
 
 .open > .btn.dropdown-toggle.btn.btn-primary {
-  background: #209e91;
-  border-color: #088679;
-  background-color: #1b867b;
-  border-color: #1b867b; }
+  background: #EAF2F4;
+  border-color: #F4F4F4;
+  background-color: #F3F3F3;
+  border-color: #F3F3F3; }
 
 .open > .btn.dropdown-toggle.btn-success {
   background: #90b900;
@@ -320,12 +344,12 @@ a {
   border-color: #c54949; }
 
 button.btn.btn-primary {
-  background: #209e91;
-  border-color: #209e91; }
+  background: #EAF2F4;
+  border-color: #EAF2F4; }
   button.btn.btn-primary.disabled, button.btn.btn-primary[disabled], fieldset[disabled] button.btn.btn-primary, button.btn.btn-primary.disabled:hover, button.btn.btn-primary[disabled]:hover,
   fieldset[disabled] button.btn.btn-primary:hover, button.btn.btn-primary.disabled:focus, button.btn.btn-primary[disabled]:focus, fieldset[disabled] button.btn.btn-primary:focus, button.btn.btn-primary.disabled.focus, button.btn.btn-primary[disabled].focus, fieldset[disabled] button.btn.btn-primary.focus, button.btn.btn-primary.disabled:active, button.btn.btn-primary[disabled]:active, fieldset[disabled] button.btn.btn-primary:active, button.btn.btn-primary.disabled.active, button.btn.btn-primary[disabled].active,
   fieldset[disabled] button.btn.btn-primary.active {
-    background: #209e91;
+    background: #EAF2F4;
     border-color: #2caa9d; }
     button.btn.btn-primary.disabled:hover, button.btn.btn-primary[disabled]:hover, fieldset[disabled] button.btn.btn-primary:hover, button.btn.btn-primary.disabled:hover:hover, button.btn.btn-primary[disabled]:hover:hover,
     fieldset[disabled] button.btn.btn-primary:hover:hover, button.btn.btn-primary.disabled:focus:hover, button.btn.btn-primary[disabled]:focus:hover, fieldset[disabled] button.btn.btn-primary:focus:hover, button.btn.btn-primary.disabled.focus:hover, button.btn.btn-primary[disabled].focus:hover, fieldset[disabled] button.btn.btn-primary.focus:hover, button.btn.btn-primary.disabled:active:hover, button.btn.btn-primary[disabled]:active:hover, fieldset[disabled] button.btn.btn-primary:active:hover, button.btn.btn-primary.disabled.active:hover, button.btn.btn-primary[disabled].active:hover,
@@ -333,10 +357,10 @@ button.btn.btn-primary {
       -webkit-transform: none;
               transform: none; }
   button.btn.btn-primary:hover, button.btn.btn-primary:focus, button.btn.btn-primary.focus, button.btn.btn-primary:active, button.btn.btn-primary.active {
-    background: #209e91;
-    border-color: #088679; }
+    background: #EAF2F4;
+    border-color: #F4F4F4; }
   button.btn.btn-primary:active, button.btn.btn-primary:target {
-    background-color: #1b867b; }
+    background-color: #F3F3F3; }
 
 button.btn.btn-default {
   border-width: 1px;
@@ -467,7 +491,7 @@ button.btn.btn-inverse {
 .btn-group button.btn.btn-primary {
   border-color: #149285; }
   .btn-group button.btn.btn-primary:hover {
-    border-color: #088679; }
+    border-color: #F4F4F4; }
 
 .btn-group button.btn.btn-danger {
   border-color: #dc4a4a; }
@@ -531,7 +555,7 @@ button.progress-button.btn.btn-primary {
   button.progress-button.btn.btn-primary.progress-button-perspective {
     background: none; }
     button.progress-button.btn.btn-primary.progress-button-perspective .content {
-      background-color: #209e91; }
+      background-color: #EAF2F4; }
 
 button.progress-button.btn.btn-default {
   border-radius: 0; }
@@ -660,7 +684,7 @@ button.progress-button.btn.btn-danger {
   border-radius: 0; }
 
 .label-primary {
-  background: #209e91; }
+  background: #EAF2F4; }
 
 .label-info {
   background: #63bbb2; }
@@ -746,9 +770,9 @@ textarea.form-control {
     -webkit-transform: translateZ(0);
     /* Hide default HTML checkbox */ }
     .switcher-container .switcher.primary {
-      border: solid 1px #209e91; }
+      border: solid 1px #EAF2F4; }
       .switcher-container .switcher.primary .handle.handle-on {
-        background-color: #209e91; }
+        background-color: #EAF2F4; }
     .switcher-container .switcher.success {
       border: solid 1px #90b900; }
       .switcher-container .switcher.success .handle.handle-on {
@@ -797,7 +821,7 @@ textarea.form-control {
 .switch-container {
   display: inline-block; }
   .switch-container.primary .bootstrap-switch.bootstrap-switch-on {
-    border-color: #209e91; }
+    border-color: #EAF2F4; }
   .switch-container.success .bootstrap-switch.bootstrap-switch-on {
     border-color: #90b900; }
   .switch-container.warning .bootstrap-switch.bootstrap-switch-on {
@@ -831,7 +855,7 @@ textarea.form-control {
     .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success {
       background: #90b900; }
     .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
-      background: #209e91; }
+      background: #EAF2F4; }
     .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-warning {
       background: #dfb81c; }
     .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-danger {
@@ -926,10 +950,10 @@ label.custom-radio > span:before {
   font-size: 9px; }
 
 label.custom-input-primary > span:before {
-  color: #209e91; }
+  color: #EAF2F4; }
 
 label.custom-input-primary > span:hover:before {
-  border-color: #209e91; }
+  border-color: #EAF2F4; }
 
 label.custom-input-success > span:before {
   color: #90b900; }
@@ -1082,9 +1106,9 @@ label.custom-input-danger > span:hover:before {
   border-color: #90b900; }
 
 .input-group-addon-primary {
-  background: #209e91;
+  background: #EAF2F4;
   color: #ffffff;
-  border-color: #209e91; }
+  border-color: #EAF2F4; }
 
 .checkbox-demo-row {
   margin-bottom: 12px; }
@@ -1176,7 +1200,7 @@ label.custom-input-danger > span:hover:before {
   background: rgba(0, 0, 0, 0.07); }
 
 .progress-bar-primary {
-  background-color: #209e91; }
+  background-color: #EAF2F4; }
 
 .progress-bar-success {
   background-color: #b1ce4d; }
@@ -1199,7 +1223,7 @@ label.custom-input-danger > span:hover:before {
   border-bottom-right-radius: 5px; }
 
 .with-primary-addon:focus {
-  border-color: #209e91; }
+  border-color: #EAF2F4; }
 
 .with-warning-addon:focus {
   border-color: #dfb81c; }
@@ -1226,7 +1250,7 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    background: url("../assets/img/blur-bg.jpg") no-repeat center center;
+    /*background: url("../assets/img/blur-bg.jpg") no-repeat center center;*/
     background-size: cover;
     will-change: transform;
     z-index: -1; }
@@ -1282,7 +1306,8 @@ body {
   width: 540px;
   margin: 0 auto;
   border-radius: 5px;
-  background: rgba(0, 0, 0, 0.55);
+  /*background: rgba(0, 0, 0, 0.55);*/
+  background: rgba(103, 104, 125 , 0.35);
   color: #fff;
   padding: 32px; }
   .auth-block h1 {
@@ -1296,9 +1321,9 @@ body {
     outline: none;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    color: #209e91; }
+    color: #EAF2F4; }
     .auth-block a:hover {
-      color: #1b867b; }
+      color: #F3F3F3; }
   .auth-block .control-label {
     padding-top: 11px;
     color: #ffffff; }
@@ -1370,3 +1395,8 @@ a.forgot-pass {
 
 .btn-auth {
   color: #ffffff !important; }
+
+.navbar-inverse{
+    height: 30px;
+    background-image: -webkit-linear-gradient(left, #C0D339, #628DC8);
+}

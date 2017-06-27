@@ -19,7 +19,17 @@
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
     $urlRouterProvider.otherwise('/principal');
-
+    
+      /*baSidebarServiceProvider.addStaticItem({
+      title: 'Administración',
+      icon: 'ion-gear-a',
+      subMenu: [{
+        title: 'Modo Administrador',
+        fixedHref: 'admin.html',
+        blank: true
+      }]
+    });*/
+      
     /*baSidebarServiceProvider.addStaticItem({
       title: 'Pages',
       icon: 'ion-document',

@@ -9,10 +9,11 @@
         .directive('progressBarRound', progressBarRound);
 
     /** @ngInject */
-    function progressBarRound(baProgressModal) {
+    function progressBarRound(baProgressModal,$rootScope) {
         return {
             restrict: 'E',
-            templateUrl: 'app/theme/components/progressBarRound/progressBarRound.html',
+            //templateUrl: 'app/theme/components/progressBarRound/progressBarRound.html',
+            templateUrl: $rootScope.theme.t_progressBarRound,
             link:function($scope, element, attrs) {
                 $scope.baProgressDialog = baProgressModal;
                 $scope.$watch(function () {

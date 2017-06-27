@@ -15,7 +15,8 @@
     .constant('layoutPaths', {
       images: {
         root: IMAGES_ROOT,
-        profile: IMAGES_ROOT + 'app/profile/',
+        //profile: IMAGES_ROOT + 'app/profile/',
+          profile: IMAGES_ROOT + 'app/perfil/',
         amMap: 'assets/img/theme/vendor/ammap//dist/ammap/images/',
         amChart: 'assets/img/theme/vendor/amcharts/dist/amcharts/images/'
       }
