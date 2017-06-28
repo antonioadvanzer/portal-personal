@@ -392,7 +392,7 @@ class VacationController extends Controller
         
         // test mail ----
         $data['to'] = "antonio.baez@advanzer.com";
-        //$data['to'] = User::find($absence->user)->email;
+        //$data['to'] = User::find($solicitud->user)->email;
         $data['cc'] = array();
 
         try{

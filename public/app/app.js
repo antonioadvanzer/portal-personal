@@ -14,7 +14,7 @@
   'angular-progress-button-styles',
 
   'PortalPersonal.theme',
-  'PortalPersonal.pages',
+  //'PortalPersonal.pages',
   'PortalPersonal.modules',
 ]);
 
