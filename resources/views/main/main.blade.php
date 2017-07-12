@@ -122,6 +122,7 @@
 <script src="{{ URL::to('bower_components/jstree/dist/jstree.js') }}"></script>
 <script src="{{ URL::to('bower_components/ng-js-tree/dist/ngJsTree.js') }}"></script>
 <script src="{{ URL::to('bower_components/angular-ui-select/dist/select.js') }}"></script>
+<script src="{{ URL::to('bower_components/angular-filereader/angular-filereader.min.js') }}"></script>
 <!-- endbower -->
 <!-- endbuild -->
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>

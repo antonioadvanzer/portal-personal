@@ -9,6 +9,12 @@
            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
       </div>
     </div>--}}
+          
+    <div class="progress ng-scope" ng-show="sending">
+      <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
+        <span class="sr-only">100% Complete (success)</span>
+      </div>
+    </div>
 
     <h3 class="with-line">Informaci&oacute;n del Empleado</h3>
 
@@ -20,11 +26,11 @@
           <div class="col-sm-9">
             <div class="userpic">
               <div class="userpic-wrapper">
-                <img id="inputUserPicture" ng-src="@{{ formUser.imageSrc }}" ng-click="uploadPicture()">
+                <img id="inputUserPicture" src="@{{ formUser.imageSrc }}" ng-click="uploadPicture()">
               </div>
-              <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="!(formUser.noPicture)"></i>
-              <a href class="change-userpic" ng-click="uploadPicture()">Agrega Foto de Perfil</a>
-              <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)" ng-model="formUser.imageSrc">
+              <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="(formUser.noPicture && formUser.imageSrc != '')"></i>
+              <a href class="change-userpic" ng-click="uploadPicture()" ng-if="!(formUser.noPicture)">Agrega Foto de Perfil</a>
+              <input type="file" id="uploadFile" name="uploadFile" ng-show="false" ng-file-select="onFileSelect($files)" ng-model="formUser.imageSrc" accept="image/*">
             </div>
           </div>
         </div>
@@ -386,7 +392,7 @@
         {{--</div>--}}
     </div>
     {{--<button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="saveUser()" ng-disabled="newUser.inputUserName.$dirty && newUser.inputUserName.$invalid || newUser.inputUserApellidoP.$dirty && newUser.inputUserApellidoP.$invalid || newUser.inputUserApellidoM.$dirty && newUser.inputUserApellidoM.$invalid || newUser.inputUserEmail.$dirty && newUser.inputUserEmail.$invalid || newUser.inputUserPlaza.$dirty && newUser.inputUserPlaza.$invalid || newUser.inputUserNomina.$dirty && newUser.inputUserNomina.$invalid "><i class="ion-android-checkmark-circle"></i>Guardar</button>--}}
-    <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="saveUser()" ng-disabled="newUser.inputUserName.$invalid || newUser.inputUserApellidoP.$invalid || newUser.inputUserApellidoM.$invalid || newUser.inputUserEmail.$invalid || newUser.inputUserPlaza.$invalid || newUser.inputUserNomina.$invalid ">
+    <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="saveUser()" ng-disabled="newUser.inputUserName.$invalid || newUser.inputUserApellidoP.$invalid || newUser.inputUserApellidoM.$invalid || newUser.inputUserEmail.$invalid || newUser.inputUserPlaza.$invalid || newUser.inputUserNomina.$invalid || (!selectedArea.selected.id) || (!selectedTrack.selected.id) || (!selectedPosition.selected) || (!selectedCompany.selected) || (!selectedBoss.selected) || (newUser.uploadFile.$invalid) || !(formUser.imageSrc != '')">
       <i class="ion-android-checkmark-circle"></i>Guardar
     </button>
     

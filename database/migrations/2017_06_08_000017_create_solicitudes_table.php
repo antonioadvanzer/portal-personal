@@ -34,7 +34,7 @@ class CreateSolicitudesTable extends Migration
 
             /* Relations ----------------------------------------------------------------- */
             $table->foreign('user')->references('id')->on('users');
-            $table->foreign('autorizer')->references('id')->on('users');
+            $table->foreign('authorizer')->references('id')->on('users');
             $table->foreign('status')->references('id')->on('estados_solicitud');
             $table->foreign('type')->references('id')->on('tipo_solicitud');
             $table->foreign('motivo')->references('id')->on('motivos_ausencia');

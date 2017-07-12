@@ -231,7 +231,7 @@
     //$scope.dt = undefined;
     $scope.open = open;
     $scope.opened = false;
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy','yyyy-MM-dd' ,'shortDate'];
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'yyyy-MM-dd', 'shortDate'];
     $scope.format = $scope.formats[3];
     $scope.options = {
         dateDisabled: disabled,
@@ -387,7 +387,7 @@
             //alert('error sending.');
             console.log(response);
             $scope.sending = false;
-            getAlert('theme/danger_modal/Falla el enviar la solicitud');
+            getAlert('theme/danger_modal/Falla al enviar la solicitud');
         });
         
         //console.log(formData);

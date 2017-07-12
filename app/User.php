@@ -60,4 +60,20 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Posicion_Track','posicion_track');
     }
+
+    /**
+     *
+     */
+    public function getBoss()
+    {
+        return $this->hasMany('App\Models\Jefe','employed');
+    }
+
+    /**
+     * 
+     */
+    public function getEmployees()
+    {
+        return $this->hasMany('App\Models\Jefe','boss');
+    }
 }

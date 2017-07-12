@@ -119,7 +119,8 @@
         formData.append("rl_antiguedad", $scope.formRequestLetter.inputRequestLetterAntiguedad);
         formData.append("rl_puesto", $scope.formRequestLetter.inputRequestLetterPuesto); 
         formData.append("rl_domicilio", $scope.formRequestLetter.inputRequestLetterDomicilio);
-        formData.append("rl_observaciones", $scope.formRequestLetter.inputRequestLetterObervaciones);
+        //formData.append("rl_observaciones", $scope.formRequestLetter.inputRequestLetterObervaciones);
+        formData.append("rl_observaciones", document.getElementById("inputRequestLetterObervaciones").value);
         
         $http.post('theme/modules/letter/store_new_letter', formData, {
             transformRequest: angular.identity,

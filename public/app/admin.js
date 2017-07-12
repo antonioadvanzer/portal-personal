@@ -14,8 +14,8 @@
   'angular-progress-button-styles',
 
   'PortalPersonal.theme',
+  //'PortalPersonal.pages',
   'PortalPersonal.admin_modules',
-  'PortalPersonal.pages',
 ]);
 
 app.run(function($rootScope) {

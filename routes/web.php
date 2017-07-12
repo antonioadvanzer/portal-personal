@@ -200,29 +200,41 @@ Route::group(['middleware' => 'auth'], function(){
             
             Route::group(['prefix' => 'user'], function () {
 
-                // Users Admin Views
+                /* Users Admin Views -------------------- */
+                
+                // Tables
                 Route::get('/usuarios_activos', 'UserController@admin_usuariosActivos');
                 Route::get('/tabla_usuarios_activos', 'UserController@admin_tablaUsuariosActivos');
                 Route::get('/usuarios_inactivos', 'UserController@admin_usuariosInactivos');
                 Route::get('/tabla_usuarios_inactivos', 'UserController@admin_tablaUsuariosInactivos');
+                Route::get('/tabla_personal_a_cargo', 'UserController@admin_tablaPersonalACargo');
+                
+                // New
                 Route::get('/agregar_usuario', 'UserController@admin_getNewUserForm');
+
+                // Edit
+                Route::get('/ver_usuario', 'UserController@admin_showUserEditForm');
             
-                // Users Admin
+                /* Users Admin Resources -------------------- */
+                
                 Route::get('/users_active', 'UserController@admin_getUsersActive');
                 Route::get('/users_deactive', 'UserController@admin_getUsersDeactive');
                 Route::get('/get_bosses', 'UserController@admin_getBosses');
                 Route::post('/save_new_user', 'UserController@admin_saveNewUser');
+                Route::get('/users_employed/{id_user}', 'UserController@main_getUsersEmployed');
+
+                // Edit
+                Route::get('/get_user/{id_user}', 'UserController@admin_getUserDetail');
                 
             });
 
             Route::group(['prefix' => 'permission'], function () {
                 
-                // Permissions Admin Views
+                /* Permissions Admin Views -------------------- */
+                
+                // Permissions table
                 Route::get('/lista_permisos', 'PermissionController@admin_listaPermisos');
                 Route::get('/tabla_permisos', 'PermissionController@admin_tablaUsuariosPermisos');
-
-                // Permissions Admin
-                Route::get('/list_permissions', 'PermissionController@admin_getListPermissions');
 
                 // Permissions By Area
                 Route::get('/lista_permisos_por_area', 'PermissionController@admin_listaPermisosPorArea');
@@ -233,14 +245,48 @@ Route::group(['middleware' => 'auth'], function(){
                 // Permissions By Position
                 Route::get('/lista_permisos_por_posicion', 'PermissionController@admin_listaPermisosPorPosicion');
                 Route::get('/tabla_permisos_por_posicion', 'PermissionController@admin_tablaUsuariosPermisosPorPosicion');
+                
+                /* Permissions Admin Resources -------------------- */
+
+                // Permissions Admin
+                Route::get('/list_permissions', 'PermissionController@admin_getListPermissions');
                 Route::get('/list_permissions_by_position', 'PermissionController@admin_getListPermissionsByPosition');
                 Route::get('/permisos_por_posicion/{id}', 'PermissionController@admin_getPermissionsByPosition');
             });
 
             Route::group(['prefix' => 'area'], function () {
                 
+                /* Areas Admin Views -------------------- */
+                
+                // Areas table
+                Route::get('/lista_areas', 'AreaController@admin_listaAreas');
+                Route::get('/tabla_areas', 'AreaController@admin_tablaAreas');
+
+                // New
+                Route::get('/crear_area', 'AreaController@admin_getNewArea');
+                Route::get('/agregar', 'AreaController@admin_getNewAreaForm');
+
+                // Edit
+                Route::get('/ver_area', 'AreaController@admin_showArea');
+                Route::get('/area', 'AreaController@admin_getAreaForm');
+
+                /* Areas Admin Resources -------------------- */
+
                 // Areas Admin
+                Route::get('/list_areas', 'AreaController@admin_getListAreas');
                 Route::get('/areas_activas', 'AreaController@admin_getAreasActive');
+
+                // Save
+                Route::post('/store_new_area', 'AreaController@admin_storeNewArea');
+
+                 // Edit
+                Route::get('/get_area/{id_area}', 'AreaController@admin_getAreaDetail');
+               
+                // Update 
+                Route::post('/update_area', 'AreaController@admin_updateArea');
+
+                // Delete
+                Route::get('/delete_area/{id_area}', 'AreaController@admin_deleteArea');
                
             });
 
@@ -259,10 +305,41 @@ Route::group(['middleware' => 'auth'], function(){
             });
 
             Route::group(['prefix' => 'direction'], function () {
-            
+                
+                /* Directions Admin Views -------------------- */
+                
+                // Directions table
+                Route::get('/lista_direcciones', 'DirectionController@admin_listaDirecciones');
+                Route::get('/tabla_direcciones', 'DirectionController@admin_tablaDirecciones');
+                Route::get('/tabla_areas_por_direccion', 'DirectionController@admin_tablaAreasPorDireccion');
+
+                // New
+                Route::get('/crear_direccion', 'DirectionController@admin_getNewDirection');
+                Route::get('/agregar', 'DirectionController@admin_getNewDirectionForm');
+
+                // Edit
+                Route::get('/ver_direccion', 'DirectionController@admin_showDirection');
+                Route::get('/direccion', 'DirectionController@admin_getDirectionForm');
+
+                /* Directions Admin Resources -------------------- */
+
                 // Directions Admin
-                Route::get('/direccion_por_area/{id}', 'DirectionController@admin_findDirectionUsingArea');
+                Route::get('/list_directions', 'DirectionController@admin_getListDirections');
+                Route::get('/direccion_por_area/{id_area}', 'DirectionController@admin_findDirectionUsingArea');
+                Route::get('/areas_by_direction/{id_direction}', 'DirectionController@admin_getAreasByDirection');
+
+                // Save Data
+                Route::post('/store_new_direction', 'DirectionController@admin_storeNewDirection');
+
+                // Edit
+                Route::get('/get_direction/{id_direction}', 'DirectionController@admin_getDirectionDetail');
                
+                // Update Data
+                Route::post('/update_direction', 'DirectionController@admin_updateDirection');
+
+                // Delete
+                Route::get('/delete_direction/{id_direction}', 'DirectionController@admin_deleteDirection');
+
             });
 
         });

@@ -6,7 +6,7 @@
       </select>
     </label>
   </div>
-  <table class="table" st-table="empleadosInactivos">
+  <table class="table table-hover table-condensed" st-table="empleadosInactivos">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="true">#</th>

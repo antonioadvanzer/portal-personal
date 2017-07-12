@@ -126,7 +126,13 @@
 <!-- Modules Portal Personal Admin Mode -->
 
 <script src="{{ URL::to('app/admin_modules/admin_modules.module.js') }}"></script>
-<script src="{{ URL::to('app/modules/principal/principal.module.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/principal/principal.module.js') }}"></script>
+<!-- Direccion -->
+<script src="{{ URL::to('app/admin_modules/direcciones/direcciones.module.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/direcciones/DireccionesModuleCtrl.js') }}"></script>
+<!-- Area -->
+<script src="{{ URL::to('app/admin_modules/areas/areas.module.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/areas/AreasModuleCtrl.js') }}"></script>
 <!-- Usuario -->
 <script src="{{ URL::to('app/admin_modules/usuarios/usuarios.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/usuarios/UsuariosModuleCtrl.js') }}"></script>
@@ -134,8 +140,10 @@
 <script src="{{ URL::to('app/admin_modules/permisos/permisos.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/permisos/PermisosModuleCtrl.js') }}"></script>
 <!-- Directives -->
-<!--<script src="{{ URL::to('app/modules/directives/selectpicker.directive.js') }}"></script>-->
-<!--<script src="{{ URL::to('app/modules/directives/input_error.directive.js') }}"></script>-->
+<script src="{{ URL::to('app/admin_modules/directives/selectpicker.directive.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/directives/input_error.directive.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/directives/validFile.directive.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/directives/switch.directive.js') }}"></script>
 
 <!-- end Modules-->
 

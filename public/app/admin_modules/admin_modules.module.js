@@ -8,7 +8,9 @@
   angular.module('PortalPersonal.admin_modules', [
     'ui.router',
 
-    //'PortalPersonal.admin_modules.principal',
+    'PortalPersonal.admin_modules.principal',
+    'PortalPersonal.admin_modules.direcciones',
+    'PortalPersonal.admin_modules.areas',
     'PortalPersonal.admin_modules.usuarios',
     'PortalPersonal.admin_modules.permisos',
   ])

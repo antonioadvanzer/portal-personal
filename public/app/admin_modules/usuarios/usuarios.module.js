@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('PortalPersonal.admin_modules.usuarios', [])
+  angular.module('PortalPersonal.admin_modules.usuarios', ['ui.select', 'ngSanitize'])
       .config(routeConfig);
 
   /** @ngInject */
@@ -57,6 +57,16 @@
           sidebarMeta: {
             order: 100,
           },
+        })
+        .state("usuarios.usuario_detalle",{
+            url: "/ver_usuario",
+            params: {
+                id_user: null
+            },
+            templateUrl: function (stateParams){
+                    return 'admin-theme/modules/user/ver_usuario';
+            },
+            title: 'Usuario',
         });
       
     $urlRouterProvider.when('/usuarios','/usuarios/informacion');

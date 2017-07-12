@@ -30,7 +30,7 @@ class Permisos_Usuario extends Model
      */
     public function getPermissionAssociated()
     {
-        return $this->belongsTo('App\Models\Permission','permiso');
+        return $this->belongsTo('App\Models\Permiso','permiso');
     }
 
     /**
