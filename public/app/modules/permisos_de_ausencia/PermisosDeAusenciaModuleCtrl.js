@@ -286,7 +286,7 @@
     
     $scope.setDays = function (item, model){
         
-        $scope.formAbsence.inputAbsenceDiasSolicitar = model.dias;
+        $scope.formAbsence.inputAbsenceDiasSolicitar = parseInt(model.dias);
         setDate();
     };
     
