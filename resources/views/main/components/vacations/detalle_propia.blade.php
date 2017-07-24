@@ -80,7 +80,7 @@
     
     <div class="row">
         <div class="col-md-6">
-            <div class="input-group" align="center">
+            <div class="input-group">
                 <h5 class="button-title">Jefe Directo/Jefe de Proyecto</h5><br>
                 <div type="button" ng-show="formOwnRequest.inputOwnRequestAuthBoss == 1" class="btn btn-success btn-icon"><i class="ion-android-checkmark-circle"></i></div>
                 <div type="button" ng-show="formOwnRequest.inputOwnRequestAuthBoss == 0" class="btn btn-info btn-icon"><i class="ion-help"></i></div>

@@ -155,6 +155,7 @@ class LetterController extends Controller
             $this->main_sendMail($data, 'main.components.letter.nueva_carta');
         }catch(\Exception $e){
             echo $e;
+            exit;
         }
 
         return "success"; 

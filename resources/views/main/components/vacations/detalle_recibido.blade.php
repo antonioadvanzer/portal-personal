@@ -36,7 +36,7 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-desde">Desde</span>
-                <input type="text" class="form-control with-primary-addon" id="inputRequestReceivedDesde" name="inputRequestReceivedDesde" placeholder="" ng-model="formRequestReceived.inputAbsenceReceivedDesde" readonly>
+                <input type="text" class="form-control with-primary-addon" id="inputRequestReceivedDesde" name="inputRequestReceivedDesde" placeholder="" ng-model="formRequestReceived.inputRequestReceivedDesde" readonly>
                 
             </div>
             
@@ -58,7 +58,7 @@
         <div class="col-md-12">
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Observaciones</span>
-                <textarea placeholder="" class="form-control" id="inputRequestReceivedObservaciones" name="inputRequestReceivedObservaciones" ng-model="formRequestReceived.inputAbsenceReceivedObservaciones" readonly>@{{formRequestReceived.inputRequestReceivedObservaciones}}</textarea>
+                <textarea placeholder="" class="form-control" id="inputRequestReceivedObservaciones" name="inputRequestReceivedObservaciones" ng-model="formRequestReceived.inputRequestReceivedObservaciones" readonly>@{{formRequestReceived.inputRequestReceivedObservaciones}}</textarea>
             </div>
             
         </div>
@@ -81,7 +81,7 @@
     
     <div class="row">
         <div class="col-md-6">
-            <div class="input-group" align="center">
+            <div class="input-group">
                 <h5 class="button-title">Jefe Directo/Jefe de Proyecto</h5><br>
                 <div type="button" ng-show="formRequestReceived.inputRequestReceivedAuthBoss == 1" class="btn btn-success btn-icon"><i class="ion-android-checkmark-circle"></i></div>
                 <div type="button" ng-show="formRequestReceived.inputRequestReceivedAuthBoss == 0" class="btn btn-info btn-icon"><i class="ion-help"></i></div>

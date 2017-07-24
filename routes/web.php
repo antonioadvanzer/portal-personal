@@ -175,9 +175,11 @@ Route::group(['middleware' => 'auth'], function(){
 
                 /*** Actions on absences ***/
                 
-                Route::get('/accept_absence/{id_absence}', 'AbsenceController@main_acceptAbsence'); // Accept request
+                // Accept request
+                Route::get('/accept_absence/{id_absence}', 'AbsenceController@main_acceptAbsence');
                 
-                Route::post('/reject_absence', 'AbsenceController@main_rejectAbsence'); // Reject request
+                // Reject request
+                Route::post('/reject_absence', 'AbsenceController@main_rejectAbsence');
             
             });
 
@@ -254,6 +256,54 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/permisos_por_posicion/{id}', 'PermissionController@admin_getPermissionsByPosition');
             });
 
+            Route::group(['prefix' => 'level'], function () {
+
+                /* Levels Admin Views -------------------- */
+
+                /* Levels Admin Resources -------------------- */
+
+                // Levels table
+                Route::get('/list_levels', 'LevelController@admin_getListLevels');
+            });
+
+            Route::group(['prefix' => 'direction'], function () {
+                
+                /* Directions Admin Views -------------------- */
+                
+                // Directions table
+                Route::get('/lista_direcciones', 'DirectionController@admin_listaDirecciones');
+                Route::get('/tabla_direcciones', 'DirectionController@admin_tablaDirecciones');
+                Route::get('/tabla_areas_por_direccion', 'DirectionController@admin_tablaAreasPorDireccion');
+
+                // New
+                Route::get('/crear_direccion', 'DirectionController@admin_getNewDirection');
+                Route::get('/agregar', 'DirectionController@admin_getNewDirectionForm');
+
+                // Edit
+                Route::get('/ver_direccion', 'DirectionController@admin_showDirection');
+                Route::get('/direccion', 'DirectionController@admin_getDirectionForm');
+
+                /* Directions Admin Resources -------------------- */
+
+                // Directions table
+                Route::get('/list_directions', 'DirectionController@admin_getListDirections');
+                Route::get('/direccion_por_area/{id_area}', 'DirectionController@admin_findDirectionUsingArea');
+                Route::get('/areas_by_direction/{id_direction}', 'DirectionController@admin_getAreasByDirection');
+
+                // Save Data
+                Route::post('/store_new_direction', 'DirectionController@admin_storeNewDirection');
+
+                // Edit
+                Route::get('/get_direction/{id_direction}', 'DirectionController@admin_getDirectionDetail');
+               
+                // Update Data
+                Route::post('/update_direction', 'DirectionController@admin_updateDirection');
+
+                // Delete
+                Route::get('/delete_direction/{id_direction}', 'DirectionController@admin_deleteDirection');
+
+            });
+
             Route::group(['prefix' => 'area'], function () {
                 
                 /* Areas Admin Views -------------------- */
@@ -290,56 +340,130 @@ Route::group(['middleware' => 'auth'], function(){
                
             });
 
-            Route::group(['prefix' => 'track'], function () {
-            
-                // Tracks Admin
-                Route::get('/tracks_activos', 'TrackController@admin_getTracksActive');
-               
-            });
-
             Route::group(['prefix' => 'position'], function () {
-            
-                // Tracks Admin
-                Route::get('/posiciones_activas/{id}', 'PositionController@admin_getPositionsActiveByTrack');
-               
-            });
 
-            Route::group(['prefix' => 'direction'], function () {
+                /* Positions Admin Views -------------------- */
                 
-                /* Directions Admin Views -------------------- */
-                
-                // Directions table
-                Route::get('/lista_direcciones', 'DirectionController@admin_listaDirecciones');
-                Route::get('/tabla_direcciones', 'DirectionController@admin_tablaDirecciones');
-                Route::get('/tabla_areas_por_direccion', 'DirectionController@admin_tablaAreasPorDireccion');
+                // Positions table
+                Route::get('/lista_posiciones', 'PositionController@admin_listaPosiciones');
+                Route::get('/tabla_posiciones', 'PositionController@admin_tablaPosiciones');
 
                 // New
-                Route::get('/crear_direccion', 'DirectionController@admin_getNewDirection');
-                Route::get('/agregar', 'DirectionController@admin_getNewDirectionForm');
+                Route::get('/crear_posicion', 'PositionController@admin_getNewPosicion');
+                Route::get('/agregar', 'PositionController@admin_getNewPosicionForm');
 
                 // Edit
-                Route::get('/ver_direccion', 'DirectionController@admin_showDirection');
-                Route::get('/direccion', 'DirectionController@admin_getDirectionForm');
+                Route::get('/ver_posicion', 'PositionController@admin_showPosition');
+                Route::get('/posicion', 'PositionController@admin_getPositionForm');
 
-                /* Directions Admin Resources -------------------- */
+                /* Positions Admin Resources -------------------- */
 
-                // Directions Admin
-                Route::get('/list_directions', 'DirectionController@admin_getListDirections');
-                Route::get('/direccion_por_area/{id_area}', 'DirectionController@admin_findDirectionUsingArea');
-                Route::get('/areas_by_direction/{id_direction}', 'DirectionController@admin_getAreasByDirection');
+                // Positions Admin
+                Route::get('/list_positions', 'PositionController@admin_getListPositions');
+                Route::get('/posiciones_activas', 'PositionController@admin_getPositionActive');
 
-                // Save Data
-                Route::post('/store_new_direction', 'DirectionController@admin_storeNewDirection');
+                // Positions list by Track
+                Route::get('/posiciones_activas_por_track/{id}', 'PositionController@admin_getPositionsActiveByTrack');
 
-                // Edit
-                Route::get('/get_direction/{id_direction}', 'DirectionController@admin_getDirectionDetail');
+                // Tracks list by Position
+                Route::get('/track_by_position/{id}', 'PositionController@admin_getTracksByPosition');
+
+                // Save
+                Route::post('/store_new_position', 'PositionController@admin_storeNewPosition');
+
+                 // Edit
+                Route::get('/get_position/{id_position}', 'PositionController@admin_getPositionDetail');
                
-                // Update Data
-                Route::post('/update_direction', 'DirectionController@admin_updateDirection');
+                // Update 
+                Route::post('/update_position', 'PositionController@admin_updatePosition');
 
                 // Delete
-                Route::get('/delete_direction/{id_direction}', 'DirectionController@admin_deleteDirection');
+                Route::get('/delete_position/{id_position}', 'PositionController@admin_deletePosition');
+               
+            });
 
+            Route::group(['prefix' => 'track'], function () {
+
+                /* Tracks Admin Views -------------------- */
+                
+                // Tracks table
+                Route::get('/lista_tracks', 'TrackController@admin_listaTracks');
+                Route::get('/tabla_tracks', 'TrackController@admin_tablaTracks');
+                Route::get('/tabla_posiciones_por_track', 'TrackController@admin_tablaPosicionesPorTrack');
+
+                // New
+                Route::get('/crear_track', 'TrackController@admin_getNewTrack');
+                Route::get('/agregar', 'TrackController@admin_getNewTrackForm');
+
+                // Edit
+                Route::get('/ver_track', 'TrackController@admin_showTrack');
+                Route::get('/track', 'TrackController@admin_getTrackForm');
+
+                /* Tracks Admin Resources -------------------- */
+
+                // Tracks table
+                Route::get('/positions_by_track/{id_track}', 'TrackController@admin_getPositionsByTrack');
+
+                // Tracks Admin
+                Route::get('/tracks_activos', 'TrackController@admin_getListTracks');
+
+                // Save Data
+                Route::post('/store_new_track', 'TrackController@admin_storeNewTrack');
+
+                // Edit
+                Route::get('/get_track/{id_track}', 'TrackController@admin_getTrackDetail');
+
+                // Update Data
+                Route::post('/update_track', 'TrackController@admin_updateTrack');
+
+                // Delete
+                Route::get('/delete_track/{id_track}', 'TrackController@admin_deleteTrack');
+               
+            });
+
+            Route::group(['prefix' => 'request'], function () {
+                
+                /* Requests Admin Views -------------------- */
+
+                // Directions table
+                Route::get('/todas_las_solicitudes', 'RequestController@admin_allRequests');
+                Route::get('/solicitudes_canceladas', 'RequestController@admin_canceledRequests');
+                Route::get('/solicitudes_enviadas', 'RequestController@admin_sendedRequests');
+                Route::get('/solicitudes_aceptadas', 'RequestController@admin_aceptedRequests');
+                Route::get('/solicitudes_rechazadas', 'RequestController@admin_rejectedRequests');
+                Route::get('/solicitudes_autorizadas', 'RequestController@admin_authorizedRequests');
+                Route::get('/lista_todas_las_solicitudes', 'RequestController@admin_tableAllRequests');
+                Route::get('/lista_solicitudes_canceladas', 'RequestController@admin_tableCanceledRequests');
+                Route::get('/lista_solicitudes_enviadas', 'RequestController@admin_tableSendedRequests');
+                Route::get('/lista_solicitudes_aceptadas', 'RequestController@admin_tableAceptedRequests');
+                Route::get('/lista_solicitudes_rechazadas', 'RequestController@admin_tableRejectedRequests');
+                Route::get('/lista_solicitudes_autorizadas', 'RequestController@admin_tableAuthorizedRequests');
+
+                // Show
+                Route::get('/mostrar_solicitud', 'RequestController@admin_showRequest');
+                Route::get('/solicitada', 'RequestController@admin_getRequestForm');
+
+                /* Requests Admin Resources -------------------- */
+
+                // Table
+                Route::get('/get_all_requests', 'RequestController@admin_getAllRequests');
+                Route::get('/get_canceled_requests', 'RequestController@admin_getCanceledRequests');
+                Route::get('/get_sended_requests', 'RequestController@admin_getSendedRequests');
+                Route::get('/get_acepted_requests', 'RequestController@admin_getAceptedRequests');
+                Route::get('/get_rejected_requests', 'RequestController@admin_getRejectedRequests');
+                Route::get('/get_authorized_requests', 'RequestController@admin_getAuthorizedRequests');
+
+                // Show
+                Route::get('/get_request/{id_request}', 'RequestController@admin_getRequest');
+
+                // Accept request
+                Route::get('/auth_request/{id_request}', 'RequestController@admin_authRequest');
+
+                // Reject request
+                Route::post('/reject_request', 'RequestController@admin_rejectRequest');
+
+                // Cancel request
+                Route::get('/cancel_request/{id_request}', 'RequestController@admin_cancelRequest');
             });
 
         });

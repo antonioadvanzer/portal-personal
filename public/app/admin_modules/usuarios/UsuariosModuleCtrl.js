@@ -280,7 +280,7 @@
         //vm.eventResult = {item: item, model: model};
         //alert(model.id);
         
-        $http.get("admin-theme/modules/position/posiciones_activas/"+model.id).then(function (response) {
+        $http.get("admin-theme/modules/position/posiciones_activas_por_track/"+model.id).then(function (response) {
           $scope.standardSelectPositions = response.data;
         });
     };
@@ -507,6 +507,10 @@
             }
         });
     }
+      
+    $scope.progressFunction = function() {
+        return $timeout(function() {}, 3000);
+    };
    
   /*--------------------------------------------------------------------------------------------*/
   

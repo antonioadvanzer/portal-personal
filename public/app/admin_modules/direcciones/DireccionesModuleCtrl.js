@@ -28,7 +28,6 @@
     }
     
     $scope.tamanioTablaDirecciones = 10;
-
     $scope.listaDirecciones = [];
     
     $scope.refreshTables();
@@ -36,7 +35,7 @@
     $scope.showDirection = function (id){
         $http.get("admin-theme/modules/direction/get_direction/"+id).then(function (response) {
             
-            console.log(response.data);
+            //console.log(response.data);
             
             $scope.formEditDirection.editDirection = false;
             $scope.formEditDirection.id = response.data.id;
@@ -55,7 +54,7 @@
     }
       
   /*--------------------------------------------------------------------------------------------*/
-  /* New Area -------------------------------------------------------------------------------*/
+  /* New direction -------------------------------------------------------------------------------*/
         
       $scope.direction = {};
       //$scope.direction.inputDirectionName = "";
@@ -91,26 +90,30 @@
         });
       }
       
-        function resetForm(stateName) {
-            if ($state.is(stateName)) {
-                $state.reload();
-            } else {
-                $state.go(stateName);
-            }
+    function resetForm(stateName) {
+        if ($state.is(stateName)) {
+            $state.reload();
+        } else {
+            $state.go(stateName);
         }
+    }
 
-        function getAlert(page, size){
-            $uibModal.open({
-                animation: true,
-                templateUrl: page,
-                size: size,
-                resolve: {
-                  /*items: function () {
-                    return $scope.items;
-                  }*/
-                }
-            });
-        }
+    function getAlert(page, size){
+        $uibModal.open({
+            animation: true,
+            templateUrl: page,
+            size: size,
+            resolve: {
+            /*items: function () {
+            return $scope.items;
+            }*/
+            }
+        });
+    }
+
+    $scope.progressFunction = function() {
+        return $timeout(function() {}, 3000);
+    };
       
   /*--------------------------------------------------------------------------------------------------*/
   /* Show direction ----------------------------------------------------------------------------------*/
@@ -118,7 +121,7 @@
     $scope.formEditDirection={};
 
     $scope.formEditDirection.editDirection = false;
-
+      
   /*--------------------------------------------------------------------------------------------*/
   /* Update direction ----------------------------------------------------------------------------------*/
     

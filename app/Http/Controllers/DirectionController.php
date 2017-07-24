@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Direccion;
+use App\Models\Area;
 use DB;
+use PortalPersonal;
 
 class DirectionController extends Controller
 {
@@ -173,7 +175,8 @@ class DirectionController extends Controller
     {
         $direction = array();
 
-        $directionModel = Direccion::where("id",$id)->first();
+        //$directionModel = Direccion::where("id",$id_area)->first();
+        $directionModel = Area::find($id_area)->getDirectionAssociated()->first();
         
         $direction = [
             "id" => $directionModel->id,

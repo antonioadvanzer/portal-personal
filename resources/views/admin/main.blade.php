@@ -30,7 +30,8 @@
   <footer class="al-footer clearfix">
     <!--<div class="al-footer-right">Created with <i class="ion-heart"></i></div>-->
     <div class="al-footer-main clearfix">
-      <div class="al-copy">Advanzer/Entuizer 2017</div>
+      <!--<div class="al-copy">Advanzer/Entuizer 2017</div>-->
+        <div class="al-copy">{{ PortalPersonal::getSiteInformation() }}</div>
       <!--<ul class="al-share clearfix">
         <li><i class="socicon socicon-facebook"></i></li>
         <li><i class="socicon socicon-twitter"></i></li>
@@ -133,9 +134,18 @@
 <!-- Area -->
 <script src="{{ URL::to('app/admin_modules/areas/areas.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/areas/AreasModuleCtrl.js') }}"></script>
+<!-- Track -->
+<script src="{{ URL::to('app/admin_modules/tracks/tracks.module.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/tracks/TracksModuleCtrl.js') }}"></script>
+<!-- Posicion -->
+<script src="{{ URL::to('app/admin_modules/posiciones/posiciones.module.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/posiciones/PosicionesModuleCtrl.js') }}"></script>
 <!-- Usuario -->
 <script src="{{ URL::to('app/admin_modules/usuarios/usuarios.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/usuarios/UsuariosModuleCtrl.js') }}"></script>
+<!-- Solicitudes -->
+<script src="{{ URL::to('app/admin_modules/solicitudes/solicitudes.module.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/solicitudes/SolicitudesModuleCtrl.js') }}"></script>
 <!-- Permiso -->
 <script src="{{ URL::to('app/admin_modules/permisos/permisos.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/permisos/PermisosModuleCtrl.js') }}"></script>

@@ -165,10 +165,6 @@
         
     };
       
-    $scope.progressFunction = function() {
-        return $timeout(function() {}, 3000);
-    };
-      
     $scope.acceptAbsence = function (){
         
         $scope.sending = true;
@@ -414,6 +410,10 @@
             }
         });
     }
+      
+    $scope.progressFunction = function() {
+        return $timeout(function() {}, 3000);
+    };
 
 /*--------------------------------------------------------------------------------------------------*/
   }

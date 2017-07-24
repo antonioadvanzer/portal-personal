@@ -149,10 +149,6 @@
         
     };
       
-    $scope.progressFunction = function() {
-        return $timeout(function() {}, 3000);
-    };
-      
     $scope.acceptRequest = function (){
         
         $scope.sending = true;
@@ -198,7 +194,7 @@
             getAlert('theme/danger_modal/Falla al rechazar la solicitud');
         });
         
-    }
+    };
       
 /*--------------------------------------------------------------------------------------------------*/
     
@@ -381,6 +377,10 @@
             }
         });
     }
+      
+    $scope.progressFunction = function() {
+        return $timeout(function() {}, 3000);
+    };
     
 /*--------------------------------------------------------------------------------------------------*/
 	

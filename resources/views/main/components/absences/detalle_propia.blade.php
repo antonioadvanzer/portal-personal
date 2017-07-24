@@ -74,7 +74,7 @@
         </div>
     </div>
     
-    <div class="row" ng-show="formAbsenceReceived.inputAbsenceReceivedStatus == 4">
+    <div class="row" ng-id="formOwnAbsence.inputOwnAbsenceStatus == 4">
         <div class="col-md-12">
             
             <div class="input-group">

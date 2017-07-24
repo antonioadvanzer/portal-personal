@@ -8,7 +8,7 @@
   </div>
   <table class="table table-hover table-condensed" st-table="listaDirecciones">
     <thead>
-    <tr class="sortable ">
+    <tr class="sortable">
       <th class="table-id" st-sort="id" st-sort-default="true">#</th>
       <th st-sort="name">Nombre</th>
     </tr>

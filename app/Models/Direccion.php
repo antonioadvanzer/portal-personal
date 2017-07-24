@@ -22,7 +22,7 @@ class Direccion extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description'
+        'name'
     ];
 
     /**

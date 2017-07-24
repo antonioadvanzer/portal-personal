@@ -241,6 +241,7 @@ class VacationController extends Controller
             $this->main_sendMail($data, 'main.components.vacations.nueva_solicitud');
         }catch(\Exception $e){
             echo $e;
+            exit;
         }
 
         return "success"; 
@@ -295,7 +296,7 @@ class VacationController extends Controller
     {   
         $solicitud = Solicitud::find($id_request);
 
-        if($solicitud->status == DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id')){
+        if(($solicitud->status == DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id')) || ($solicitud->status == DB::table('estados_solicitud')->where('name', 'Cancelada')->value('id'))){
             $solicitud->alert = 0;
             $solicitud->save();
         }
@@ -399,6 +400,7 @@ class VacationController extends Controller
             $this->main_sendMail($data, 'main.components.absences.rechazar_solicitud');
         }catch(\Exception $e){
             echo $e;
+            exit;
         }
 
         return "success"; 
@@ -463,6 +465,7 @@ class VacationController extends Controller
             $this->main_sendMail($data, 'main.components.absences.aceptar_solicitud');
         }catch(\Exception $e){
             echo $e;
+            exit;
         }
 
         return "success"; 

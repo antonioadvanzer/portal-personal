@@ -30,7 +30,7 @@ class Posicion extends Model
      */
     public function getPosicionTracks()
     {
-        return $this->hasMany('App\Posicion_Track','posicion');
+        return $this->hasMany('App\Models\Posicion_Track','posicion');
     }
 
     /**
@@ -39,5 +39,13 @@ class Posicion extends Model
     public function getPermissionsPositions()
     {
         return $this->hasMany('App\Models\Permisos_Posicion','posicion');
+    }
+
+    /**
+     * 
+     */
+    public function getLevelAssociated()
+    {
+        return $this->belongsTo('App\Models\Nivel','nivel');
     }
 }

@@ -298,6 +298,7 @@ class AbsenceController extends Controller
             $this->main_sendMail($data, $ocacionJustificada ? 'main.components.absences.nueva_solicitud' : 'main.components.absences.notificacion_ausencia');
         }catch(\Exception $e){
             echo $e;
+            exit;
         }
 
         return "success"; 
@@ -413,7 +414,7 @@ class AbsenceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -428,6 +429,7 @@ class AbsenceController extends Controller
 
             $absence = Solicitud::find($request->input('abs_id'));
             
+            $absence->alert = 1;
             $absence->razon_cancelacion = $request->input('abs_motivo_cancelacion');
             $absence->status = DB::table('estados_solicitud')->where('name', 'Rechazada')->value('id');
 
@@ -460,6 +462,7 @@ class AbsenceController extends Controller
             $this->main_sendMail($data, 'main.components.absences.rechazar_solicitud');
         }catch(\Exception $e){
             echo $e;
+            exit;
         }
 
         return "success"; 
@@ -502,7 +505,7 @@ class AbsenceController extends Controller
             'motivo' => $solicitud->getMotivoAssociated()->first()->name
         );
 
-        $data['subject'] = "Portal Personal - Solicitud Cancelada";
+        $data['subject'] = "Portal Personal - Solicitud Aceptada";
         $data['from'] = User::find($solicitud->authorizer)->email;
         
         // test mail ----
@@ -524,6 +527,7 @@ class AbsenceController extends Controller
             $this->main_sendMail($data, 'main.components.absences.aceptar_solicitud');
         }catch(\Exception $e){
             echo $e;
+            exit;
         }
         
         return "success"; 

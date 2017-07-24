@@ -16,9 +16,16 @@ class CreatePosicionesTable extends Migration
         Schema::create('posiciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('nivel');
+            /* foreign key ------------------------ */
+            $table->integer('nivel')->unsigned();
+            /* ------------------------------------ */
+            
             $table->timestamps();
             $table->softDeletes();
+
+             /* Relations ----------------------------------------------------------------- */
+            $table->foreign('nivel')->references('id')->on('niveles');
+            /* --------------------------------------------------------------------------- */
         });
     }
 

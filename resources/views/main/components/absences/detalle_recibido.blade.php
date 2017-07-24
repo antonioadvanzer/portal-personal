@@ -71,7 +71,7 @@
         <div class="col-md-12">
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Observaciones</span>
-                <textarea placeholder="" class="form-control" id="inputAbsenceObservations" name="inputAbsenceObservations" ng-model="formAbsenceReceived.inputAbsenceReceivedObservaciones" readonly>@{{formAbsenceReceived.inputAbsenceReceivedObservaciones}}</textarea>
+                <textarea placeholder="" class="form-control" id="inputAbsenceReceivedObservaciones" name="inputAbsenceReceivedObservaciones" ng-model="formAbsenceReceived.inputAbsenceReceivedObservaciones" readonly>@{{formAbsenceReceived.inputAbsenceReceivedObservaciones}}</textarea>
             </div>
             
         </div>
