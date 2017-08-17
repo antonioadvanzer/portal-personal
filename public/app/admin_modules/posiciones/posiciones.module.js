@@ -43,7 +43,7 @@
           templateUrl: 'admin-theme/modules/position/lista_posiciones',
           title: 'Posiciones',
           sidebarMeta: {
-            order: 100,
+            order: 0,
           },
         })
         .state("posiciones.posicion_detalle",{

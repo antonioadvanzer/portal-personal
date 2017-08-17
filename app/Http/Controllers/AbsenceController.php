@@ -14,6 +14,7 @@ use DB;
 use File;
 use Mail;
 use URL;
+use PortalPersonal;
 
 class AbsenceController extends Controller
 {
@@ -272,7 +273,7 @@ class AbsenceController extends Controller
             'dias' => $newAbsence['dias'],
             'desde' => $newAbsence['fecha_inicio'],
             'hasta' => $newAbsence['fecha_fin'],
-            'motivo' => $newAbsence['motivo']
+            'motivo' => DB::table('motivos_ausencia')->where('id', $newAbsence['motivo'])->value('name')
         );
 
         $data['subject'] = "Portal Personal - Nueva Solicitud";
@@ -285,7 +286,7 @@ class AbsenceController extends Controller
         $mail_cc = array();
 
         if($ocacionJustificada){
-            $mail_admins = $this->advanzer_getAdminstratorsArray();
+            $mail_admins = PortalPersonal::getAdminstratorsArray();
             foreach($mail_admins as $mb){
                 array_push($mail_cc, $mb['email']);
             }
@@ -295,7 +296,7 @@ class AbsenceController extends Controller
         $data['cc'] = array();
 
         try{
-            $this->main_sendMail($data, $ocacionJustificada ? 'main.components.absences.nueva_solicitud' : 'main.components.absences.notificacion_ausencia');
+            PortalPersonal::sendMail($data, $ocacionJustificada ? 'main.components.absences.nueva_solicitud' : 'main.components.absences.notificacion_ausencia');
         }catch(\Exception $e){
             echo $e;
             exit;
@@ -459,7 +460,7 @@ class AbsenceController extends Controller
         $data['cc'] = array();
 
         try{
-            $this->main_sendMail($data, 'main.components.absences.rechazar_solicitud');
+            PortalPersonal::sendMail($data, 'main.components.absences.rechazar_solicitud');
         }catch(\Exception $e){
             echo $e;
             exit;
@@ -524,7 +525,7 @@ class AbsenceController extends Controller
         //var_dump($mail_cc);
 
         try{
-            $this->main_sendMail($data, 'main.components.absences.aceptar_solicitud');
+            PortalPersonal::sendMail($data, 'main.components.absences.aceptar_solicitud');
         }catch(\Exception $e){
             echo $e;
             exit;
@@ -547,71 +548,4 @@ class AbsenceController extends Controller
         return view('theme.components.comprobanteMedico', ["file" => $voucher]);
     }
 
-    /**
-     * Allow create a email format to send.
-     *
-     * @param 
-     * @return \Illuminate\Http\Response
-     */
-    private function main_sendMail($data, $format){
-        
-        Mail::send($format, ['data' => $data], function ($message) use ($data) {
-            $message->from($data['from'], 'Portal Personal');
-            $message->to($data['to']);
-            $message->cc($data['cc']);
-            $message->subject($data['subject']);
-        });
-
-    }
-
-    /**
-     * 
-     *
-     * @return \Illuminate\Http\Response
-     */
-    private function advanzer_getAdminstratorsArray()
-    {   
-        $admins = array();
-
-        $userModel = User::all();
-        
-        foreach($userModel as $um){
-            
-            $pu = $um->getPermissionsUser()->get();
-            $pa = $um->getAreaAssociated()->first()->getPermissionsArea()->get();
-            $pp = $um->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->getPermissionsPositions()->get();
-            
-            if($this->advanzer_checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pu) 
-                or $this->advanzer_checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pa) 
-                or $this->advanzer_checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pp)){
-                array_push($admins,[
-                    "id" => $um->id,
-                    "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
-                    "email" => $um->email,
-                ]);
-            }
-        }
-        
-        //return json_encode($admins);
-        return $admins;
-    }
-
-    /**
-     * 
-     *
-     * @return Boolean
-     */
-    private function advanzer_checkPermission($permission, $permissions)
-    {  
-        $valid = false;
-        
-        foreach($permissions as $p){
-            if($p->getPermissionAssociated()->first()->access == $permission){
-                $valid = true;
-                break;
-            }
-        }
-
-        return $valid;
-    }
 }

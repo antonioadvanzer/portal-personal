@@ -25,7 +25,7 @@
         .state('permisos_de_ausencia.informacion', {
           url: '/informacion',
           templateUrl: 'theme/modules/absence/information',
-          title: 'Informacion',
+          title: 'Información',
           sidebarMeta: {
             order: 0,
           },
@@ -60,7 +60,7 @@
         .state("permisos_de_ausencia.detalle_solicitud",{
             url: "/ver_propia",
             params: {
-                id_onw_absence: null
+                id_own_absence: null
             },
             templateUrl: function (stateParams){
                     //return 'theme/modules/absence/mostrar_solicitud_propia/' + stateParams.id_onw_absence;

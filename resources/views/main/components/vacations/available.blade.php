@@ -8,9 +8,9 @@
   </thead>
   <tbody>
     <tr>
-      <td>6</td>
-      <td>0</td>
-      <td></td>
+      <td>@{{diasDisponibles}}</td>
+      <td>@{{days_expire}}</td>
+      <td>@{{date_expire}}</td>
     </tr>
   </tbody>
 </table>

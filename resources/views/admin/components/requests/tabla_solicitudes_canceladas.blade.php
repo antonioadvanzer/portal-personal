@@ -2,11 +2,11 @@
   <div class="form-group select-page-size-wrap ">
     <label>Filas por pagina
       <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-              ng-model="tamanioTablaSolicitudesCanceladas" ng-options="i for i in [5,10,15,20,25]">
+              ng-model="requests_table.tamanioTablaSolicitudesCanceladas" ng-options="i for i in [5,10,15,20,25]">
       </select>
     </label>
   </div>
-  <table class="table table-hover table-condensed" st-table="solicitudesCanceladas">
+  <table class="table table-hover table-condensed" st-table="requests_table.solicitudesCanceladas">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="false">#</th>
@@ -36,7 +36,7 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="sc in solicitudesCanceladas" ng-click="showRequest(sc.id)" ng-class="{'primary': ((sc.alerta == 1) && (sc.status == 3))}">
+    <tr ng-repeat="sc in requests_table.solicitudesCanceladas" ng-click="showRequest(sc.id)" ng-class="{'primary': ((sc.alerta == 1) && (sc.status == 3))}">
       <td class="table-id">@{{sc.id}}</td>
       <td>@{{sc.folio}}</td>
       <td>@{{sc.tipo}}</td>
@@ -53,7 +53,7 @@
     <tfoot>
     <tr>
       <td colspan="6" class="text-center">
-        <div st-pagination="" st-items-by-page="tamanioTablaSolicitudesCanceladas" st-displayed-pages="5"></div>
+        <div st-pagination="" st-items-by-page="requests_table.tamanioTablaSolicitudesCanceladas" st-displayed-pages="5"></div>
       </td>
     </tr>
     </tfoot>

@@ -18,13 +18,13 @@ class CreateBossTable extends Migration
             $table->integer('boss')->unsigned(); // foreign key
             $table->integer('employed')->unsigned(); // foreign key 
 
+            $table->timestamps();
+            $table->softDeletes();
+
             /* Relations ----------------------------------------------------------------- */
             $table->foreign('boss')->references('id')->on('users');
             $table->foreign('employed')->references('id')->on('users');
             /* --------------------------------------------------------------------------- */
-
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -76,4 +76,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Jefe','boss');
     }
+
+    /**
+     * 
+     */
+    public function getVacations()
+    {
+        return $this->hasMany('App\Models\Vacaciones','user');
+    }
 }

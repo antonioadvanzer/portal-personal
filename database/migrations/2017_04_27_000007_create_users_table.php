@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('nomina')->unique();
             $table->string('plaza');
 
-            /* foreign key ------------------------ */
+            /* Foreign key ------------------------ */
             $table->integer('area')->unsigned();
             $table->integer('posicion_track')->unsigned();
             $table->integer('company')->unsigned();

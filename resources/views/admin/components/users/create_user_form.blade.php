@@ -135,9 +135,13 @@
           <label for="inputUserEmail" class="col-sm-3 control-label">Email</label>
 
           <div class="col-sm-9">
-            <input type="email" class="form-control" id="inputUserEmail" name="inputUserEmail" ng-model="formUser.inputUserEmail" placeholder="" value="" required>
+            <input type="email" class="form-control" id="inputUserEmail" name="inputUserEmail" ng-model="formUser.inputUserEmail" placeholder="" value="" ng-keyup="formUser.checkEmail(newUser)" required>
           </div>
             
+            <div class="col-sm-9" ng-show="formUser.email_available">
+                <br>
+                <span class="alert bg-warning">La direcci&oacute;n de correo electr&oacute;nico ya ha sido utilizado</span>
+            </div>
             <div class="col-sm-9" ng-show="validIUE=(newUser.inputUserEmail.$dirty && newUser.inputUserEmail.$invalid)">
                 <br>
                 <span class="alert bg-danger" ng-show="newUser.inputUserEmail.$error.required">El Email es requerido</span>
@@ -162,9 +166,13 @@
           <label for="inputUserNomina" class="col-sm-3 control-label"># Nomina</label>
 
           <div class="col-sm-9">
-            <input type="number" class="form-control" id="inputUserNomina" name="inputUserNomina" ng-model="formUser.inputUserNomina" placeholder="" min="0" value="" required>
+            <input type="number" class="form-control" id="inputUserNomina" name="inputUserNomina" ng-model="formUser.inputUserNomina" placeholder="" min="0" value="" ng-keyup="formUser.checkNomina(newUser)" required>
           </div>
             
+            <div class="col-sm-9" ng-show="formUser.nomina_available">
+                <br>
+                <span class="alert bg-warning">El Numero de empleado ya ha sido utilizado</span>
+            </div>
             <div class="col-sm-9" ng-show="validIUN=(newUser.inputUserNomina.$dirty && newUser.inputUserNomina.$invalid)">
                 <br>
                 <span class="alert bg-danger" ng-show="newUser.inputUserNomina.$error.required">El Numero de empleado es requerido</span>
@@ -392,7 +400,7 @@
         {{--</div>--}}
     </div>
     {{--<button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="saveUser()" ng-disabled="newUser.inputUserName.$dirty && newUser.inputUserName.$invalid || newUser.inputUserApellidoP.$dirty && newUser.inputUserApellidoP.$invalid || newUser.inputUserApellidoM.$dirty && newUser.inputUserApellidoM.$invalid || newUser.inputUserEmail.$dirty && newUser.inputUserEmail.$invalid || newUser.inputUserPlaza.$dirty && newUser.inputUserPlaza.$invalid || newUser.inputUserNomina.$dirty && newUser.inputUserNomina.$invalid "><i class="ion-android-checkmark-circle"></i>Guardar</button>--}}
-    <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="saveUser()" ng-disabled="newUser.inputUserName.$invalid || newUser.inputUserApellidoP.$invalid || newUser.inputUserApellidoM.$invalid || newUser.inputUserEmail.$invalid || newUser.inputUserPlaza.$invalid || newUser.inputUserNomina.$invalid || (!selectedArea.selected.id) || (!selectedTrack.selected.id) || (!selectedPosition.selected) || (!selectedCompany.selected) || (!selectedBoss.selected) || (newUser.uploadFile.$invalid) || !(formUser.imageSrc != '')">
+    <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="saveUser()" ng-disabled="newUser.inputUserName.$invalid || newUser.inputUserApellidoP.$invalid || newUser.inputUserApellidoM.$invalid || newUser.inputUserEmail.$invalid || newUser.inputUserPlaza.$invalid || newUser.inputUserNomina.$invalid || (!selectedArea.selected.id) || (!selectedTrack.selected.id) || (!selectedPosition.selected) || (!selectedCompany.selected) || (!selectedBoss.selected) || (newUser.uploadFile.$invalid) || !(formUser.imageSrc != '') || (formUser.nomina_available) || (formUser.email_available)">
       <i class="ion-android-checkmark-circle"></i>Guardar
     </button>
     

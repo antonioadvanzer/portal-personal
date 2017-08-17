@@ -5,15 +5,33 @@
 (function () {
   'use strict';
 
-  angular.module('PortalPersonal.modules', [
-    'ui.router',
+    // Get permission allowed to user
+    //alert($("#permissions").val());
+    
+    var permissions_string = $("#permissions").val();
+    var permisos = permissions_string.split("-");
+    
+    console.log(permisos);
+    
+    var modulos = [
+        'ui.router',
+        'PortalPersonal.modules.principal',
+        'PortalPersonal.modules.profile',
+    ];
+    
+    var modules = modulos.concat(permisos);
+    
+    /*var Modulos = [
+        'ui.router',
 
-    'PortalPersonal.modules.principal',
-    'PortalPersonal.modules.evaluaciones',
-    'PortalPersonal.modules.vacaciones',
-    'PortalPersonal.modules.permisos_de_ausencia',
-    'PortalPersonal.modules.cartas_y_constancias_laborales'
-  ])
+        'PortalPersonal.modules.principal',
+        'PortalPersonal.modules.evaluaciones',
+        'PortalPersonal.modules.vacaciones',
+        'PortalPersonal.modules.permisos_de_ausencia',
+        'PortalPersonal.modules.cartas_y_constancias_laborales'
+      ];*/
+    
+  angular.module('PortalPersonal.modules', modules)
       .config(routeConfig);
 
   /** @ngInject */

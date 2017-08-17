@@ -4,8 +4,9 @@
   <!-- build:css({.tmp/serve,src}) styles/app.css -->
   <!-- inject:css -->
     
-    <link rel="stylesheet" href="{{ URL::to('css/admin/main.css') }}">
-    
+    <!--<link rel="stylesheet" href="{{ URL::to('css/admin/main.css') }}">-->
+    <!--<link rel="stylesheet" href="{{ URL::to('css/advanzer/main.css') }}">-->
+    <link rel="stylesheet" href="{{ URL::to('css/admin/admin_main.css') }}">
   <!-- endinject -->
   <!-- endbuild -->
 @endsection

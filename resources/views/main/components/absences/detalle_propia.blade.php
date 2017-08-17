@@ -70,11 +70,10 @@
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Observaciones</span>
                 <textarea placeholder="" class="form-control" id="inputOwnAbsenceObservaciones" name="inputOwnAbsenceObservaciones" ng-model="formOwnAbsence.inputOwnAbsenceObservaciones" readonly>@{{formOwnAbsence.inputOwnAbsenceObservaciones}}</textarea>
             </div>
-            
         </div>
     </div>
     
-    <div class="row" ng-id="formOwnAbsence.inputOwnAbsenceStatus == 4">
+    <div class="row" ng-if="formOwnAbsence.inputOwnAbsenceStatus == 4">
         <div class="col-md-12">
             
             <div class="input-group">

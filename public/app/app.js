@@ -27,5 +27,10 @@ app.run(function($rootScope) {
     //$rootScope.theme.t_pageTop = "";
     $rootScope.theme = {};
     $rootScope.modules = {};
+    /*$rootScope.permission = [
+        "P1" : 1,
+        "P2" : 0,
+        "P3" : 0
+    ];*/
     
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use URL;
 use Auth;
+use PortalPersonal;
 
 class MainController extends Controller
 {
@@ -20,7 +21,8 @@ class MainController extends Controller
         
         return view('main.main',[
             "components" => $this->getThemeComponets(),
-            "user" => $this->getUserData()
+            "user" => $this->getUserData(),
+            "permissions" => $this->getUserPermissions()
             ]);        
     }
 
@@ -177,10 +179,20 @@ class MainController extends Controller
             "deleted_at" => Auth::user()->delete_at,
 
             //form
+            "is_admin" => PortalPersonal::isAdministrator(Auth::user()->id),
+            "is_boss" => PortalPersonal::isBoss(Auth::user()->id),
             "short_name" => explode(" ",Auth::user()->name)[0],
             "full_name" => Auth::user()->name." ".Auth::user()->apellido_paterno." ".Auth::user()->apellido_materno,
             "area_actual" => Auth::user()->getAreaAssociated()->first()->name,
-            "antiguedad" => date_diff(date_create(Auth::user()->fecha_ingreso), date_create(date('Y-m-d')))->format('%y Años %d días')
+            "antiguedad" => date_diff(date_create(Auth::user()->fecha_ingreso), date_create(date('Y-m-d')))->format('%y Años %m Meses %d días'),
+            "anios_trabajando" => intval(date_diff(date_create(Auth::user()->fecha_ingreso), date_create(date('Y-m-d')))->format('%y'))+1,
+
+            "area_name" => Auth::user()->getAreaAssociated()->first()->name,
+            "direction_name" => Auth::user()->getAreaAssociated()->first()->getDirectionAssociated()->first()->name,
+            "track_name" => Auth::user()->getPositionTrackAssociated()->first()->getTrackAssociated()->first()->name,
+            "position_name" => Auth::user()->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->name,
+            "company_name" => Auth::user()->getCompanyAssociated()->first()->name,
+            "boss_name" => Auth::user()->getBoss()->first()->getBossAssociated()->first()->name,
         );
 
         foreach($fields as $fie => $f){
@@ -220,6 +232,21 @@ class MainController extends Controller
         }
 
         return $variables;
+    }
+
+    /**
+     * Get a group of variables.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    private function getUserPermissions(){
+        
+        $permissions = PortalPersonal::getPermissionsEnabledByUser(Auth::user()->id);
+
+        $permissions = explode(",", $permissions);
+        //dd($permissions);
+        //dd(PortalPersonal::getModulesAccordingPermissions($permissions));
+        return PortalPersonal::getModulesAccordingPermissions($permissions);
     }
 
     /**

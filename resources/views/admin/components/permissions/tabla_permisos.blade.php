@@ -6,7 +6,7 @@
       </select>
     </label>
   </div>
-  <table class="table" st-table="listaPermisos">
+  <table class="table" st-table="permissions_table.listaPermisos">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="true">#</th>
@@ -26,7 +26,7 @@
   </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="lp in listaPermisos">
+    <tr ng-repeat="lp in permissions_table.listaPermisos">
         <td class="table-id">@{{lp.id}}</td>
         <td>@{{lp.name}}</td>
         <td>@{{lp.description}}</td>

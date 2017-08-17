@@ -34,20 +34,27 @@
     $scope.refreshTables = function(){
         // function to get request
         $scope.getOwnRequest().then(function(data) {
-            $scope.solicitudesPropias = data;
+            $scope.absences_table.solicitudesPropias = data;
         });
         $scope.getRequestReceived().then(function(data) {
-            $scope.solicitudesRecibidas = data;
+            $scope.absences_table.solicitudesRecibidas = data;
         });
     }
     
-    //$scope.absence = {};
-  	$scope.tamanioTablaSolicitudesRealizadas = 10;
-    $scope.tamanioTablaSolicitudesRecibidas = 10;
-    $scope.solicitudesPropias = [];
-    $scope.solicitudesRecibidas = [];
+    $scope.absences_table = {};
+      
+  	$scope.absences_table.tamanioTablaSolicitudesRealizadas = 10;
+      
+    $scope.absences_table.tamanioTablaSolicitudesRecibidas = 10;
+      
+    $scope.absences_table.solicitudesPropias = [];
+      
+    $scope.absences_table.solicitudesRecibidas = [];
     
-    $scope.refreshTables();
+    //$scope.refreshTables();
+    $timeout(function() {
+        $scope.refreshTables();
+    }, 2000);
     
     $scope.showOwnAbsence = function (id){
         

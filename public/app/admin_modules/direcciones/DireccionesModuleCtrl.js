@@ -16,21 +16,33 @@
   /* Direcciones table -------------------------------------------------------------------------------*/
       
     $scope.getDirections = function(){
+    //function getDirections(){
         return $http.get("admin-theme/modules/direction/list_directions").then(function (response) {
+        //$.getJSON("admin-theme/modules/direction/list_directions", function( data ) {
             return response.data;
+            //$scope.directions_table.listaDirecciones = data;
+            //$scope.$apply();
         });
     }
       
     $scope.refreshTables = function(){
         $scope.getDirections().then(function(data) {
-            $scope.listaDirecciones = data;
-        });  
+            $scope.directions_table.listaDirecciones = data;
+        });
+        
+        //getDirections();
     }
     
-    $scope.tamanioTablaDirecciones = 10;
-    $scope.listaDirecciones = [];
+    $scope.directions_table = [];
     
-    $scope.refreshTables();
+    $scope.directions_table.tamanioTablaDirecciones = 10;
+      
+    $scope.directions_table.listaDirecciones = [];
+    
+    //$scope.refreshTables();
+    $timeout(function() {
+        $scope.refreshTables();
+    }, 2000);
       
     $scope.showDirection = function (id){
         $http.get("admin-theme/modules/direction/get_direction/"+id).then(function (response) {

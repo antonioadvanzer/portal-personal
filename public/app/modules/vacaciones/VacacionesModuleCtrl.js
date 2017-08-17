@@ -27,22 +27,99 @@
         });  
     }
     
-    $scope.refreshTables = function(){
-       // function to get request
-        $scope.getOwnRequests().then(function(data) {
-            $scope.solicitudesPropias = data;
-        });
-        $scope.getRequestsReceived().then(function(data) {
-            $scope.solicitudesRecibidas = data;
-        }); 
+    $scope.getTotalDays = function(){
+        return $http.get("theme/modules/vacations/get_total_days").then(function (response) {
+            return response.data;
+        });  
     }
-      
-    $scope.tamanioTablaSolicitudes = 10;
-    $scope.tamanioTablaSolicitudesRecibidas = 10;
-    $scope.solicitudesPropias = [];
-    $scope.solicitudesRecibidas = [];
     
-    $scope.refreshTables();
+    $scope.getDaysToExpire = function(){
+        return $http.get("theme/modules/vacations/get_days_to_expire").then(function (response) {
+            return response.data;
+        });  
+    }
+    
+    $scope.getDaysInRequest = function(){
+        return $http.get("theme/modules/vacations/get_days_in_requests").then(function (response) {
+            return response.data;
+        });  
+    }
+    
+    $scope.refreshTables = function(){
+        
+        // function to get request
+        $scope.getOwnRequests().then(function(data) {
+            $scope.vacations_table.solicitudesPropias = data;
+        });
+        
+        $scope.getRequestsReceived().then(function(data) {
+            $scope.vacations_table.solicitudesRecibidas = data;
+        });
+        
+        $scope.getTotalDays().then(function(data) {
+            $scope.diasDisponibles = data;
+            //$scope.standardSelectDays = getDaysList(data);
+        });
+        
+        $scope.getDaysToExpire().then(function(data) {
+            $scope.days_expire = data.dias;
+            $scope.date_expire = data.fecha;
+            
+            $scope.getDaysInRequest().then(function(data) {
+                $scope.diasDeSolicitud = data;
+                calculateTotalDays();
+                $scope.standardSelectDays = getDaysList($scope.diasDisponibles);
+            });
+        });
+        
+    }
+    
+    $scope.vacations_table = {};
+    
+    $scope.vacations_table.tamanioTablaSolicitudes = 10;
+      
+    $scope.vacations_table.tamanioTablaSolicitudesRecibidas = 10;
+    
+    $scope.vacations_table.solicitudesPropias = [];
+    
+    $scope.vacations_table.solicitudesRecibidas = [];
+      
+    $scope.diasDisponibles = 0;
+      
+    $scope.days_expire = " ";
+    $scope.date_expire = " ";
+      
+    $scope.diasDeSolicitud = 0;
+    
+    //$scope.refreshTables();
+    $timeout(function() {
+        $scope.refreshTables();
+    }, 2000);
+      
+    function getDaysList(days) {
+        // set days available for request
+        var days = [];
+
+        for(var i = 1;i <= $scope.diasDisponibles;i++){
+            days.push({dias: i, days: i});
+        }
+        
+        return days;
+    }
+     
+    function calculateTotalDays() {
+        
+        //$scope.diasDeSolicitud = 0;
+        $scope.diasDisponibles -= $scope.diasDeSolicitud;
+        
+        if($scope.diasDeSolicitud >= $scope.days_expire){
+            $scope.days_expire = " ";
+            $scope.date_expire = " ";
+        }else{
+            $scope.days_expire -= $scope.diasDeSolicitud; 
+        }
+        
+    }
       
     $scope.showOwnRequest = function (id){
         
@@ -255,11 +332,7 @@
     });
       
     $scope.selectedDays = {};
-    $scope.standardSelectDays = [
-        {dias: '1', days: 1},
-        {dias: '2', days: 2},
-        {dias: '3', days: 3}
-    ];
+    $scope.standardSelectDays = [];
       
     /*$http.get("theme/modules/vacations/get_days_available").then(function (response) {
       $scope.standardSelectDays = response.data;

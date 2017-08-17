@@ -22,6 +22,17 @@ Auth::routes();
 Route::get('/auth', 'MainController@auth')->middleware('guest');
 Route::get('/not_found', 'MainController@nf404');
 
+/* Static Functions */
+Route::group(['prefix' => 'advanzer/service'], function () {
+    
+    // Increment days
+    Route::get('/refresh_vacations', 'VacationController@service_calculateVacations');
+
+    // Take days off
+    Route::get('/consume_days', 'VacationController@service_removeDaysVacations');
+});
+
+// HTML Theme Blur Admin Template
 Route::group(['middleware' => 'auth'], function(){
     
     // Home
@@ -50,13 +61,33 @@ Route::group(['middleware' => 'auth'], function(){
 
             Route::group(['prefix' => 'user'], function () {
 
-                Route::get('/get_bosses', 'UserController@admin_getBosses');                
-                
+                // Views
+                Route::get('/get_bosses', 'UserController@admin_getBosses');
+                Route::get('/get_profile', 'UserController@main_getPersonalInformationForm');
+                Route::get('/tabla_personal_a_cargo', 'UserController@main_tablaPersonalACargo');
+
+                // Resources
+
+                Route::get('/users_employed/{id_user}', 'UserController@main_getUsersEmployed');
+
             });
 
             Route::group(['prefix' => 'evaluation'], function () {
                 
                 Route::get('/information', 'EvaluationController@main_information');
+            
+            });
+
+            Route::group(['prefix' => 'requisition'], function () {
+                
+                /* Views -------------------- */
+                Route::get('/information', 'RequisitionController@main_information');
+
+                // New Requisition
+                Route::get('/solicitar_requisicion', 'RequisitionController@main_getNewRequisition');
+                Route::get('/solicitar', 'RequisitionController@main_getRequisitionForm');
+
+                /* Resources -------------------- */
             
             });
 
@@ -116,7 +147,7 @@ Route::group(['middleware' => 'auth'], function(){
                 /* Resources -------------------- */
 
                 // Save Data
-                Route::post('/store_new_request', 'VacationController@main_storeNewVacationRequestLetter');
+                Route::post('/store_new_request', 'VacationController@main_storeNewVacationRequest');
 
                 // Show
                 Route::get('/get_request_received/{id_request}', 'VacationController@main_getRequestReceived');
@@ -126,11 +157,19 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/get_own_requests', 'VacationController@main_getOwnRequests');
                 Route::get('/get_requests_received', 'VacationController@main_getRequestsReceived');
 
-                /*** Actions on absences ***/
+                /*** Actions request ***/
                 
                 Route::get('/accept_request/{id_request}', 'VacationController@main_acceptRequest'); // Accept request
                 
                 Route::post('/reject_request', 'VacationController@main_rejectRequest'); // Reject request
+
+                /* Days information */
+
+                Route::get('/get_total_days', 'VacationController@main_getTotalDays'); // Total days available
+
+                Route::get('/get_days_to_expire', 'VacationController@main_getVacationsToExpirate'); // Days to expire
+
+                Route::get('/get_days_in_requests', 'VacationController@get_getDaysInRequests'); // Days to expire
 
             });
 
@@ -188,7 +227,7 @@ Route::group(['middleware' => 'auth'], function(){
     });
 
     // Admin mode componets
-    Route::group(['prefix' => 'admin-theme'], function () {
+    Route::group(['prefix' => 'admin-theme', 'middleware' => 'admin'], function () {
     
         Route::get('/back_top', 'View\ThemeController@admin_backTop');
         Route::get('/ba_sidebar', 'View\ThemeController@admin_baSidebar');
@@ -222,11 +261,19 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/users_active', 'UserController@admin_getUsersActive');
                 Route::get('/users_deactive', 'UserController@admin_getUsersDeactive');
                 Route::get('/get_bosses', 'UserController@admin_getBosses');
+                Route::get('/get_directors', 'UserController@admin_getDirectors');
+                Route::get('/get_authorizers', 'UserController@admin_getAuthorizers');
                 Route::post('/save_new_user', 'UserController@admin_saveNewUser');
                 Route::get('/users_employed/{id_user}', 'UserController@main_getUsersEmployed');
 
                 // Edit
                 Route::get('/get_user/{id_user}', 'UserController@admin_getUserDetail');
+
+                // Search if a nomina exists
+                Route::get('/exists_nomina/{number_nomina}', 'UserController@main_existNomina');
+
+                // Search if a email address exists
+                Route::get('/exists_email/{email_address}', 'UserController@main_existEmail');
                 
             });
 
@@ -439,9 +486,13 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/lista_solicitudes_rechazadas', 'RequestController@admin_tableRejectedRequests');
                 Route::get('/lista_solicitudes_autorizadas', 'RequestController@admin_tableAuthorizedRequests');
 
+                Route::get('/lista_solicitudes_por_usuario', 'RequestController@admin_requestsByUser');
+
                 // Show
                 Route::get('/mostrar_solicitud', 'RequestController@admin_showRequest');
                 Route::get('/solicitada', 'RequestController@admin_getRequestForm');
+                
+                Route::get('/solicitada_por_usuario', 'RequestController@admin_getRequestByUserForm');
 
                 /* Requests Admin Resources -------------------- */
 
@@ -452,6 +503,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/get_acepted_requests', 'RequestController@admin_getAceptedRequests');
                 Route::get('/get_rejected_requests', 'RequestController@admin_getRejectedRequests');
                 Route::get('/get_authorized_requests', 'RequestController@admin_getAuthorizedRequests');
+                Route::get('/get_all_requests_by_user/{id_user}', 'RequestController@admin_getAllRequestsByUser');
 
                 // Show
                 Route::get('/get_request/{id_request}', 'RequestController@admin_getRequest');
@@ -464,6 +516,24 @@ Route::group(['middleware' => 'auth'], function(){
 
                 // Cancel request
                 Route::get('/cancel_request/{id_request}', 'RequestController@admin_cancelRequest');
+            });
+
+            Route::group(['prefix' => 'vacations'], function () {
+                
+                /* Vacations Admin Views -------------------- */
+
+                // Days table
+                Route::get('/lista_dias_por_usuario', 'VacationController@admin_tableAccumulatedDays');
+
+                /* Vacations Admin Resources -------------------- */
+
+                // Days by user
+                Route::get('/list_days_by_user/{id_user}', 'VacationController@admin_getAccumulatedDaysByUser');
+
+                // Calculate dates
+                Route::get('/calcular_fechas/{fecha}', 'VacationController@admin_calculaFechas');
+                //Route::get('/insertar_dias', 'VacationController@admin_insertarVacaciones');
+                
             });
 
         });

@@ -9,46 +9,88 @@
       .controller('UsuariosModuleCtrl', UsuariosModuleCtrl);
 
   /** @ngInject */
-  function UsuariosModuleCtrl($scope, $http, $filter, fileReader, $window, $location, $state, $uibModal, editableOptions, editableThemes) {
+  function UsuariosModuleCtrl($scope, $http, $filter, fileReader, $window, $location, $state, $uibModal, $timeout, editableOptions, editableThemes) {
   
       var vm = this;
       
   /* Users table -------------------------------------------------------------------------------*/
     
-    $scope.getEmpleadosActivos = function(){
-        return $http.get("admin-theme/modules/user/users_active").then(function (response) {
-            return response.data;
+    //$scope.getEmpleadosActivos = function(){
+    function getEmpleadosActivos(){
+        //return $http.get("admin-theme/modules/user/users_active").then(function (response) {
+        $.getJSON("admin-theme/modules/user/users_active", function( data ) {
+            //return response.data;
+            $scope.users_table.empleadosActivos = data;
+            $scope.$apply();
         });
     }
     
-    $scope.getEmpleadosInactivos = function(){
-        return $http.get("admin-theme/modules/user/users_deactive").then(function (response) {
-            return response.data;
+    //$scope.getEmpleadosInactivos = function(){
+    function getEmpleadosInactivos(){
+        //return $http.get("admin-theme/modules/user/users_deactive").then(function (response) {
+        $.getJSON("admin-theme/modules/user/users_deactive", function( data ) {
+            //return response.data;
+            $scope.users_table.empleadosInactivos = data;
+            $scope.$apply();
         });
     }
     
     $scope.refreshTables = function(){
         // functions to get users
-        $scope.getEmpleadosActivos().then(function(data) {
-            $scope.empleadosActivos = data;
-        });
-        $scope.getEmpleadosInactivos().then(function(data) {
-            $scope.empleadosInactivos = data;
-        });
+        /*$scope.getEmpleadosActivos().then(function(data) {
+            $scope.users_table.empleadosActivos = data;
+        });*/
+        
+        getEmpleadosActivos();
+        
+        /*$scope.getEmpleadosInactivos().then(function(data) {
+            $scope.users_table.empleadosInactivos = data;
+        });*/
+        
+        getEmpleadosInactivos();
     }
-      
-    $scope.tamanioTablaEmpleadosActivos = 10;
-    $scope.tamanioTablaEmpleadosIactivos = 10;
-    $scope.empleadosActivos = [];
-    $scope.empleadosInactivos = [];
-      
+    
+    $scope.users_table = [];
+    $scope.requests_table = [];
+    $scope.vacations_table = [];
+    
+    $scope.users_table.tamanioTablaEmpleadosActivos = 10;
+    $scope.users_table.tamanioTablaEmpleadosIactivos = 10;
+    
+    $scope.users_table.empleadosActivos = [];
+    $scope.users_table.empleadosInactivos = [];
+    
     $scope.refreshTables();
-      
+    /*$timeout(function() {
+        $scope.refreshTables();
+    }, 2000);*/
+    
     $scope.showUser = function (id){
 
         $http.get("admin-theme/modules/user/get_user/"+id).then(function (response) {
             
             console.log(response.data);
+            
+            $http.get("admin-theme/modules/area/areas_activas").then(function (response) {
+              $scope.ue_standardSelectAreas = response.data;
+            });
+            
+            $http.get("admin-theme/modules/track/tracks_activos").then(function (response) {
+              $scope.ue_standardSelectTracks = response.data;
+            });
+            
+            $http.get("admin-theme/modules/position/posiciones_activas_por_track/"+response.data.us_track_id).then(function (response) {
+              $scope.ue_standardSelectPositions = response.data;
+            });
+            
+            $scope.ue_standardSelectCompanies = [
+              {id: 1, name: 'Advanzer'},
+              {id: 2, name: 'Entuizer'}
+            ];
+            
+            $http.get("admin-theme/modules/user/get_bosses").then(function (response) {
+              $scope.ue_standardSelectBosses = response.data;
+            }); 
             
             $scope.formEditUser.editUser = false;
             $scope.formEditUser.noPicture = true;
@@ -96,45 +138,219 @@
                 switch(permisos[i]){
                        case '1':
                         $scope.formEditUser.inputUserPermission1 = true;
+                        $("#inputUserPermission1").prop('disabled', 'disabled');
                        break;
                        case '2':
                         $scope.formEditUser.inputUserPermission2 = true;
-                        
+                        $("#inputUserPermission2").prop('disabled', 'disabled');
                         $http.get("admin-theme/modules/user/users_employed/"+response.data.id).then(function (response) {
                             $scope.personalACargo = response.data;
                         });
                        break;
                        case '3':
                         $scope.formEditUser.inputUserPermission3 = true;
+                        $("#inputUserPermission3").prop('disabled', 'disabled');
                        break;
                        case '4':
                         $scope.formEditUser.inputUserPermission4 = true;
+                        $("#inputUserPermission4").prop('disabled', 'disabled');
                        break;
                        case '5':
                         $scope.formEditUser.inputUserPermission5 = true;
+                        $("#inputUserPermission5").prop('disabled', 'disabled');
                        break;
                        case '6':
                         $scope.formEditUser.inputUserPermission6 = true;
+                        $("#inputUserPermission6").prop('disabled', 'disabled');
                        break;
                        case '7':
                         $scope.formEditUser.inputUserPermission7 = true;
+                        $("#inputUserPermission7").prop('disabled', 'disabled');
                        break;
                        case '8':
                         $scope.formEditUser.inputUserPermission8 = true;
+                        $("#inputUserPermission8").prop('disabled', 'disabled');
                        break;
                        case '9':
                         $scope.formEditUser.inputUserPermission9 = true;
+                        $("#inputUserPermission9").prop('disabled', 'disabled');
                        break;
                 }
             }
             
+            
             $scope.refreshTables();
             $state.go('usuarios.usuario_detalle');
         });
+        
+        //$scope.requests_table = [];
+        //$scope.requests_table.tamanioTablaSolicitudesPorUsuario = 10;
+        //$scope.requests_table.solicitudesPorUsuario = [];
 
+        /*$http.get("admin-theme/modules/request/get_all_requests_by_user/"+id).success(function (data) {
+            
+            $scope.requests_table.tamanioTablaSolicitudesPorUsuario = 5;
+            $scope.requests_table.solicitudesPorUsuario = data;
+            
+            console.log(data);
+        });*/
+        
+        getAditionaInformation(id);
+    }
+    
+    function getAditionaInformation(id_user){
+        $.getJSON("admin-theme/modules/request/get_all_requests_by_user/"+id_user, function( data ) {
+            $scope.requests_table.tamanioTablaSolicitudesPorUsuario = 10;
+            $scope.requests_table.solicitudesPorUsuario = data;
+            //console.log(data);
+            $scope.$apply();
+        });
+        
+        $.getJSON("admin-theme/modules/vacations/list_days_by_user/"+id_user, function( data ) {
+            $scope.vacations_table.vacations_days = data;
+            //console.log(data);
+            $scope.$apply();
+        });
     }
       
   /*--------------------------------------------------------------------------------------------*/
+    
+  /* Show formRequest by User ------------------------------------------------------------------------------------*/
+    
+    $scope.formRequest = {};
+      
+    $scope.formRequest.active_view_request = false;
+      
+    $scope.showRequest = function (id){
+        
+        $http.get("admin-theme/modules/request/get_request/"+id).then(function (response) {
+          //console.log(response.data);
+            $scope.formRequest.inputRequestId = response.data.id;
+            $scope.formRequest.inputRequestColaborador = response.data.nombre_colaborador;
+            $scope.formRequest.inputRequestAutorizador = response.data.nombre_autorizador;
+            $scope.formRequest.inputRequestDias = response.data.dias;
+            $scope.formRequest.inputRequestEstado = response.data.estado;
+            $scope.formRequest.inputRequestTipo = response.data.tipo;
+            $scope.formRequest.inputRequestMotivo = response.data.motivo;
+            $scope.formRequest.inputRequestDesde = response.data.desde;
+            $scope.formRequest.inputRequestHasta = response.data.hasta;
+            $scope.formRequest.inputRequestRegresa = response.data.regresa;
+            $scope.formRequest.inputRequestObservationes = response.data.observaciones;
+            $scope.formRequest.inputRequestAuthBoss = response.data.aut_jefe;
+            $scope.formRequest.inputRequestAuthCh = response.data.aut_ch;
+            
+            $scope.formRequest.inputRequestMotivoCancelacion = response.data.razon_cancelacion;
+            $scope.formRequest.inputRequestOcacion = response.data.ocacion;
+            
+            $scope.formRequest.labelRequestStatus = response.data.status;
+            $scope.formRequest.labelRequestType = response.data.type;
+            
+            $scope.formRequest.requestStatus = true;
+            
+            
+            //$scope.refreshTables();
+            //$state.go('solicitudes.detalle_autorizar');
+            getAditionaInformation($scope.formEditUser.id);
+            $scope.formRequest.active_view_request = true;
+        });
+        
+    }
+    
+    $scope.getComprobante = function(){
+        
+        getAlert('theme/modules/absence/comprobante_medico/'+$scope.formRequest.inputRequestId);
+    }
+      
+    $scope.rejectRequest = function() {
+        
+        $scope.formRequest.requestStatus = false;
+        
+    };
+      
+    $scope.cancelRejectRequest = function() {
+
+        $scope.formRequest.requestStatus = true;
+        
+    };
+      
+    $scope.returnRequestByUser = function() {
+
+        $scope.formRequest.active_view_request = false;
+        
+    };
+      
+    $scope.progressFunction = function() {
+        return $timeout(function() {}, 3000);
+    };
+      
+    $scope.authRequest = function (){
+        
+        $scope.sending = true;
+        
+        $http.get("admin-theme/modules/request/auth_request/"+$scope.formRequest.inputRequestId).then(function (response) {
+            console.log(response.data);
+            $scope.sending = false;
+            $scope.refreshTables();
+            //resetForm("solicitudes.toda_las_solicitudes");
+            getAditionaInformation($scope.formEditUser.id);
+            $scope.formRequest.active_view_request = false;
+            getAlert('theme/success_modal/Solicitud aprobada correctamente');
+        });
+        
+    };
+   
+    $scope.sendRejectRequest = function (){
+        
+        console.log("Enviando solicitud...");
+        
+        $scope.sending = true;
+        
+        var formData = new FormData();
+        
+        formData.append("_token", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+        formData.append("r_id", $scope.formRequest.inputRequestId); 
+        formData.append("r_motivo_cancelacion", document.getElementById("inputRequestMotivoCancelacion").value); 
+        
+        $http.post('admin-theme/modules/request/reject_request', formData, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function (response) {
+            console.log(response);
+            $scope.refreshTables();
+            //resetForm("solicitudes.toda_las_solicitudes");
+            getAditionaInformation($scope.formEditUser.id);
+            $scope.formRequest.active_view_request = false;
+            $scope.sending = false;
+            getAlert('theme/success_modal/Solicitud rechazada correctamente');
+            
+        })
+        .error(function (response) {
+            console.log(response);
+            //$scope.refreshTables();
+            $scope.sending = false;
+            getAlert('theme/danger_modal/Falla al rechazar la solicitud');
+        });
+        
+    }
+    
+    $scope.cancelRequest = function (){
+        
+        $scope.sending = true;
+        
+        $http.get("admin-theme/modules/request/cancel_request/"+$scope.formRequest.inputRequestId).then(function (response) {
+            console.log(response.data);
+            $scope.sending = false;
+            $scope.refreshTables();
+            //resetForm("solicitudes.toda_las_solicitudes");
+            getAditionaInformation($scope.formEditUser.id);
+            $scope.formRequest.active_view_request = false;
+            getAlert('theme/success_modal/Solicitud cancelada correctamente');
+        });
+        
+    }
+      
+  /*--------------------------------------------------------------------------------------------------*/
       
   /* New user ----------------------------------------------------------------------------------*/
     
@@ -241,7 +457,41 @@
     //$scope.switches = [true, true, false, true, true, false];
       
     $scope.disabled = undefined;
+      
+    $scope.formUser.nomina_available = false;
     
+    // Check if nomina exists
+    $scope.formUser.checkNomina = function (form){
+        
+        if(!form.inputUserNomina.$invalid){
+            
+            $http.get("admin-theme/modules/user/exists_nomina/"+$scope.formUser.inputUserNomina).then(function (response) {
+              $scope.formUser.nomina_available = response.data == 1 ? true : false;
+            });
+            
+        }else{
+            $scope.formUser.nomina_available = false;
+        }
+        
+    };
+      
+    $scope.formUser.email_available = false;
+    
+    // Chek if email address exists
+    $scope.formUser.checkEmail = function (form){
+        
+        if(!form.inputUserEmail.$invalid){
+            
+            $http.get("admin-theme/modules/user/exists_email/"+$scope.formUser.inputUserEmail).then(function (response) {
+              $scope.formUser.email_available = response.data == 1 ? true : false;
+            });
+            
+        }else{
+            $scope.formUser.email_available = false;
+        }
+        
+    };
+      
     $scope.selectedArea = {};
     //$scope.selectedArea.selected = "";
     $scope.standardArea = {};
@@ -312,8 +562,7 @@
     $http.get("admin-theme/modules/user/get_bosses").then(function (response) {
       $scope.standardSelectBosses = response.data;
     });    
-  
-      
+        
     $scope.getPermissions = function (){
         
         var cont = 9;
@@ -328,7 +577,7 @@
                 //document.getElementById('ps'+cont).innerHTML = $scope.valueOn;
             }else{
                 //permission.attr('switcher-value',"false");
-                //permission.removeClass('disabled-permission');
+                permission.removeClass('disabled-permission');
                 //$scope.switches['ps'+cont] = true;
                 $scope.permissionsAvailable['ps'+cont] = true;
                 //document.getElementById('ps'+cont).innerHTML = $scope.valueOff;
@@ -516,9 +765,9 @@
   
   /* Show user ----------------------------------------------------------------------------------*/
     
-      $scope.formEditUser={};
+      $scope.formEditUser = {};
       
-      $scope.formEditUser.editUser=false;
+      $scope.formEditUser.editUser = false;
   
   /*--------------------------------------------------------------------------------------------*/
 
@@ -590,15 +839,15 @@
       
     //$scope.disabled = undefined;
     
-    $scope.formEditUser.selectedArea = {};
+    /*$scope.formEditUser.selectedArea = {};
     $scope.formEditUser.standardArea = {};
-    $scope.formEditUser.standardSelectAreas = [];
+    $scope.formEditUser.standardSelectAreas = [];*/
     
-    $scope.formEditUser.getAreas = function (){
+    /*$scope.formEditUser.getAreas = function (){
         $http.get("admin-theme/modules/area/areas_activas").then(function (response) {
           $scope.formEditUser.standardSelectAreas = response.data;
         });
-    };
+    };*/
     
     $scope.formEditUser.getDirection = function (item, model){
         
@@ -610,6 +859,12 @@
         $http.get("admin-theme/modules/permission/permisos_por_area/"+model.id).then(function (response) {
           $scope.permisosArea = response.data;
           $scope.getPermissions();
+        });
+    };
+      
+    $scope.formEditUser.getPositions = function (item, model){
+        $http.get("admin-theme/modules/position/posiciones_activas_por_track/"+model.id).then(function (response) {
+          $scope.ue_standardSelectPositions = response.data;
         });
     };
      

@@ -9,7 +9,7 @@
       .controller('CartasYConstanciasLaboralesModuleCtrl', CartasYConstanciasLaboralesModuleCtrl);
 
   /** @ngInject */
-  function CartasYConstanciasLaboralesModuleCtrl($scope, $http, $filter, $window, $location, $state, $uibModal, editableOptions, editableThemes) {
+  function CartasYConstanciasLaboralesModuleCtrl($scope, $http, $filter, $window, $location, $state, $uibModal, $timeout, editableOptions, editableThemes) {
   
 /* Solicitudes table -------------------------------------------------------------------------------*/
     
@@ -22,22 +22,20 @@
     $scope.refreshTables = function(){
         // function to get request
         $scope.getRequestsLetter().then(function(data) {
-            $scope.solicitudesPropias = data;
+            $scope.requests_table.solicitudesPropias = data;
         });
     }
     
-  	$scope.tamanioTablaSolicitudes = 10;
-
-    $scope.solicitudesPropias = [
-      {
-        id: 1,
-        folio: '123456',
-        dirigido: 'bnvnbnvb',
-        observaciones: 'fdgrtrgr'
-      }
-    ];
+    $scope.requests_table = {};
       
-    $scope.refreshTables();
+  	$scope.requests_table.tamanioTablaSolicitudes = 10;
+
+    $scope.requests_table.solicitudesPropias = [];
+      
+    //$scope.refreshTables();
+    $timeout(function() {
+        $scope.refreshTables();
+    }, 2000);
       
     $scope.showLetterDetail = function (id){
 

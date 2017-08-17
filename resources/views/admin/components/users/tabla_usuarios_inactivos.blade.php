@@ -6,7 +6,7 @@
       </select>
     </label>
   </div>
-  <table class="table table-hover table-condensed" st-table="empleadosInactivos">
+  <table class="table table-hover table-condensed" st-table="users_table.empleadosInactivos">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="true">#</th>
@@ -40,7 +40,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="ei in empleadosInactivos">
+    <tr ng-repeat="ei in users_table.empleadosInactivos">
         <td class="table-id">@{{ea.id}}</td>
         <td>@{{ei.nomina}}</td>
         <td>@{{ei.nombre}}</td>

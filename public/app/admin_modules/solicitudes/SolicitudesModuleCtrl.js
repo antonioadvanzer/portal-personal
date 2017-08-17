@@ -16,82 +16,118 @@
 /* Solicitudes table -------------------------------------------------------------------------------*/
       
     $scope.getAllRequest = function(){
+    //function getAllRequest(){
         return $http.get("admin-theme/modules/request/get_all_requests").then(function (response) {
+        //$.getJSON("admin-theme/modules/request/get_all_requests", function( data ) {
             return response.data;
+            //$scope.requests_table.todasLasSolicitudes = data;
+            //$scope.$apply();
         });  
     }
     
     $scope.getCanceledRequest = function(){
+    //function getCanceledRequest(){
         return $http.get("admin-theme/modules/request/get_canceled_requests").then(function (response) {
+        //$.getJSON("admin-theme/modules/request/get_canceled_requests", function( data ) {
             return response.data;
+            //$scope.requests_table.solicitudesCanceladas = data;
+            //$scope.$apply();
         });  
     }
     
     $scope.getSendedRequest = function(){
+    //function getSendedRequest(){
         return $http.get("admin-theme/modules/request/get_sended_requests").then(function (response) {
+        //$.getJSON("admin-theme/modules/request/get_sended_requests", function( data ) {
             return response.data;
+            //$scope.requests_table.solicitudesEnviadas = data;
+            //$scope.$apply();
         });  
     }
     
     $scope.getAceptedRequest = function(){
+    //function getAceptedRequest(){
         return $http.get("admin-theme/modules/request/get_acepted_requests").then(function (response) {
+        //$.getJSON("admin-theme/modules/request/get_acepted_requests", function( data ) {
             return response.data;
+            //$scope.requests_table.solicitudesAceptadas = data;
+            //$scope.$apply();
         });  
     }
     
     $scope.getRejectedRequest = function(){
+    //function getRejectedRequest(){
         return $http.get("admin-theme/modules/request/get_rejected_requests").then(function (response) {
+        //$.getJSON("admin-theme/modules/request/get_rejected_requests", function( data ) {
             return response.data;
+            //$scope.requests_table.solicitudesRechazadas = data;
+            //$scope.$apply();
         });  
     }
     
     $scope.getAutorizedRequest = function(){
+    //function getAutorizedRequest(){
         return $http.get("admin-theme/modules/request/get_authorized_requests").then(function (response) {
+        //$.getJSON("admin-theme/modules/request/get_authorized_requests", function( data ) {
             return response.data;
+            //$scope.requests_table.solicitudesAutorizadas = data;
+            //$scope.$apply();
         });  
     }
     
     $scope.refreshTables = function(){
+        
         $scope.getAllRequest().then(function(data) {
-            $scope.todasLasSolicitudes = data;
+            $scope.requests_table.todasLasSolicitudes = data;
         });
         $scope.getCanceledRequest().then(function(data) {
-            $scope.solicitudesCanceladas = data;
+            $scope.requests_table.solicitudesCanceladas = data;
         });
         $scope.getSendedRequest().then(function(data) {
-            $scope.solicitudesEnviadas = data;
+            $scope.requests_table.solicitudesEnviadas = data;
         });
         $scope.getAceptedRequest().then(function(data) {
-            $scope.solicitudesAceptadas = data;
+            $scope.requests_table.solicitudesAceptadas = data;
         });
         $scope.getRejectedRequest().then(function(data) {
-            $scope.solicitudesRechazadas = data;
+            $scope.requests_table.solicitudesRechazadas = data;
         });
         $scope.getAutorizedRequest().then(function(data) {
-            $scope.solicitudesAutorizadas = data;
+            $scope.requests_table.solicitudesAutorizadas = data;
         });
+        
+        /*getAllRequest();
+        getCanceledRequest();
+        getSendedRequest();
+        getAceptedRequest();
+        getRejectedRequest();
+        getAutorizedRequest();*/
     }
     
-    $scope.tamanioTablaTodasLasSolicitudes = 10;
-    $scope.todasLasSolicitudes = [];
+    $scope.requests_table = [];
     
-    $scope.tamanioTablaSolicitudesCanceladas = 10;
-    $scope.solicitudesCanceladas = [];
-      
-    $scope.tamanioTablaSolicitudesEnviadas = 10;
-    $scope.solicitudesEnviadas = [];
-      
-    $scope.tamanioTablaSolicitudesAceptadas = 10;
-    $scope.solicitudesAceptadas = [];
-      
-    $scope.tamanioTablaSolicitudesRechazadas = 10;
-    $scope.solicitudesRechazadas = [];
+    $scope.requests_table.tamanioTablaTodasLasSolicitudes = 10;
+    $scope.requests_table.todasLasSolicitudes = [];
     
-    $scope.tamanioTablaSolicitudesAutorizadas = 10;
-    $scope.solicitudesAutorizadas = [];
+    $scope.requests_table.tamanioTablaSolicitudesCanceladas = 10;
+    $scope.requests_table.solicitudesCanceladas = [];
       
-    $scope.refreshTables();
+    $scope.requests_table.tamanioTablaSolicitudesEnviadas = 10;
+    $scope.requests_table.solicitudesEnviadas = [];
+      
+    $scope.requests_table.tamanioTablaSolicitudesAceptadas = 10;
+    $scope.requests_table.solicitudesAceptadas = [];
+      
+    $scope.requests_table.tamanioTablaSolicitudesRechazadas = 10;
+    $scope.requests_table.solicitudesRechazadas = [];
     
+    $scope.requests_table.tamanioTablaSolicitudesAutorizadas = 10;
+    $scope.requests_table.solicitudesAutorizadas = [];
+      
+    //$scope.refreshTables();
+    $timeout(function() {
+        $scope.refreshTables();
+    }, 2000);
       
     $scope.showRequest = function (id){
         
@@ -221,8 +257,6 @@
     
     
     $scope.sending = false;
-      
-    
     
     function resetForm(stateName) {
         if ($state.is(stateName)) {

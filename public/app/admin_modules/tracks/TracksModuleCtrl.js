@@ -23,15 +23,20 @@
     
     $scope.refreshTables = function(){
         $scope.getTracksActive().then(function(data) {
-            $scope.listaTracks = data;
+            $scope.tracks_table.listaTracks = data;
         });
     }
     
-    $scope.tamanioTablaTracks = 10;
-    $scope.listaTracks = [];
-      
-    $scope.refreshTables();
+    $scope.tracks_table = [];
     
+    $scope.tracks_table.tamanioTablaTracks = 10;
+      
+    $scope.tracks_table.listaTracks = [];
+      
+    //$scope.refreshTables();
+    $timeout(function() {
+        $scope.refreshTables();
+    }, 2000);
       
     $scope.showTrack = function (id){
         

@@ -36,6 +36,16 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin_requestsByUser()
+    {
+        return view('admin.components.requests.solicitudes_por_usuario');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin_allRequests()
     {
         return view('admin.components.requests.todas_las_solicitudes');
@@ -236,6 +246,16 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin_getRequestByUserForm()
+    {   
+        return view('admin.components.requests.solicitada_por_usuario');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin_getRequest($id_request)
     {   
         $solicitud = Solicitud::find($id_request);
@@ -363,6 +383,37 @@ class RequestController extends Controller
         DB::commit();
         
         return "success"; 
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getAllRequestsByUser($id_user)
+    {   
+        $requests = array();
+
+        $requestModel = Solicitud::where('user',$id_user)->get();
+        
+        foreach($requestModel as $rm){
+            array_push($requests,[
+                "id" => $rm->id,
+                "folio" => $rm->id,
+                "tipo" => $rm->getTypeAssociated()->first()->name,
+                "fecha" => $rm['created_at']->toDateTimeString(),
+                "colaborador" => $rm->getEmployedAssociated()->first()->name,
+                "autorizador" => $rm->getAuthorizerAssociated()->first()->name,
+                "dias" => $rm->dias,
+                "desde" => $rm->fecha_inicio,
+                "hasta" => $rm->fecha_fin,
+                "estado" => $rm->getStatusAssociated()->first()->name,
+                "status" => $rm->status,
+                "alerta" => $rm->alert
+                 ]);
+        }
+        
+        return json_encode($requests);
     }
 
     /**

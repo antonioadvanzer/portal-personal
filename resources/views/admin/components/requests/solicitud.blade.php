@@ -85,6 +85,17 @@
         </div>
     </div>
     
+    <div class="row" ng-if="formRequest.labelRequestStatus == 4">
+        <div class="col-md-12">
+            
+            <div class="input-group">
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Motivo Cancelaci&oacute;n </span>
+                <textarea placeholder="" class="form-control" id="inputRequestMotivoCancelacion" name="inputRequestMotivoCancelacion" ng-model="formRequest.inputRequestMotivoCancelacion" readonly></textarea>
+            </div>
+            
+        </div>
+    </div>
+    
     <div class="row" ng-if="!formRequest.requestStatus">
         <div class="col-md-12">
             <div class="alert bg-danger">

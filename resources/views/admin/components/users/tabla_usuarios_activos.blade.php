@@ -2,11 +2,11 @@
   <div class="form-group select-page-size-wrap ">
     <label>Filas por pagina
       <select class="form-control selectpicker show-tick" title="Filas por pagina" selectpicker
-              ng-model="tamanioTablaEmpleadosActivos" ng-options="i for i in [5,10,15,20,25]">
+              ng-model="users_table.tamanioTablaEmpleadosActivos" ng-options="i for i in [5,10,15,20,25]">
       </select>
     </label>
   </div>
-  <table class="table table-hover table-condensed" st-table="empleadosActivos">
+  <table class="table table-hover table-condensed" st-table="users_table.empleadosActivos">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="true">#</th>
@@ -40,7 +40,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="ea in empleadosActivos" ng-click="showUser(ea.id)">
+    <tr ng-repeat="ea in users_table.empleadosActivos" ng-click="showUser(ea.id)">
         <td class="table-id">@{{ea.id}}</td>
         <td>@{{ea.nomina}}</td>
         <td>@{{ea.nombre}}</td>
@@ -55,7 +55,7 @@
     <tfoot>
     <tr>
       <td colspan="6" class="text-center">
-        <div st-pagination="" st-items-by-page="tamanioTablaEmpleadosActivos" st-displayed-pages="5"></div>
+        <div st-pagination="" st-items-by-page="users_table.tamanioTablaEmpleadosActivos" st-displayed-pages="5"></div>
       </td>
     </tr>
     </tfoot>

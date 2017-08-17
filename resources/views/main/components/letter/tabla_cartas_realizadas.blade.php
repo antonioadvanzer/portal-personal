@@ -2,11 +2,11 @@
   <div class="form-group select-page-size-wrap ">
     <label>Filas por pagina
       <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-              ng-model="tamanioTablaSolicitudes" ng-options="i for i in [5,10,15,20,25]">
+              ng-model="requests_table.tamanioTablaSolicitudes" ng-options="i for i in [5,10,15,20,25]">
       </select>
     </label>
   </div>
-  <table class="table table-hover table-condensed" st-table="solicitudesPropias">
+  <table class="table table-hover table-condensed" st-table="requests_table.solicitudesPropias">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="false">#</th>
@@ -29,7 +29,7 @@
     </tr>-->
     </thead>
     <tbody>
-    <tr ng-repeat="sl in solicitudesPropias" ng-click="showLetterDetail(sl.id)">
+    <tr ng-repeat="sl in requests_table.solicitudesPropias" ng-click="showLetterDetail(sl.id)">
       <td class="table-id">@{{sl.id}}</td>
       <td>@{{sl.folio}}</td>
       <td>@{{sl.dirigido}}</td>
@@ -39,7 +39,7 @@
     <tfoot>
     <tr>
       <td colspan="6" class="text-center">
-        <div st-pagination="" st-items-by-page="tamanioTablaSolicitudes" st-displayed-pages="5"></div>
+        <div st-pagination="" st-items-by-page="requests_table.tamanioTablaSolicitudes" st-displayed-pages="5"></div>
       </td>
     </tr>
     </tfoot>

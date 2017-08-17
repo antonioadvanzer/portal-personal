@@ -16,22 +16,33 @@
   /* Areas table -------------------------------------------------------------------------------*/
     
     $scope.getAreas = function(){
+    //function getAreas(){
         return $http.get("admin-theme/modules/area/list_areas").then(function (response) {
-          return response.data;
+        //$.getJSON("admin-theme/modules/area/list_areas", function( data ) {
+            return response.data;
+            //$scope.areas_table.listaAreas = data;
+            //$scope.$apply();
         });
     }
     
     $scope.refreshTables = function(){
         $scope.getAreas().then(function(data) {
-            $scope.listaAreas = data;
-        });  
+            $scope.areas_table.listaAreas = data;
+        }); 
+        
+        //getAreas();
     }
+    
+    $scope.areas_table = [];
       
-    $scope.tamanioTablaAreas = 10;
-
-    $scope.listaAreas = [];
+    $scope.areas_table.tamanioTablaAreas = 10;
       
-    $scope.refreshTables();
+    $scope.areas_table.listaAreas = [];
+      
+    //$scope.refreshTables();
+    $timeout(function() {
+        $scope.refreshTables();
+    }, 2000);
       
     $scope.showArea = function (id){
         $http.get("admin-theme/modules/area/get_area/"+id).then(function (response) {

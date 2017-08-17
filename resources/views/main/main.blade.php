@@ -14,8 +14,12 @@
 @endsection
 
 @section('content')
+
 <div ng-init="{{ $components }}"></div>
 <div ng-init="{{ $user }}"></div>
+
+<input id="permissions" type="hidden" value="{{ $permissions }}"/>
+
 <div class="body-bg"></div>
 <main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
 
@@ -133,9 +137,15 @@
 
 <script src="{{ URL::to('app/modules/modules.module.js') }}"></script>
 <script src="{{ URL::to('app/modules/principal/principal.module.js') }}"></script>
+<!-- Perfil -->
+<script src="{{ URL::to('app/modules/perfil/profile.module.js') }}"></script>
+<script src="{{ URL::to('app/modules/perfil/ProfilePageCtrl.js') }}"></script>
 <!-- Evaluaciones -->
 <script src="{{ URL::to('app/modules/evaluaciones/evaluaciones.module.js') }}"></script>
 <script src="{{ URL::to('app/modules/evaluaciones/EvaluacionesModuleCtrl.js') }}"></script>
+<!-- Requisiciones -->
+<script src="{{ URL::to('app/modules/requisiciones/requisiciones.module.js') }}"></script>
+<script src="{{ URL::to('app/modules/requisiciones/RequisicionesModuleCtrl.js') }}"></script>
 <!-- Vacaciones -->
 <script src="{{ URL::to('app/modules/vacaciones/vacaciones.module.js') }}"></script>
 <script src="{{ URL::to('app/modules/vacaciones/VacacionesModuleCtrl.js') }}"></script>

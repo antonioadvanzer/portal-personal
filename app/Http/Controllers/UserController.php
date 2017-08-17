@@ -7,6 +7,7 @@ use App\Models\Permiso;
 use App\Models\Permisos_Usuario;
 use App\Models\Posicion_Track;
 use App\Models\Jefe;
+use App\Models\Nivel;
 use App\User;
 use Auth;
 use DB;
@@ -59,6 +60,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function main_getPersonalInformationForm()
+    {
+        return view('main.components.profile.profile_detail');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin_usuariosActivos()
     {
         return view('admin.components.users.usuarios_activos');
@@ -92,6 +103,16 @@ class UserController extends Controller
     public function admin_tablaUsuariosInactivos()
     {
         return view('admin.components.users.tabla_usuarios_inactivos');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_tablaPersonalACargo()
+    {
+        return view('main.components.profile.tabla_personal_a_cargo');
     }
 
     /**
@@ -205,6 +226,93 @@ class UserController extends Controller
         //exit;
         return json_encode($bosses);
     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function admin_getDirectors()
+     {   
+         $bosses = array();
+
+        $levelModel = Nivel::where('name','DIRECTOR')
+                ->orWhere('name','DIRECTOR ASOCIADO')
+                ->orWhere('name','CEO')
+                ->get();
+
+        //dd($levelModel);
+        foreach($levelModel as $lm){
+            
+            $positionModel = $lm->getPositions()->get();
+
+            foreach($positionModel as $pm){
+
+                $positionstracksModel = $pm->getPosicionTracks()->get();
+                
+                //dd($positionstracksModel);
+                foreach($positionstracksModel as $psm){
+                    
+                    $userModel = $psm->getUsers()->get();
+
+                    foreach($userModel as $um){
+                        //echo "<br>".$um->name." ".$um->apellido_paterno."<br>";
+
+                        array_push($bosses,[
+                            "id" => $um->id,
+                            "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
+                        ]);
+                    }
+                }
+
+            }
+        }
+
+        return json_encode($bosses);
+     } 
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function admin_getAuthorizers()
+     {   
+        $bosses = array();
+        
+        $levelModel = Nivel::Where('name','DIRECTOR ASOCIADO')
+                ->orWhere('name','CEO')
+                ->get();
+
+        //dd($levelModel);
+        foreach($levelModel as $lm){
+            
+            $positionModel = $lm->getPositions()->get();
+
+            foreach($positionModel as $pm){
+
+                $positionstracksModel = $pm->getPosicionTracks()->get();
+                
+                //dd($positionstracksModel);
+                foreach($positionstracksModel as $psm){
+                    
+                    $userModel = $psm->getUsers()->get();
+
+                    foreach($userModel as $um){
+                        //echo "<br>".$um->name." ".$um->apellido_paterno."<br>";
+
+                        array_push($bosses,[
+                            "id" => $um->id,
+                            "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
+                        ]);
+                    }
+                }
+
+            }
+        }
+
+        return json_encode($bosses);
+     } 
 
     /**
      * 
@@ -357,6 +465,38 @@ class UserController extends Controller
             ];
 
         return json_encode($user);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_existNomina($number_nomina = 0)
+    {  
+        $nomina = User::withTrashed()->where("nomina", $number_nomina)->first();
+
+        if($nomina){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_existEmail($email_address = "")
+    {  
+        $email = User::withTrashed()->where("email", $email_address)->first();
+
+        if($email){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
     /**
