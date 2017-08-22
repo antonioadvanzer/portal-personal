@@ -25,6 +25,26 @@ class MainController extends Controller
             "permissions" => $this->getUserPermissions()
             ]);        
     }
+    
+     /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function mainView()
+     {   
+         return view('main.components.main.main');        
+     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function mainViewHome()
+     {   
+         return view('main.components.main.home');        
+     }
 
     /**
      * Display a listing of the resource.

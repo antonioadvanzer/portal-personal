@@ -134,46 +134,56 @@
             $scope.formEditUser.inputUserPermission8 = false;
             $scope.formEditUser.inputUserPermission9 = false;
             
+            $scope.formEditUser.permission1 = true;
+            $scope.formEditUser.permission2 = true;
+            $scope.formEditUser.permission3 = true;
+            $scope.formEditUser.permission4 = true;
+            $scope.formEditUser.permission5 = true;
+            $scope.formEditUser.permission6 = true;
+            $scope.formEditUser.permission7 = true;
+            $scope.formEditUser.permission8 = true;
+            $scope.formEditUser.permission9 = true;
+            
             for(var i = 0; i <= permisos.length; i++) {
                 switch(permisos[i]){
                        case '1':
                         $scope.formEditUser.inputUserPermission1 = true;
-                        $("#inputUserPermission1").prop('disabled', 'disabled');
+                        $scope.formEditUser.permission1 = false;
                        break;
                        case '2':
                         $scope.formEditUser.inputUserPermission2 = true;
-                        $("#inputUserPermission2").prop('disabled', 'disabled');
+                        $scope.formEditUser.permission2 = false;
                         $http.get("admin-theme/modules/user/users_employed/"+response.data.id).then(function (response) {
                             $scope.personalACargo = response.data;
                         });
                        break;
                        case '3':
                         $scope.formEditUser.inputUserPermission3 = true;
-                        $("#inputUserPermission3").prop('disabled', 'disabled');
+                        $scope.formEditUser.permission3 = false;
                        break;
                        case '4':
                         $scope.formEditUser.inputUserPermission4 = true;
-                        $("#inputUserPermission4").prop('disabled', 'disabled');
+                        $scope.formEditUser.permission4 = false;
                        break;
                        case '5':
                         $scope.formEditUser.inputUserPermission5 = true;
-                        $("#inputUserPermission5").prop('disabled', 'disabled');
+                        $scope.formEditUser.permission5 = false;
                        break;
                        case '6':
                         $scope.formEditUser.inputUserPermission6 = true;
-                        $("#inputUserPermission6").prop('disabled', 'disabled');
+                        $scope.formEditUser.permission6 = false;
                        break;
                        case '7':
                         $scope.formEditUser.inputUserPermission7 = true;
-                        $("#inputUserPermission7").prop('disabled', 'disabled');
+                        $scope.formEditUser.permission7 = false;
                        break;
                        case '8':
                         $scope.formEditUser.inputUserPermission8 = true;
-                        $("#inputUserPermission8").prop('disabled', 'disabled');
+                        $scope.formEditUser.permission8 = false;
                        break;
                        case '9':
                         $scope.formEditUser.inputUserPermission9 = true;
-                        $("#inputUserPermission9").prop('disabled', 'disabled');
+                        $scope.formEditUser.permission9 = false;
                        break;
                 }
             }
@@ -886,6 +896,48 @@
       
     $scope.formEditUser.updateUser = function (){
         
+        $scope.sending = true;
+        
+        var formData = new FormData();
+        
+        formData.append("_token", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+        
+        formData.append("uu_foto", document.getElementById("uploadFile").files[0]);
+        
+        formData.append("uu_nombre", $scope.formEditUser.inputUserName); 
+        formData.append("uu_apellido_paterno", $scope.formEditUser.inputUserApellidoP); 
+        formData.append("uu_apellido_materno", $scope.formEditUser.inputUserApellidoM);
+        
+        formData.append("uu_email", $scope.formEditUser.inputUserEmail); 
+        formData.append("uu_plaza", $scope.formEditUser.inputUserPlaza); 
+        formData.append("uu_nomina", $scope.formEditUser.inputUserNomina); 
+        formData.append("uu_fecha_ingreso", document.getElementById("inputUserFechaIngreso").value);
+        
+        formData.append("uu_area", $scope.ue_selectedArea.selected.id); 
+        formData.append("uu_track", $scope.ue_selectedTrack.selected.id); 
+        formData.append("uu_posicion", $scope.ue_selectedPosition.selected.id); 
+        formData.append("uu_empresa", $scope.ue_selectedCompany.selected.id);
+        formData.append("uu_boss", $scope.ue_selectedBoss.selected.id);
+        
+        $http.post('admin-theme/modules/user/update_user', formData, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function (response) {
+            //alert('sent OK');
+            console.log(response);
+            $scope.sending = false;
+            $scope.refreshTables();
+            getAlert('theme/success_modal/Usuario actualizado correctamente');
+            //resetForm("usuarios.agregar");
+            
+        })
+        .error(function (response) {
+            //alert('error sending.');
+            console.log(response);
+            $scope.sending = false;
+            getAlert('theme/danger_modal/Falla al actaulizar el usuario');
+        });
     };
   
   /*--------------------------------------------------------------------------------------------*/

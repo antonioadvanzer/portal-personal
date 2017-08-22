@@ -51,6 +51,9 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/msg_center', 'View\ThemeController@msgCenter');
         Route::get('/page_top', 'View\ThemeController@pageTop');
         Route::get('/progress_bar_round', 'View\ThemeController@progressBarRound');
+        
+        Route::get('/main', 'MainController@mainView');
+        Route::get('/home', 'MainController@mainViewHome');
 
         // General Modals
         Route::get('/success_modal/{msg}', 'View\ThemeController@main_successModal');
@@ -264,6 +267,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/get_directors', 'UserController@admin_getDirectors');
                 Route::get('/get_authorizers', 'UserController@admin_getAuthorizers');
                 Route::post('/save_new_user', 'UserController@admin_saveNewUser');
+                Route::post('/update_user', 'UserController@admin_updateUser');
                 Route::get('/users_employed/{id_user}', 'UserController@main_getUsersEmployed');
 
                 // Edit

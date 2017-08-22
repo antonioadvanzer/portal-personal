@@ -40,7 +40,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="ei in users_table.empleadosInactivos">
+    <tr ng-repeat="ei in users_table.empleadosInactivos" ng-click="showUser(ei.id)">
         <td class="table-id">@{{ea.id}}</td>
         <td>@{{ei.nomina}}</td>
         <td>@{{ei.nombre}}</td>

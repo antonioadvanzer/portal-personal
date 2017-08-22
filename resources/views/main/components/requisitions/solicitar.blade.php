@@ -12,9 +12,9 @@
             
             <div class="input-group">
                 
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">Director de Area</span>
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-director_area">Director de Area</span>
 
-                <ui-select ng-model="selectedBoss.selected"
+                <ui-select name="director_area" ng-model="selectedBoss.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -29,8 +29,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Autorizador</span>
-                <ui-select name="motivo" ng-model="selectedAuthorizer.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-autorizador">Autorizador</span>
+                <ui-select name="autorizador" ng-model="selectedAuthorizer.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -46,12 +46,12 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-hasta">Fecha de Solicitud</span>
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-fecha_solicitud">Fecha de Solicitud</span>
                 <input type="text" class="form-control with-primary-addon" id="fecha_solicitud" name="fecha_solicitud" ng-model="formRequestRequisition.fecha_solicitud" placeholder="" readonly>
             </div>
             
             <div class="input-group" ng-controller="RequisicionesModuleCtrl">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-desde">Fecha Estimada de Ingreso</span>
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-fecha_ingreso">Fecha Estimada de Ingreso</span>
                 
                     <input id="FechaIngreso" type="text" class="form-control" uib-datepicker-popup="@{{format}}" datepicker-options="options" ng-model="formRequestRequisition.dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" ng-change="setDate()" readonly/>
                   <span class="input-group-btn" >
@@ -61,8 +61,8 @@
             </div>
                         
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">&Aacute;rea</span>
-                <ui-select name="motivo" ng-model="selectedArea.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-area">&Aacute;rea</span>
+                <ui-select name="area" ng-model="selectedArea.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -78,8 +78,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Track</span>
-                <ui-select name="motivo" ng-model="selectedTrack.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-track">Track</span>
+                <ui-select name="track" ng-model="selectedTrack.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -95,8 +95,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Posici&oacute;n</span>
-                <ui-select name="motivo" ng-model="selectedPosition.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-posicion">Posici&oacute;n</span>
+                <ui-select name="posicion" ng-model="selectedPosition.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -112,8 +112,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Empresa</span>
-                <ui-select name="motivo" ng-model="selectedCompany.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-empresa">Empresa</span>
+                <ui-select name="empresa" ng-model="selectedCompany.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -129,8 +129,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Tipo</span>
-                <ui-select name="motivo" ng-model="selectedType.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-tipo">Tipo</span>
+                <ui-select name="tipo" ng-model="selectedType.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -145,24 +145,24 @@
                 </ui-select>
             </div>
             
-            <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-nomina">Sustituye a</span>
-                <input type="text" class="form-control" id="inputUserName" name="inputUserName" ng-model="formUser.inputUserName" placeholder="" required>
+            <div class="input-group" ng-if="selectedType.selected.id == 2">
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-sutituye_a">Sustituye a</span>
+                <input type="text" class="form-control" id="sustituye_a" name="sustituye_a" ng-model="formRequestRequisition.sustituye_a" placeholder="" required>
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-nomina">Proyecto</span>
-                <input type="text" class="form-control" id="inputUserName" name="inputUserName" ng-model="formUser.inputUserName" placeholder="" required>
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-proyecto">Proyecto</span>
+                <input type="text" class="form-control" id="proyecto" name="proyecto" ng-model="formRequestRequisition.proyecto" placeholder="" required>
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-nomina">Clave del Proyecto</span>
-                <input type="text" class="form-control" id="inputUserName" name="inputUserName" ng-model="formUser.inputUserName" placeholder="" required>
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-clave_proyecto">Clave del Proyecto</span>
+                <input type="text" class="form-control" id="clave_proyecto" name="clave_proyecto" ng-model="formRequestRequisition.clave_proyecto" placeholder="" required>
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Costo Máximo</span>
-                <ui-select name="motivo" ng-model="selectedCosto.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-costo">Costo Máximo</span>
+                <ui-select name="costo" ng-model="selectedCosto.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -177,9 +177,9 @@
                 </ui-select>
             </div>
             
-            <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-nomina">Define el Costo</span>
-                <input type="text" class="form-control" id="inputUserName" name="inputUserName" ng-model="formUser.inputUserName" placeholder="" required>
+            <div class="input-group" ng-if="selectedCosto.selected.id == 2">
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-define_costo">Define el Costo</span>
+                <input type="text" class="form-control" id="define_costo" name="define_costo" ng-model="formRequestRequisition.define_costo" placeholder="" required>
             </div>
             
         </div>
@@ -187,8 +187,8 @@
         <div class="col-md-6">
 
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Residencia</span>
-                <ui-select name="motivo" ng-model="selectedResidencia.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-recidencia">Residencia</span>
+                <ui-select name="recidencia" ng-model="selectedResidencia.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -203,14 +203,14 @@
                 </ui-select>
             </div>
             
-            <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-nomina">Especifique</span>
-                <input type="text" class="form-control" id="inputUserName" name="inputUserName" ng-model="formUser.inputUserName" placeholder="" required>
+            <div class="input-group" ng-if="selectedResidencia.selected.id == 4">
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-especifique_residencia">Especifique</span>
+                <input type="text" class="form-control" id="especifique_residencia" name="especifique_residencia" ng-model="formRequestRequisition.especifique_residencia" placeholder="" required>
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Lugar de Trabajo</span>
-                <ui-select name="motivo" ng-model="selectedLugarTrabajo.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-lugar_trabajo">Lugar de Trabajo</span>
+                <ui-select name="lugar_trabajo" ng-model="selectedLugarTrabajo.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -225,14 +225,14 @@
                 </ui-select>
             </div>
             
-            <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-nomina">Domicilio del Cliente</span>
-                <input type="text" class="form-control" id="inputUserName" name="inputUserName" ng-model="formUser.inputUserName" placeholder="" required>
+            <div class="input-group" ng-if="(selectedLugarTrabajo.selected.id == 2) || (selectedLugarTrabajo.selected.id == 3)">
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-domicilio_cliente">Domicilio del Cliente</span>
+                <input type="text" class="form-control" id="domicilio_cliente" name="domicilio_cliente" ng-model="formRequestRequisition.domicilio_cliente" placeholder="" required>
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Contrataci&oacute;n</span>
-                <ui-select name="motivo" ng-model="selectedContratacion.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-contratacion">Contrataci&oacute;n</span>
+                <ui-select name="contratacion" ng-model="selectedContratacion.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -248,8 +248,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-nomina">Evaluador T&eacute;cnico</span>
-                <input type="text" class="form-control" id="inputUserName" name="inputUserName" ng-model="formUser.inputUserName" placeholder="" required>
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-evaluador_tecnico">Evaluador T&eacute;cnico</span>
+                <input type="text" class="form-control" id="evaluador_tecnico" name="evaluador_tecnico" ng-model="formRequestRequisition.evaluador_tecnico" placeholder="" required>
             </div>
             
             <div class="input-group">
@@ -270,8 +270,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Edad de</span>
-                <ui-select name="motivo" ng-model="selectedEdad1.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-edad1">Edad de</span>
+                <ui-select name="edad1" ng-model="selectedEdad1.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -287,8 +287,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">A</span>
-                <ui-select name="motivo" ng-model="selectedEdad2.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-edad2">A</span>
+                <ui-select name="edad2" ng-model="selectedEdad2.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -304,8 +304,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Sexo</span>
-                <ui-select name="motivo" ng-model="selectedSexo.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-sexo">Sexo</span>
+                <ui-select name="sexo" ng-model="selectedSexo.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -321,8 +321,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Nivel de estudios</span>
-                <ui-select name="motivo" ng-model="selectedNivelEstudios.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-nivel_estudios">Nivel de estudios</span>
+                <ui-select name="nivel_estudios" ng-model="selectedNivelEstudios.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -338,18 +338,18 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-nomina">Carrera</span>
-                <input type="text" class="form-control" id="inputUserName" name="inputUserName" ng-model="formUser.inputUserName" placeholder="" required>
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-carera">Carrera</span>
+                <input type="text" class="form-control" id="carrera" name="carrera" ng-model="formRequestRequisition.carrera" placeholder="" required>
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Ingl&eacute;s Oral</span>
-                <ui-select name="motivo" ng-model="selectedInglesOral.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-ingles_oral">Ingl&eacute;s Oral</span>
+                <ui-select name="ingles_oral" ng-model="selectedInglesOral.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
                    search-enabled="false"
-                           on-select="setDays($item, $model)">
+                           on-select="">
                   <ui-select-match placeholder="Seleccionar">
                     <span> @{{$select.selected.name}}</span>
                   </ui-select-match>
@@ -360,8 +360,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Ingl&eacute;s Lectura</span>
-                <ui-select name="motivo" ng-model="selectedInglesLectura.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-ingles_lectura">Ingl&eacute;s Lectura</span>
+                <ui-select name="ingles_lectura" ng-model="selectedInglesLectura.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -377,8 +377,8 @@
             </div>
             
             <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivo">Ingl&eacute;s Escritura</span>
-                <ui-select name="motivo" ng-model="selectedInglesEscritura.selected"
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-ingles_escritura">Ingl&eacute;s Escritura</span>
+                <ui-select name="ingles_escritura" ng-model="selectedInglesEscritura.selected"
                    class="btn-group bootstrap-select form-control"
                    ng-disabled="false"
                    append-to-body="true"
@@ -402,28 +402,28 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-experiencia">Experiencia / Conocimientos en</span>
-                <textarea placeholder="Áreas que debe dominar para la vacante." class="form-control" id="inputAbsenceObservations" ng-required="(selectedOcacion.selected.id == 8) || (selectedOcacion.selected.id == 9)"></textarea>
+                <textarea placeholder="Áreas que debe dominar para la vacante." class="form-control" id="inputRequisitionExperiencia" required></textarea>
             </div>
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-caracteristicas">Características / Habilidades Deseadas</span>
-                <textarea placeholder="Habilidades deseadas que el/la aspirante cubra para la vacante." class="form-control" id="inputAbsenceObservations" ng-required="(selectedOcacion.selected.id == 8) || (selectedOcacion.selected.id == 9)"></textarea>
+                <textarea placeholder="Habilidades deseadas que el/la aspirante cubra para la vacante." class="form-control" id="inputRequisitionCaracteristicas" required></textarea>
             </div>
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-funciones">Funciones a Desempeñar</span>
-                <textarea placeholder="Resposabilidades que realizará en la posición" class="form-control" id="inputAbsenceObservations" ng-required="(selectedOcacion.selected.id == 8) || (selectedOcacion.selected.id == 9)"></textarea>
+                <textarea placeholder="Resposabilidades que realizará en la posición" class="form-control" id="inputRequisitionFunciones" required></textarea>
             </div>
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Observaciones</span>
-                <textarea placeholder="Consideraciones adicionales a tomar en cuenta para la búsqueda de personal" class="form-control" id="inputAbsenceObservations" ng-required="(selectedOcacion.selected.id == 8) || (selectedOcacion.selected.id == 9)"></textarea>
+                <textarea placeholder="Consideraciones adicionales a tomar en cuenta para la búsqueda de personal" class="form-control" id="inputRequisitionObservaciones"></textarea>
             </div>
             
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-with-icon" ng-show="(selectedBoss.selected.id) && (selectedOcacion.selected.id) && (dt)">
+    <button type="submit" class="btn btn-primary btn-with-icon" ng-show="(selectedBoss.selected.id) && (selectedAuthorizer.selected.id) && (selectedArea.selected.id) && (selectedTrack.selected.id) && (selectedPosition.selected.id) && (selectedCompany.selected.id) && (selectedType.selected.id) && (selectedCosto.selected.id) && (selectedResidencia.selected.id) && (selectedLugarTrabajo.selected.id) && (selectedContratacion.selected.id) && (selectedDisponibilidadViajar.selected.id) && (selectedEdad1.selected.id) && (selectedEdad2.selected.id) && (selectedSexo.selected.id) && (selectedNivelEstudios.selected.id) && (selectedInglesOral.selected.id) && (selectedInglesLectura.selected.id) && (selectedInglesEscritura.selected.id) && (formRequestRequisition.dt)" ng-click="save()"><!-- Continuar ...-->
       <i class="ion-ios-checkmark-outline"></i>Enviar
     </button>
     

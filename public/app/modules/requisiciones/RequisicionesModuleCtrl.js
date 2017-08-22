@@ -20,7 +20,7 @@
       $scope.formRequestRequisition.proyecto = "";
       $scope.formRequestRequisition.clave_proyecto = "";
       $scope.formRequestRequisition.define_costo = "";
-      $scope.formRequestRequisition.especifique_costo = "";
+      $scope.formRequestRequisition.especifique_residencia = "";
       $scope.formRequestRequisition.domicilio_cliente = "";
       $scope.formRequestRequisition.evaluador_tecnico = "";
       $scope.formRequestRequisition.carrera = "";
@@ -281,6 +281,11 @@
             {id: 3, name: 'Básico'}
         ];
       
+      $scope.sending = false;
+      
+      $scope.save = function (){
+          
+      }
   /*--------------------------------------------------------------------------------------------------*/
       
   }

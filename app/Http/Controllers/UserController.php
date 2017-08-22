@@ -420,6 +420,50 @@ class UserController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+     public function admin_updateUser(Request $request)
+     {
+        DB::beginTransaction();
+
+        $user = array();
+        $idUser = 0;
+
+        $user = [
+            //'id' => 1,
+            'name' => $request->input('uu_nombre'),
+            'apellido_paterno' => $request->input('uu_apellido_paterno'),
+            'apellido_materno' => $request->input('uu_apellido_materno'),
+            //'photo' => $request->input('uu_nomina').".".$perfil->getClientOriginalExtension(),
+            'email' => $request->input('uu_email'),
+            //'password' => bcrypt("password"),
+            'status' => 1,
+            'nomina' => $request->input('uu_nomina'),
+            'plaza' => $request->input('uu_plaza'),
+            'area' => $request->input('uu_area'),
+            'posicion_track' => Posicion_Track::where('track',$request->input('uu_track'))->where('posicion',$request->input('uu_posicion'))->first()->id,
+            'company' => $request->input('uu_empresa'),
+            'fecha_ingreso' => $request->input('uu_fecha_ingreso'),
+            'fecha_baja' => null,
+            'tipo_baja' => null,
+            'motivo' => null
+        ];
+
+        if($perfil = $request->file('nu_foto')){
+            $user['photo'] = $request->input('uu_nomina').".".$perfil->getClientOriginalExtension();
+        }
+
+        dd($user);
+
+        DB::commit();
+        
+        return "success";
+     }
+
+    /**
      * 
      *
      * @return \Illuminate\Http\Response
@@ -427,6 +471,12 @@ class UserController extends Controller
     public function admin_getUserDetail($id_user)
     {   
         $userModel = User::find($id_user);
+
+        if(!$userModel){
+            $userModel = User::withTrashed()
+            ->where('id', $id_user)
+            ->first(); 
+        }
 
         $user = [
                 'id' => $userModel->id,

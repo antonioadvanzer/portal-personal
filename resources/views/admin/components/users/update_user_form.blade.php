@@ -442,55 +442,55 @@
                                 <div class="input-demo checkbox-demo row">
                                   <div class="col-md-4">
                                     <label class="checkbox-inline custom-checkbox nowrap">
-                                      <input type="checkbox" id="inputUserPermission1" name="inputUserPermission1" ng-model="formEditUser.inputUserPermission1">
+                                      <input type="checkbox" id="inputUserPermission1" name="inputUserPermission1" ng-model="formEditUser.inputUserPermission1" ng-disabled="!formEditUser.permission1">
                                       <span>Administraci&oacute;n</span>
                                     </label>
                                   </div>
                                   <div class="col-md-4">
                                     <label class="checkbox-inline custom-checkbox nowrap">
-                                      <input type="checkbox" id="inputUserPermission2" name="inputUserPermission2" ng-model="formEditUser.inputUserPermission2">
+                                      <input type="checkbox" id="inputUserPermission2" name="inputUserPermission2" ng-model="formEditUser.inputUserPermission2" ng-disabled="!formEditUser.permission2">
                                       <span>Personal a cargo</span>
                                     </label>
                                   </div>
                                   <div class="col-md-4">
                                     <label class="checkbox-inline custom-checkbox nowrap">
-                                      <input type="checkbox" id="inputUserPermission3" name="inputUserPermission3" ng-model="formEditUser.inputUserPermission3">
+                                      <input type="checkbox" id="inputUserPermission3" name="inputUserPermission3" ng-model="formEditUser.inputUserPermission3" ng-disabled="!formEditUser.permission3">
                                       <span>Capturista de Gastos de Viaje</span>
                                     </label>
                                   </div>
                                   <div class="col-md-4">
                                     <label class="checkbox-inline custom-checkbox nowrap">
-                                      <input type="checkbox" id="inputUserPermission4" name="inputUserPermission4" ng-model="formEditUser.inputUserPermission4">
+                                      <input type="checkbox" id="inputUserPermission4" name="inputUserPermission4" ng-model="formEditUser.inputUserPermission4" ng-disabled="!formEditUser.permission4">
                                       <span>Capturista de Harvest</span>
                                     </label>
                                   </div>
                                   <div class="col-md-4">
                                     <label class="checkbox-inline custom-checkbox nowrap">
-                                      <input type="checkbox" id="inputUserPermission5" name="inputUserPermission5" ng-model="formEditUser.inputUserPermission5">
+                                      <input type="checkbox" id="inputUserPermission5" name="inputUserPermission5" ng-model="formEditUser.inputUserPermission5" ng-disabled="!formEditUser.permission5">
                                       <span>Vacaciones</span>
                                     </label>
                                   </div>
                                   <div class="col-md-4">
                                     <label class="checkbox-inline custom-checkbox nowrap">
-                                      <input type="checkbox" id="inputUserPermission6" name="inputUserPermission6" ng-model="formEditUser.inputUserPermission6">
+                                      <input type="checkbox" id="inputUserPermission6" name="inputUserPermission6" ng-model="formEditUser.inputUserPermission6" ng-disabled="!formEditUser.permission6">
                                       <span>Permisos de Ausencia</span>
                                     </label>
                                   </div>
                                   <div class="col-md-4">
                                     <label class="checkbox-inline custom-checkbox nowrap">
-                                      <input type="checkbox" id="inputUserPermission7" name="inputUserPermission7" ng-model="formEditUser.inputUserPermission7">
+                                      <input type="checkbox" id="inputUserPermission7" name="inputUserPermission7" ng-model="formEditUser.inputUserPermission7" ng-disabled="!formEditUser.permission7">
                                       <span>Cartas y Constancias</span>
                                     </label>
                                   </div>
                                   <div class="col-md-4">
                                     <label class="checkbox-inline custom-checkbox nowrap">
-                                      <input type="checkbox" id="inputUserPermission8" name="inputUserPermission8" ng-model="formEditUser.inputUserPermission8">
+                                      <input type="checkbox" id="inputUserPermission8" name="inputUserPermission8" ng-model="formEditUser.inputUserPermission8" ng-disabled="!formEditUser.permission8">
                                       <span>Requisiciones</span>
                                     </label>
                                   </div>
                                   <div class="col-md-4">
                                     <label class="checkbox-inline custom-checkbox nowrap">
-                                      <input type="checkbox" id="inputUserPermission9" name="inputUserPermission9" ng-model="formEditUser.inputUserPermission9">
+                                      <input type="checkbox" id="inputUserPermission9" name="inputUserPermission9" ng-model="formEditUser.inputUserPermission9" ng-disabled="!formEditUser.permission9">
                                       <span>Evaluaciones</span>
                                     </label>
                                   </div>
