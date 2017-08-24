@@ -137,6 +137,9 @@
 
 <script src="{{ URL::to('app/modules/modules.module.js') }}"></script>
 <script src="{{ URL::to('app/modules/principal/principal.module.js') }}"></script>
+<!-- Servicios -->
+<script src="{{ URL::to('app/modules/servicios/servicios.module.js') }}"></script>
+<script src="{{ URL::to('app/modules/servicios/ServiciosModuleCtrl.js') }}"></script>
 <!-- Perfil -->
 <script src="{{ URL::to('app/modules/perfil/profile.module.js') }}"></script>
 <script src="{{ URL::to('app/modules/perfil/ProfilePageCtrl.js') }}"></script>

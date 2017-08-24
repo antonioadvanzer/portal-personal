@@ -16,6 +16,7 @@
     var modulos = [
         'ui.router',
         'PortalPersonal.modules.principal',
+        'PortalPersonal.modules.services',
         'PortalPersonal.modules.profile',
     ];
     

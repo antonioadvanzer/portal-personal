@@ -17,6 +17,27 @@
 
 <div class="row-fluid">
   
+    <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6">
+        <div ba-panel ba-panel-class="with-scroll more-text-widget" ba-panel-title="Opciones">
+          <div class="section-block light-text">
+              
+            <div class="row btns-row btns-same-width-lg ng-scope">
+                <div class="col-sm-4 col-xs-6">
+                    <button type="button" class="btn btn-primary btn-with-icon" ng-click="getForm()">
+                        <i class="ion-ios-telephone-outline"></i>Solicitar
+                    </button>
+                </div>
+                <div class="col-sm-4 col-xs-6">
+                    <button type="button" class="btn btn-primary btn-with-icon" ng-click="getSolicitudes()">
+                        <i class="ion-ios-list-outline"></i>Solicitudes
+                    </button>
+                </div>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+    
   <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6">
     <div ba-panel ba-panel-class="with-scroll more-text-widget" ba-panel-title="antigüedad">
       <div class="section-block light-text">
@@ -47,11 +68,11 @@
           <li>Las vacaciones deberán solicitarse con un período mínimo de 30 días y las autorizaciones que deberás gestionar son las siguientes (según aplique): 
             <ul type="square">
               <li>Si estás en proyecto: El líder de proyecto te autorizará.</li>
-              <li>Si no está en proyecto o eres área administrativa: El superior inmediato de acuerdo a la estructura será quien autorice.</li>
+              <li>Si no estás en proyecto o eres área administrativa: El superior inmediato de acuerdo a la estructura será quien autorice.</li>
             </ul>
           </li>
           <li>Una vez autorizadas por tu líder/superior, tu solicitud pasará a validación por parte de Capital Humano. Una vez que Capital Humano valide, se te notificará vía correo electrónico.</li>
-          <li>Los dias mostrados como disponibles, son los dias proporcionales disponibles al día de hoy.</li>
+          <li>Los d&iacute;as mostrados como disponibles, son los dias proporcionales disponibles al día de hoy.</li>
         </ul>
       </div>
     </div>

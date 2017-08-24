@@ -6461,3 +6461,37 @@ label.todo-checkbox {
     transform: translate3d(-300px, 0, 0);
   }
 }
+
+/* Vacaciones */
+.actual-year{
+    color: #fff;
+    background-color: #EB362C;
+}
+
+/* Main Home */
+
+.home-button-primary{
+    color: #fff;
+    background-color: #4db1a7;
+    border-color: #4db1a7;
+}
+
+.home-button-two{
+    color: #fff;
+    background-color: #A6C733;
+    border-color: #A6C733;
+}
+
+.home-button-three{
+    color: #fff;
+    background-color: #57BDDA;
+    border-color: #57BDDA;
+}
+
+.home-a-three{
+    color: #57BDDA;
+}
+
+.home-a-three:hover{
+    color: #3ca2bf;
+}

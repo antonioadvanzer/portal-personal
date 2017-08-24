@@ -2,7 +2,7 @@
   <thead>
     <tr class="primary">
       <th>Tipo</th>
-      <th>Dias</th>
+      <th>D&iacute;as</th>
       <th>Expiraci&oacute;n</th>
     </tr>
   </thead>

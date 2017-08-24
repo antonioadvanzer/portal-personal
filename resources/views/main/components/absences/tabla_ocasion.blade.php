@@ -1,7 +1,7 @@
 <table class="table table-bordered" style="width:50%">
   <thead>
     <tr class="primary">
-      <th>Ocaci&oacute;n</th>
+      <th>Ocasi&oacute;n</th>
       <th>D&iacute;as Autorizados</th>
     </tr>
   </thead>

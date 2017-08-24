@@ -1,6 +1,6 @@
 <div class="horizontal-scroll">
   <div class="form-group select-page-size-wrap ">
-    <label>Filas por pagina
+    <label>Filas por p&aacute;gina
       <select class="form-control selectpicker show-tick" title="Filas por pagina" selectpicker
               ng-model="tamanioTablaPermisosPorPosicion" ng-options="i for i in [5,10,15,20,25]">
       </select>

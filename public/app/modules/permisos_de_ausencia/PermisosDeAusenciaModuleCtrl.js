@@ -5,7 +5,8 @@
 (function () {
   'use strict';
 
-  angular.module('PortalPersonal.modules.permisos_de_ausencia')
+  //angular.module('PortalPersonal.modules.permisos_de_ausencia')
+    angular.module('PortalPersonal.modules.services')
       .controller('PermisosDeAusenciaModuleCtrl', PermisosDeAusenciaModuleCtrl);
 
   /** @ngInject */
@@ -79,7 +80,8 @@
             
             //getOwnRequest();
             $scope.refreshTables();
-            $state.go('permisos_de_ausencia.detalle_solicitud');
+            //$state.go('permisos_de_ausencia.detalle_solicitud');
+            $state.go('servicios.detalle_solicitud_permiso_de_ausencia');
         });
         
     }
@@ -109,7 +111,8 @@
             
             //getRequestReceived();
             $scope.refreshTables();
-            $state.go('permisos_de_ausencia.detalle_autorizar');
+            //$state.go('permisos_de_ausencia.detalle_autorizar');
+            $state.go('servicios.detalle_autorizar_permiso_de_ausencia');
         });
         
         //$state.go('permisos_de_ausencia.detalle_autorizar', {id_absence_received: id});
@@ -421,7 +424,17 @@
     $scope.progressFunction = function() {
         return $timeout(function() {}, 3000);
     };
-
+      
+/*--------------------------------------------------------------------------------------------------*/
+      
+    $scope.getForm = function() {
+        resetForm("servicios.solicitar_permiso_de_ausencia");
+    };
+      
+    $scope.getSolicitudes = function() {
+        resetForm("servicios.solicitudes_de_permisos_de_ausencia");
+    };
+      
 /*--------------------------------------------------------------------------------------------------*/
   }
     

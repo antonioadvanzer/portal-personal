@@ -246,18 +246,18 @@ class PortalPersonal
                     $ps="-";
                     $ps.="PortalPersonal.modules.harvest";
                 break;
-                case 5:
+                /*case 5:
                     $ps="-";
                     $ps.="PortalPersonal.modules.vacaciones";
-                break;
-                case 6:
+                break;*/
+                /*case 6:
                     $ps="-";
                     $ps.="PortalPersonal.modules.permisos_de_ausencia";
-                break;
-                case 7:
+                break;*/
+                /*case 7:
                     $ps="-";
                     $ps.="PortalPersonal.modules.cartas_y_constancias_laborales";
-                break;
+                break;*/
                 case 8:
                     $ps="-";
                     $ps.="PortalPersonal.modules.requisiciones";

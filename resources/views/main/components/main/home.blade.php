@@ -18,9 +18,9 @@
       </div>
     </div>
       
-      <h3>Bienvenido a la Nueva Intranet Advanzer - Entuizer. Aquí encontrarás todo la información referente a las políticas y procedimientos de la organización, así como información de interés y los eventos más recientes en Advanzer y Entuizer. </h3>
+      <h3>Bienvenido a la Nueva Intranet Advanzer - Entuizer. Aquí encontrarás todo lo referente a las políticas y procedimientos de la organización, así como información de interés y los eventos más recientes en Advanzer y Entuizer. </h3>
       
-      <div align="right" class="col-sm-12 col-xs-12"><button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='http://intranet.advanzer.com/'">¡Con&oacute;cela ahora!</button></div>
+      <div align="right" class="col-sm-12 col-xs-12"><a class="btn home-button-primary btn-lg" href="http://intranet.advanzer.com/" target="_blank">¡Con&oacute;cela ahora!</a></div>
       
       
   </uib-accordion-group>
@@ -44,7 +44,9 @@
       </div>
     </div>
       
-      <h3>En búsqueda de desarrollar el talento de nuestro capital humano, hemos definido una estrategia de formación interna de habilidades y competencias, haciendo uso de las herramientas tecnológicas a nuestro alcance y de la experiencia y conocimientos de nuestros colaboradores iniciamos una Plataforma de Educación a Distancia Advanzer - Entuizer la cual tiene como objetivo la formación en los principios de colaboración para la participación y uso efectivo de los ambientes virtuales para la educación a distancia.</h3>
+      <h3>La Plataforma de Educación a Distancia Advanzer – Entuizer, tiene como objetivo facilitar el desarrollo de talento de nuestros colaboradores. Haciendo uso de las herramientas tecnológicas se promueve la puesta en práctica de los principios de colaboración, autodirección, organización y administración del tiempo  para la formación en habilidades y competencias dentro de un espacio virtual de aprendizaje.</h3>
+      <br>
+      <div align="right" class="col-sm-12 col-xs-12"><a class="btn home-button-two btn-lg" href="http://intranet.advanzer.com:580/?lang=es_mx" target="_blank">¡Ir ahora!</a></div>
       
   </uib-accordion-group>
     
@@ -67,17 +69,20 @@
       </div>
     </div>
       
-    <h3>Todo el personal asignado a proyecto debe capturar cada lunes, sus horas asignadas durante la semana, con un máximo de tres semanas de desfase acumulado al año.
+    <h3>Harvest es la aplicación o herramienta tecnológica a través de la cual se registran las horas dedicadas a uno o varios proyectos durante la semana.
 
-        Consulta el procedimiento para captura de horas:</h3>
+      </h3><br><br><h3>A continuación podrás consultar el procedimiento para captura de horas:</h3>
       
       <br><br>
       
       <h3><ul>
-        <li><a href="https://drive.google.com/a/advanzer.com/file/d/0B20xPQDaUxigczZrUDZyNi04Sk0/view?usp=sharing">¿Cuál es el proceso?</a></li>
-        <li><a href="https://drive.google.com/file/d/0B20xPQDaUxigb2ROcHVheUhGZ2M/view">¿Cómo capturo mis asignaciones?</a></li>
-        <li><a href="https://drive.google.com/file/d/0B20xPQDaUxigZXdEdVNVQWpGZXc/view">¿Cómo apruebo las asignaciones?</a></li>
+        <li><a class="home-a-three" href="https://drive.google.com/a/advanzer.com/file/d/0B20xPQDaUxigczZrUDZyNi04Sk0/view?usp=sharing" target="_blank">¿Cuál es el proceso?</a></li>
+        <li><a class="home-a-three" href="https://drive.google.com/file/d/0B20xPQDaUxigb2ROcHVheUhGZ2M/view" target="_blank">¿Cómo capturo mis asignaciones?</a></li>
+        <li><a class="home-a-three" href="https://drive.google.com/file/d/0B20xPQDaUxigZXdEdVNVQWpGZXc/view" target="_blank">¿Cómo apruebo las asignaciones?</a></li>
       </ul></h3>
+      
+      <br>
+      <div align="right" class="col-sm-12 col-xs-12"><a class="btn home-button-three btn-lg" href="https://apis.google.com/additnow/l?applicationid=168610159629&__ls=ogb&__lu=https%3A%2F%2Fgoogleapps.harvestapp.com%2Fgoogle%2Fcompanies%2Fgoto%3Fgoogle_domain%3Dadvanzer.com" target="_blank">¡Accede!</a></div>
   
 </uib-accordion-group>
   <!--<uib-accordion-group heading="Warning" panel-class="panel-warning bootstrap-panel accordion-panel">

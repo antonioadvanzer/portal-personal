@@ -58,9 +58,9 @@ class AbsenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function main_tablaOcacion()
+    public function main_tablaOcasion()
     {
-        return view('main.components.absences.tabla_ocacion');
+        return view('main.components.absences.tabla_ocasion');
     }
 
     /**

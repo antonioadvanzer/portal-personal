@@ -5,7 +5,8 @@
 (function () {
   'use strict';
 
-  angular.module('PortalPersonal.modules.vacaciones')
+  //angular.module('PortalPersonal.modules.vacaciones')
+    angular.module('PortalPersonal.modules.services')
       .controller('VacacionesModuleCtrl', VacacionesModuleCtrl);
 
   /** @ngInject */
@@ -144,7 +145,8 @@
             
             //getOwnRequest();
             $scope.refreshTables();
-            $state.go('vacaciones.detalle_solicitud');
+            //$state.go('vacaciones.detalle_solicitud');
+            $state.go('servicios.detalle_solicitud_vacaciones');
         });
         
     }
@@ -172,7 +174,8 @@
             
             //getRequestReceived();
             $scope.refreshTables();
-            $state.go('vacaciones.detalle_autorizar');
+            //$state.go('vacaciones.detalle_autorizar');
+            $state.go('servicios.detalle_autorizar_vacaciones');
         });
         
         //$state.go('permisos_de_ausencia.detalle_autorizar', {id_absence_received: id});
@@ -418,7 +421,8 @@
             $scope.refreshTables();
             $scope.sending = false;
             getAlert('theme/success_modal/Solicitud enviada correctamente');
-            resetForm("vacaciones.solicitar");
+            //resetForm("vacaciones.solicitar");
+            resetForm("servicios.vacaciones");
             
         })
         .error(function (response) {
@@ -455,6 +459,16 @@
         return $timeout(function() {}, 3000);
     };
     
+/*--------------------------------------------------------------------------------------------------*/
+      
+    $scope.getForm = function() {
+        resetForm("servicios.solicitar_vacaciones");
+    };
+      
+    $scope.getSolicitudes = function() {
+        resetForm("servicios.solicitudes_de_vacaciones");
+    };
+      
 /*--------------------------------------------------------------------------------------------------*/
 	
   }

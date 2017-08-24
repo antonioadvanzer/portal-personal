@@ -5,7 +5,8 @@
 (function () {
   'use strict';
 
-  angular.module('PortalPersonal.modules.cartas_y_constancias_laborales')
+  //angular.module('PortalPersonal.modules.cartas_y_constancias_laborales')
+    angular.module('PortalPersonal.modules.services')
       .controller('CartasYConstanciasLaboralesModuleCtrl', CartasYConstanciasLaboralesModuleCtrl);
 
   /** @ngInject */
@@ -54,7 +55,8 @@
             $scope.formLetterDetail.inputLetterDetailObservaciones = response.data.observaciones;
 
             $scope.refreshTables();
-            $state.go('cartas_y_constancias_laborales.detalle_carta');
+            //$state.go('cartas_y_constancias_laborales.detalle_carta');
+            $state.go('servicios.detalle_carta');
         });
 
     }
@@ -163,6 +165,15 @@
         });
     }
       
+/*--------------------------------------------------------------------------------------------------*/
+      
+    $scope.getForm = function() {
+        resetForm("servicios.solicitar_carta");
+    };
+      
+    $scope.getSolicitudes = function() {
+        resetForm("servicios.solicitudes_de_cartas");
+    }
 /*--------------------------------------------------------------------------------------------------*/
 
   }

@@ -196,7 +196,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/solicitudes', 'AbsenceController@main_solicitudes');
                 Route::get('/solicitudes_realizadas', 'AbsenceController@main_tablaSolicitudesRealizadas');
                 Route::get('/solicitudes_recibidas', 'AbsenceController@main_tablaSolicitudesRecibidas');
-                Route::get('/tabla_ocacions', 'AbsenceController@main_tablaOcacion');
+                Route::get('/tabla_ocacions', 'AbsenceController@main_tablaOcasion');
 
                 /*** Modals ***/
                 Route::get('/comprobante_medico/{id_absence}', 'AbsenceController@main_getComprobanteModal');

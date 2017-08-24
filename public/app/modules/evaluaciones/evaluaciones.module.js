@@ -16,7 +16,7 @@
           template : '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
           abstract: true,
           controller: 'EvaluacionesModuleCtrl',
-          title: 'Evaluaciones',
+          title: 'Gestión de Desempeño',
           sidebarMeta: {
             icon: 'glyphicon glyphicon-check',
             order: 300,

@@ -23,7 +23,7 @@
             
             <div class="input-group">
 
-                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">A Quien va Dirigida la Carta</span>
+                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">A Qui&eacute;n va Dirigida la Carta</span>
                 <input type="text" class="form-control" id="inputRequestLetterDirigidoA" name="inputRequestLetterDirigidoA" ng-model="formRequestLetter.inputRequestLetterDirigidoA" placeholder="" required>
 
             </div>
@@ -32,7 +32,7 @@
         
     </div>
     
-    <h3 class="with-line"><label>Selecciona los datos deberá contener:</label></h3>
+    <h3 class="with-line"><label>Selecciona los datos que deberá contener:</label></h3>
     
     <div class="row">
         
