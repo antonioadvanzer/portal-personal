@@ -32,7 +32,7 @@
         <div ba-panel ba-panel-class="banner-column-panel">
           <div class="banner">
             <div class="large-banner-wrapper">
-              <img ng-src="@{{::( 'app/main/Educación libro.png' | appImage )}}" alt=""/>
+              <img ng-src="@{{::( 'app/main/Educacion libro.png' | appImage )}}" alt=""/>
             </div>
             <div class="banner-text-wrapper">
               <div class="banner-text">

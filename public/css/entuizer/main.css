@@ -2873,7 +2873,7 @@ a {
   min-height: 500px; }
 
 .al-footer {
-  height: 34px;
+  /*height: 34px;*/
   /*padding: 0px 18px 0 180px;*/
   padding: 0px 18px 0 260px;
   width: 100%;

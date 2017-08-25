@@ -208,7 +208,8 @@
         .success(function (response) {
             console.log(response);
             $scope.refreshTables();
-            resetForm("permisos_de_ausencia.solicitudes");
+            //resetForm("permisos_de_ausencia.solicitudes");
+            resetForm("servicios.solicitudes_de_permisos_de_ausencia");
             $scope.sending = false;
             getAlert('theme/success_modal/Solicitud rechazada correctamente');
             
@@ -386,7 +387,8 @@
             $scope.sending = false;
             $scope.refreshTables();
             getAlert('theme/success_modal/Solicitud enviada correctamente');
-            resetForm("permisos_de_ausencia.solicitar");
+            //resetForm("permisos_de_ausencia.solicitar");
+            resetForm("servicios.solicitudes_de_permisos_de_ausencia");
             
         })
         .error(function (response) {

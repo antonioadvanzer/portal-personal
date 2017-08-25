@@ -1,5 +1,5 @@
 <ul class="al-msg-center clearfix">
-  <li uib-dropdown>
+  <!--<li uib-dropdown>
     <a href uib-dropdown-toggle>
       <i class="fa fa-bell-o"></i><span>2</span>
 
@@ -25,7 +25,7 @@
       </div>
       <a href>Ver todas las notificaciones</a>
     </div>
-  </li>
+  </li>-->
   <!--<li uib-dropdown>
     <a href class="msg" uib-dropdown-toggle>
       <i class="fa fa-envelope-o"></i><span>5</span>

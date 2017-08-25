@@ -24,7 +24,7 @@
             <div class="row btns-row btns-same-width-lg ng-scope">
                 <div class="col-sm-4 col-xs-6">
                     <button type="button" class="btn btn-primary btn-with-icon" ng-click="getForm()">
-                        <i class="ion-ios-telephone-outline"></i>Solicitar
+                        <i class="ion-android-open"></i>Solicitar
                     </button>
                 </div>
                 <div class="col-sm-4 col-xs-6">
@@ -131,4 +131,4 @@
     </div>
   </div>
 
-</div><br>
+</div>
