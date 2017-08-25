@@ -16,8 +16,17 @@
 </div>
 
 <div class="typography-document-samples row-fluid">
+  
+  <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6">
+    <div ba-panel ba-panel-class="with-scroll more-text-widget" ba-panel-title="descripción">
+      <div class="section-block light-text">
+        <p>Podras solicitar cartas o constancias laborales que requieras</p>
+        <p>Recuerda que el tiempo de respuesta para recibir tu carta es de 3 d&iacute;as h&aacute;biles</p>
+      </div>
+    </div>
+  </div>
     
-        <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6">
+    <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6">
         <div ba-panel ba-panel-class="with-scroll more-text-widget" ba-panel-title="Opciones">
           <div class="section-block light-text">
               
@@ -37,14 +46,5 @@
           </div>
         </div>
     </div>
-  
-  <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6">
-    <div ba-panel ba-panel-class="with-scroll more-text-widget" ba-panel-title="descripción">
-      <div class="section-block light-text">
-        <p>Podras solicitar cartas o constancias laborales que requieras</p>
-        <p>Recuerda que el tiempo de respuesta para recibir tu carta es de 3 d&iacute;as h&aacute;biles</p>
-      </div>
-    </div>
-  </div>
 
 </div>
