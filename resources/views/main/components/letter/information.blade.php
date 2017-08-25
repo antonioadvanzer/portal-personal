@@ -22,12 +22,12 @@
           <div class="section-block light-text">
               
             <div class="row btns-row btns-same-width-lg ng-scope">
-                <div class="col-sm-4 col-xs-6">
+                <div class="col-sm-6 col-xs-6">
                     <button type="button" class="btn btn-primary btn-with-icon" ng-click="getForm()">
                         <i class="ion-android-open"></i>Solicitar
                     </button>
                 </div>
-                <div class="col-sm-4 col-xs-6">
+                <div class="col-sm-6 col-xs-6">
                     <button type="button" class="btn btn-primary btn-with-icon" ng-click="getSolicitudes()">
                         <i class="ion-ios-list-outline"></i>Solicitudes
                     </button>
