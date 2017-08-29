@@ -33,10 +33,17 @@
 
     $scope.requests_table.solicitudesPropias = [];
       
-    //$scope.refreshTables();
-    $timeout(function() {
+    $scope.refreshTables();
+    /*$timeout(function() {
         $scope.refreshTables();
-    }, 2000);
+    }, 2000);*/
+    
+    $('#solicitudesCartas').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        destroy: true
+    });
       
     $scope.showLetterDetail = function (id){
 

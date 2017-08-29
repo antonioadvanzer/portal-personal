@@ -47,6 +47,11 @@
       <td>@{{sl.estado}}</td>
         <td><i ng-if="((sl.alerta == 1) && (sl.status == 5))" class="fa fa fa-bell"></i></td>
     </tr>
+    <tr ng-if="!absences_table.solicitudesPropias.length">
+        <td>
+            No data to display.
+        </td>
+    </tr>
     </tbody>
     <tfoot>
     <tr>

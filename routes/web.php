@@ -109,7 +109,10 @@ Route::group(['middleware' => 'auth'], function(){
                 
                 // Tables
                 Route::get('/cartas', 'LetterController@main_cartas');
-                Route::get('/cartas_realizadas', 'LetterController@main_tablaCartasRealizadas');                
+                Route::get('/cartas_realizadas', 'LetterController@main_tablaCartasRealizadas');
+                
+                Route::get('/vista_cartas', 'LetterController@main_viewCartas');
+                Route::get('/tabla_cartas', 'LetterController@main_tableCartas');
 
                 /* Resources -------------------- */
 
@@ -146,6 +149,11 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/solicitudes', 'VacationController@main_solicitudes');
                 Route::get('/solicitudes_realizadas', 'VacationController@main_tablaSolicitudesRealizadas');
                 Route::get('/solicitudes_recibidas', 'VacationController@main_tablaSolicitudesRecibidas');
+
+                Route::get('/vista_solicitudes_realizadas', 'VacationController@main_viewSolicitudesRealizadas');
+                Route::get('/tabla_solicitudes_realizadas', 'VacationController@main_tableSolicitudesRealizadas');
+                Route::get('/vista_solicitudes_recibidas', 'VacationController@main_viewSolicitudesRecibidas');
+                Route::get('/tabla_solicitudes_recibidas', 'VacationController@main_tableSolicitudesRecibidas');
 
                 /* Resources -------------------- */
 
@@ -197,6 +205,11 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/solicitudes_realizadas', 'AbsenceController@main_tablaSolicitudesRealizadas');
                 Route::get('/solicitudes_recibidas', 'AbsenceController@main_tablaSolicitudesRecibidas');
                 Route::get('/tabla_ocacions', 'AbsenceController@main_tablaOcasion');
+
+                Route::get('/vista_solicitudes_realizadas', 'AbsenceController@main_viewSolicitudesRealizadas');
+                Route::get('/tabla_solicitudes_realizadas', 'AbsenceController@main_tableSolicitudesRealizadas');
+                Route::get('/vista_solicitudes_recibidas', 'AbsenceController@main_viewSolicitudesRecibidas');
+                Route::get('/tabla_solicitudes_recibidas', 'AbsenceController@main_tableSolicitudesRecibidas');
 
                 /*** Modals ***/
                 Route::get('/comprobante_medico/{id_absence}', 'AbsenceController@main_getComprobanteModal');

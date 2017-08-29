@@ -45,9 +45,15 @@
           controller: 'VacacionesModuleCtrl',
           title: 'Solicitar Vacaciones',
         })
-        .state('servicios.solicitudes_de_vacaciones', {
-          url: '/vacaciones/solicitudes',
-          templateUrl: 'theme/modules/vacations/solicitudes',
+        .state('servicios.solicitudes_de_vacaciones_realizadas', {
+          url: '/vacaciones/solicitudes_realizadas',
+          templateUrl: 'theme/modules/vacations/vista_solicitudes_realizadas',
+          controller: 'VacacionesModuleCtrl',
+          title: 'Solicitudes de Vacaciones',
+        })
+        .state('servicios.solicitudes_de_vacaciones_recibidas', {
+          url: '/vacaciones/solicitudes_recibidas',
+          templateUrl: 'theme/modules/vacations/vista_solicitudes_recibidas',
           controller: 'VacacionesModuleCtrl',
           title: 'Solicitudes de Vacaciones',
         })
@@ -78,9 +84,15 @@
           controller: 'PermisosDeAusenciaModuleCtrl',
           title: 'Solicitar Permiso de Ausencia',
         })
-        .state('servicios.solicitudes_de_permisos_de_ausencia', {
-          url: '/permisos_de_ausencia/solicitudes',
-          templateUrl: 'theme/modules/absence/solicitudes',
+        .state('servicios.solicitudes_de_permisos_de_ausencia_realizadas', {
+          url: '/permisos_de_ausencia/solicitudes_realizadas',
+          templateUrl: 'theme/modules/absence/vista_solicitudes_realizadas',
+          controller: 'PermisosDeAusenciaModuleCtrl',
+          title: 'Solicitudes de Permisos de Ausencia',
+        })
+        .state('servicios.solicitudes_de_permisos_de_ausencia_recibidas', {
+          url: '/permisos_de_ausencia/solicitudes_recibidas',
+          templateUrl: 'theme/modules/absence/vista_solicitudes_recibidas',
           controller: 'PermisosDeAusenciaModuleCtrl',
           title: 'Solicitudes de Permisos de Ausencia',
         })
@@ -113,11 +125,11 @@
         })
         .state('servicios.solicitudes_de_cartas', {
           url: '/cartas_y_constancias_laborales/solicitudes',
-          templateUrl: 'theme/modules/letter/cartas',
+          templateUrl: 'theme/modules/letter/vista_cartas',
           controller: 'CartasYConstanciasLaboralesModuleCtrl',
-          title: 'Solicitudes',
+          title: 'Solicitudes de Cartas',
         })
-        .state("servicios.detalle_carta",{
+        .state("servicios.detalle_carta", {
             url: "/cartas_y_constancias_laborales/ver_propia",
             templateUrl: 'theme/modules/letter/mostrar_carta',
             controller: 'CartasYConstanciasLaboralesModuleCtrl',

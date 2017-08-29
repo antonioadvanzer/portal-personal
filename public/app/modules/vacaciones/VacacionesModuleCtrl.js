@@ -49,13 +49,13 @@
     $scope.refreshTables = function(){
         
         // function to get request
-        $scope.getOwnRequests().then(function(data) {
+        /*$scope.getOwnRequests().then(function(data) {
             $scope.vacations_table.solicitudesPropias = data;
-        });
+        });*/
         
-        $scope.getRequestsReceived().then(function(data) {
+        /*$scope.getRequestsReceived().then(function(data) {
             $scope.vacations_table.solicitudesRecibidas = data;
-        });
+        });*/
         
         $scope.getTotalDays().then(function(data) {
             $scope.diasDisponibles = data;
@@ -77,7 +77,7 @@
     
     $scope.vacations_table = {};
     
-    $scope.vacations_table.tamanioTablaSolicitudes = 10;
+    $scope.vacations_table.tamanioTablaSolicitudesRealizadas = 10;
       
     $scope.vacations_table.tamanioTablaSolicitudesRecibidas = 10;
     
@@ -92,10 +92,53 @@
       
     $scope.diasDeSolicitud = 0;
     
-    //$scope.refreshTables();
-    $timeout(function() {
+    /*$('#solicitudesRealizadas').DataTable({
+        "ajax": {
+            "dataType": 'json',
+            "contentType": "application/json; charset=utf-8",
+            "type": "GET",
+            "url":"theme/modules/vacations/get_own_requests",
+            "dataSrc": function (json) {
+                //return $.parseJSON(json.d);
+                return json;
+            }
+        },
+        "columns": [
+                { "data": "folio" },
+                { "data": "tipo" },
+                { "data": "fecha" },
+                { "data": "autorizador" },
+                { "data": "dias" },
+                { "data": "desde" },
+                { "data": "hasta" },
+                { "data": "estado" },
+                { "data": "alerta" }
+            ],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        }
+    });*/ 
+      
+
+      
+    $scope.refreshTables();
+    /*$timeout(function() {
         $scope.refreshTables();
-    }, 2000);
+    }, 2000);*/
+      
+    $('#solicitudesRealizadasVacaciones').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        destroy: true
+    }); 
+      
+    $('#solicitudesRecibidasVacaciones').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        destroy: true
+    }); 
       
     function getDaysList(days) {
         // set days available for request
@@ -434,6 +477,8 @@
         });
     };
       
+/*--------------------------------------------------------------------------------------------------*/
+      
     function resetForm(stateName) {
         if ($state.is(stateName)) {
             $state.reload();
@@ -465,12 +510,15 @@
         resetForm("servicios.solicitar_vacaciones");
     };
       
-    $scope.getSolicitudes = function() {
-        resetForm("servicios.solicitudes_de_vacaciones");
+    $scope.getSolicitudesRealizadas = function() {
+        resetForm("servicios.solicitudes_de_vacaciones_realizadas");
     };
       
-/*--------------------------------------------------------------------------------------------------*/
-	
+    $scope.getSolicitudeRecibidas = function() {
+        resetForm("servicios.solicitudes_de_vacaciones_recibidas");
+    };
+      
+/*--------------------------------------------------------------------------------------------------*/	
   }
 
 })();

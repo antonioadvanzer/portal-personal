@@ -61,14 +61,38 @@ class LetterController extends Controller
     }
 
     /**
+     * Vista para relación de solicitudes propias
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_viewCartas()
+    {
+        return view('main.components.letter.tables.vista_cartas');
+    }
+
+    /**
      * 
      *
      * @return \Illuminate\Http\Response
      */
-    public function main_tablaCartasRealizadas()
+    public function main_tablaCartas()
     {
         return view('main.components.letter.tabla_cartas_realizadas');
     }
+
+    /**
+     * Tabla de solicitudes realizadas
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function main_tableCartas()
+     {   
+        $letterModel = Carta::where('user', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->get();
+ 
+         return view('main.components.letter.tables.tabla_cartas',["solicitudes" => $letterModel]);
+     }
 
     /**
      * 

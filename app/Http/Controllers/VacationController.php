@@ -99,6 +99,26 @@ class VacationController extends Controller
     }
 
     /**
+     * Vista para relación de solicitudes propias
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_viewSolicitudesRealizadas()
+    {
+        return view('main.components.vacations.tables.vista_solicitudes_realizadas');
+    }
+
+    /**
+     * Vista para relación de solicitudes recibidas
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function main_viewSolicitudesRecibidas()
+     {
+         return view('main.components.vacations.tables.vista_solicitudes_recibidas');
+     }
+
+    /**
      * 
      *
      * @return \Illuminate\Http\Response
@@ -109,6 +129,21 @@ class VacationController extends Controller
     }
 
     /**
+     * Tabla de solicitudes realizadas
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_tableSolicitudesRealizadas()
+    {   
+        $requestModel = Solicitud::where('user', Auth::user()->id)
+            ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('main.components.vacations.tables.tabla_solicitudes_realizadas',["solicitudes" => $requestModel]);
+    }
+
+    /**
      * 
      *
      * @return \Illuminate\Http\Response
@@ -116,6 +151,23 @@ class VacationController extends Controller
     public function main_tablaSolicitudesRecibidas()
     {
         return view('main.components.vacations.tabla_solicitudes_recibidas');
+    }
+
+    /**
+     * Tabla de solicitudes recibidas
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_tableSolicitudesRecibidas()
+    {   
+        $requestModel = Solicitud::where('authorizer', Auth::user()->id)
+            ->where('status', DB::table('estados_solicitud')
+            ->where('name', 'Enviada')->value('id'))
+            ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('main.components.vacations.tables.tabla_solicitudes_recibidas',["solicitudes" => $requestModel]);
     }
 
     /**
@@ -134,7 +186,7 @@ class VacationController extends Controller
         
         foreach($requestModel as $rm){
             array_push($requests,[
-                "id" => $rm->id,
+                //"id" => $rm->id,
                 "folio" => $rm->id,
                 "tipo" => $rm->getTypeAssociated()->first()->name,
                 "fecha" => $rm['created_at']->toDateTimeString(),
@@ -145,7 +197,7 @@ class VacationController extends Controller
                 "estado" => $rm->getStatusAssociated()->first()->name,
                 "alerta" => $rm->alert,
 
-                "status" => $rm->status
+                //"status" => $rm->status
                  ]);
         }
         

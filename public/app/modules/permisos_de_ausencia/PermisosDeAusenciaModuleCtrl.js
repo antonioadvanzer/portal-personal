@@ -34,29 +34,43 @@
     
     $scope.refreshTables = function(){
         // function to get request
-        $scope.getOwnRequest().then(function(data) {
+        /*$scope.getOwnRequest().then(function(data) {
             $scope.absences_table.solicitudesPropias = data;
         });
         $scope.getRequestReceived().then(function(data) {
             $scope.absences_table.solicitudesRecibidas = data;
-        });
+        });*/
     }
     
     $scope.absences_table = {};
       
   	$scope.absences_table.tamanioTablaSolicitudesRealizadas = 10;
-      
+    
     $scope.absences_table.tamanioTablaSolicitudesRecibidas = 10;
       
     $scope.absences_table.solicitudesPropias = [];
       
     $scope.absences_table.solicitudesRecibidas = [];
     
-    //$scope.refreshTables();
-    $timeout(function() {
+    $scope.refreshTables();
+    /*$timeout(function() {
         $scope.refreshTables();
-    }, 2000);
+    }, 2000);*/
     
+    $('#solicitudesRealizadasAusencias').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        destroy: true
+    });
+      
+    $('#solicitudesRecibidasAusencias').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        destroy: true
+    });
+      
     $scope.showOwnAbsence = function (id){
         
         $http.get("theme/modules/absence/get_own_absence/"+id).then(function (response) {
@@ -402,6 +416,8 @@
         
     }
     
+/*--------------------------------------------------------------------------------------------------*/
+    
     function resetForm(stateName) {
         if ($state.is(stateName)) {
             $state.reload();
@@ -433,8 +449,12 @@
         resetForm("servicios.solicitar_permiso_de_ausencia");
     };
       
-    $scope.getSolicitudes = function() {
-        resetForm("servicios.solicitudes_de_permisos_de_ausencia");
+    $scope.getSolicitudesRealizadas = function() {
+        resetForm("servicios.solicitudes_de_permisos_de_ausencia_realizadas");
+    };
+      
+    $scope.getSolicitudeRecibidas = function() {
+        resetForm("servicios.solicitudes_de_permisos_de_ausencia_recibidas");
     };
       
 /*--------------------------------------------------------------------------------------------------*/
