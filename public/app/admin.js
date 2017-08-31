@@ -25,4 +25,8 @@ app.run(function($rootScope) {
     
     $rootScope.theme = {};
     //$rootScope.theme.t_pageTop = "";
+    $rootScope.users_table = {};
+    //$rootScope.users_table.empleadosActivos = [];
+    //$rootScope.users_table.tamanioTablaEmpleadosActivos = 0;
+    $rootScope.areas_table = [];
 });

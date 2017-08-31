@@ -18,7 +18,7 @@
         </thead>
         <tbody>
             @foreach($solicitudes as $s)
-            <tr>
+            <tr class="{{ ($s->alert == 1) ? 'primary' : ''}}">
                 <td>{{ $s->id }}</td>
                 <td>{{ $s->getTypeAssociated()->first()->name }}</td>
                 <td>{{ $s['created_at']->toDateTimeString() }}</td>
@@ -27,7 +27,11 @@
                 <td>{{ $s->fecha_inicio }}</td>
                 <td>{{ $s->fecha_fin }}</td>
                 <td>{{ $s->getStatusAssociated()->first()->name }}</td>
-                <td>-</td>
+                <td>
+                    @if($s->alert == 1)
+                        <i class="fa fa fa-bell"></i>
+                    @endif
+                </td>
             </tr>
             @endforeach
         </tbody>

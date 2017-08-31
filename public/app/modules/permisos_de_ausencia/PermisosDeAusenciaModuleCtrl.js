@@ -10,9 +10,9 @@
       .controller('PermisosDeAusenciaModuleCtrl', PermisosDeAusenciaModuleCtrl);
 
   /** @ngInject */
-  function PermisosDeAusenciaModuleCtrl($scope, $http, $filter, $window, $location, $state, $uibModal, $timeout, editableOptions, editableThemes) {
+  function PermisosDeAusenciaModuleCtrl($scope, $http, $filter, $window, $location, $state, $uibModal, $timeout, $stateParams, editableOptions, editableThemes) {
   
-    //var vm = this;
+    var vm = this;
       
 /* Solicitudes table -------------------------------------------------------------------------------*/
      
@@ -40,6 +40,33 @@
         $scope.getRequestReceived().then(function(data) {
             $scope.absences_table.solicitudesRecibidas = data;
         });*/
+        
+        
+        if(!$.fn.DataTable.isDataTable('#solicitudesRealizadasAusencias')) {
+
+            var table = $('#solicitudesRealizadasAusencias').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                }
+            });
+
+            //table.destroy();
+
+            //$('#solicitudesRealizadasAusencias').empty();
+        }
+
+        if(!$.fn.DataTable.isDataTable('#solicitudesRecibidasAusencias')){
+
+            var table = $('#solicitudesRecibidasAusencias').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                }
+            });
+
+            //table.destroy();
+
+            //$('#solicitudesRecibidasAusencias').empty();
+        }
     }
     
     $scope.absences_table = {};
@@ -57,24 +84,12 @@
         $scope.refreshTables();
     }, 2000);*/
     
-    $('#solicitudesRealizadasAusencias').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        },
-        destroy: true
-    });
-      
-    $('#solicitudesRecibidasAusencias').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        },
-        destroy: true
-    });
-      
+    
     $scope.showOwnAbsence = function (id){
         
         $http.get("theme/modules/absence/get_own_absence/"+id).then(function (response) {
-          
+        //$.getJSON("theme/modules/absence/get_own_absence/"+id, function( data ) {  
+            
             $scope.formOwnAbsence.inputOwnAbsenceId = response.data.id;
             $scope.formOwnAbsence.inputOwnAbsenceColaborador = response.data.colaborador;
             $scope.formOwnAbsence.inputOwnAbsenceAutorizador = response.data.autorizador;
@@ -92,10 +107,14 @@
             $scope.formOwnAbsence.inputOwnAbsenceOcacion = response.data.ocacion;
             $scope.formOwnAbsence.inputOwnAbsenceStatus = response.data.status;
             
+            console.log($scope.formOwnAbsence);
+            
             //getOwnRequest();
-            $scope.refreshTables();
+            //$scope.refreshTables();
             //$state.go('permisos_de_ausencia.detalle_solicitud');
-            $state.go('servicios.detalle_solicitud_permiso_de_ausencia');
+            //$state.go('servicios.detalle_solicitud_permiso_de_ausencia_enviada', {formAbsenceSended:"asd"});
+            
+            resetForm('servicios.detalle_solicitud_permiso_de_ausencia_enviada');
         });
         
     }
@@ -126,19 +145,18 @@
             //getRequestReceived();
             $scope.refreshTables();
             //$state.go('permisos_de_ausencia.detalle_autorizar');
-            $state.go('servicios.detalle_autorizar_permiso_de_ausencia');
+            //$state.go('permisos_de_ausencia.detalle_autorizar', {id_absence_received: id});
+            //$state.go('servicios.detalle_permiso_de_ausencia_recibida');
+            resetForm('servicios.detalle_permiso_de_ausencia_recibida');
         });
-        
-        //$state.go('permisos_de_ausencia.detalle_autorizar', {id_absence_received: id});
-        
     }
 
 /*--------------------------------------------------------------------------------------------------*/
       
 /* Show Own Absence ------------------------------------------------------------------------------------*/
     
-    $scope.formOwnAbsence={};
-    $scope.formOwnAbsence.inputOwnAbsenceId = "";
+    //$scope.formOwnAbsence={};
+    /*$scope.formOwnAbsence.inputOwnAbsenceId = "";
     $scope.formOwnAbsence.inputOwnAbsenceColaborador = "";
     $scope.formOwnAbsence.inputOwnAbsenceAutorizador = "";
     $scope.formOwnAbsence.inputOwnAbsenceDias = "";
@@ -150,7 +168,7 @@
     $scope.formOwnAbsence.inputOwnAbsenceObservaciones = "";
     $scope.formOwnAbsence.inputOwnAbsenceAuthBoss = "";
     $scope.formOwnAbsence.inputOwnAbsenceAuthCh = "";
-    $scope.formOwnAbsence.inputOwnAbsenceMotivoCancelacion = "";
+    $scope.formOwnAbsence.inputOwnAbsenceMotivoCancelacion = "";*/
       
     $scope.getRecibo = function(){
         getAlert('theme/modules/absence/comprobante_medico/'+$scope.formOwnAbsence.inputOwnAbsenceId);
@@ -160,7 +178,7 @@
       
 /* Show Absence Recived ------------------------------------------------------------------------------------*/
     
-    $scope.formAbsenceReceived={};
+    /*$scope.formAbsenceReceived={};
     $scope.formAbsenceReceived.inputAbsenceReceivedId = "";
     $scope.formAbsenceReceived.inputAbsenceReceivedColaborador = "";
     $scope.formAbsenceReceived.inputAbsenceReceivedAutorizador = "";
@@ -170,7 +188,7 @@
     $scope.formAbsenceReceived.inputAbsenceReceivedHasta = "";
     $scope.formAbsenceReceived.inputAbsenceReceivedRegresa = "";
     $scope.formAbsenceReceived.inputAbsenceReceivedObservaciones = "";  
-    $scope.formAbsenceReceived.inputAbsenceReceivedMotivoCancelacion = "";
+    $scope.formAbsenceReceived.inputAbsenceReceivedMotivoCancelacion = "";*/
     
     $scope.getComprobante = function(){
         
@@ -197,7 +215,8 @@
             console.log(response.data);
             $scope.sending = false;
             $scope.refreshTables();
-            resetForm("permisos_de_ausencia.solicitudes");
+            //resetForm("permisos_de_ausencia.solicitudes");
+            $scope.getSolicitudeRecibidas();
             getAlert('theme/success_modal/Solicitud aceptada correctamente');
         });
         
@@ -223,10 +242,10 @@
             console.log(response);
             $scope.refreshTables();
             //resetForm("permisos_de_ausencia.solicitudes");
-            resetForm("servicios.solicitudes_de_permisos_de_ausencia");
+            //resetForm("servicios.solicitudes_de_permisos_de_ausencia");
             $scope.sending = false;
-            getAlert('theme/success_modal/Solicitud rechazada correctamente');
-            
+            //getAlert('theme/success_modal/Solicitud rechazada correctamente');
+            $scope.getSolicitudeRecibidas();
         })
         .error(function (response) {
             console.log(response);
@@ -402,8 +421,8 @@
             $scope.refreshTables();
             getAlert('theme/success_modal/Solicitud enviada correctamente');
             //resetForm("permisos_de_ausencia.solicitar");
-            resetForm("servicios.solicitudes_de_permisos_de_ausencia");
-            
+            //resetForm("servicios.solicitudes_de_permisos_de_ausencia");
+            $scope.getSolicitudesRealizadas();
         })
         .error(function (response) {
             //alert('error sending.');

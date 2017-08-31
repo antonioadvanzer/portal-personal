@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('PortalPersonal.modules.servicios')
+  angular.module('PortalPersonal.modules.services')
       .controller('ServiciosModuleCtrl', ServiciosModuleCtrl);
 
   /** @ngInject */

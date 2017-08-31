@@ -45,7 +45,7 @@
       <td>@{{sl.desde}}</td>
       <td>@{{sl.hasta}}</td>
       <td>@{{sl.estado}}</td>
-        <td><i ng-if="((item.alerta == 1) && ((sl.status == 1) || (sl.status == 4) || (sl.status == 5)))" class="fa fa fa-bell"></i></td>
+        <td><i ng-if="((sl.alerta == 1) && ((sl.status == 1) || (sl.status == 4) || (sl.status == 5)))" class="fa fa fa-bell"></i></td>
     </tr>
     </tbody>
     <tfoot>

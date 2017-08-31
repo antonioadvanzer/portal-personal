@@ -15,49 +15,50 @@
       
   /* Users table -------------------------------------------------------------------------------*/
     
-    //$scope.getEmpleadosActivos = function(){
-    function getEmpleadosActivos(){
-        //return $http.get("admin-theme/modules/user/users_active").then(function (response) {
-        $.getJSON("admin-theme/modules/user/users_active", function( data ) {
-            //return response.data;
-            $scope.users_table.empleadosActivos = data;
-            $scope.$apply();
+    $scope.getEmpleadosActivos = function(){
+    //function getEmpleadosActivos(){
+        return $http.get("admin-theme/modules/user/users_active").then(function (response) {
+        //$.getJSON("admin-theme/modules/user/users_active", function( data ) {
+            return response.data;
+            //$scope.users_table.empleadosActivos = data;
+            //$scope.$apply();
         });
     }
     
-    //$scope.getEmpleadosInactivos = function(){
-    function getEmpleadosInactivos(){
-        //return $http.get("admin-theme/modules/user/users_deactive").then(function (response) {
-        $.getJSON("admin-theme/modules/user/users_deactive", function( data ) {
-            //return response.data;
-            $scope.users_table.empleadosInactivos = data;
-            $scope.$apply();
+    $scope.getEmpleadosInactivos = function(){
+    //function getEmpleadosInactivos(){
+        return $http.get("admin-theme/modules/user/users_deactive").then(function (response) {
+        //$.getJSON("admin-theme/modules/user/users_deactive", function( data ) {
+            return response.data;
+            //$scope.users_table.empleadosInactivos = data;
+            //$scope.$apply();
         });
     }
     
     $scope.refreshTables = function(){
         // functions to get users
-        /*$scope.getEmpleadosActivos().then(function(data) {
+        $scope.getEmpleadosActivos().then(function(data) {
             $scope.users_table.empleadosActivos = data;
-        });*/
+            $scope.users_table.tamanioTablaEmpleadosActivos = 10;
+        });
         
-        getEmpleadosActivos();
+        //getEmpleadosActivos();
         
-        /*$scope.getEmpleadosInactivos().then(function(data) {
+        $scope.getEmpleadosInactivos().then(function(data) {
             $scope.users_table.empleadosInactivos = data;
-        });*/
+        });
         
-        getEmpleadosInactivos();
+        //getEmpleadosInactivos();
     }
     
-    $scope.users_table = [];
+    //$scope.users_table = [];
     $scope.requests_table = [];
     $scope.vacations_table = [];
     
-    $scope.users_table.tamanioTablaEmpleadosActivos = 10;
+    //$scope.users_table.tamanioTablaEmpleadosActivos = 10;
     $scope.users_table.tamanioTablaEmpleadosIactivos = 10;
     
-    $scope.users_table.empleadosActivos = [];
+    //$scope.users_table.empleadosActivos = [];
     $scope.users_table.empleadosInactivos = [];
     
     $scope.refreshTables();

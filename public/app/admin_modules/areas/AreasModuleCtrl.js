@@ -28,21 +28,22 @@
     $scope.refreshTables = function(){
         $scope.getAreas().then(function(data) {
             $scope.areas_table.listaAreas = data;
+            $scope.areas_table.tamanioTablaAreas = 10;
         }); 
         
         //getAreas();
     }
     
-    $scope.areas_table = [];
+    //$scope.areas_table = [];
       
-    $scope.areas_table.tamanioTablaAreas = 10;
+    //$scope.areas_table.tamanioTablaAreas = 10;
       
-    $scope.areas_table.listaAreas = [];
+    //$scope.areas_table.listaAreas = [];
       
-    //$scope.refreshTables();
-    $timeout(function() {
+    $scope.refreshTables();
+    /*$timeout(function() {
         $scope.refreshTables();
-    }, 2000);
+    }, 2000);*/
       
     $scope.showArea = function (id){
         $http.get("admin-theme/modules/area/get_area/"+id).then(function (response) {

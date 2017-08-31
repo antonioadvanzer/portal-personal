@@ -567,7 +567,8 @@ class AbsenceController extends Controller
         
         $mail_cc = array();
         //$mail_admins = Permisos::find(DB::table('permisos')->where('name', 'Administración')->value('id'))->getPermissionsByUser()->get();
-        $mail_admins = $this->advanzer_getAdminstratorsArray();
+        //$mail_admins = $this->advanzer_getAdminstratorsArray();
+        $mail_admins = PortalPersonal::getAdminstratorsArray();
         foreach($mail_admins as $mb){
             array_push($mail_cc, $mb['email']);
         }

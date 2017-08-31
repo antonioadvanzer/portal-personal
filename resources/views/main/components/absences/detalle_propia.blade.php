@@ -1,4 +1,4 @@
-<form name="showSolicitud">
+<form name="showSolicitud" ng-controller="PermisosDeAusenciaModuleCtrl as vm">
     
     <!--<div class="progress ng-scope" ng-show="sending">
       <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
@@ -7,7 +7,7 @@
     </div>-->
     
     <div class="row">
-
+        <!--<span>@{{vm.var}}</span>-->
         <div class="col-md-6">
             
             <!--<div class="input-group">
@@ -17,7 +17,7 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Autorizador</span>
-                <input type="text" class="form-control with-primary-addon" id="inputOwnAbsenceAutorizador" name="inputOwnAbsenceAutorizador"  placeholder="" ng-model="formOwnAbsence.inputOwnAbsenceAutorizador" readonly>
+                <input type="text" class="form-control with-primary-addon" id="inputOwnAbsenceAutorizador" name="inputOwnAbsenceAutorizador" placeholder="" ng-model="formOwnAbsence.inputOwnAbsenceAutorizador" readonly>
             </div>
             
             <div class="input-group" >

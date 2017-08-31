@@ -32,5 +32,6 @@ app.run(function($rootScope) {
         "P2" : 0,
         "P3" : 0
     ];*/
-    
+    $rootScope.formOwnAbsence = {};
+    $rootScope.formAbsenceReceived = {};
 });

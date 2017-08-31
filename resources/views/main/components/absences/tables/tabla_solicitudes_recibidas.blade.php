@@ -8,7 +8,7 @@
                 <th>Folio</th>
                 <th>Tipo</th>
                 <th>Fecha de Solicitud</th>
-                <th>Autorizador</th>
+                <th>Colaborador</th>
                 <th>Días</th>
                 <th>Desde</th>
                 <th>Hasta</th>
@@ -18,16 +18,20 @@
         </thead>
         <tbody>
             @foreach($solicitudes as $s)
-            <tr>
+            <tr class="{{ ($s->alert == 1) ? 'primary' : ''}}" ng-click="showAbsenceReceived({{$s->id}})">
                 <td>{{ $s->id }}</td>
                 <td>{{ $s->getTypeAssociated()->first()->name }}</td>
                 <td>{{ $s['created_at']->toDateTimeString() }}</td>
-                <td>{{ $s->getAuthorizerAssociated()->first()->name }}</td>
+                <td>{{ $s->getEmployedAssociated()->first()->name }}</td>
                 <td>{{ $s->dias }}</td>
                 <td>{{ $s->fecha_inicio }}</td>
                 <td>{{ $s->fecha_fin }}</td>
                 <td>{{ $s->getStatusAssociated()->first()->name }}</td>
-                <td>-</td>
+                <td>
+                    @if($s->alert == 1)
+                        <i class="fa fa fa-bell"></i>
+                    @endif
+                </td>
             </tr>
             @endforeach
         </tbody>

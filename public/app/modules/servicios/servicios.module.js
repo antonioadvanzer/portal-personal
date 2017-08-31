@@ -96,17 +96,25 @@
           controller: 'PermisosDeAusenciaModuleCtrl',
           title: 'Solicitudes de Permisos de Ausencia',
         })
-        .state("servicios.detalle_autorizar_permiso_de_ausencia",{
-            url: "/ver_recibida",
+        .state("servicios.detalle_solicitud_permiso_de_ausencia_enviada",{
+            url: "/permisos_de_ausencia/ver_solicitud_enviada",
+            params: {
+                    //id_own_absence: null,
+                    formAbsenceSended: null
+                    },
+            templateUrl: function (stateParams){
+                    //return 'theme/modules/absence/mostrar_solicitud_propia/' + stateParams.id_onw_absence;
+                    //return 'theme/modules/absence/mostrar_solicitud_propia/'+ stateParams.formAbsenceSended;
+                    return 'theme/modules/absence/mostrar_solicitud_propia';
+            },
+            controller: 'PermisosDeAusenciaModuleCtrl',
+            title: 'Solicitud Enviada',
+        })
+        .state("servicios.detalle_permiso_de_ausencia_recibida",{
+            url: "/permisos_de_ausencia/ver_solicitud_recibida",
             templateUrl: 'theme/modules/absence/mostrar_solicitud_recibida',
             controller: 'PermisosDeAusenciaModuleCtrl',
             title: 'Solicitud Recibida',
-        })
-        .state("servicios.detalle_solicitud_permiso_de_ausencia",{
-            url: "/ver_propia",
-            templateUrl: 'theme/modules/absence/mostrar_solicitud_propia',
-            controller: 'PermisosDeAusenciaModuleCtrl',
-            title: 'Solicitud Propia',
         })
         .state('servicios.cartas_y_constancias_laborales', {
           url: '/cartas_y_constancias_laborales',

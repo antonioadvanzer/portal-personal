@@ -1,4 +1,4 @@
-<div class="horizontal-scroll" ng-controller="PermisosDeAusenciaModuleCtrl">
+<div class="horizontal-scroll" ng-controller="PermisosDeAusenciaModuleCtrl as vm">
   <div class="form-group select-page-size-wrap ">
     
   </div>
@@ -18,7 +18,7 @@
         </thead>
         <tbody>
             @foreach($solicitudes as $s)
-            <tr>
+            <tr class="{{ (($s->alert == 1) && (($s->status == 1) || ($s->status == 4) || ($s->status == 5))) ? 'primary' : ''}}" ng-click="showOwnAbsence({{$s->id}})">
                 <td>{{ $s->id }}</td>
                 <td>{{ $s->getTypeAssociated()->first()->name }}</td>
                 <td>{{ $s['created_at']->toDateTimeString() }}</td>
@@ -27,7 +27,11 @@
                 <td>{{ $s->fecha_inicio }}</td>
                 <td>{{ $s->fecha_fin }}</td>
                 <td>{{ $s->getStatusAssociated()->first()->name }}</td>
-                <td>-</td>
+                <td>
+                    @if(($s->alert == 1) && (($s->status == 1) || ($s->status == 4) || ($s->status == 5)))
+                        <i class="fa fa fa-bell"></i>
+                    @endif
+                </td>
             </tr>
             @endforeach
         </tbody>
