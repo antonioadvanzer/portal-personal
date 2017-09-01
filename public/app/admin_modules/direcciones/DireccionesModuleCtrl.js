@@ -28,21 +28,20 @@
     $scope.refreshTables = function(){
         $scope.getDirections().then(function(data) {
             $scope.directions_table.listaDirecciones = data;
+            $scope.directions_table.direcciones = data;
         });
         
         //getDirections();
     }
     
     $scope.directions_table = [];
-    
-    $scope.directions_table.tamanioTablaDirecciones = 10;
-      
     $scope.directions_table.listaDirecciones = [];
+    $scope.directions_table.tamanioTablaDirecciones = 10; 
     
-    //$scope.refreshTables();
-    $timeout(function() {
+    $scope.refreshTables();
+    /*$timeout(function() {
         $scope.refreshTables();
-    }, 2000);
+    }, 2000);*/
       
     $scope.showDirection = function (id){
         $http.get("admin-theme/modules/direction/get_direction/"+id).then(function (response) {

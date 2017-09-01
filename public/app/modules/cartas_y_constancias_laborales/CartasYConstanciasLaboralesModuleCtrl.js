@@ -22,9 +22,19 @@
       
     $scope.refreshTables = function(){
         // function to get request
-        $scope.getRequestsLetter().then(function(data) {
+        /*$scope.getRequestsLetter().then(function(data) {
             $scope.requests_table.solicitudesPropias = data;
-        });
+        });*/
+        
+        if(!$.fn.DataTable.isDataTable('#solicitudesCartas')) {
+            var table = $('#solicitudesCartas').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                }
+            });
+            //table.destroy();
+            //$('#solicitudesCartas').empty();
+        }
     }
     
     $scope.requests_table = {};
@@ -37,18 +47,11 @@
     /*$timeout(function() {
         $scope.refreshTables();
     }, 2000);*/
-    
-    $('#solicitudesCartas').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        },
-        destroy: true
-    });
       
     $scope.showLetterDetail = function (id){
 
         $http.get("theme/modules/letter/get_letter_detail/"+id).then(function (response) {
-            console.log(response.data);
+            //console.log(response.data);
             $scope.formLetterDetail.inputLetterDetailId = response.data.id;
             $scope.formLetterDetail.inputLetterDetailColaborador = response.data.colaborador;
             $scope.formLetterDetail.inputLetterDetailDirigidoA = response.data.dirigido;
@@ -70,9 +73,9 @@
       
 /*--------------------------------------------------------------------------------------------------*/
       
-/* Show Absence Recived ------------------------------------------------------------------------------------*/
+/* Show Letter Sended ------------------------------------------------------------------------------------*/
       
-    $scope.formLetterDetail={};
+    /*$scope.formLetterDetail={};
     $scope.formLetterDetail.inputLetterDetailId = "";
     $scope.formLetterDetail.inputLetterDetailDirigidoA = "";
     $scope.formLetterDetail.inputLetterDetailSueldo = "";
@@ -82,7 +85,7 @@
     $scope.formLetterDetail.inputLetterDetailAntiguedad = "";
     $scope.formLetterDetail.inputLetterDetailPuesto = "";
     $scope.formLetterDetail.inputLetterDetailDomicilio = "";
-    $scope.formLetterDetail.inputLetterDetailObservaciones = "";
+    $scope.formLetterDetail.inputLetterDetailObservaciones = "";*/
       
       
     $scope.progressFunction = function() {

@@ -57,6 +57,26 @@
             $scope.vacations_table.solicitudesRecibidas = data;
         });*/
         
+        if(!$.fn.DataTable.isDataTable('#solicitudesRealizadasVacaciones')) {
+            
+            $('#solicitudesRealizadasVacaciones').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                }
+            });
+            //table.destroy();
+            //$('#solicitudesRealizadasVacaciones').empty();
+        }
+        
+        if(!$.fn.DataTable.isDataTable('#solicitudesRecibidasVacaciones')){
+            $('#solicitudesRecibidasVacaciones').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                }
+            });
+            //table.destroy();
+            //$('#solicitudesRecibidasVacaciones').empty()
+        }
         $scope.getTotalDays().then(function(data) {
             $scope.diasDisponibles = data;
             //$scope.standardSelectDays = getDaysList(data);
@@ -92,53 +112,10 @@
       
     $scope.diasDeSolicitud = 0;
     
-    /*$('#solicitudesRealizadas').DataTable({
-        "ajax": {
-            "dataType": 'json',
-            "contentType": "application/json; charset=utf-8",
-            "type": "GET",
-            "url":"theme/modules/vacations/get_own_requests",
-            "dataSrc": function (json) {
-                //return $.parseJSON(json.d);
-                return json;
-            }
-        },
-        "columns": [
-                { "data": "folio" },
-                { "data": "tipo" },
-                { "data": "fecha" },
-                { "data": "autorizador" },
-                { "data": "dias" },
-                { "data": "desde" },
-                { "data": "hasta" },
-                { "data": "estado" },
-                { "data": "alerta" }
-            ],
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        }
-    });*/ 
-      
-
-      
     $scope.refreshTables();
     /*$timeout(function() {
         $scope.refreshTables();
     }, 2000);*/
-      
-    $('#solicitudesRealizadasVacaciones').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        },
-        destroy: true
-    }); 
-      
-    $('#solicitudesRecibidasVacaciones').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-        },
-        destroy: true
-    }); 
       
     function getDaysList(days) {
         // set days available for request
@@ -189,7 +166,8 @@
             //getOwnRequest();
             $scope.refreshTables();
             //$state.go('vacaciones.detalle_solicitud');
-            $state.go('servicios.detalle_solicitud_vacaciones');
+            //$state.go('servicios.detalle_solicitud_vacaciones');
+            resetForm('servicios.detalle_solicitud_de_vacaciones_enviada');
         });
         
     }
@@ -218,7 +196,8 @@
             //getRequestReceived();
             $scope.refreshTables();
             //$state.go('vacaciones.detalle_autorizar');
-            $state.go('servicios.detalle_autorizar_vacaciones');
+            //$state.go('servicios.detalle_autorizar_vacaciones');
+            resetForm("servicios.detalle_solicitud_de_vacaciones_recibida");
         });
         
         //$state.go('permisos_de_ausencia.detalle_autorizar', {id_absence_received: id});
@@ -229,7 +208,7 @@
       
 /* Show Own Vacations Request ------------------------------------------------------------------------------------*/
     
-    $scope.formOwnRequest={};
+    /*$scope.formOwnRequest={};
     $scope.formOwnRequest.inputOwnRequestId = "";
     $scope.formOwnRequest.inputOwnRequestColaborador = "";
     $scope.formOwnRequest.inputOwnRequestAutorizador = "";
@@ -242,13 +221,13 @@
     $scope.formOwnRequest.inputOwnRequestObservaciones = "";
     $scope.formOwnRequest.inputOwnRequestAuthBoss = "";
     $scope.formOwnRequest.inputOwnRequestAuthCh = "";
-    $scope.formOwnRequest.inputOwnRequestMotivoCancelacion = "";
+    $scope.formOwnRequest.inputOwnRequestMotivoCancelacion = "";*/
       
 /*--------------------------------------------------------------------------------------------------*/
       
 /* Show Vacations Request Recived ------------------------------------------------------------------------------------*/
     
-    $scope.formRequestReceived={};
+    /*$scope.formRequestReceived={};
     $scope.formRequestReceived.inputRequestReceivedId = "";
     $scope.formRequestReceived.inputRequestReceivedColaborador = "";
     $scope.formRequestReceived.inputRequestReceivedAutorizador = "";
@@ -258,7 +237,7 @@
     $scope.formRequestReceived.inputRequestReceivedHasta = "";
     $scope.formRequestReceived.inputRequestReceivedRegresa = "";
     $scope.formRequestReceived.inputRequestReceivedObservaciones = "";  
-    $scope.formRequestReceived.inputRequestReceivedMotivoCancelacion = "";
+    $scope.formRequestReceived.inputRequestReceivedMotivoCancelacion = "";*/
       
     $scope.rejectRequest = function() {
         
@@ -280,8 +259,9 @@
             console.log(response.data);
             $scope.sending = false;
             $scope.refreshTables();
-            resetForm("vacaciones.solicitudes");
+            //resetForm("vacaciones.solicitudes");
             getAlert('theme/success_modal/Solicitud aceptada correctamente');
+            $scope.getSolicitudeRecibidas();
         });
         
     };
@@ -305,9 +285,12 @@
         .success(function (response) {
             console.log(response);
             $scope.refreshTables();
-            resetForm("vacaciones.solicitudes");
+            //resetForm("vacaciones.solicitudes");
             $scope.sending = false;
+            
             getAlert('theme/success_modal/Solicitud rechazada correctamente');
+            
+            $scope.getSolicitudeRecibidas();
             
         })
         .error(function (response) {
@@ -465,7 +448,8 @@
             $scope.sending = false;
             getAlert('theme/success_modal/Solicitud enviada correctamente');
             //resetForm("vacaciones.solicitar");
-            resetForm("servicios.vacaciones");
+            //resetForm("servicios.vacaciones");
+            $scope.getSolicitudesRealizadas();
             
         })
         .error(function (response) {

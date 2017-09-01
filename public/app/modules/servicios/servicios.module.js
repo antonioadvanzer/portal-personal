@@ -57,17 +57,17 @@
           controller: 'VacacionesModuleCtrl',
           title: 'Solicitudes de Vacaciones',
         })
-        .state("servicios.detalle_autorizar_vacaciones", {
-            url: "/vacaciones/ver_recibida",
+        .state("servicios.detalle_solicitud_de_vacaciones_enviada", {
+            url: "/vacaciones/ver_solicitud_enviada",
+            templateUrl: 'theme/modules/vacations/mostrar_solicitud_propia',
+            controller: 'VacacionesModuleCtrl',
+            title: 'Solicitud Enviada',
+        })
+        .state("servicios.detalle_solicitud_de_vacaciones_recibida", {
+            url: "/vacaciones/ver_solicitud_recibida",
             templateUrl: 'theme/modules/vacations/mostrar_solicitud_recibida',
             controller: 'VacacionesModuleCtrl',
             title: 'Solicitud Recibida',
-        })
-        .state("servicios.detalle_solicitud_vacaciones", {
-            url: "/vacaciones/ver_propia",
-            templateUrl: 'theme/modules/vacations/mostrar_solicitud_propia',
-            controller: 'VacacionesModuleCtrl',
-            title: 'Solicitud Propia',
         })
         .state('servicios.permisos_de_ausencia', {
           url: '/permisos_de_ausencia',
@@ -98,15 +98,7 @@
         })
         .state("servicios.detalle_solicitud_permiso_de_ausencia_enviada",{
             url: "/permisos_de_ausencia/ver_solicitud_enviada",
-            params: {
-                    //id_own_absence: null,
-                    formAbsenceSended: null
-                    },
-            templateUrl: function (stateParams){
-                    //return 'theme/modules/absence/mostrar_solicitud_propia/' + stateParams.id_onw_absence;
-                    //return 'theme/modules/absence/mostrar_solicitud_propia/'+ stateParams.formAbsenceSended;
-                    return 'theme/modules/absence/mostrar_solicitud_propia';
-            },
+            templateUrl: 'theme/modules/absence/mostrar_solicitud_propia',
             controller: 'PermisosDeAusenciaModuleCtrl',
             title: 'Solicitud Enviada',
         })

@@ -39,27 +39,28 @@
         // functions to get users
         $scope.getEmpleadosActivos().then(function(data) {
             $scope.users_table.empleadosActivos = data;
-            $scope.users_table.tamanioTablaEmpleadosActivos = 10;
+            $scope.users_table.activos = data;
         });
         
         //getEmpleadosActivos();
         
         $scope.getEmpleadosInactivos().then(function(data) {
             $scope.users_table.empleadosInactivos = data;
+            $scope.users_table.inactivos = data;
         });
         
         //getEmpleadosInactivos();
     }
     
-    //$scope.users_table = [];
+    $scope.users_table = [];
     $scope.requests_table = [];
     $scope.vacations_table = [];
     
-    //$scope.users_table.tamanioTablaEmpleadosActivos = 10;
-    $scope.users_table.tamanioTablaEmpleadosIactivos = 10;
-    
-    //$scope.users_table.empleadosActivos = [];
+    $scope.users_table.empleadosActivos = [];
     $scope.users_table.empleadosInactivos = [];
+    
+    $scope.users_table.tamanioTablaEmpleadosActivos = 10;
+    $scope.users_table.tamanioTablaEmpleadosInactivos = 10;
     
     $scope.refreshTables();
     /*$timeout(function() {

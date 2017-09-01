@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             @foreach($solicitudes as $s)
-            <tr>
+            <tr ng-click="showLetterDetail({{$s->id}})">
                 <td>{{ $s->id }}</td>
                 <td>{{ $s->receiver}}</td>
                 <td>{{ $s->observations }}</td>

@@ -18,7 +18,7 @@
         </thead>
         <tbody>
             @foreach($solicitudes as $s)
-            <tr class="{{ (($s->alert == 1) && (($s->status == 1) || ($s->status == 4) || ($s->status == 5))) ? 'primary': ''}}">
+            <tr class="{{ (($s->alert == 1) && (($s->status == 1) || ($s->status == 4) || ($s->status == 5))) ? 'primary': ''}}" ng-click="showOwnRequest({{$s->id}})">
                 <td>{{ $s->id }}</td>
                 <td>{{ $s->getTypeAssociated()->first()->name }}</td>
                 <td>{{ $s['created_at']->toDateTimeString() }}</td>

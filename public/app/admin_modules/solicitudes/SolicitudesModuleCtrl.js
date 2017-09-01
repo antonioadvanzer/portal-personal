@@ -79,21 +79,27 @@
         
         $scope.getAllRequest().then(function(data) {
             $scope.requests_table.todasLasSolicitudes = data;
+            $scope.requests_table.solicitudes = data;
         });
         $scope.getCanceledRequest().then(function(data) {
             $scope.requests_table.solicitudesCanceladas = data;
+            $scope.requests_table.canceladas = data;
         });
         $scope.getSendedRequest().then(function(data) {
             $scope.requests_table.solicitudesEnviadas = data;
+            $scope.requests_table.enviadas = data;
         });
         $scope.getAceptedRequest().then(function(data) {
             $scope.requests_table.solicitudesAceptadas = data;
+            $scope.requests_table.aceptadas = data;
         });
         $scope.getRejectedRequest().then(function(data) {
             $scope.requests_table.solicitudesRechazadas = data;
+            $scope.requests_table.rechazadas = data;
         });
         $scope.getAutorizedRequest().then(function(data) {
             $scope.requests_table.solicitudesAutorizadas = data;
+            $scope.requests_table.autorizadas = data;
         });
         
         /*getAllRequest();
@@ -124,10 +130,10 @@
     $scope.requests_table.tamanioTablaSolicitudesAutorizadas = 10;
     $scope.requests_table.solicitudesAutorizadas = [];
       
-    //$scope.refreshTables();
-    $timeout(function() {
+    $scope.refreshTables();
+    /*$timeout(function() {
         $scope.refreshTables();
-    }, 2000);
+    }, 2000);*/
       
     $scope.showRequest = function (id){
         

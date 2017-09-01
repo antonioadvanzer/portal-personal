@@ -18,7 +18,7 @@
         </thead>
         <tbody>
             @foreach($solicitudes as $s)
-            <tr class="{{ ($s->alert == 1) ? 'primary' : ''}}">
+            <tr class="{{ ($s->alert == 1) ? 'primary' : ''}}" ng-click="showRequestReceived({{$s->id}})">
                 <td>{{ $s->id }}</td>
                 <td>{{ $s->getTypeAssociated()->first()->name }}</td>
                 <td>{{ $s['created_at']->toDateTimeString() }}</td>

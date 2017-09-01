@@ -28,15 +28,15 @@
     $scope.refreshTables = function(){
         $scope.getAreas().then(function(data) {
             $scope.areas_table.listaAreas = data;
-            $scope.areas_table.tamanioTablaAreas = 10;
+            $scope.areas_table.areas = data;
         }); 
-        
+        //$scope.areas_table.listaAreas = [].concat($scope.areas_table.listaAreas);
         //getAreas();
     }
     
-    //$scope.areas_table = [];
-      
-    //$scope.areas_table.tamanioTablaAreas = 10;
+    $scope.areas_table = [];
+    $scope.areas_table.areas = [];
+    $scope.areas_table.tamanioTablaAreas = 10;
       
     //$scope.areas_table.listaAreas = [];
       

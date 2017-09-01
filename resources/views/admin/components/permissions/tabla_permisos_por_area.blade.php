@@ -6,7 +6,7 @@
       </select>
     </label>
   </div>
-  <table class="table" st-table="permissions_table.listaPermisosPorArea">
+  <table class="table" st-table="permissions_table.listaPermisosPorArea" st-safe-src="permissions_table.permisosPorArea">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="true">#</th>

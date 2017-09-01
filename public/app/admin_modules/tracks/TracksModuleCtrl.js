@@ -24,19 +24,18 @@
     $scope.refreshTables = function(){
         $scope.getTracksActive().then(function(data) {
             $scope.tracks_table.listaTracks = data;
+            $scope.tracks_table.tracks = data;
         });
     }
     
     $scope.tracks_table = [];
-    
+    $scope.tracks_table.listaTracks = [];
     $scope.tracks_table.tamanioTablaTracks = 10;
       
-    $scope.tracks_table.listaTracks = [];
-      
-    //$scope.refreshTables();
-    $timeout(function() {
+    $scope.refreshTables();
+    /*$timeout(function() {
         $scope.refreshTables();
-    }, 2000);
+    }, 2000);*/
       
     $scope.showTrack = function (id){
         

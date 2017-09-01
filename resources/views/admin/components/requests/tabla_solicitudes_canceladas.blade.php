@@ -6,7 +6,7 @@
       </select>
     </label>
   </div>
-  <table class="table table-hover table-condensed" st-table="requests_table.solicitudesCanceladas">
+  <table class="table table-hover table-condensed" st-table="requests_table.solicitudesCanceladas" st-safe-src="requests_table.canceladas">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="false">#</th>

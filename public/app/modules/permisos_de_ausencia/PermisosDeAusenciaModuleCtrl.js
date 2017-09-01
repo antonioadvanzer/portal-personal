@@ -49,9 +49,7 @@
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                 }
             });
-
             //table.destroy();
-
             //$('#solicitudesRealizadasAusencias').empty();
         }
 
@@ -62,9 +60,7 @@
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                 }
             });
-
             //table.destroy();
-
             //$('#solicitudesRecibidasAusencias').empty();
         }
     }
@@ -107,10 +103,8 @@
             $scope.formOwnAbsence.inputOwnAbsenceOcacion = response.data.ocacion;
             $scope.formOwnAbsence.inputOwnAbsenceStatus = response.data.status;
             
-            console.log($scope.formOwnAbsence);
-            
             //getOwnRequest();
-            //$scope.refreshTables();
+            $scope.refreshTables();
             //$state.go('permisos_de_ausencia.detalle_solicitud');
             //$state.go('servicios.detalle_solicitud_permiso_de_ausencia_enviada', {formAbsenceSended:"asd"});
             

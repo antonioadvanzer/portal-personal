@@ -49,12 +49,15 @@
         
         $scope.getPermissions().then(function(data) {
             $scope.permissions_table.listaPermisos = data;
+            $scope.permissions_table.permisos = data;
         });
         $scope.getPermissionsByArea().then(function(data) {
             $scope.permissions_table.listaPermisosPorArea = data;
+            $scope.permissions_table.permisosPorArea = data;
         });
         $scope.getPermissionsByPosition().then(function(data) {
-            $scope.permissions_table.listaPermisosPorPocision = data;
+            $scope.permissions_table.listaPermisosPorPosicion = data;
+            $scope.permissions_table.permisosPorPosicion = data;
         });
         
         /*getPermissions();
@@ -80,7 +83,7 @@
       
     $scope.tamanioTablaPermisosPorPosicion = 10;
 
-    $scope.permissions_table.listaPermisosPorPocision = [];
+    $scope.permissions_table.listaPermisosPorPosicion = [];
       
     $scope.refreshTables();
   /*--------------------------------------------------------------------------------------------*/

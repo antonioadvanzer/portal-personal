@@ -34,4 +34,7 @@ app.run(function($rootScope) {
     ];*/
     $rootScope.formOwnAbsence = {};
     $rootScope.formAbsenceReceived = {};
+    $rootScope.formOwnRequest = {};
+    $rootScope.formRequestReceived = {};
+    $rootScope.formLetterDetail={};
 });

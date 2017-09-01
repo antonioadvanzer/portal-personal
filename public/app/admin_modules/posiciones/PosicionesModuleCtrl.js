@@ -26,24 +26,23 @@
             //$scope.positions_table = [];
             //$scope.positions_table.tamanioTablaPosiciones = 10;
             $scope.positions_table.listaPosiciones = data;
+            $scope.positions_table.posiciones = data;
             
         });  
     }
     
     $scope.positions_table = [];
-    
+    $scope.positions_table.listaPosiciones = [];
     $scope.positions_table.tamanioTablaPosiciones = 10;
       
-    $scope.positions_table.listaPosiciones = [];
-    
     /*$scope.positions_table = {
         tamanioTablaPosiciones:10,
         listaPosiciones : null};*/
       
-    //$scope.refreshTables();
-    $timeout(function() {
+    $scope.refreshTables();
+    /*$timeout(function() {
         $scope.refreshTables();
-    }, 2000);
+    }, 2000);*/
       
     $scope.showPosition = function (id){
         $http.get("admin-theme/modules/position/get_position/"+id).then(function (response) {
