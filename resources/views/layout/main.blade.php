@@ -15,7 +15,8 @@
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" />
   
-  <title>{{ config('app.name', 'Portal Personal') }}</title>
+  {{-- <title>config('app.name', 'Portal Personal')</title> --}}
+  <title> Advanzer - Portal Personal</title>
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
 

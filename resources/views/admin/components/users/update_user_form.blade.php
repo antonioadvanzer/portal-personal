@@ -585,6 +585,27 @@
             
         </uib-tab>
         
+        <uib-tab heading="Constancias">
+            
+            <div class="panel-content" ng-if="!formLetter.active_view_letter">
+                <h3 class="with-line">Constancias solicitadas</h3>
+                <div class="notification row clearfix">
+                    <div class="col-md-12">
+                        <div include-with-scope="admin-theme/modules/request/lista_cartas_solicitadas_por_usuario"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-content" ng-if="formLetter.active_view_letter">
+                <h3 class="with-line">Carta Detalle</h3>
+                <div class="notification row clearfix">
+                    <div class="col-md-12">
+                        <div ng-include="'admin-theme/modules/request/carta_solicitada_por_usuario'"></div>
+                    </div>
+                </div>
+            </div>
+            
+        </uib-tab>
+        
         <uib-tab heading="Vacaciones">
             
             <div class="panel-content">

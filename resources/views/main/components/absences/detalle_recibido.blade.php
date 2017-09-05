@@ -84,7 +84,7 @@
             </div>
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Motivo Cancelaci&oacute;n </span>
-                <textarea placeholder="" class="form-control" id="inputAbsenceReceivedMotivoCancelacion" ng-model="formAbsenceReceived.inputAbsenceReceivedMotivoCancelacion"></textarea>
+                <textarea placeholder="" class="form-control" id="inputAbsenceReceivedMotivoCancelacion" ng-model="formAbsenceReceived.inputAbsenceReceivedMotivoCancelacion" required></textarea>
             </div>
             
         </div>

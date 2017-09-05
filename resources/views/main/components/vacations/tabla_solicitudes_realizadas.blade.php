@@ -6,7 +6,7 @@
       </select>
     </label>
   </div>
-  <table class="table table-hover table-condensed" st-table="vacations_table.solicitudesPropias">
+  <table class="table table-hover table-condensed" st-table="vacations_table.solicitudesPropias" st-safe-src="vacations_table.propias">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="false">#</th>
@@ -56,4 +56,9 @@
     </tr>
     </tfoot>
   </table>
+    
+    <div ng-if="!vacations_table.solicitudesPropias.length" class="alert bg-warning text-center">
+        <h4>Sin datos para mostrar</h4>
+    </div>
+    
 </div>

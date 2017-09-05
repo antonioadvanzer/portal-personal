@@ -60,4 +60,9 @@
     </tr>
     </tfoot>
   </table>
+    
+    <div ng-if="!users_table.empleadosActivos.length" class="alert bg-warning text-center">
+        <h4>Sin datos para mostrar</h4>
+    </div>
+    
 </div>

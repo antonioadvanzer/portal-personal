@@ -139,13 +139,13 @@ class PermissionController extends Controller
 
             foreach($permissionsAreaModel as $pam){
                 
-                $lp .= $pam->getPermissionAssociated()->first()->name."\n";
+                $lp .= $pam->getPermissionAssociated()->first()->name."\r\n";
             }
 
             array_push($areas,[
                 "id" => $am->id,
                 "name" => $am->name,
-                "permissions" => $lp
+                "permissions" => nl2br($lp, false)
                 ]);
         }
         

@@ -30,19 +30,24 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-autorizador">Autorizador</span>
-                <ui-select name="autorizador" ng-model="selectedAuthorizer.selected"
-                   class="btn-group bootstrap-select form-control"
-                   ng-disabled="false"
-                   append-to-body="true"
-                   search-enabled="false"
-                           on-select="">
-                  <ui-select-match placeholder="Seleccionar">
-                    <span> @{{$select.selected.name}}</span>
-                  </ui-select-match>
-                  <ui-select-choices repeat="standardAuthorizer in standardSelectAuthorizers | filter: $select.search">
-                    <span ng-bind-html="standardAuthorizer.name"></span>
-                  </ui-select-choices>
-                </ui-select>
+                <div ng-if="!((selectedBoss.selected.id == 1)|| (selectedBoss.selected.id == 2) || (selectedBoss.selected.id == 51))">
+                    <ui-select name="autorizador" ng-model="selectedAuthorizer.selected"
+                       class="btn-group bootstrap-select form-control"
+                       ng-disabled="false"
+                       append-to-body="true"
+                       search-enabled="false"
+                               on-select="">
+                      <ui-select-match placeholder="Seleccionar">
+                        <span> @{{$select.selected.name}}</span>
+                      </ui-select-match>
+                      <ui-select-choices repeat="standardAuthorizer in standardSelectAuthorizers | filter: $select.search">
+                        <span ng-bind-html="standardAuthorizer.name"></span>
+                      </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div ng-if="((selectedBoss.selected.id == 1)|| (selectedBoss.selected.id == 2) || (selectedBoss.selected.id == 51))">
+                    <input type="text" class="form-control" id="socio" name="socio"  value="@{{selectedBoss.selected.name}}" placeholder="" disabled>
+                </div>
             </div>
             
             <div class="input-group">
@@ -53,7 +58,7 @@
             <div class="input-group" ng-controller="RequisicionesModuleCtrl">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-fecha_ingreso">Fecha Estimada de Ingreso</span>
                 
-                    <input id="FechaIngreso" type="text" class="form-control" uib-datepicker-popup="@{{format}}" datepicker-options="options" ng-model="formRequestRequisition.dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" ng-change="setDate()" readonly/>
+                    <input id="inputRequestFechaIngreso" type="text" class="form-control" uib-datepicker-popup="@{{format}}" datepicker-options="options" ng-model="formRequestRequisition.dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" ng-change="setDate()" readonly/>
                   <span class="input-group-btn" >
                     <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
@@ -417,13 +422,13 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Observaciones</span>
-                <textarea placeholder="Consideraciones adicionales a tomar en cuenta para la búsqueda de personal" class="form-control" id="inputRequisitionObservaciones"></textarea>
+                <textarea placeholder="Consideraciones adicionales a tomar en cuenta para la búsqueda de personal" class="form-control" id="inputRequisitionObservaciones" required></textarea>
             </div>
             
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-with-icon" ng-show="(selectedBoss.selected.id) && (selectedAuthorizer.selected.id) && (selectedArea.selected.id) && (selectedTrack.selected.id) && (selectedPosition.selected.id) && (selectedCompany.selected.id) && (selectedType.selected.id) && (selectedCosto.selected.id) && (selectedResidencia.selected.id) && (selectedLugarTrabajo.selected.id) && (selectedContratacion.selected.id) && (selectedDisponibilidadViajar.selected.id) && (selectedEdad1.selected.id) && (selectedEdad2.selected.id) && (selectedSexo.selected.id) && (selectedNivelEstudios.selected.id) && (selectedInglesOral.selected.id) && (selectedInglesLectura.selected.id) && (selectedInglesEscritura.selected.id) && (formRequestRequisition.dt)" ng-click="save()"><!-- Continuar ...-->
+    <button type="submit" class="btn btn-primary btn-with-icon" ng-show="(selectedBoss.selected.id) && ((selectedAuthorizer.selected.id) || ((selectedBoss.selected.id == 1)|| (selectedBoss.selected.id == 2) || (selectedBoss.selected.id == 51)) ) && (selectedArea.selected.id) && (selectedTrack.selected.id) && (selectedPosition.selected.id) && (selectedCompany.selected.id) && (selectedType.selected.id) && (selectedCosto.selected.id) && (selectedResidencia.selected.id) && (selectedLugarTrabajo.selected.id) && (selectedContratacion.selected.id) && (selectedDisponibilidadViajar.selected.id) && (selectedEdad1.selected.id) && (selectedEdad2.selected.id) && (selectedSexo.selected.id) && (selectedNivelEstudios.selected.id) && (selectedInglesOral.selected.id) && (selectedInglesLectura.selected.id) && (selectedInglesEscritura.selected.id) && (formRequestRequisition.dt)">
       <i class="ion-ios-checkmark-outline"></i>Enviar
     </button>
     

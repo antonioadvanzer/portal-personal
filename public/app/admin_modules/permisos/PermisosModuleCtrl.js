@@ -69,19 +69,19 @@
     
     // Permissions
     
-    $scope.tamanioTablaPermisos = 10;
+    $scope.permissions_table.tamanioTablaPermisos = 10;
 
     $scope.permissions_table.listaPermisos = [];
     
     // Permissions by Area table
       
-    $scope.tamanioTablaPermisosPorArea = 10;
+    $scope.permissions_table.tamanioTablaPermisosPorArea = 10;
 
     $scope.permissions_table.listaPermisosPorArea = [];
     
     // Permissions by Posicion table 
       
-    $scope.tamanioTablaPermisosPorPosicion = 10;
+    $scope.permissions_table.tamanioTablaPermisosPorPosicion = 10;
 
     $scope.permissions_table.listaPermisosPorPosicion = [];
       

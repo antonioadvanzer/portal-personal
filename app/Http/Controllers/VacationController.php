@@ -93,10 +93,20 @@ class VacationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function main_solicitudes()
+    public function main_solicitudesRealizadas()
     {
-        return view('main.components.vacations.solicitudes');
+        return view('main.components.vacations.solicitudes_realizadas');
     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function main_solicitudesRecibidas()
+     {
+         return view('main.components.vacations.solicitudes_recibidas');
+     }
 
     /**
      * Vista para relación de solicitudes propias
@@ -186,7 +196,7 @@ class VacationController extends Controller
         
         foreach($requestModel as $rm){
             array_push($requests,[
-                //"id" => $rm->id,
+                "id" => $rm->id,
                 "folio" => $rm->id,
                 "tipo" => $rm->getTypeAssociated()->first()->name,
                 "fecha" => $rm['created_at']->toDateTimeString(),
@@ -197,7 +207,7 @@ class VacationController extends Controller
                 "estado" => $rm->getStatusAssociated()->first()->name,
                 "alerta" => $rm->alert,
 
-                //"status" => $rm->status
+                "status" => $rm->status
                  ]);
         }
         
@@ -550,7 +560,7 @@ class VacationController extends Controller
         $regs_days = array();
 
         if($diasVacaciones->count() > 2){
-            $regs_days[] = ["type" => "Próximo Vencimientos", "days" => 0, "expire" => ""];
+            $regs_days[] = ["type" => "Próximo Vencimiento", "days" => 0, "expire" => ""];
         }
 
         $regs_days[] = ["type" => "Recién Generadas", "days" => 0, "expire" => ""];

@@ -2,7 +2,7 @@
   <div class="form-group select-page-size-wrap ">
     <label>Filas por p&aacute;gina
       <select class="form-control selectpicker show-tick" title="Filas por pagina" selectpicker
-              ng-model="tamanioTablaPermisosPorArea" ng-options="i for i in [5,10,15,20,25]">
+              ng-model="permissions_table.tamanioTablaPermisosPorArea" ng-options="i for i in [5,10,15,20,25]">
       </select>
     </label>
   </div>
@@ -28,15 +28,20 @@
     <tr ng-repeat="lpa in permissions_table.listaPermisosPorArea">
         <td class="table-id">@{{lpa.id}}</td>
         <td>@{{lpa.name}}</td>
-        <td>@{{lpa.permissions}}</td>
+        <td ng-bind-html="lpa.permissions">{{--@{{lpa.permissions}}--}}</td>
     </tr>
     </tbody>
     <tfoot>
     <tr>
       <td colspan="6" class="text-center">
-        <div st-pagination="" st-items-by-page="tamanioTablaPermisosPorArea" st-displayed-pages="5"></div>
+        <div st-pagination="" st-items-by-page="permissions_table.tamanioTablaPermisosPorArea" st-displayed-pages="5"></div>
       </td>
     </tr>
     </tfoot>
   </table>
+    
+    <div ng-if="!permissions_table.listaPermisos.length" class="alert bg-warning text-center">
+        <h4>Sin datos para mostrar</h4>
+    </div>
+    
 </div>

@@ -22,19 +22,20 @@
       
     $scope.refreshTables = function(){
         // function to get request
-        /*$scope.getRequestsLetter().then(function(data) {
+        $scope.getRequestsLetter().then(function(data) {
             $scope.requests_table.solicitudesPropias = data;
-        });*/
+            $scope.requests_table.propias = data;
+        });
         
-        if(!$.fn.DataTable.isDataTable('#solicitudesCartas')) {
+        /*if(!$.fn.DataTable.isDataTable('#solicitudesCartas')) {
             var table = $('#solicitudesCartas').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                 }
             });
-            //table.destroy();
-            //$('#solicitudesCartas').empty();
-        }
+            table.destroy();
+            $('#solicitudesCartas').empty();
+        }*/
     }
     
     $scope.requests_table = {};
@@ -142,7 +143,8 @@
             $scope.sending = false;
             $scope.refreshTables();
             getAlert('theme/success_modal/Solicitud enviada correctamente');
-            resetForm("cartas_y_constancias_laborales.solicitar");
+            //resetForm("cartas_y_constancias_laborales.solicitar");
+            $scope.getSolicitudes();
             
         })
         .error(function (response) {

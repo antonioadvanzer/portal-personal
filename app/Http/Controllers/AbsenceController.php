@@ -88,10 +88,20 @@ class AbsenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function main_solicitudes()
+    public function main_solicitudesRealizadas()
     {
-        return view('main.components.absences.solicitudes');
+        return view('main.components.absences.solicitudes_realizadas');
     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function main_solicitudesRecibidas()
+     {
+         return view('main.components.absences.solicitudes_recibidas');
+     }
 
     /**
      * Vista para relación de solicitudes propias
@@ -197,7 +207,7 @@ class AbsenceController extends Controller
     {   
         $requests = array();
 
-        $requestModel = Solicitud::where('user',Auth::user()->id)
+        $requestModel = Solicitud::where('user', Auth::user()->id)
                         ->where('type', DB::table('tipo_solicitud')->where('name', 'Ausencia')->value('id'))
                         ->orderBy('id', 'desc')
                         ->get();

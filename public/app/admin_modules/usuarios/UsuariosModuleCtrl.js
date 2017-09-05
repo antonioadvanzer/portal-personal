@@ -54,6 +54,7 @@
     
     $scope.users_table = [];
     $scope.requests_table = [];
+    $scope.letter_table = [];
     $scope.vacations_table = [];
     
     $scope.users_table.empleadosActivos = [];
@@ -61,6 +62,12 @@
     
     $scope.users_table.tamanioTablaEmpleadosActivos = 10;
     $scope.users_table.tamanioTablaEmpleadosInactivos = 10;
+      
+    $scope.requests_table.solicitudesPorUsuario = [];
+    $scope.letter_table.solicitudesPorUsuario = [];
+      
+    $scope.requests_table.tamanioTablaSolicitudesPorUsuario = 10;
+    $scope.letter_table.tamanioTablaSolicitudesPorUsuario = 10;
     
     $scope.refreshTables();
     /*$timeout(function() {
@@ -218,6 +225,13 @@
             $scope.$apply();
         });
         
+        $.getJSON("admin-theme/modules/request/get_all_letter_by_user/"+id_user, function( data ) {
+            $scope.letter_table.tamanioTablaSolicitudesPorUsuario = 10;
+            $scope.letter_table.solicitudesPorUsuario = data;
+            //console.log(data);
+            $scope.$apply();
+        });
+        
         $.getJSON("admin-theme/modules/vacations/list_days_by_user/"+id_user, function( data ) {
             $scope.vacations_table.vacations_days = data;
             //console.log(data);
@@ -361,6 +375,43 @@
         });
         
     }
+      
+  /*--------------------------------------------------------------------------------------------------*/
+    
+  /* Show formLetter by User ------------------------------------------------------------------------------------*/
+    
+    $scope.formLetter = {};
+    
+    $scope.formLetter.active_view_letter = false;
+    
+    $scope.showLetter = function (id){
+        
+        $http.get("admin-theme/modules/request/get_letter/"+id).then(function (response) {
+            //console.log(response.data);
+            
+            $scope.formLetter.inputLetterId = response.data.id;
+            $scope.formLetter.inputLetterColaborador = response.data.colaborador;
+            $scope.formLetter.inputLetterDirigidoA = response.data.dirigido;
+            $scope.formLetter.inputLetterSueldo = response.data.sueldo;
+            $scope.formLetter.inputLetterIMSS = response.data.imss;
+            $scope.formLetter.inputLetterRFC = response.data.rfc;
+            $scope.formLetter.inputLetterCURP = response.data.curp;
+            $scope.formLetter.inputLetterAntiguedad = response.data.antiguedad;
+            $scope.formLetter.inputLetterPuesto = response.data.puesto;
+            $scope.formLetter.inputLetterDomicilio = response.data.domicilio;
+            $scope.formLetter.inputLetterObservaciones = response.data.observaciones;
+            
+            getAditionaInformation($scope.formEditUser.id);
+            $scope.formLetter.active_view_letter = true;
+        });
+        
+    }
+    
+    $scope.returnLetterByUser = function() {
+
+        $scope.formLetter.active_view_letter = false;
+        
+    };
       
   /*--------------------------------------------------------------------------------------------------*/
       

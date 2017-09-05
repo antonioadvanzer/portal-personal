@@ -49,34 +49,37 @@
     $scope.refreshTables = function(){
         
         // function to get request
-        /*$scope.getOwnRequests().then(function(data) {
+        $scope.getOwnRequests().then(function(data) {
             $scope.vacations_table.solicitudesPropias = data;
-        });*/
+            $scope.vacations_table.propias = data;
+        });
         
-        /*$scope.getRequestsReceived().then(function(data) {
+        $scope.getRequestsReceived().then(function(data) {
             $scope.vacations_table.solicitudesRecibidas = data;
-        });*/
+            $scope.vacations_table.recibidas = data;
+        });
         
-        if(!$.fn.DataTable.isDataTable('#solicitudesRealizadasVacaciones')) {
+        /*if(!$.fn.DataTable.isDataTable('#solicitudesRealizadasVacaciones')) {
             
             $('#solicitudesRealizadasVacaciones').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                 }
             });
-            //table.destroy();
-            //$('#solicitudesRealizadasVacaciones').empty();
-        }
+            table.destroy();
+            $('#solicitudesRealizadasVacaciones').empty();
+        }*/
         
-        if(!$.fn.DataTable.isDataTable('#solicitudesRecibidasVacaciones')){
+        /*if(!$.fn.DataTable.isDataTable('#solicitudesRecibidasVacaciones')){
             $('#solicitudesRecibidasVacaciones').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                 }
             });
-            //table.destroy();
-            //$('#solicitudesRecibidasVacaciones').empty()
-        }
+            table.destroy();
+            $('#solicitudesRecibidasVacaciones').empty()
+        }*/
+        
         $scope.getTotalDays().then(function(data) {
             $scope.diasDisponibles = data;
             //$scope.standardSelectDays = getDaysList(data);

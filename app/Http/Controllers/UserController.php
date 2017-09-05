@@ -232,7 +232,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function admin_getDirectors()
+     public function main_getDirectors()
      {   
          $bosses = array();
 
@@ -276,7 +276,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function admin_getAuthorizers()
+     public function main_getAuthorizers()
      {   
         $bosses = array();
         

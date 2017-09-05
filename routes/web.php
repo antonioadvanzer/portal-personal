@@ -70,9 +70,23 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/tabla_personal_a_cargo', 'UserController@main_tablaPersonalACargo');
 
                 // Resources
-
+                Route::get('/get_directors', 'UserController@main_getDirectors');
+                Route::get('/get_authorizers', 'UserController@main_getAuthorizers');
+                
                 Route::get('/users_employed/{id_user}', 'UserController@main_getUsersEmployed');
 
+            });
+
+            Route::group(['prefix' => 'area'], function () {
+                Route::get('/areas_activas', 'AreaController@admin_getAreasActive');
+            });
+
+            Route::group(['prefix' => 'track'], function () {
+                Route::get('/tracks_activos', 'TrackController@admin_getListTracks');
+            });
+
+            Route::group(['prefix' => 'position'], function () {
+                Route::get('/posiciones_activas_por_track/{id}', 'PositionController@admin_getPositionsActiveByTrack');
             });
 
             Route::group(['prefix' => 'evaluation'], function () {
@@ -90,8 +104,37 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/solicitar_requisicion', 'RequisitionController@main_getNewRequisition');
                 Route::get('/solicitar', 'RequisitionController@main_getRequisitionForm');
 
+                // Show
+                Route::get('/mostrar_requisicion_recibida', 'RequisitionController@main_showRequestReceived');
+                Route::get('/mostrar_requisicion_propia', 'RequisitionController@main_showOwnRequest');
+                Route::get('/recibida', 'RequisitionController@main_getRequestReceivedForm');
+                Route::get('/propia', 'RequisitionController@main_getOwnRequestForm');
+
+                // Tables
+                Route::get('/requisiciones_realizadas', 'RequisitionController@main_requisicionesRealizadas');
+                Route::get('/requisiciones_recibidas', 'RequisitionController@main_requisicionesRecibidas');
+                Route::get('/tabla_requisiciones_realizadas', 'RequisitionController@main_tablaRequisicionesRealizadas');
+                Route::get('/tabla_requisiciones_recibidas', 'RequisitionController@main_tablaRequisicionesRecibidas');
+
                 /* Resources -------------------- */
-            
+
+                // Tables
+                Route::get('/get_own_requests', 'RequisitionController@main_getOwnRequests');
+                Route::get('/get_requests_received', 'RequisitionController@main_getRequestsReceived');
+
+                // Show
+                Route::get('/get_request_received/{id_requisition}', 'RequisitionController@main_getRequestReceived');
+                Route::get('/get_own_request/{id_requisition}', 'RequisitionController@main_getOwnRequest');
+
+                // Save Data
+                Route::post('/store_new_requisition', 'RequisitionController@main_storeNewRequestRequisition');
+                
+                /*** Actions request ***/
+                
+                Route::get('/accept_requisition/{id_request}', 'RequisitionController@main_acceptRequisition'); // Accept request
+                Route::get('/auth_requisition/{id_request}', 'RequisitionController@main_authRequisition'); // Accept request
+                Route::post('/reject_requisition', 'RequisitionController@main_rejectRequisition'); // Reject request
+
             });
 
             Route::group(['prefix' => 'letter'], function () {
@@ -109,7 +152,7 @@ Route::group(['middleware' => 'auth'], function(){
                 
                 // Tables
                 Route::get('/cartas', 'LetterController@main_cartas');
-                Route::get('/cartas_realizadas', 'LetterController@main_tablaCartasRealizadas');
+                Route::get('/cartas_realizadas', 'LetterController@main_tablaCartas');
                 
                 Route::get('/vista_cartas', 'LetterController@main_viewCartas');
                 Route::get('/tabla_cartas', 'LetterController@main_tableCartas');
@@ -146,10 +189,12 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/propia', 'VacationController@main_getOwnRequestForm');
 
                 // Tables
-                Route::get('/solicitudes', 'VacationController@main_solicitudes');
-                Route::get('/solicitudes_realizadas', 'VacationController@main_tablaSolicitudesRealizadas');
-                Route::get('/solicitudes_recibidas', 'VacationController@main_tablaSolicitudesRecibidas');
+                Route::get('/solicitudes_realizadas', 'VacationController@main_solicitudesRealizadas');
+                Route::get('/solicitudes_recibidas', 'VacationController@main_solicitudesRecibidas');
+                Route::get('/tabla_solicitudes_enviadas', 'VacationController@main_tablaSolicitudesRealizadas');
+                Route::get('/tabla_solicitudes_percibidas', 'VacationController@main_tablaSolicitudesRecibidas');
 
+                /* Blade */
                 Route::get('/vista_solicitudes_realizadas', 'VacationController@main_viewSolicitudesRealizadas');
                 Route::get('/tabla_solicitudes_realizadas', 'VacationController@main_tableSolicitudesRealizadas');
                 Route::get('/vista_solicitudes_recibidas', 'VacationController@main_viewSolicitudesRecibidas');
@@ -201,11 +246,13 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/propia', 'AbsenceController@main_getOwnRequestForm');
 
                 // Tables
-                Route::get('/solicitudes', 'AbsenceController@main_solicitudes');
-                Route::get('/solicitudes_realizadas', 'AbsenceController@main_tablaSolicitudesRealizadas');
-                Route::get('/solicitudes_recibidas', 'AbsenceController@main_tablaSolicitudesRecibidas');
+                Route::get('/solicitudes_realizadas', 'AbsenceController@main_solicitudesRealizadas');
+                Route::get('/solicitudes_recibidas', 'AbsenceController@main_solicitudesRecibidas');
+                Route::get('/tabla_solicitudes_enviadas', 'AbsenceController@main_tablaSolicitudesRealizadas');
+                Route::get('/tabla_solicitudes_percibidas', 'AbsenceController@main_tablaSolicitudesRecibidas');
                 Route::get('/tabla_ocacions', 'AbsenceController@main_tablaOcasion');
 
+                /* Blade */
                 Route::get('/vista_solicitudes_realizadas', 'AbsenceController@main_viewSolicitudesRealizadas');
                 Route::get('/tabla_solicitudes_realizadas', 'AbsenceController@main_tableSolicitudesRealizadas');
                 Route::get('/vista_solicitudes_recibidas', 'AbsenceController@main_viewSolicitudesRecibidas');
@@ -277,8 +324,8 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/users_active', 'UserController@admin_getUsersActive');
                 Route::get('/users_deactive', 'UserController@admin_getUsersDeactive');
                 Route::get('/get_bosses', 'UserController@admin_getBosses');
-                Route::get('/get_directors', 'UserController@admin_getDirectors');
-                Route::get('/get_authorizers', 'UserController@admin_getAuthorizers');
+                Route::get('/get_directors', 'UserController@main_getDirectors');
+                Route::get('/get_authorizers', 'UserController@main_getAuthorizers');
                 Route::post('/save_new_user', 'UserController@admin_saveNewUser');
                 Route::post('/update_user', 'UserController@admin_updateUser');
                 Route::get('/users_employed/{id_user}', 'UserController@main_getUsersEmployed');
@@ -489,7 +536,7 @@ Route::group(['middleware' => 'auth'], function(){
                 
                 /* Requests Admin Views -------------------- */
 
-                // Directions table
+                /* Requests */
                 Route::get('/todas_las_solicitudes', 'RequestController@admin_allRequests');
                 Route::get('/solicitudes_canceladas', 'RequestController@admin_canceledRequests');
                 Route::get('/solicitudes_enviadas', 'RequestController@admin_sendedRequests');
@@ -505,15 +552,24 @@ Route::group(['middleware' => 'auth'], function(){
 
                 Route::get('/lista_solicitudes_por_usuario', 'RequestController@admin_requestsByUser');
 
+                /* Letter */
+                //Route::get('/todas_las_cartas', 'RequestController@admin_allLetter');
+
+                Route::get('/lista_cartas_solicitadas_por_usuario', 'RequestController@admin_letterByUser');
+
                 // Show
                 Route::get('/mostrar_solicitud', 'RequestController@admin_showRequest');
                 Route::get('/solicitada', 'RequestController@admin_getRequestForm');
                 
                 Route::get('/solicitada_por_usuario', 'RequestController@admin_getRequestByUserForm');
 
+                Route::get('/carta_solicitada_por_usuario', 'RequestController@admin_getLetterByUserForm');
+
                 /* Requests Admin Resources -------------------- */
 
                 // Table
+
+                /* Request */
                 Route::get('/get_all_requests', 'RequestController@admin_getAllRequests');
                 Route::get('/get_canceled_requests', 'RequestController@admin_getCanceledRequests');
                 Route::get('/get_sended_requests', 'RequestController@admin_getSendedRequests');
@@ -522,8 +578,14 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/get_authorized_requests', 'RequestController@admin_getAuthorizedRequests');
                 Route::get('/get_all_requests_by_user/{id_user}', 'RequestController@admin_getAllRequestsByUser');
 
+                /* Letter */
+                //Route::get('/get_all_letter', 'LetterController@admin_getAllLetter');
+                Route::get('/get_all_letter_by_user/{id_user}', 'RequestController@admin_getAllLetterByUser');
+
                 // Show
                 Route::get('/get_request/{id_request}', 'RequestController@admin_getRequest');
+
+                Route::get('/get_letter/{id_letter}', 'RequestController@admin_getLetter');
 
                 // Accept request
                 Route::get('/auth_request/{id_request}', 'RequestController@admin_authRequest');

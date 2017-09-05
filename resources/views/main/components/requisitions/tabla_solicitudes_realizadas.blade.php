@@ -2,21 +2,23 @@
   <div class="form-group select-page-size-wrap ">
     <label>Filas por p&aacute;gina
       <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-              ng-model="absences_table.tamanioTablaSolicitudesRealizadas" ng-options="i for i in [5,10,15,20,25]">
+              ng-model="requisitions_table.tamanioTablaSolicitudesRealizadas" ng-options="i for i in [5,10,15,20,25]">
       </select>
     </label>
   </div>
-  <table class="table table-hover table-condensed" st-table="absences_table.solicitudesPropias" st-safe-src="absences_table.propias">
+  <table class="table table-hover table-condensed" st-table="requisitions_table.solicitudesPropias" st-safe-src="requisitions_table.propias">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="false">#</th>
       <th st-sort="folio">Folio</th>
-      <th st-sort="tipo">Tipo</th>
       <th st-sort="fecha">Fecha de Solicitud</th>
+      <th st-sort="director">Director de Area</th>
       <th st-sort="autorizador">Autorizador</th>
-      <th st-sort="dias">Días</th>
-      <th st-sort="desde">Desde</th>
-      <th st-sort="hasta">Hasta</th>
+      <th st-sort="proyecto">Proyecto</th>
+      <th st-sort="track">Track</th>
+      <th st-sort="posicion">Posici&oacute;n</th>
+      <th st-sort="area">Area</th>
+      <th st-sort="empresa">Empresa</th>
       <th st-sort="estado">Estado</th>
       <th st-sort="alerta"> --- </th>
     </tr>
@@ -35,29 +37,31 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="sl in absences_table.solicitudesPropias" ng-click="showOwnAbsence(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && (sl.status == 5))}">
+    <tr ng-repeat="sl in requisitions_table.solicitudesPropias" ng-click="showOwnRequisition(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && (sl.status == 5))}">
       <td class="table-id">@{{sl.id}}</td>
       <td>@{{sl.folio}}</td>
-      <td>@{{sl.tipo}}</td>
       <td>@{{sl.fecha}}</td>
+      <td>@{{sl.director}}</td>
       <td>@{{sl.autorizador}}</td>
-      <td>@{{sl.dias}}</td>
-      <td>@{{sl.desde}}</td>
-      <td>@{{sl.hasta}}</td>
+      <td>@{{sl.proyecto}}</td>
+      <td>@{{sl.track}}</td>
+      <td>@{{sl.posicion}}</td>
+      <td>@{{sl.area}}</td>
+      <td>@{{sl.empresa}}</td>
       <td>@{{sl.estado}}</td>
-        <td><i ng-if="((sl.alerta == 1) && (sl.status == 5))" class="fa fa fa-bell"></i></td>
+        <td><i ng-if="((sl.alerta == 1) && (sl.status == 4))" class="fa fa fa-bell"></i></td>
     </tr>
     </tbody>
     <tfoot>
     <tr>
       <td colspan="6" class="text-center">
-        <div st-pagination="" st-items-by-page="absences_table.tamanioTablaSolicitudesRealizadas" st-displayed-pages="5"></div>
+        <div st-pagination="" st-items-by-page="requisitions_table.tamanioTablaSolicitudesRealizadas" st-displayed-pages="5"></div>
       </td>
     </tr>
     </tfoot>
   </table>
     
-    <div ng-if="!absences_table.solicitudesPropias.length" class="alert bg-warning text-center">
+    <div ng-if="!requisitions_table.solicitudesPropias.length" class="alert bg-warning text-center">
         <h4>Sin datos para mostrar</h4>
     </div>
     

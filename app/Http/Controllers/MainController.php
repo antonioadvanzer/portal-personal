@@ -43,7 +43,8 @@ class MainController extends Controller
      */
      public function mainViewHome()
      {   
-         return view('main.components.main.home');        
+         //return view('main.components.main.home');
+         return view('main.components.main.main_wellcome');        
      }
 
     /**

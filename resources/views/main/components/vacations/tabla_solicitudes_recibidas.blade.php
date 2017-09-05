@@ -2,11 +2,11 @@
   <div class="form-group select-page-size-wrap ">
     <label>Filas por p&aacute;gina
       <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-              ng-model="tamanioTablaSolicitudesRecibidas" ng-options="i for i in [5,10,15,20,25]">
+              ng-model="vacations_table.tamanioTablaSolicitudesRecibidas" ng-options="i for i in [5,10,15,20,25]">
       </select>
     </label>
   </div>
-  <table class="table table-hover table-condensed" st-table="solicitudesRecibidas">
+  <table class="table table-hover table-condensed" st-table="vacations_table.solicitudesRecibidas" st-safe-src="vacations_table.recibidas">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="false">#</th>
@@ -35,7 +35,7 @@
     </tr>-->
     </thead>
     <tbody>
-    <tr ng-repeat="sl in solicitudesRecibidas" ng-click="showRequestReceived(sl.id)" ng-class="{'primary': (sl.alerta == 1)}">
+    <tr ng-repeat="sl in vacations_table.solicitudesRecibidas" ng-click="showRequestReceived(sl.id)" ng-class="{'primary': (sl.alerta == 1)}">
       <td class="table-id">@{{sl.id}}</td>
       <td>@{{sl.folio}}</td>
       <td>@{{sl.tipo}}</td>
@@ -51,9 +51,13 @@
     <tfoot>
     <tr>
       <td colspan="6" class="text-center">
-        <div st-pagination="" st-items-by-page="tamanioTablaSolicitudesRecibidas" st-displayed-pages="5"></div>
+        <div st-pagination="" st-items-by-page="vacations_table.tamanioTablaSolicitudesRecibidas" st-displayed-pages="5"></div>
       </td>
     </tr>
     </tfoot>
   </table>
+    
+    <div ng-if="!vacations_table.solicitudesRecibidas.length" class="alert bg-warning text-center">
+        <h4>Sin datos para mostrar</h4>
+    </div>
 </div>

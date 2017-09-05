@@ -58,4 +58,9 @@
     </tr>
     </tfoot>
   </table>
+    
+    <div ng-if="!requests_table.solicitudesRechazadas.length" class="alert bg-warning text-center">
+        <h4>Sin datos para mostrar</h4>
+    </div>
+    
 </div>

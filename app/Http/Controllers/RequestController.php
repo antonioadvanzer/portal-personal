@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Solicitud;
+use App\Models\Carta;
 use App\Models\Tipo_Solicitud;
 use App\Models\Estados_Solicitud;
 use App\Models\Motivos_Ausencia;
@@ -46,10 +47,30 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function admin_letterByUser()
+     {
+         return view('admin.components.requests.cartas_por_usuario');
+     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin_allRequests()
     {
         return view('admin.components.requests.todas_las_solicitudes');
     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function admin_allLetter()
+     {
+         return view('admin.components.requests.todas_las_cartas');
+     }
 
     /**
      * 
@@ -256,6 +277,16 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function admin_getLetterByUserForm()
+     {   
+         return view('admin.components.requests.carta_por_usuario');
+     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin_getRequest($id_request)
     {   
         $solicitud = Solicitud::find($id_request);
@@ -291,6 +322,32 @@ class RequestController extends Controller
 
         return json_encode($solicitudAuth);
     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function admin_getLetter($id_letter)
+     {  
+        $letter = Carta::find($id_letter);
+        
+                $solicitud = [
+                        'id' => $letter->id,
+                        'colaborador' => $letter->getEmployedAssociated()->first()->name,
+                        'dirigido' => $letter->receiver,
+                        'sueldo' => $letter->sueldo==1?true:false,
+                        'imss' => $letter->imss==1?true:false,
+                        'rfc' => $letter->rfc==1?true:false,
+                        'curp' => $letter->curp==1?true:false,
+                        'antiguedad' => $letter->antiguedad==1?true:false,
+                        'puesto' => $letter->puesto==1?true:false,
+                        'domicilio' => $letter->domicilio_particular==1?true:false,
+                        'observaciones' => $letter->observations
+                    ];
+        
+                return json_encode($solicitud);
+     }
 
     /**
      * 
@@ -394,7 +451,9 @@ class RequestController extends Controller
     {   
         $requests = array();
 
-        $requestModel = Solicitud::where('user',$id_user)->get();
+        $requestModel = Solicitud::where('user',$id_user)
+                            ->orderBy('id', 'desc')
+                            ->get();
         
         foreach($requestModel as $rm){
             array_push($requests,[
@@ -410,11 +469,36 @@ class RequestController extends Controller
                 "estado" => $rm->getStatusAssociated()->first()->name,
                 "status" => $rm->status,
                 "alerta" => $rm->alert
-                 ]);
+            ]);
         }
         
         return json_encode($requests);
     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function admin_getAllLetterByUser($id_user)
+     { 
+        $letter = array();
+        
+        $letterModel = Carta::where('user', $id_user)
+                        ->orderBy('id', 'desc')
+                        ->get();
+        
+        foreach($letterModel as $lm){
+            array_push($letter,[
+                "id" => $lm->id,
+                "folio" => $lm->id,
+                "dirigido" => $lm->receiver,
+                "observaciones" => $lm->observations
+            ]);
+        }
+        
+        return json_encode($letter);
+     }
 
     /**
      * 

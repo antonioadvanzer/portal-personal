@@ -38,24 +38,22 @@
             order: 0,
           },
         })
-        .state('requisiciones.requisiciones', {
-          url: '/solicitudes',
-          templateUrl: 'theme/modules/requisition/requisiciones',
-          title: 'Requisiciones',
+        .state('requisiciones.requisiciones_realizadas', {
+          url: '/solicitudes_realizadas',
+          templateUrl: 'theme/modules/requisition/requisiciones_realizadas',
+          title: 'Requisiciones Realizadas',
           sidebarMeta: {
             order: 100,
           },
         })
-        .state("requisiciones.detalle_revisar",{
-            url: "/ver_recibida",
-            params: {
-                id_requisition_received: null
-            },
-            templateUrl: function (stateParams){
-                    return 'theme/modules/requisition/mostrar_requisicion_recibida';
-            },
-            title: 'Requisición Recibida',
-        })  
+        .state('requisiciones.requisiciones_recibidas', {
+          url: '/solicitudes_recibidas',
+          templateUrl: 'theme/modules/requisition/requisiciones_recibidas',
+          title: 'Requisiciones Recibidas',
+          sidebarMeta: {
+            order: 100,
+          },
+        }) 
         .state("requisiciones.detalle_autorizar",{
             url: "/ver_recibida",
             params: {
@@ -72,7 +70,7 @@
                 id_own_requisition: null
             },
             templateUrl: function (stateParams){
-                    return 'theme/modules/requisition/mostrar_solicitud_propia';
+                    return 'theme/modules/requisition/mostrar_requisicion_propia';
             },
             title: 'Requisición Propia',
         });

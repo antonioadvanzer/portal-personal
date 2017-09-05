@@ -6,7 +6,7 @@
       </select>
     </label>
   </div>
-  <table class="table table-hover table-condensed" st-table="absences_table.solicitudesRecibidas">
+  <table class="table table-hover table-condensed" st-table="absences_table.solicitudesRecibidas" st-safe-src="absences_table.recibidas">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="false">#</th>
@@ -56,4 +56,9 @@
     </tr>
     </tfoot>
   </table>
+    
+    <div ng-if="!absences_table.solicitudesRecibidas.length" class="alert bg-warning text-center">
+        <h4>Sin datos para mostrar</h4>
+    </div>
+    
 </div>
