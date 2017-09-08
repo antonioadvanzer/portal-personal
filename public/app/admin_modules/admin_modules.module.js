@@ -14,6 +14,7 @@
     'PortalPersonal.admin_modules.tracks',
     'PortalPersonal.admin_modules.posiciones',
     'PortalPersonal.admin_modules.usuarios',
+    'PortalPersonal.admin_modules.requisiciones',
     'PortalPersonal.admin_modules.solicitudes',
     'PortalPersonal.admin_modules.permisos',
   ])

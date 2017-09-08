@@ -144,6 +144,9 @@
 <!-- Usuario -->
 <script src="{{ URL::to('app/admin_modules/usuarios/usuarios.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/usuarios/UsuariosModuleCtrl.js') }}"></script>
+<!-- Requisicion -->
+<script src="{{ URL::to('app/admin_modules/requisiciones/requisiciones.module.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/requisiciones/RequisicionesModuleCtrl.js') }}"></script>
 <!-- Solicitudes -->
 <script src="{{ URL::to('app/admin_modules/solicitudes/solicitudes.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/solicitudes/SolicitudesModuleCtrl.js') }}"></script>

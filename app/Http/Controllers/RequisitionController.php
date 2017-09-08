@@ -258,40 +258,40 @@ class RequisitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function main_showRequestReceived()
-     {   
-         return view('main.components.requisitions.requisicion_recibida');
-     }
+    public function main_showRequestReceived()
+    {   
+        return view('main.components.requisitions.requisicion_recibida');
+    }
  
-     /**
-      * 
-      *
-      * @return \Illuminate\Http\Response
-      */
-     public function main_showOwnRequest()
-     {   
-         return view('main.components.requisitions.requisicion_propia');
-     }
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_showOwnRequest()
+    {   
+        return view('main.components.requisitions.requisicion_propia');
+    }
  
-     /**
-      * 
-      *
-      * @return \Illuminate\Http\Response
-      */
-     public function main_getRequestReceivedForm()
-     {   
-         return view('main.components.requisitions.detalle_recibida');
-     }
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_getRequestReceivedForm()
+    {   
+        return view('main.components.requisitions.detalle_recibida');
+    }
      
-     /**
-      * 
-      *
-      * @return \Illuminate\Http\Response
-      */
-     public function main_getOwnRequestForm()
-     {   
-         return view('main.components.requisitions.detalle_propia');
-     }
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_getOwnRequestForm()
+    {   
+        return view('main.components.requisitions.detalle_propia');
+    }
 
     /**
      * 
@@ -302,7 +302,7 @@ class RequisitionController extends Controller
     {
         $solicitud = Requisicion::find($id_requisition);
         
-        if($solicitud->status == DB::table('estados_requisicion')->where('name', 'Autorizada')->value('id')){
+        if($solicitud->status == DB::table('estados_requisicion')->where('name', 'En Proceso')->value('id')){
             $solicitud->alert = 0;
             $solicitud->save();
         }
@@ -470,8 +470,8 @@ class RequisitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function main_authRequisition($id_requisition)
-     {  
+    public function main_authRequisition($id_requisition)
+    {  
         DB::beginTransaction();
         
         $requisition = null;
@@ -494,5 +494,451 @@ class RequisitionController extends Controller
         DB::commit();
 
         return "success";
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_allRequisitions()
+    {
+        return view('admin.components.requisitions.todas_las_requisiciones');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_canceledRequisitions()
+    {
+        return view('admin.components.requisitions.requisiciones_canceladas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_sendedRequisitions()
+    {
+        return view('admin.components.requisitions.requisiciones_enviadas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_aceptedRequisitions()
+    {
+        return view('admin.components.requisitions.requisiciones_aceptadas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_authorizedRequisitions()
+    {
+        return view('admin.components.requisitions.requisiciones_autorizadas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_rejectedRequisitions()
+    {
+        return view('admin.components.requisitions.requisiciones_rechazadas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_processingRequisitions()
+    {
+        return view('admin.components.requisitions.requisiciones_en_proceso');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_completedRequisitions()
+    {
+        return view('admin.components.requisitions.requisiciones_completadas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_tableAllRequisitions()
+    {
+        return view('admin.components.requisitions.tabla_todas_las_requisiciones');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_tableCanceledRequisitions()
+    {
+        return view('admin.components.requisitions.tabla_requisiciones_canceladas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_tableSendedRequisitions()
+    {
+        return view('admin.components.requisitions.tabla_requisiciones_enviadas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_tableAceptedRequisitions()
+    {
+        return view('admin.components.requisitions.tabla_requisiciones_aceptadas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_tableAuthorizedRequisitions()
+    {
+        return view('admin.components.requisitions.tabla_requisiciones_autorizadas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_tableRejectedRequisitions()
+    {
+        return view('admin.components.requisitions.tabla_requisiciones_rechazadas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_tableProcessingRequisitions()
+    {
+        return view('admin.components.requisitions.tabla_requisiciones_en_proceso');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_tableCompletedRequisitions()
+    {
+        return view('admin.components.requisitions.tabla_requisiciones_completadas');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function admin_getAllRequisitions()
+     {   
+         return $this->admin_Requisitions();
      }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function admin_getCanceledRequisitions()
+     {   
+         return $this->admin_Requisitions(1);
+     }
+ 
+     /**
+      * 
+      *
+      * @return \Illuminate\Http\Response
+      */
+     public function admin_getSendedRequisitions()
+     {   
+         return $this->admin_Requisitions(2);
+     }
+ 
+     /**
+      * 
+      *
+      * @return \Illuminate\Http\Response
+      */
+     public function admin_getAceptedRequisitions()
+     {   
+         return $this->admin_Requisitions(3);
+     }
+ 
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getAuthorizedRequisitions()
+    {   
+        return $this->admin_Requisitions(4);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getRejectedRequisitions()
+    {   
+        return $this->admin_Requisitions(5);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getProcessingRequisitions()
+    {   
+        return $this->admin_Requisitions(6);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getCompletedRequisitions()
+    {   
+        return $this->admin_Requisitions(7);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_Requisitions($status = 0)
+    { 
+        $requests = array();
+        
+        if($status == 0){
+            $requestModel = Requisicion::all();
+        }else{
+            $requestModel = Requisicion::where('status', $status)
+            ->orderBy('id', 'desc')
+            ->get();
+        }
+
+        foreach($requestModel as $rm){
+            array_push($requests,[
+                "id" => $rm->id,
+                "folio" => $rm->id,
+                "fecha" => $rm->fecha_solicitud,
+                "solicita" => $rm->getEmployedAssociated()->first()->name,
+                "director" => $rm->getDirectorAssociated()->first()->name,
+                "autorizador" => $rm->getPartnerDirectorAssociated()->first()->name,
+                "proyecto" => $rm->proyecto,
+                "track" => $rm->getTrackAssociated()->first()->name,
+                "posicion" => $rm->getPosicionAssociated()->first()->name,
+                "area" => $rm->getAreaAssociated()->first()->name,
+                "empresa" => $rm->getCompanyAssociated()->first()->name,
+                "estado" => $rm->getStatusAssociated()->first()->name,
+                "aleta" => $rm->alert,
+
+                "status" => $rm->status
+            ]);
+        }
+
+        return json_encode($requests);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_showRequisition()
+    {   
+        return view('admin.components.requisitions.detalle_requisicion');
+    }
+    
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getRequisitionForm()
+    {   
+        return view('admin.components.requisitions.requisicion');
+    }
+
+    /**
+     * 
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_proccessRequisition($id_requisition)
+    {   
+        DB::beginTransaction();
+        
+        $solicitud = null;
+        
+        try{
+
+            $solicitud = Requisicion::find($id_requisition);
+            $solicitud->alert = 1;
+            $solicitud->status = DB::table('estados_requisicion')->where('name', 'En Proceso')->value('id');
+            $solicitud->save();
+
+        }catch(\Exception $e){
+            echo $e;
+            DB::rollBack();
+            exit;
+        }
+        
+        DB::commit();
+        
+        return "success"; 
+    }
+
+    /**
+     * 
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_completeRequisition($id_requisition)
+    {   
+        DB::beginTransaction();
+        
+        $solicitud = null;
+        
+        try{
+
+            $solicitud = Requisicion::find($id_requisition);
+            //$solicitud->alert = 1;
+            $solicitud->status = DB::table('estados_requisicion')->where('name', 'Completada')->value('id');
+            $solicitud->save();
+
+        }catch(\Exception $e){
+            echo $e;
+            DB::rollBack();
+            exit;
+        }
+        
+        DB::commit();
+        
+        return "success"; 
+    }
+
+    /**
+     * 
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_cancelRequisition($id_requisition)
+    {   
+        DB::beginTransaction();
+        
+        $solicitud = null;
+        
+        try{
+
+            $solicitud = Requisicion::find($id_requisition);
+            //$solicitud->alert = 1;
+            $solicitud->status = DB::table('estados_requisicion')->where('name', 'Cancelada')->value('id');
+            $solicitud->save();
+
+        }catch(\Exception $e){
+            echo $e;
+            DB::rollBack();
+            exit;
+        }
+        
+        DB::commit();
+        
+        return "success"; 
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getRequisition($id_requisition)
+    {
+        $solicitud = Requisicion::find($id_requisition);
+        
+        if($solicitud->status == DB::table('estados_requisicion')->where('name', 'Autorizada')->value('id')){
+            $solicitud->alert = 0;
+            $solicitud->save();
+        }
+
+        $solicitudPropia = [
+            'id' => $id_requisition,
+            'colaborador' => $solicitud->getEmployedAssociated()->first()->name." ".$solicitud->getEmployedAssociated()->first()->apellido_paterno,
+            'director' => $solicitud->getDirectorAssociated()->first()->name." ".$solicitud->getDirectorAssociated()->first()->apellido_paterno,
+            'autorizador' => $solicitud->getPartnerDirectorAssociated()->first()->name." ".$solicitud->getPartnerDirectorAssociated()->first()->apellido_paterno,
+            'fecha_solicitud' => $solicitud->fecha_solicitud,
+            'fecha_ingreso' => $solicitud->fecha_estimada_ingreso,
+            'area' => $solicitud->getAreaAssociated()->first()->name,
+            'track' => $solicitud->getTrackAssociated()->first()->name,
+            'posicion' => $solicitud->getPosicionAssociated()->first()->name,
+            'empresa' => $solicitud->getCompanyAssociated()->first()->name,
+            'tipo_posicion' => $solicitud->tipo_posicion,
+            'sustituye_a' => $solicitud->sustituye_a,
+            'costo_maximo' => $solicitud->costo_maximo,
+            'proyecto' => $solicitud->proyecto,
+            'clave_proyecto' => $solicitud->clave_proyecto,
+            'residencia' => $solicitud->residencia,
+            'lugar_trabajo' => $solicitud->lugar_trabajo,
+            'domicilio_cliente' => $solicitud->domicilio_cliente,
+            'contratacion' => $solicitud->contratacion,
+            'evaluador_tecnico' => $solicitud->evaluador_tecnico,
+            'disponiblidad_viajar' => $solicitud->disponibilidad_viajar,
+            'edad_de' => $solicitud->edad_uno,
+            'a' => $solicitud->edad_dos,
+            'sexo' => $solicitud->sexo,
+            'nivel_estudios' => $solicitud->nivel_estudios,
+            'carrera' => $solicitud->carrera,
+            'ingles_oral' => $solicitud->ingles_oral,
+            'ingles_lectura' => $solicitud->ingles_lectura,
+            'ingles_escritura' => $solicitud->ingles_escritura,
+            'experiencia' => $solicitud->conocimientos,
+            'caracteristicas' => $solicitud->habilidades,
+            'funciones' => $solicitud->funciones,
+            'observaciones' => $solicitud->observaciones,
+            'razon_cancelacion' => $solicitud->razon_cancelacion,
+            'estado' => $solicitud->getStatusAssociated()->first()->name,
+            'status' => $solicitud->status,
+        ];
+
+        return json_encode($solicitudPropia);
+    } 
 }

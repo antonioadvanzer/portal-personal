@@ -45,7 +45,7 @@
     </tfoot>
   </table>
     
-    <div ng-if="!requests_table.solicitudesPropias.length" class="alert bg-info text-center">
+    <div ng-if="!requests_table.solicitudesPropias.length" class="alert bg-warning text-center">
         <h4>Sin datos para mostrar</h4>
     </div>
 </div>

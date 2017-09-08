@@ -598,7 +598,7 @@ class AbsenceController extends Controller
     }
 
     /**
-     * Modal View Comprobante
+     * Modal View Comprobantelo
      *
      * @return \Illuminate\Http\Response
      */
@@ -606,9 +606,11 @@ class AbsenceController extends Controller
     {   
         $solicitud = Solicitud::find($id_absence);
 
-        $voucher = URL::to($this->urlVoucher+"/"+$solicitud->voucher);
-        
-        return view('theme.components.comprobanteMedico', ["file" => $voucher]);
+        $voucher = URL::to($this->urlVoucher."/".$solicitud->voucher);
+        $aip = explode(".",$solicitud->voucher);
+        $ext = $aip[count($aip) - 1];
+        //dd($ext);
+        return view('theme.components.comprobanteMedico', ["file" => $voucher, "ext" => $ext]);
     }
 
 }

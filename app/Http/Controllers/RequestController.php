@@ -277,10 +277,10 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function admin_getLetterByUserForm()
-     {   
-         return view('admin.components.requests.carta_por_usuario');
-     }
+    public function admin_getLetterByUserForm()
+    {   
+        return view('admin.components.requests.carta_por_usuario');
+    }
 
     /**
      * 
@@ -508,12 +508,15 @@ class RequestController extends Controller
     private function admin_Requests($status = 0)
     {   
         $requests = array();
-
+        
         if($status == 0){
             $requestModel = Solicitud::all();
         }else{
-            $requestModel = Solicitud::where('status',$status)->get();
+            $requestModel = Solicitud::where('status', $status)
+                            ->orderBy('id', 'desc')
+                            ->get();
         }
+
         foreach($requestModel as $rm){
             array_push($requests,[
                 "id" => $rm->id,

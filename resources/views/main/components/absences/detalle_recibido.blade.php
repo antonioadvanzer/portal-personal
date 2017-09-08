@@ -1,4 +1,4 @@
-<form name="showSolicitud">
+<form name="showAbsenceReceived">
     
     <div class="progress ng-scope" ng-show="sending">
       <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
@@ -12,7 +12,8 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-colaborador">Colaborador</span>
-                <input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedColaborador" name="v" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedColaborador" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedColaborador" name="v" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedColaborador" readonly>-->
+                <label class="form-control with-primary-addon">@{{formAbsenceReceived.inputAbsenceReceivedColaborador}}</label>
             </div>
             
             <!--<div class="input-group">
@@ -22,12 +23,14 @@
             
             <div class="input-group" >
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-dias">Días</span>
-                <input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedDias" name="inputAbsenceReceivedDias" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedDias" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedDias" name="inputAbsenceReceivedDias" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedDias" readonly>-->
+                <label class="form-control with-primary-addon">@{{formAbsenceReceived.inputAbsenceReceivedDias}}</label>
             </div>
             
             <div class="input-group" >
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-estado">Estado</span>
-                <input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedEstado" name="inputAbsenceReceivedEstado" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedEstado" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedEstado" name="inputAbsenceReceivedEstado" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedEstado" readonly>-->
+                <label class="form-control with-primary-addon">@{{formAbsenceReceived.inputAbsenceReceivedEstado}}</label>
             </div>
             
         </div>
@@ -36,7 +39,8 @@
         
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-motivo">Motivo</span>
-                <input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedMotivo" name="inputAbsenceReceivedMotivo" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedMotivo" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedMotivo" name="inputAbsenceReceivedMotivo" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedMotivo" readonly>-->
+                <label class="form-control with-primary-addon">@{{formAbsenceReceived.inputAbsenceReceivedMotivo}}</label>
                 <span class="input-group-btn" ng-show="(formAbsenceReceived.inputAbsenceReceivedOcacion == 8)">
                   <button class="btn btn-info" ng-click="getComprobante()" type="button">Ver Comprobante</button>
               </span>
@@ -49,18 +53,20 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-desde">Desde</span>
-                <input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedDesde" name="inputAbsenceReceivedDesde" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedDesde" readonly>
-                
+                <!--<input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedDesde" name="inputAbsenceReceivedDesde" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedDesde" readonly>-->
+                <label class="form-control with-primary-addon">@{{formAbsenceReceived.inputAbsenceReceivedDesde}}</label>
             </div>
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-hasta">Hasta</span>
-                <input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedHasta" name="inputAbsenceReceivedHasta" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedHasta" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedHasta" name="inputAbsenceReceivedHasta" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedHasta" readonly>-->
+                <label class="form-control with-primary-addon">@{{formAbsenceReceived.inputAbsenceReceivedHasta}}</label>
             </div>
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-hasta">Regresa</span>
-                <input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedRegresa" name="inputAbsenceReceivedRegresa" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedRegresa" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputAbsenceReceivedRegresa" name="inputAbsenceReceivedRegresa" placeholder="" ng-model="formAbsenceReceived.inputAbsenceReceivedRegresa" readonly>-->
+                <label class="form-control with-primary-addon">@{{formAbsenceReceived.inputAbsenceReceivedRegresa}}</label>
             </div>
             
         </div>
@@ -71,7 +77,8 @@
         <div class="col-md-12">
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Observaciones</span>
-                <textarea placeholder="" class="form-control" id="inputAbsenceReceivedObservaciones" name="inputAbsenceReceivedObservaciones" ng-model="formAbsenceReceived.inputAbsenceReceivedObservaciones" readonly>@{{formAbsenceReceived.inputAbsenceReceivedObservaciones}}</textarea>
+                <!--<textarea placeholder="" class="form-control" id="inputAbsenceReceivedObservaciones" name="inputAbsenceReceivedObservaciones" ng-model="formAbsenceReceived.inputAbsenceReceivedObservaciones" readonly>@{{formAbsenceReceived.inputAbsenceReceivedObservaciones}}</textarea>-->
+                <p class="form-control">@{{formAbsenceReceived.inputAbsenceReceivedObservaciones}}</p>
             </div>
             
         </div>

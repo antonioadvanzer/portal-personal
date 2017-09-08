@@ -532,6 +532,60 @@ Route::group(['middleware' => 'auth'], function(){
                
             });
 
+            Route::group(['prefix' => 'requisition'], function () {
+
+                /* Requisition Admin Views -------------------- */
+
+                /* Requisition */
+                Route::get('/todas_las_requisiciones', 'RequisitionController@admin_allRequisitions');
+                Route::get('/requisiciones_canceladas', 'RequisitionController@admin_canceledRequisitions');
+                Route::get('/requisiciones_enviadas', 'RequisitionController@admin_sendedRequisitions');
+                Route::get('/requisiciones_aceptadas', 'RequisitionController@admin_aceptedRequisitions');
+                Route::get('/requisiciones_autorizadas', 'RequisitionController@admin_authorizedRequisitions');
+                Route::get('/requisiciones_rechazadas', 'RequisitionController@admin_rejectedRequisitions');
+                Route::get('/requisiciones_en_proceso', 'RequisitionController@admin_processingRequisitions');
+                Route::get('/requisiciones_completadas', 'RequisitionController@admin_completedRequisitions');
+                Route::get('/lista_todas_las_requisiciones', 'RequisitionController@admin_tableAllRequisitions');
+                Route::get('/lista_requisiciones_canceladas', 'RequisitionController@admin_tableCanceledRequisitions');
+                Route::get('/lista_requisiciones_enviadas', 'RequisitionController@admin_tableSendedRequisitions');
+                Route::get('/lista_requisiciones_aceptadas', 'RequisitionController@admin_tableAceptedRequisitions');
+                Route::get('/lista_requisiciones_autorizadas', 'RequisitionController@admin_tableAuthorizedRequisitions');
+                Route::get('/lista_requisiciones_rechazadas', 'RequisitionController@admin_tableRejectedRequisitions');
+                Route::get('/lista_requisiciones_en_proceso', 'RequisitionController@admin_tableProcessingRequisitions');
+                Route::get('/lista_requisiciones_completadas', 'RequisitionController@admin_tableCompletedRequisitions');
+                
+                // Show
+                Route::get('/mostrar_requisicion', 'RequisitionController@admin_showRequisition');
+                Route::get('/requisicion_solicitada', 'RequisitionController@admin_getRequisitionForm');
+
+                /* Requisition Admin Resources -------------------- */
+
+                // Table
+
+                /* Requisition */
+                Route::get('/get_all_requisitions', 'RequisitionController@admin_getAllRequisitions');
+                Route::get('/get_canceled_requisitions', 'RequisitionController@admin_getCanceledRequisitions');
+                Route::get('/get_sended_requisitions', 'RequisitionController@admin_getSendedRequisitions');
+                Route::get('/get_acepted_requisitions', 'RequisitionController@admin_getAceptedRequisitions');
+                Route::get('/get_authorized_requisitions', 'RequisitionController@admin_getAuthorizedRequisitions');
+                Route::get('/get_rejected_requisitions', 'RequisitionController@admin_getRejectedRequisitions');
+                Route::get('/get_processing_requisitions', 'RequisitionController@admin_getProcessingRequisitions');
+                Route::get('/get_completed_requisitions', 'RequisitionController@admin_getCompletedRequisitions');
+
+                // Show
+                Route::get('/get_requisition/{id_requisition}', 'RequisitionController@admin_getRequisition');
+
+                // Process requisition
+                Route::get('/process_requisition/{id_requisition}', 'RequisitionController@admin_proccessRequisition');
+
+                // Complete requisition
+                Route::get('/complete_requisition/{id_requisition}', 'RequisitionController@admin_completeRequisition');
+
+                // Cancel requisition
+                Route::get('/cancel_requisition/{id_requisition}', 'RequisitionController@admin_cancelRequisition');
+
+            });
+
             Route::group(['prefix' => 'request'], function () {
                 
                 /* Requests Admin Views -------------------- */

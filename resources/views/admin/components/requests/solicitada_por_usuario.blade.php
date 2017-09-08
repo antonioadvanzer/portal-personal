@@ -140,12 +140,12 @@
 
     <div class="row">
         <div ng-if="formRequest.labelRequestStatus == 3">
-        <div class="col-sm-4 col-xs-6">
-            <button type="button" ng-click="authRequest()" class="btn btn-success btn-lg">Autorizar</button>
-        </div>
-        <div class="col-sm-4 col-xs-6">
-            <button type="button" ng-click="rejectRequest()" class="btn btn-warning btn-lg">Declinar</button>
-        </div>
+            <div class="col-sm-4 col-xs-6">
+                <button type="button" ng-click="authRequest()" class="btn btn-success btn-lg">Autorizar</button>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                <button type="button" ng-click="rejectRequest()" class="btn btn-warning btn-lg">Declinar</button>
+            </div>
         </div>
         <div class="col-sm-4 col-xs-6" ng-if="((formRequest.inputRequestOcacion==8) || (formRequest.inputRequestOcacion==9)) && ((formRequest.labelRequestStatus != 4) &&(formRequest.labelRequestStatus != 5) && (formRequest.labelRequestStatus != 1))">
             <button type="button" ng-click="cancelRequest()" class="btn btn-danger btn-lg">Cancelar</button>
@@ -155,19 +155,19 @@
     </div>
     
     <div ng-if="!formRequest.requestStatus">
-    <h3 class="with-line"></h3>
+        <h3 class="with-line"></h3>
 
-    <!--<button type="submit" class="btn btn-primary btn-with-icon" ng-show="(selectedBoss.selected.id) && (selectedOcacion.selected.id) && (dt)">
-      <i class="ion-ios-checkmark-outline"></i>Solicitar
-    </button>-->
-    <div class="row">
-        <div class="col-sm-4 col-xs-6">
-            <button type="button" ng-click="sendRejectRequest()"class="btn btn-info btn-lg" ng-disabled="formRequest.inputRequestMotivoCancelacion == ''" >Continuar</button>
+        <!--<button type="submit" class="btn btn-primary btn-with-icon" ng-show="(selectedBoss.selected.id) && (selectedOcacion.selected.id) && (dt)">
+          <i class="ion-ios-checkmark-outline"></i>Solicitar
+        </button>-->
+        <div class="row">
+            <div class="col-sm-4 col-xs-6">
+                <button type="button" ng-click="sendRejectRequest()"class="btn btn-info btn-lg" ng-disabled="formRequest.inputRequestMotivoCancelacion == ''" >Continuar</button>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+                <button type="button" ng-click="cancelRejectRequest()" class="btn btn-warning btn-lg">Cancelar</button>
+            </div>
         </div>
-        <div class="col-sm-4 col-xs-6">
-            <button type="button" ng-click="cancelRejectRequest()" class="btn btn-warning btn-lg">Cancelar</button>
-        </div>
-    </div>
     
     </div>
     

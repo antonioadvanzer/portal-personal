@@ -4698,6 +4698,7 @@ a.al-sidebar-list-link {
     .al-sidebar-sublist > li a {
       display: block;
       text-shadow: none;
+      /*font-size: 13px;*/
       font-size: 16px;
       text-decoration: none;
       color: #ffffff;
@@ -6637,9 +6638,9 @@ label.todo-checkbox {
   left: 0;
 }
 .blog-card .description a {
-  color: #75D13B;
+  /*color: #75D13B;*/
   margin-bottom: 10px;
-  float: right;
+  /*float: right;*/
 }
 .blog-card .description a:after {
   transition: all 0.3s ease;
@@ -6658,7 +6659,7 @@ label.todo-checkbox {
 @media screen and (min-width: 600px) {
   .blog-card {
     height: 290px;
-    max-width: 750px;
+    max-width: 950px;
   }
   .blog-card:hover .photo {
     -webkit-transform: rotate(5deg) scale(1.3);

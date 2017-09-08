@@ -2,16 +2,17 @@
   <div class="form-group select-page-size-wrap ">
     <label>Filas por p&aacute;gina
       <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-              ng-model="requisitions_table.tamanioTablaSolicitudesRealizadas" ng-options="i for i in [5,10,15,20,25]">
+              ng-model="requisitions_table.tamanioTablaRequisicionesCompletadas" ng-options="i for i in [5,10,15,20,25]">
       </select>
     </label>
   </div>
-  <table class="table table-hover table-condensed" st-table="requisitions_table.solicitudesPropias" st-safe-src="requisitions_table.propias">
+  <table class="table table-hover table-condensed" st-table="requisitions_table.requisicionesCompletadas" st-safe-src="requisitions_table.completadas">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="false">#</th>
       <th st-sort="folio">Folio</th>
       <th st-sort="fecha">Fecha de Solicitud</th>
+      <th st-sort="solicita">Solicita</th>
       <th st-sort="director">Director de Area</th>
       <th st-sort="autorizador">Autorizador</th>
       <th st-sort="proyecto">Proyecto</th>
@@ -37,10 +38,11 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="sl in requisitions_table.solicitudesPropias" ng-click="showOwnRequisition(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && (sl.status == 4))}">
+    <tr ng-repeat="sl in requisitions_table.requisicionesCompletadas" ng-click="showRequisitionDatail(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && (sl.status == 4))}">
       <td class="table-id">@{{sl.id}}</td>
       <td>@{{sl.folio}}</td>
       <td>@{{sl.fecha}}</td>
+      <td>@{{sl.solicita}}</td>
       <td>@{{sl.director}}</td>
       <td>@{{sl.autorizador}}</td>
       <td>@{{sl.proyecto}}</td>
@@ -55,13 +57,13 @@
     <tfoot>
     <tr>
       <td colspan="6" class="text-center">
-        <div st-pagination="" st-items-by-page="requisitions_table.tamanioTablaSolicitudesRealizadas" st-displayed-pages="5"></div>
+        <div st-pagination="" st-items-by-page="requisitions_table.tamanioTablaRequisicionesCompletadas" st-displayed-pages="5"></div>
       </td>
     </tr>
     </tfoot>
   </table>
     
-    <div ng-if="!requisitions_table.solicitudesPropias.length" class="alert bg-warning text-center">
+    <div ng-if="!requisitions_table.requisicionesCompletadas.length" class="alert bg-warning text-center">
         <h4>Sin datos para mostrar</h4>
     </div>
     

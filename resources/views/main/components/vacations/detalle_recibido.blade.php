@@ -1,4 +1,4 @@
-<form name="showSolicitud">
+<form name="showVacationsReceived">
     
     <div class="progress ng-scope" ng-show="sending">
       <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
@@ -12,7 +12,8 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-colaborador">Colaborador</span>
-                <input type="text" class="form-control with-primary-addon" id="inputRequestReceivedColaborador" name="inputRequestReceivedColaborador" placeholder="" ng-model="formRequestReceived.inputRequestReceivedColaborador" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputRequestReceivedColaborador" name="inputRequestReceivedColaborador" placeholder="" ng-model="formRequestReceived.inputRequestReceivedColaborador" readonly>-->
+                <label class="form-control with-primary-addon">@{{formRequestReceived.inputRequestReceivedColaborador}}</label>
             </div>
             
             <!--<div class="input-group">
@@ -21,13 +22,15 @@
             </div>-->
             
             <div class="input-group" >
-                <span class="input-group-addon input-group-addon-primary addon-left" id="label-dias">Días</span>
-                <input type="text" class="form-control with-primary-addon" id="inputRequestReceivedDias" name="inputRequestReceivedDias" placeholder="" ng-model="formRequestReceived.inputRequestReceivedDias" readonly>
+                <span class="input-group-addon input-group-addon-primary addon-left" id="label-dias">D&iacute;as</span>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputRequestReceivedDias" name="inputRequestReceivedDias" placeholder="" ng-model="formRequestReceived.inputRequestReceivedDias" readonly>-->
+                <label class="form-control with-primary-addon">@{{formRequestReceived.inputRequestReceivedDias}}</label>
             </div>
             
             <div class="input-group" >
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-estado">Estado</span>
-                <input type="text" class="form-control with-primary-addon" id="inputRequestReceivedEstado" name="inputRequestReceivedEstado" placeholder="" ng-model="formRequestReceived.inputRequestReceivedEstado" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputRequestReceivedEstado" name="inputRequestReceivedEstado" placeholder="" ng-model="formRequestReceived.inputRequestReceivedEstado" readonly>-->
+                <label class="form-control with-primary-addon">@{{formRequestReceived.inputRequestReceivedEstado}}</label>
             </div>
             
         </div>
@@ -36,18 +39,20 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-desde">Desde</span>
-                <input type="text" class="form-control with-primary-addon" id="inputRequestReceivedDesde" name="inputRequestReceivedDesde" placeholder="" ng-model="formRequestReceived.inputRequestReceivedDesde" readonly>
-                
+                <!--<input type="text" class="form-control with-primary-addon" id="inputRequestReceivedDesde" name="inputRequestReceivedDesde" placeholder="" ng-model="formRequestReceived.inputRequestReceivedDesde" readonly>-->
+                <label class="form-control with-primary-addon">@{{formRequestReceived.inputRequestReceivedDesde}}</label>
             </div>
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="label-hasta">Hasta</span>
-                <input type="text" class="form-control with-primary-addon" id="inputRequestReceivedHasta" name="inputRequestReceivedHasta" placeholder="" ng-model="formRequestReceived.inputRequestReceivedHasta" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputRequestReceivedHasta" name="inputRequestReceivedHasta" placeholder="" ng-model="formRequestReceived.inputRequestReceivedHasta" readonly>-->
+                <label class="form-control with-primary-addon">@{{formRequestReceived.inputRequestReceivedHasta}}</label>
             </div>
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-hasta">Regresa</span>
-                <input type="text" class="form-control with-primary-addon" id="inputRequestReceivedRegresa" name="inputRequestReceivedRegresa" placeholder="" ng-model="formRequestReceived.inputRequestReceivedRegresa" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputRequestReceivedRegresa" name="inputRequestReceivedRegresa" placeholder="" ng-model="formRequestReceived.inputRequestReceivedRegresa" readonly>-->
+                <label class="form-control with-primary-addon">@{{formRequestReceived.inputRequestReceivedRegresa}}</label>
             </div>
             
         </div>
@@ -58,7 +63,8 @@
         <div class="col-md-12">
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Observaciones</span>
-                <textarea placeholder="" class="form-control" id="inputRequestReceivedObservaciones" name="inputRequestReceivedObservaciones" ng-model="formRequestReceived.inputRequestReceivedObservaciones" readonly>@{{formRequestReceived.inputRequestReceivedObservaciones}}</textarea>
+                <!--<textarea placeholder="" class="form-control" id="inputRequestReceivedObservaciones" name="inputRequestReceivedObservaciones" ng-model="formRequestReceived.inputRequestReceivedObservaciones" readonly>@{{formRequestReceived.inputRequestReceivedObservaciones}}</textarea>-->
+                <p class="form-control">@{{formRequestReceived.inputRequestReceivedObservaciones}}</p>
             </div>
             
         </div>
