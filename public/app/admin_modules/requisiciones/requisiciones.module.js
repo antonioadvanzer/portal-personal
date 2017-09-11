@@ -102,7 +102,7 @@
             templateUrl: function (stateParams){
                     return 'admin-theme/modules/requisition/mostrar_requisicion';
             },
-            title: 'Solicitud',
+            title: 'Requisición',
         });
       
     $urlRouterProvider.when('/requisiciones','/requisiciones/informacion');

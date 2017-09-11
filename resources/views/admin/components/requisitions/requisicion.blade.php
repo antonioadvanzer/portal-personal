@@ -233,7 +233,7 @@
         <div class="row">
             <div ng-if="formRequisition.inputRequisitionStatus == 4">
                 <div class="col-sm-4 col-xs-6">
-                    <button type="button" ng-click="processRequisition()" class="btn btn-success btn-lg">Procesar</button>
+                    <button type="button" ng-click="processRequisition()" class="btn btn-success btn-lg">Atender</button>
                 </div>
             </div>
             <div ng-if="formRequisition.inputRequisitionStatus == 6">

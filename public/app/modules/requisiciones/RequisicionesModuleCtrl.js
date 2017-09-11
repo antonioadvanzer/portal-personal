@@ -139,6 +139,12 @@
             $scope.formRequisitionReceived.inputRequisitionStatus = response.data.status;
             $scope.formRequisitionReceived.inputRequisitionReceivedCancel = false;
             
+            if(response.data.req_director == response.data.req_autorizador){
+                $scope.formRequisitionReceived.inputRequisitionStatus = 3;
+            }else{
+                $scope.formRequisitionReceived.inputRequisitionStatus = response.data.status;
+            }
+            
             $scope.refreshTables();
             
             resetForm('requisiciones.detalle_autorizar');
@@ -621,7 +627,7 @@
                 $scope.sending = false;
                 $scope.refreshTables();
                 getAlert('theme/success_modal/Requisicion enviada correctamente');
-                $scope.getSolicitudesRequisicionesRealizadas();
+                $scope.getSolicitudesRealizadas();
 
             })
             .error(function (response) {

@@ -342,23 +342,26 @@ class AbsenceController extends Controller
         $data['from'] = Auth::user()->email;
         
         // test mail ----
-        $data['to'] = "antonio.baez@advanzer.com";
-        //$data['to'] = User::find($newAbsence['authorizer'])->email;
+        //$data['to'] = "antonio.baez@advanzer.com";
+        
+        $data['to'] = User::find($newAbsence['authorizer'])->email;
 
         $mail_cc = array();
-
-        if($ocacionJustificada){
+        
+        if(!$ocacionJustificada){
+            
             $mail_admins = PortalPersonal::getAdminstratorsArray();
+            
             foreach($mail_admins as $mb){
                 array_push($mail_cc, $mb['email']);
             }
+
+            $data['cc'] = $mail_cc;
+            //$data['cc'] = array();
         }
         
-        // $data['cc'] = $mail_cc;
-        $data['cc'] = array();
-
         try{
-            PortalPersonal::sendMail($data, $ocacionJustificada ? 'main.components.absences.nueva_solicitud' : 'main.components.absences.notificacion_ausencia');
+            PortalPersonal::sendMail($data, $ocacionJustificada ? 'main.components.absences.email_layout.nueva_solicitud' : 'main.components.absences.email_layout.notificacion_ausencia');
         }catch(\Exception $e){
             echo $e;
             exit;
@@ -416,7 +419,7 @@ class AbsenceController extends Controller
     {   
         $solicitud = Solicitud::find($id_absence);
 
-        if($solicitud->status == DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id')){
+        if(($solicitud->status == DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id')) || ($solicitud->status == DB::table('estados_solicitud')->where('name', 'Rechazada')->value('id')) || ($solicitud->status == DB::table('estados_solicitud')->where('name', 'Cancelada')->value('id'))){
             $solicitud->alert = 0;
             $solicitud->save();
         }
@@ -517,12 +520,12 @@ class AbsenceController extends Controller
         $data['from'] = User::find($absence->authorizer)->email;
         
         // test mail ----
-        $data['to'] = "antonio.baez@advanzer.com";
-        //$data['to'] = User::find($absence->user)->email;
-        $data['cc'] = array();
+        //$data['to'] = "antonio.baez@advanzer.com";
+        
+        $data['to'] = User::find($absence->user)->email;
 
         try{
-            PortalPersonal::sendMail($data, 'main.components.absences.rechazar_solicitud');
+            PortalPersonal::sendMail($data, 'main.components.absences.email_layout.rechazar_solicitud');
         }catch(\Exception $e){
             echo $e;
             exit;
@@ -572,23 +575,24 @@ class AbsenceController extends Controller
         $data['from'] = User::find($solicitud->authorizer)->email;
         
         // test mail ----
-        $data['to'] = "antonio.baez@advanzer.com";
-        //$data['to'] = "capitalhumano@advanzer.com";
+        //$data['to'] = "antonio.baez@advanzer.com";
+        
+        $data['to'] = "capitalhumano@advanzer.com";
         
         $mail_cc = array();
-        //$mail_admins = Permisos::find(DB::table('permisos')->where('name', 'Administración')->value('id'))->getPermissionsByUser()->get();
-        //$mail_admins = $this->advanzer_getAdminstratorsArray();
+        
         $mail_admins = PortalPersonal::getAdminstratorsArray();
+        
         foreach($mail_admins as $mb){
             array_push($mail_cc, $mb['email']);
         }
 
-        // $data['cc'] = $mail_cc;
-        $data['cc'] = array();
+        $data['cc'] = $mail_cc;
+        //$data['cc'] = array();
         //var_dump($mail_cc);
 
         try{
-            PortalPersonal::sendMail($data, 'main.components.absences.aceptar_solicitud');
+            PortalPersonal::sendMail($data, 'main.components.absences.email_layout.aceptar_solicitud');
         }catch(\Exception $e){
             echo $e;
             exit;
@@ -598,7 +602,7 @@ class AbsenceController extends Controller
     }
 
     /**
-     * Modal View Comprobantelo
+     * Modal View Comprobante
      *
      * @return \Illuminate\Http\Response
      */

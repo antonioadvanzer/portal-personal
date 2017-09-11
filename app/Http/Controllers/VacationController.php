@@ -299,21 +299,23 @@ class VacationController extends Controller
         $data['from'] = Auth::user()->email;
         
         // test mail ----
-        $data['to'] = "antonio.baez@advanzer.com";
-        //$data['to'] = User::find($newVacationRequest['authorizer'])->email;
+        //$data['to'] = "antonio.baez@advanzer.com";
+        
+        $data['to'] = User::find($newVacationRequest['authorizer'])->email;
 
-        $mail_cc = array();
+        /*$mail_cc = array();
 
-        /*$mail_admins = $this->advanzer_getAdminstratorsArray();
+        $mail_admins = PortalPersonal::getAdminstratorsArray();
         foreach($mail_admins as $mb){
             array_push($mail_cc, $mb['email']);
-        }*/
+        }
         
-        // $data['cc'] = $mail_cc;
-        $data['cc'] = array();
+         $data['cc'] = $mail_cc;*/
+        //$data['cc'] = array();
+        //var_dump($data);
 
         try{
-            PortalPersonal::sendMail($data, 'main.components.vacations.nueva_solicitud');
+            PortalPersonal::sendMail($data, 'main.components.vacations.email_layout.nueva_solicitud');
         }catch(\Exception $e){
             echo $e;
             exit;
@@ -371,7 +373,7 @@ class VacationController extends Controller
     {   
         $solicitud = Solicitud::find($id_request);
 
-        if(($solicitud->status == DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id')) || ($solicitud->status == DB::table('estados_solicitud')->where('name', 'Cancelada')->value('id'))){
+        if(($solicitud->status == DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id')) || ($solicitud->status == DB::table('estados_solicitud')->where('name', 'Rechazada')->value('id')) || ($solicitud->status == DB::table('estados_solicitud')->where('name', 'Cancelada')->value('id'))){
             $solicitud->alert = 0;
             $solicitud->save();
         }
@@ -445,7 +447,7 @@ class VacationController extends Controller
             
             $solicitud->razon_cancelacion = $request->input('vr_motivo_cancelacion');
             $solicitud->status = DB::table('estados_solicitud')->where('name', 'Rechazada')->value('id');
-
+            $solicitud->alert = 1;
             $solicitud->save();
         
         }catch(\Exception $e){
@@ -467,12 +469,12 @@ class VacationController extends Controller
         $data['from'] = User::find($solicitud->authorizer)->email;
         
         // test mail ----
-        $data['to'] = "antonio.baez@advanzer.com";
-        //$data['to'] = User::find($solicitud->user)->email;
-        $data['cc'] = array();
+        //$data['to'] = "antonio.baez@advanzer.com";
+        
+        $data['to'] = User::find($solicitud->user)->email;
 
         try{
-            PortalPersonal::sendMail($data, 'main.components.absences.rechazar_solicitud');
+            PortalPersonal::sendMail($data, 'main.components.vacations.email_layout.rechazar_solicitud');
         }catch(\Exception $e){
             echo $e;
             exit;
@@ -518,26 +520,28 @@ class VacationController extends Controller
             'motivo' => $solicitud->getMotivoAssociated()->first()->name
         );
 
-        $data['subject'] = "Portal Personal - Solicitud Cancelada";
+        $data['subject'] = "Portal Personal - Solicitud Aprobada";
         $data['from'] = User::find($solicitud->authorizer)->email;
         
         // test mail ----
-        $data['to'] = "antonio.baez@advanzer.com";
-        //$data['to'] = "capitalhumano@advanzer.com";
+        //$data['to'] = "antonio.baez@advanzer.com";
+        
+        $data['to'] = "capitalhumano@advanzer.com";
         
         $mail_cc = array();
-        //$mail_admins = Permisos::find(DB::table('permisos')->where('name', 'Administración')->value('id'))->getPermissionsByUser()->get();
+
         $mail_admins = PortalPersonal::getAdminstratorsArray();
+        
         foreach($mail_admins as $mb){
             array_push($mail_cc, $mb['email']);
         }
-
-        // $data['cc'] = $mail_cc;
-        $data['cc'] = array();
+        
+        $data['cc'] = $mail_cc;
+        //$data['cc'] = array();
         //var_dump($mail_cc);
 
         try{
-            PortalPersonal::sendMail($data, 'main.components.absences.aceptar_solicitud');
+            PortalPersonal::sendMail($data, 'main.components.vacations.email_layout.aceptar_solicitud');
         }catch(\Exception $e){
             echo $e;
             exit;

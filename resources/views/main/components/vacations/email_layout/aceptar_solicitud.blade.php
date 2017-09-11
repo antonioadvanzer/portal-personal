@@ -10,6 +10,6 @@
     <p><b>Tipo: </b> Vacaciones </p>
     <p><b>Desde: </b>{!! $data['desde'] !!}</p>
     <p><b>Hasta: </b>{!! $data['hasta'] !!}</p>
-    <p>Ingresa a <a href="{!! URL::to('/') !!}">Portal Personal >> Solicitudes</a> para darle seguimiento a la solicitud</p>
+    <p>Ingresa a <a href="{!! URL::to('/advanzer-admin') !!}">Portal Personal >> Solicitudes</a> para darle seguimiento a la solicitud</p>
 
 @endsection

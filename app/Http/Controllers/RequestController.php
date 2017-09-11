@@ -376,6 +376,33 @@ class RequestController extends Controller
         
         DB::commit();
         
+        $data = array(
+            'id' => $solicitud->id,
+            'dias' => $solicitud->dias,
+            'tipo' => $solicitud->getTypeAssociated()->first()->name,
+            'desde' => $solicitud->fecha_inicio,
+            'hasta' => $solicitud->fecha_fin
+        );
+
+        $data['subject'] = "Portal Personal - Solicitud Autorizada";
+        $data['from'] = 'capitalhumano@advanzer.com';
+        $data['to'] = User::find($solicitud->user)->email;
+
+        $plantilla = null;
+        
+        if($solicitud->type == 1){
+            $plantilla = 'main.components.vacations.email_layout.autorizar_solicitud';
+        }elseif($solicitud->type == 2){
+            $plantilla = 'main.components.absences.email_layout.autorizar_solicitud';
+        }
+
+        try{
+            PortalPersonal::sendMail($data, $plantilla);
+        }catch(\Exception $e){
+            echo $e;
+            exit;
+        }
+
         return "success"; 
     }
 
@@ -408,6 +435,33 @@ class RequestController extends Controller
         }
         
         DB::commit();
+
+        $data = array(
+            'id' => $solicitud->id,
+            'autorizador' => $solicitud->getAuthorizerAssociated()->first()->name." ".$solicitud->getAuthorizerAssociated()->first()->apellido_paterno,
+            'dias' => $solicitud->dias,
+            'tipo' => $solicitud->getTypeAssociated()->first()->name,
+            'razon' => $solicitud->razon_cancelacion 
+        );
+
+        $data['subject'] = "Portal Personal - Solicitud Rechazada";
+        $data['from'] = 'capitalhumano@advanzer.com';
+        $data['to'] = User::find($solicitud->user)->email;
+
+        $plantilla = null;
+
+        if($solicitud->type == 1){
+            $plantilla = 'main.components.vacations.email_layout.rechazar_solicitud';
+        }elseif($solicitud->type == 2){
+            $plantilla = 'main.components.absences.email_layout.rechazar_solicitud';
+        }
+
+        try{
+            PortalPersonal::sendMail($data, $plantilla);
+        }catch(\Exception $e){
+            echo $e;
+            exit;
+        }
 
         return "success"; 
     }

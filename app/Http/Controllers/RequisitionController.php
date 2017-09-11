@@ -239,7 +239,13 @@ class RequisitionController extends Controller
                 //'alert'
             ];
 
-            Requisicion::create($newRequisition);
+            /*if($newRequisition['director'] == $newRequisition['partner_director']){
+                $newRequisition['status'] = DB::table('estados_requisicion')->where('name', 'Enviada')->value('id');
+            }else{
+                $newRequisition['status'] = DB::table('estados_requisicion')->where('name', 'Aceptada')->value('id');
+            }*/
+
+            $idRequisition = Requisicion::create($newRequisition);
 
         }catch(\Exception $e){
             echo $e;
@@ -248,6 +254,26 @@ class RequisitionController extends Controller
         }
 
         DB::commit();
+
+        $data = array(
+            'id' => $idRequisition->id,
+            'usuario' => Auth::user()->name." ".Auth::user()->apellido_paterno
+        );
+
+        $data['subject'] = "Portal Personal - Nueva Requisición";
+        $data['from'] = Auth::user()->email;
+
+        // test mail ----
+        //$data['to'] = "antonio.baez@advanzer.com";
+
+        $data['to'] = User::find($newRequisition['director'])->email;
+
+        try{
+            PortalPersonal::sendMail($data, 'main.components.requisitions.email_layout.nueva_requisicion');
+        }catch(\Exception $e){
+            echo $e;
+            exit;
+        }
         
         //return json_encode($newRequisition);
         return "success";
@@ -396,6 +422,9 @@ class RequisitionController extends Controller
             'observaciones' => $solicitud->observaciones,
             'estado' => $solicitud->getStatusAssociated()->first()->name,
             'status' => $solicitud->status,
+
+            'req_director' => $solicitud->director,
+            'req_autorizador' => $solicitud->partner_director,
         ];
 
         return json_encode($solicitudRecibida);
@@ -431,6 +460,27 @@ class RequisitionController extends Controller
 
         DB::commit();
 
+        $data = array(
+            'id' => $requisition->id,
+            'director' => $requisition->getDirectorAssociated()->first()->name." ".$requisition->getDirectorAssociated()->first()->apellido_paterno,
+            'razon' => $requisition->razon_cancelacion
+        );
+
+        $data['subject'] = "Portal Personal - Requisición Rechazada";
+        $data['from'] = User::find($requisition->director)->email;
+
+        // test mail ----
+        //$data['to'] = "antonio.baez@advanzer.com";
+
+        $data['to'] = User::find($requisition->user)->email;
+
+        try{
+            PortalPersonal::sendMail($data, 'main.components.requisitions.email_layout.rechazar_requisicion');
+        }catch(\Exception $e){
+            echo $e;
+            exit;
+        }
+
         return "success";
     }
 
@@ -461,6 +511,26 @@ class RequisitionController extends Controller
         }
 
         DB::commit();
+
+        $data = array(
+            'id' => $requisition->id,
+            'director' => $requisition->getDirectorAssociated()->first()->name." ".$requisition->getDirectorAssociated()->first()->apellido_paterno
+        );
+
+        $data['subject'] = "Portal Personal - Requisición Aceptada";
+        $data['from'] = User::find($requisition->director)->email;
+
+        // test mail ----
+        //$data['to'] = "antonio.baez@advanzer.com";
+
+        $data['to'] = User::find($requisition->partner_director)->email;
+
+        try{
+            PortalPersonal::sendMail($data, 'main.components.requisitions.email_layout.aceptar_requisicion');
+        }catch(\Exception $e){
+            echo $e;
+            exit;
+        }
         
         return "success";
     }
@@ -492,6 +562,48 @@ class RequisitionController extends Controller
         }
 
         DB::commit();
+
+        $data1 = array(
+            'id' => $requisition->id,
+            'director' => $requisition->getDirectorAssociated()->first()->name." ".$requisition->getDirectorAssociated()->first()->apellido_paterno,
+            'autorizador' => $requisition->getPartnerDirectorAssociated()->first()->name." ".$requisition->getPartnerDirectorAssociated()->first()->apellido_paterno,
+        );
+
+        $data1['subject'] = "Portal Personal - Requisición Autorizada";
+        $data1['from'] = User::find($requisition->partner_director)->email;
+
+        // test mail ----
+        //$data['to'] = "antonio.baez@advanzer.com";
+
+        $data1['to'] = User::find($requisition->user)->email;
+
+        try{
+            PortalPersonal::sendMail($data1, 'main.components.requisitions.email_layout.notificar_autorizar_requisicion');
+        }catch(\Exception $e){
+            echo $e;
+            exit;
+        }
+
+        // --------------------------
+
+        $data2 = array(
+            'id' => $requisition->id,
+            'usuario' => $requisition->getEmployedAssociated->first()->name." ".$requisition->getEmployedAssociated->first()->apellido_paterno,
+            'director' => $requisition->getDirectorAssociated()->first()->name." ".$requisition->getDirectorAssociated()->first()->apellido_paterno,
+            'autorizador' => $requisition->getPartnerDirectorAssociated()->first()->name." ".$requisition->getPartnerDirectorAssociated()->first()->apellido_paterno,
+        );
+
+        $data2['subject'] = "Portal Personal - Requisición Autorizada";
+        $data2['from'] = User::find($requisition->partner_director)->email;
+
+        $data2['to'] = "capitalhumano@advanzer.com";
+
+        try{
+            PortalPersonal::sendMail($data2, 'main.components.requisitions.email_layout.autorizar_requisicion');
+        }catch(\Exception $e){
+            echo $e;
+            exit;
+        }
 
         return "success";
     }
@@ -823,6 +935,22 @@ class RequisitionController extends Controller
         
         DB::commit();
         
+        $data = array(
+            'id' => $solicitud->id,
+        );
+
+        $data['subject'] = "Portal Personal - Requisición Atendida";
+        $data['from'] = "capitalhumano@advanzer.com";
+
+        $data['to'] = User::find($solicitud->user)->email;
+
+        try{
+            PortalPersonal::sendMail($data, 'main.components.requisitions.email_layout.atender_requisicion');
+        }catch(\Exception $e){
+            echo $e;
+            exit;
+        }
+
         return "success"; 
     }
 
@@ -852,6 +980,22 @@ class RequisitionController extends Controller
         }
         
         DB::commit();
+
+        $data = array(
+            'id' => $solicitud->id,
+        );
+
+        $data['subject'] = "Portal Personal - Requisición Cerrada";
+        $data['from'] = "capitalhumano@advanzer.com";
+
+        $data['to'] = User::find($solicitud->user)->email;
+
+        try{
+            PortalPersonal::sendMail($data, 'main.components.requisitions.email_layout.cerrar_requisicion');
+        }catch(\Exception $e){
+            echo $e;
+            exit;
+        }
         
         return "success"; 
     }

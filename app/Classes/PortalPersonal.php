@@ -54,11 +54,13 @@ class PortalPersonal
      */
     public static function sendMail($data, $format)
     {
-        
         Mail::send($format, ['data' => $data], function ($message) use ($data) {
             $message->from($data['from'], 'Portal Personal');
-            $message->to($data['to']);
-            $message->cc($data['cc']);
+            //$message->to($data['to']);
+            $message->to("antonio.baez@advanzer.com");//test mode
+            if(array_key_exists('cc', $data)){
+                $message->cc($data['cc']);
+            }
             $message->subject($data['subject']);
         });
     }
