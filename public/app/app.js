@@ -39,4 +39,5 @@ app.run(function($rootScope) {
     $rootScope.formLetterDetail={};
     $rootScope.formLetterDetail={};
     $rootScope.notification={};
+    
 });
