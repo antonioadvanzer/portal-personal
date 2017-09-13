@@ -187,27 +187,7 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin_getAllRequests()
-    {   
-        return $this->admin_Requests();
-    }
-
-    /**
-     * 
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function admin_getCanceledRequests()
-    {   
-        return $this->admin_Requests(1);
-    }
-
-    /**
-     * 
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function admin_getSendedRequests()
+    public function admin_getAllRequestsAbsence()
     {   
         return $this->admin_Requests(2);
     }
@@ -217,9 +197,9 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin_getAceptedRequests()
+    public function admin_getAllRequestsVacations()
     {   
-        return $this->admin_Requests(3);
+        return $this->admin_Requests(1);
     }
 
     /**
@@ -227,9 +207,9 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin_getRejectedRequests()
+    public function admin_getCanceledRequestsAbsence()
     {   
-        return $this->admin_Requests(4);
+        return $this->admin_Requests(2,1);
     }
 
     /**
@@ -237,9 +217,89 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin_getAuthorizedRequests()
+    public function admin_getCanceledRequestsVacations()
     {   
-        return $this->admin_Requests(5);
+        return $this->admin_Requests(1,1);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getSendedRequestsAbsence()
+    {   
+        return $this->admin_Requests(2,2);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getSendedRequestsVacations()
+    {   
+        return $this->admin_Requests(1,2);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getAceptedRequestsAbsence()
+    {   
+        return $this->admin_Requests(2,3);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getAceptedRequestsVacations()
+    {   
+        return $this->admin_Requests(1,3);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getRejectedRequestsAbsence()
+    {   
+        return $this->admin_Requests(2,4);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getRejectedRequestsVacations()
+    {   
+        return $this->admin_Requests(1,4);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getAuthorizedRequestsAbsence()
+    {   
+        return $this->admin_Requests(2,5);
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getAuthorizedRequestsVacations()
+    {   
+        return $this->admin_Requests(1,5);
     }
 
     /**
@@ -522,7 +582,8 @@ class RequestController extends Controller
                 "hasta" => $rm->fecha_fin,
                 "estado" => $rm->getStatusAssociated()->first()->name,
                 "status" => $rm->status,
-                "alerta" => $rm->alert
+                "alerta" => $rm->alert,
+                "alert" => $rm->alert
             ]);
         }
         
@@ -559,14 +620,17 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private function admin_Requests($status = 0)
+    private function admin_Requests($type, $status = 0)
     {   
         $requests = array();
         
         if($status == 0){
-            $requestModel = Solicitud::all();
+            $requestModel = Solicitud::where('type', $type)
+                            ->orderBy('id', 'desc')
+                            ->get();
         }else{
             $requestModel = Solicitud::where('status', $status)
+                            ->where('type', $type)
                             ->orderBy('id', 'desc')
                             ->get();
         }
@@ -584,7 +648,8 @@ class RequestController extends Controller
                 "hasta" => $rm->fecha_fin,
                 "estado" => $rm->getStatusAssociated()->first()->name,
                 "status" => $rm->status,
-                "alerta" => $rm->alert
+                "alerta" => $rm->alert,
+                "alert" => $rm->alert
                  ]);
         }
         

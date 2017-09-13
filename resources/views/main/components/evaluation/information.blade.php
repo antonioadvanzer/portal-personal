@@ -5,11 +5,11 @@
         <div class="large-banner-wrapper">
           <img ng-src="@{{::( 'app/evaluaciones/evaluacionmeta4.jpg' | appImage )}}" alt=""/>
         </div>
-        <div class="banner-text-wrapper">
+        <!--<div class="banner-text-wrapper">
           <div class="banner-text">
             <h1>Evaluaci&oacute;n de Desempeño</h1>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
@@ -20,12 +20,12 @@
   <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6">
     <div ba-panel ba-panel-class="with-scroll more-text-widget" ba-panel-title="Tipos de Evaluaci&oacute;n">
     <div class="section-block light-text" align="left">
-        <p>Recuerda que todos participamos en el proceso de evaluaci&oacute;n anual dado que existen 4 tipos de evaluaci&oacute;n: Anual, Por Proyectos, Evaluaci&oacute; 360º y Autoevaluaci&oacute;n.</p>
+        <p>Recuerda que todos participamos en el proceso de evaluaci&oacute;n anual dado que existen 4 tipos de evaluaci&oacute;n: Anual, Por Proyectos, Evaluaci&oacute;n 360º y Autoevaluaci&oacute;n.</p>
       </div>
       <div class="section-block regular-text" align="left">
-        <p><b>Anual: </b> En esta evaluaci&oacute;n se revisan y eval&uacute;n las competencias laborales y responsabilidades funcionales de acuerdo a tu posici&oacute;n y &aacute;rea. Se realiza por parte de nuestros Jefes Directos.</p><br>
-        <p><b>Por Proyecto: </b> Si durante el año estuvimos asignados durante mas de 3 meses a uno o mas proyectos, los lideres de esos proyectos, evaluar&aacute;n de manera gen&eacute;rica tus competencias laborales.</p><br>
-        <p><b>Evaluaci&oacute;n 360º: </b> Se eval&uacute;an de manera gen&eacute;rica competencias laborales. Esta aplica &uacute;nicamente para Gerentes, Gerentes Sr y Directores. Demanera aletoria, a algunos se nos pedir realizar esta evaluaci&oacute;n siempre y cuando hayamos colaborado con alguien que tenga esa posici&oacute;n. Esta evaluaci&oacute;n es confidencial y el evaluado solo conocer&aacute; el resultado final y no quien(es) lo evaluaron. Si te toca evaluar a un superior o compañero de trabajo, debes de ser muy objetivo al responder. Se aplican entre 3 y 5 evaluaciones 360º por cada colaborador en las posiciones mencionadas.</p><br>
+        <p><b>Anual: </b> En esta evaluaci&oacute;n se revisan y eval&uacute;an las competencias laborales y responsabilidades funcionales de acuerdo a tu posici&oacute;n y &aacute;rea. Se realiza por parte de nuestros Jefes Directos.</p><br>
+        <p><b>Por Proyecto: </b> Si durante el año estuvimos asignados durante mas de 3 meses a uno o mas proyectos, los l&iacute;deres de esos proyectos, evaluar&aacute;n de manera gen&eacute;rica tus competencias laborales.</p><br>
+        <p><b>Evaluaci&oacute;n 360º: </b> Se eval&uacute;an de manera gen&eacute;rica competencias laborales. Esta aplica &uacute;nicamente para Gerentes, Gerentes Sr y Directores. De manera aletoria, a algunos se nos pide realizar esta evaluaci&oacute;n siempre y cuando hayamos colaborado con alguien que tenga esa posici&oacute;n. Esta evaluaci&oacute;n es confidencial y el evaluado solo conocer&aacute; el resultado final y no quien(es) lo evaluaron. Si te toca evaluar a un superior o compañero de trabajo, debes de ser muy objetivo al responder. Se aplican entre 3 y 5 evaluaciones 360º por cada colaborador en las posiciones mencionadas.</p><br>
         <p><b>Autoevaluaci&oacute;n: </b> El como te ves a tu mismo tambi&eacute;n es importante por lo que todos debemos realizar una autoevaluaci&oacute;n de nuestras competencias laborales.</p>
       </div>
     </div>
@@ -38,13 +38,13 @@
         <p>Veamos con un ejemplo lo que significa la escala:</p>
       </div>
       <div class="section-block bold-text">
-        <p>Constrataste a un jardinero y su trabajo es regar diariamente los rosales del jardin.</p>
+        <p>Constrataste a un jardinero y su trabajo es regar diariamente los rosales del jard&iacute;n.</p>
         <p>¿C&oacute;mo vas a calificar su trabajo?</p>
       </div>
       <div class="section-block regular-text" align="left">
         <p><b>1 (NO CUMPLE): </b> &Eacute;l est&aacute; haciendo su trabajo. Probablemente va todos los d&iacute;as al jard&iacute;n, pero no est&aacute; regando los rosales.</p><br>
         <p><b>2 (CUMPLE PARCIALMENTE): </b> Riega los rosales un d&iacute;a si y un d&iacute;a no o tal vez los riega a diario pero solo riega una parte de ellos. Esta haciendo su trabajo pero no como debe hacerlo.</p><br>
-        <p><b>3 (CUMPLE 100% CON SU TRABAJO): </b> Todos los d&iacute;as llega a su hora y riega todos los rosales del jard&iacute;n. ¡Est&aacute; su trabajo al 100%! Adicionalmente su trabajo ¿Lo hace cantando? ¿Tiene la mejor de las actitudes? !Perfecto! Est&aacute; cumpliendo con su trabajo y ¡s&uacute;per! que lo haga con ¡gusto!</p><br>
+        <p><b>3 (CUMPLE 100% CON SU TRABAJO): </b> Todos los d&iacute;as llega a su hora y riega todos los rosales del jard&iacute;n. ¡Est&aacute; su trabajo al 100%! Adicionalmente su trabajo ¿Lo hace cantando? ¿Tiene la mejor de las actitudes? ¡Perfecto! Est&aacute; cumpliendo con su trabajo y ¡s&uacute;per! que lo haga con ¡gusto!</p><br>
         <p><b>4 (EXCEDE EXPECTATIVAS): </b> Aparte de regar los rosales diariamente con la mejor de la actitudes y llegar a su hora, corta las hojas secas de cada rosal, poda las ramas que necesitan ser podadas, barre las hojas ca&iacute;das: est&aacute; haciendo actividades adicionales relacionadas con su trabajo que no son parte de &eacute;ste. Est&aacute; excediendo las expectativas y le ponemos un 4!</p><br>
         <p><b>5 (ES UN MODELO A SEGUIR): </b> Aparte de hacer su trabajo al 100%, excede expectativas a ir mas all&aacute; de lo que se espera de &eacute;l, por voluntad propia apoya y riega los tulipanes, junta a los dem&aacute;s jardineros y les enseña t&eacute;cnicas de jardiner&iacute;a, fumiga el jard&iacute;n, etc. Es decir es un modelo a seguir para los dem&aacute;s y sobre todo es reconocido por sus compañeros.</p><br>
       </div>

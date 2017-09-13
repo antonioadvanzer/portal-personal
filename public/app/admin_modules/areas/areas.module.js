@@ -16,7 +16,7 @@
           template : '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
           abstract: true,
           controller: 'AreasModuleCtrl',
-          title: 'Areas',
+          title: 'Áreas',
           sidebarMeta: {
             icon: 'ion-ios-browsers-outline',
             order: 300,
@@ -33,7 +33,7 @@
         .state('areas.agregar', {
           url: '/agregar_area',
           templateUrl: 'admin-theme/modules/area/crear_area',
-          title: 'Nueva Area',
+          title: 'Nueva Área',
           sidebarMeta: {
             order: 0,
           },
@@ -41,7 +41,7 @@
         .state('areas.lista_areas', {
           url: '/lista_areas',
           templateUrl: 'admin-theme/modules/area/lista_areas',
-          title: 'Areas',
+          title: 'Áreas',
           sidebarMeta: {
             order: 100,
           },
@@ -54,7 +54,7 @@
             templateUrl: function (stateParams){
                     return 'admin-theme/modules/area/ver_area';
             },
-            title: 'Area',
+            title: 'Área',
         });
       
     $urlRouterProvider.when('/areas','/areas/informacion');

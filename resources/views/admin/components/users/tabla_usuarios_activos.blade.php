@@ -41,7 +41,10 @@
     </thead>
     <tbody>
     <tr ng-repeat="ea in users_table.empleadosActivos" ng-click="showUser(ea.id)">
-        <td class="table-id">@{{ea.id}}</td>
+        <!--<td class="table-id">@{{ea.id}}</td>-->
+        <td class="table-id">
+            <a class="al-user-profile"><img ng-src="@{{::( ea.nomina | profilePicture )}}"></a>
+        </td>
         <td>@{{ea.nomina}}</td>
         <td>@{{ea.nombre}}</td>
         <td>@{{ea.email}}</td>

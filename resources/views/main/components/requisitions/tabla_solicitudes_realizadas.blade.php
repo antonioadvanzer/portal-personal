@@ -37,7 +37,7 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="sl in requisitions_table.solicitudesPropias" ng-click="showOwnRequisition(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && (sl.status == 4))}">
+    <tr ng-repeat="sl in requisitions_table.solicitudesPropias" ng-click="showOwnRequisition(sl.id)" ng-class="{'primary': ((sl.alert == 1) && ((sl.status == 1) || (sl.status == 5) (sl.status == 6) (sl.status == 7)))}" class="row-table">
       <td class="table-id">@{{sl.id}}</td>
       <td>@{{sl.folio}}</td>
       <td>@{{sl.fecha}}</td>
@@ -49,7 +49,7 @@
       <td>@{{sl.area}}</td>
       <td>@{{sl.empresa}}</td>
       <td>@{{sl.estado}}</td>
-        <td><i ng-if="((sl.alerta == 1) && (sl.status == 4))" class="fa fa fa-bell"></i></td>
+        <td><i ng-if="((sl.alert == 1) && ((sl.status == 1) || (sl.status == 5) (sl.status == 6) (sl.status == 7)))" class="fa fa fa-bell"></i></td>
     </tr>
     </tbody>
     <tfoot>

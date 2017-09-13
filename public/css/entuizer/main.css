@@ -3316,7 +3316,7 @@ input.search-input {
   border: none; }
 .table > tbody > tr.primary > td {
   /*background-color: rgba(32, 158, 145, 0.7);*/
-  background-color: rgba(207, 219, 81, 0.7);
+  background-color: rgba(95, 156, 210, 1.00);
   color: #ffffff;
   border: none; }
   .table > tbody > tr.primary > td a.email-link {
@@ -4470,7 +4470,7 @@ a.al-logo {
   transition: all .15s ease-in-out;
   padding: 0;
   /*width: 36px;*/
-    width: 146px;
+  /*width: 146px;*/
   height: 36px;
   border: 0;
   opacity: 1;
@@ -6705,4 +6705,10 @@ label.todo-checkbox {
     top: 0;
     bottom: 0;
   }
+}
+
+/* Cursor Pointer */
+
+.row-table td{
+    cursor:pointer !important;
 }

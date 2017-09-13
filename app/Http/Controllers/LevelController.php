@@ -26,7 +26,7 @@ class LevelController extends Controller
     {   
         $levels = array();
 
-        $levelsModel = Nivel::all();
+        $levelsModel = Nivel::orderBy('name', 'asc')->get();
         
         foreach($levelsModel as $lv){
             array_push($levels,[

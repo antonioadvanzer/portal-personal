@@ -206,7 +206,7 @@ class AreaController extends Controller
     {   
         $areas = array();
 
-        $areasModel = Area::all();
+        $areasModel = Area::orderBy('name', 'asc')->get();
         
         foreach($areasModel as $ar){
             array_push($areas,[
@@ -227,7 +227,7 @@ class AreaController extends Controller
     public function admin_getAreasActive()
     {   $areas = array();
 
-        $areaModel = Area::all();
+        $areaModel = Area::orderBy('name', 'asc')->get();
         
         foreach($areaModel as $am){
             array_push($areas,[

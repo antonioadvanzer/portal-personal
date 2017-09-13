@@ -14,6 +14,7 @@ use DB;
 use File;
 use Mail;
 use URL;
+use PortalPersonal;
 
 class UserController extends Controller
 {
@@ -200,7 +201,7 @@ class UserController extends Controller
     {   
         $bosses = array();
 
-        $userModel = User::all();
+        $userModel = User::orderBy('name', 'asc')->get();
         
         foreach($userModel as $um){
             /*"posicion" => $um->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->name,
@@ -452,11 +453,53 @@ class UserController extends Controller
             'motivo' => null
         ];
 
-        if($perfil = $request->file('nu_foto')){
+        if($perfil = $request->file('uu_foto')){
             $user['photo'] = $request->input('uu_nomina').".".$perfil->getClientOriginalExtension();
+            $upload_success = $perfil->move($this->urlFotoPerfil, $user['photo']);
         }
 
-        dd($user);
+        //echo $request->input('uu_permisos');
+
+        $user_update = User::find($request->input('uu_id'));
+        //dd($user_update);
+        try{
+
+            $user_update->name = $user['name'];
+            $user_update->apellido_paterno = $user['apellido_paterno'];
+            $user_update->apellido_materno = $user['apellido_materno'];
+            //$user_update->photo = $user['name'];
+            $user_update->email = $user['email'];
+            $user_update->nomina = $user['nomina'];
+            $user_update->plaza = $user['plaza'];
+            $user_update->area = $user['area'];
+            $user_update->posicion_track = $user['posicion_track'];
+            $user_update->company = $user['company'];
+            $user_update->fecha_ingreso = $user['fecha_ingreso'];
+
+            $user_update->save();
+            
+            Permisos_Usuario::where('usuario',$request->input('uu_id'))->delete();
+
+            $permissions_selected = explode("-",$request->input('uu_permisos'));
+            
+            foreach($permissions_selected as $ps){
+                if($ps != ""){
+                    Permisos_Usuario::create([
+                        //"permiso" => DB::table('permisos')->where('name', $this->mainPermissions[$ps])->value('id'),
+                        "permiso" => $ps,
+                        "usuario" => $request->input('uu_id')
+                    ]);
+                    //echo $ps."<br>";
+                }
+            }
+
+            //var_dump($user);
+
+        }catch(\Exception $e){
+            echo $e;
+            DB::rollBack();
+            exit;
+        }
 
         DB::commit();
         
@@ -511,7 +554,8 @@ class UserController extends Controller
                 'us_company_name' => $userModel->getCompanyAssociated()->first()->name,
                 'us_boss_id' => $userModel->getBoss()->first()->getBossAssociated()->first()->id,
                 'us_boss_name' => $userModel->getBoss()->first()->getBossAssociated()->first()->name." ".$userModel->getBoss()->first()->getBossAssociated()->first()->apellido_paterno,
-                'us_permissions' => $this->admin_getPermissionsEnabledByUser($id_user)
+                'us_permissions' => $this->admin_getPermissionsEnabledByUser($id_user),
+                'us_permissions_user' => PortalPersonal::getPermissionsToEditUser($id_user)
             ];
 
         return json_encode($user);
@@ -560,60 +604,51 @@ class UserController extends Controller
 
         $permissions='';
         
-        $pu = $um->getPermissionsUser()->get();
+        //$pu = $um->getPermissionsUser()->get();
         $pa = $um->getAreaAssociated()->first()->getPermissionsArea()->get();
         $pp = $um->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->getPermissionsPositions()->get();
         
-        if($this->admin_checkPermission($this->adminPermissions['ADMINISTRACION'], $pu) 
-            or $this->admin_checkPermission($this->adminPermissions['ADMINISTRACION'], $pa) 
+        if($this->admin_checkPermission($this->adminPermissions['ADMINISTRACION'], $pa) 
             or $this->admin_checkPermission($this->adminPermissions['ADMINISTRACION'], $pp)){
                 $permissions.="1";
         }
 
-        if($this->admin_checkPermission($this->adminPermissions['PERSONAL_A_CARGO'], $pu) 
-            or $this->admin_checkPermission($this->adminPermissions['PERSONAL_A_CARGO'], $pa) 
+        if($this->admin_checkPermission($this->adminPermissions['PERSONAL_A_CARGO'], $pa) 
             or $this->admin_checkPermission($this->adminPermissions['PERSONAL_A_CARGO'], $pp)){
                 $permissions.=",2";
         }
 
-        if($this->admin_checkPermission($this->adminPermissions['CAPTURISTA_DE_GASTOS_DE_VIAJE'], $pu) 
-            or $this->admin_checkPermission($this->adminPermissions['CAPTURISTA_DE_GASTOS_DE_VIAJE'], $pa) 
+        if($this->admin_checkPermission($this->adminPermissions['CAPTURISTA_DE_GASTOS_DE_VIAJE'], $pa) 
             or $this->admin_checkPermission($this->adminPermissions['CAPTURISTA_DE_GASTOS_DE_VIAJE'], $pp)){
                 $permissions.=",3";
         }
 
-        if($this->admin_checkPermission($this->adminPermissions['CAPTURISTA_DE_HARVEST'], $pu) 
-            or $this->admin_checkPermission($this->adminPermissions['CAPTURISTA_DE_HARVEST'], $pa) 
+        if($this->admin_checkPermission($this->adminPermissions['CAPTURISTA_DE_HARVEST'], $pa) 
             or $this->admin_checkPermission($this->adminPermissions['CAPTURISTA_DE_HARVEST'], $pp)){
                 $permissions.=",4";
         }
 
-        if($this->admin_checkPermission($this->adminPermissions['VACACIONES'], $pu) 
-            or $this->admin_checkPermission($this->adminPermissions['VACACIONES'], $pa) 
+        if($this->admin_checkPermission($this->adminPermissions['VACACIONES'], $pa) 
             or $this->admin_checkPermission($this->adminPermissions['VACACIONES'], $pp)){
                 $permissions.=",5";
         }
 
-        if($this->admin_checkPermission($this->adminPermissions['PERMISOS_DE_AUSENCIA'], $pu) 
-            or $this->admin_checkPermission($this->adminPermissions['PERMISOS_DE_AUSENCIA'], $pa) 
+        if($this->admin_checkPermission($this->adminPermissions['PERMISOS_DE_AUSENCIA'], $pa) 
             or $this->admin_checkPermission($this->adminPermissions['PERMISOS_DE_AUSENCIA'], $pp)){
                 $permissions.=",6";
         }
 
-        if($this->admin_checkPermission($this->adminPermissions['CARTAS_Y_CONSTANCIAS'], $pu) 
-            or $this->admin_checkPermission($this->adminPermissions['CARTAS_Y_CONSTANCIAS'], $pa) 
+        if($this->admin_checkPermission($this->adminPermissions['CARTAS_Y_CONSTANCIAS'], $pa) 
             or $this->admin_checkPermission($this->adminPermissions['CARTAS_Y_CONSTANCIAS'], $pp)){
                 $permissions.=",7";
         }
 
-        if($this->admin_checkPermission($this->adminPermissions['REQUISICIONES'], $pu) 
-            or $this->admin_checkPermission($this->adminPermissions['REQUISICIONES'], $pa) 
+        if($this->admin_checkPermission($this->adminPermissions['REQUISICIONES'], $pa) 
             or $this->admin_checkPermission($this->adminPermissions['REQUISICIONES'], $pp)){
                 $permissions.=",8";
         }
 
-        if($this->admin_checkPermission($this->adminPermissions['EVALUACIONES'], $pu) 
-            or $this->admin_checkPermission($this->adminPermissions['EVALUACIONES'], $pa) 
+        if($this->admin_checkPermission($this->adminPermissions['EVALUACIONES'], $pa) 
             or $this->admin_checkPermission($this->adminPermissions['EVALUACIONES'], $pp)){
                 $permissions.=",9";
         }

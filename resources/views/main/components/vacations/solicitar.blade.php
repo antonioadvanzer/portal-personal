@@ -1,7 +1,7 @@
 <form name="newSolicitud" ng-submit="save()">
     
     <div class="progress ng-scope" ng-show="sending">
-      <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
+      <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
         <span class="sr-only">100% Complete (success)</span>
       </div>
     </div>
@@ -38,22 +38,26 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-nomina"># Nómina</span>
-                <input type="text" class="form-control with-primary-addon" id="inputNomina" placeholder="" value="@{{ user.nomina }}"  readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputNomina" placeholder="" value="@{{ user.nomina }}"  readonly>-->
+                <label class="form-control">@{{user.nomina}}</label>
             </div>
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-area">Área Actual</span>
-                <input type="text" class="form-control with-primary-addon" id="inputArea" placeholder="" value="@{{ user.area_actual }}"  readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputArea" placeholder="" value="@{{ user.area_actual }}"  readonly>-->
+                <label class="form-control">@{{user.area_actual}}</label>
             </div>
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-fecha">Fecha de Ingreso</span>
-                <input type="text" class="form-control with-primary-addon" id="inputFecha" placeholder="" value="@{{ user.fecha_ingreso }}"  readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputFecha" placeholder="" value="@{{ user.fecha_ingreso }}"  readonly>-->
+                <label class="form-control">@{{user.fecha_ingreso}}</label>
             </div>
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-antiguedad">Antigüedad</span>
-                <input type="text" class="form-control with-primary-addon" id="inputAntiguedad" placeholder="" value="@{{ user.antiguedad }}" readonly>
+                <!--<input type="text" class="form-control with-primary-addon" id="inputAntiguedad" placeholder="" value="@{{ user.antiguedad }}" readonly>-->
+                <label class="form-control">@{{user.antiguedad}}</label>
             </div>
             
         </div>

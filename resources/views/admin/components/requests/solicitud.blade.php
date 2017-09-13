@@ -79,7 +79,8 @@
         <div class="col-md-12">
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Observaciones</span>
-                <textarea placeholder="" class="form-control" id="inputRequestObservationes" name="inputRequestObservationes" ng-model="formRequest.inputRequestObservationes" readonly></textarea>
+                <!--<textarea placeholder="" class="form-control" id="inputRequestObservationes" name="inputRequestObservationes" ng-model="formRequest.inputRequestObservationes" readonly></textarea>-->
+                <p class="form-control">@{{formRequest.inputRequestObservationes}}</p>
             </div>
             
         </div>
@@ -90,7 +91,8 @@
             
             <div class="input-group">
                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Motivo Cancelaci&oacute;n </span>
-                <textarea placeholder="" class="form-control" id="inputRequestMotivoCancelacion" name="inputRequestMotivoCancelacion" ng-model="formRequest.inputRequestMotivoCancelacion" readonly></textarea>
+                <!--<textarea placeholder="" class="form-control" id="inputRequestMotivoCancelacion" name="inputRequestMotivoCancelacion" ng-model="formRequest.inputRequestMotivoCancelacion" readonly></textarea>-->
+                <p class="form-control">@{{formRequest.inputRequestMotivoCancelacion}}</p>
             </div>
             
         </div>
@@ -113,17 +115,17 @@
     
     <div class="row">
         <div class="col-md-6">
-            <div class="input-group">
+            <div class="input-group" align="center">
                 <h5 class="button-title">Jefe Directo/Jefe de Proyecto</h5><br>
-                <div type="button" ng-show="formRequest.inputRequestAuthBoss == 1" class="btn btn-success btn-icon"><i class="ion-android-checkmark-circle"></i></div>
-                <div type="button" ng-show="formRequest.inputRequestAuthBoss == 0" class="btn btn-info btn-icon"><i class="ion-help"></i></div>
+                <div ng-show="formRequest.inputRequestAuthBoss == 1" class="alert bg-success col-md-4" align="center"><!--<i class="ion-android-checkmark-circle"></i>--><h3>Autorizado</h3></div>
+                <div ng-show="formRequest.inputRequestAuthBoss == 0" class="alert bg-info col-md-4" align="center"><!--<i class="ion-help"></i>--><h3>En Espera</h3></div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="input-group">
+            <div class="input-group" align="center">
                 <h5 class="button-title">Capital Humano</h5><br>
-                <div type="button" ng-show="formRequest.inputRequestAuthCh == 1" class="btn btn-success btn-icon"><i class="ion-android-checkmark-circle"></i></div>
-                <div type="button" ng-show="formRequest.inputRequestAuthCh == 0" class="btn btn-info btn-icon"><i class="ion-help"></i></div>
+                <div ng-show="formRequest.inputRequestAuthCh == 1" class="alert bg-success col-md-4" align="center"><!--<i class="ion-android-checkmark-circle"></i>--><h3>Autorizado</h3></div>
+                <div ng-show="formRequest.inputRequestAuthCh == 0" class="alert bg-info col-md-4" align="center"><!--<i class="ion-help"></i>--><h3>En Espera</h3></div>
             </div>
         </div>
     </div>

@@ -55,7 +55,8 @@ class PortalPersonal
     public static function sendMail($data, $format)
     {
         Mail::send($format, ['data' => $data], function ($message) use ($data) {
-            $message->from($data['from'], 'Portal Personal');
+            //$message->from($data['from'], 'Portal Personal');
+            $message->from('notificaciones.ch@advanzer.com', 'Portal Personal');
             //$message->to($data['to']);
             $message->to("antonio.baez@advanzer.com");//test mode
             if(array_key_exists('cc', $data)){
@@ -187,6 +188,58 @@ class PortalPersonal
 
         return $permissions;
     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public static function getPermissionsToEditUser($id_user)
+     {   
+         $um = User::find($id_user);
+ 
+         $permissions='';
+         
+         $pu = $um->getPermissionsUser()->get();
+         
+         if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['ADMINISTRACION'], $pu)){
+                 $permissions.="1";
+         }
+ 
+         if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['PERSONAL_A_CARGO'], $pu)){
+                 $permissions.=",2";
+         }
+ 
+         if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_GASTOS_DE_VIAJE'], $pu)){
+                 $permissions.=",3";
+         }
+ 
+         if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_HARVEST'], $pu)){
+                 $permissions.=",4";
+         }
+ 
+         if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['VACACIONES'], $pu)){
+                 $permissions.=",5";
+         }
+ 
+         if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['PERMISOS_DE_AUSENCIA'], $pu)){
+                 $permissions.=",6";
+         }
+ 
+         if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CARTAS_Y_CONSTANCIAS'], $pu)){
+                 $permissions.=",7";
+         }
+ 
+         if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['REQUISICIONES'], $pu)){
+                 $permissions.=",8";
+         }
+ 
+         if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['EVALUACIONES'], $pu)){
+                 $permissions.=",9";
+         }
+ 
+         return $permissions;
+     }
 
     /**
      * 

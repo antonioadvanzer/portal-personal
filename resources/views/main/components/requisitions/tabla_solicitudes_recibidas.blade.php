@@ -38,7 +38,7 @@
     </tr>-->
     </thead>
     <tbody>
-    <tr ng-repeat="sl in requisitions_table.solicitudesRecibidas" ng-click="showRequisitionReceived(sl.id)" ng-class="{'primary': (sl.alerta == 1)}">
+    <tr ng-repeat="sl in requisitions_table.solicitudesRecibidas" ng-click="showRequisitionReceived(sl.id)" ng-class="{'primary': (sl.alerta == 1)}" class="row-table">
       <td class="table-id">@{{sl.id}}</td>
       <td>@{{sl.folio}}</td>
       <td>@{{sl.fecha}}</td>

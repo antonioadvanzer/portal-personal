@@ -5,11 +5,11 @@
 (function () {
   'use strict';
 
-  angular.module('PortalPersonal.admin_modules.solicitudes')
-      .controller('SolicitudesModuleCtrl', SolicitudesModuleCtrl);
+  angular.module('PortalPersonal.admin_modules.vacaciones')
+      .controller('VacacionesModuleCtrl', VacacionesModuleCtrl);
 
   /** @ngInject */
-  function SolicitudesModuleCtrl($scope, $http, $filter, $window, $location, $state, $uibModal, $timeout, editableOptions, editableThemes) {
+  function VacacionesModuleCtrl($scope, $http, $filter, $window, $location, $state, $uibModal, $timeout, editableOptions, editableThemes) {
   
     //var vm = this;
       
@@ -17,7 +17,7 @@
       
     $scope.getAllRequest = function(){
     //function getAllRequest(){
-        return $http.get("admin-theme/modules/request/get_all_requests").then(function (response) {
+        return $http.get("admin-theme/modules/request/get_all_requests_vacations").then(function (response) {
         //$.getJSON("admin-theme/modules/request/get_all_requests", function( data ) {
             return response.data;
             //$scope.requests_table.todasLasSolicitudes = data;
@@ -27,7 +27,7 @@
     
     $scope.getCanceledRequest = function(){
     //function getCanceledRequest(){
-        return $http.get("admin-theme/modules/request/get_canceled_requests").then(function (response) {
+        return $http.get("admin-theme/modules/request/get_canceled_requests_vacations").then(function (response) {
         //$.getJSON("admin-theme/modules/request/get_canceled_requests", function( data ) {
             return response.data;
             //$scope.requests_table.solicitudesCanceladas = data;
@@ -37,7 +37,7 @@
     
     $scope.getSendedRequest = function(){
     //function getSendedRequest(){
-        return $http.get("admin-theme/modules/request/get_sended_requests").then(function (response) {
+        return $http.get("admin-theme/modules/request/get_sended_requests_vacations").then(function (response) {
         //$.getJSON("admin-theme/modules/request/get_sended_requests", function( data ) {
             return response.data;
             //$scope.requests_table.solicitudesEnviadas = data;
@@ -47,7 +47,7 @@
     
     $scope.getAceptedRequest = function(){
     //function getAceptedRequest(){
-        return $http.get("admin-theme/modules/request/get_acepted_requests").then(function (response) {
+        return $http.get("admin-theme/modules/request/get_acepted_requests_vacations").then(function (response) {
         //$.getJSON("admin-theme/modules/request/get_acepted_requests", function( data ) {
             return response.data;
             //$scope.requests_table.solicitudesAceptadas = data;
@@ -57,7 +57,7 @@
     
     $scope.getRejectedRequest = function(){
     //function getRejectedRequest(){
-        return $http.get("admin-theme/modules/request/get_rejected_requests").then(function (response) {
+        return $http.get("admin-theme/modules/request/get_rejected_requests_vacations").then(function (response) {
         //$.getJSON("admin-theme/modules/request/get_rejected_requests", function( data ) {
             return response.data;
             //$scope.requests_table.solicitudesRechazadas = data;
@@ -67,7 +67,7 @@
     
     $scope.getAutorizedRequest = function(){
     //function getAutorizedRequest(){
-        return $http.get("admin-theme/modules/request/get_authorized_requests").then(function (response) {
+        return $http.get("admin-theme/modules/request/get_authorized_requests_vacations").then(function (response) {
         //$.getJSON("admin-theme/modules/request/get_authorized_requests", function( data ) {
             return response.data;
             //$scope.requests_table.solicitudesAutorizadas = data;
@@ -163,7 +163,7 @@
             
             
             $scope.refreshTables();
-            $state.go('solicitudes.detalle_autorizar');
+            $state.go('vacaciones.detalle_autorizar');
         });
         
     }
@@ -204,7 +204,7 @@
             console.log(response.data);
             $scope.sending = false;
             $scope.refreshTables();
-            resetForm("solicitudes.toda_las_solicitudes");
+            resetForm("vacaciones.toda_las_solicitudes");
             getAlert('theme/success_modal/Solicitud aprobada correctamente');
         });
         
@@ -229,7 +229,7 @@
         .success(function (response) {
             console.log(response);
             $scope.refreshTables();
-            resetForm("solicitudes.toda_las_solicitudes");
+            resetForm("vacaciones.toda_las_solicitudes");
             $scope.sending = false;
             getAlert('theme/success_modal/Solicitud rechazada correctamente');
             
@@ -251,7 +251,7 @@
             console.log(response.data);
             $scope.sending = false;
             $scope.refreshTables();
-            resetForm("solicitudes.toda_las_solicitudes");
+            resetForm("vacaciones.toda_las_solicitudes");
             getAlert('theme/success_modal/Solicitud cancelada correctamente');
         });
         

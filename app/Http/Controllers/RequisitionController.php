@@ -99,6 +99,90 @@ class RequisitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function main_getCountRequestSended()
+    { 
+        $requisitions1 = DB::table('requisiciones')
+                ->select(DB::raw('count(*) as requisitions_count'))
+                ->where('user', Auth::user()->id)
+                ->where('status', DB::table('estados_requisicion')->where('name', 'Cancelada')->value('id'))
+                ->where('alert', 1)
+                ->first();
+
+        $requisitions2 = DB::table('requisiciones')
+                ->select(DB::raw('count(*) as requisitions_count'))
+                ->where('user', Auth::user()->id)
+                ->where('status', DB::table('estados_requisicion')->where('name', 'Rechazada')->value('id'))
+                ->where('alert', 1)
+                ->first();
+
+        $requisitions3 = DB::table('requisiciones')
+                ->select(DB::raw('count(*) as requisitions_count'))
+                ->where('user', Auth::user()->id)
+                ->where('status', DB::table('estados_requisicion')->where('name', 'En Proceso')->value('id'))
+                ->where('alert', 1)
+                ->first();
+
+        $requisitions4 = DB::table('requisiciones')
+                ->select(DB::raw('count(*) as requisitions_count'))
+                ->where('user', Auth::user()->id)
+                ->where('status', DB::table('estados_requisicion')->where('name', 'Completada')->value('id'))
+                ->where('alert', 1)
+                ->first();
+
+        $requisitions = $requisitions1->requisitions_count + $requisitions2->requisitions_count + $requisitions3->requisitions_count + $requisitions4->requisitions_count;
+
+        return $requisitions;
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_getCountRequestReceived()
+    { 
+        $requisition1 = DB::table('requisiciones')
+                ->select(DB::raw('count(*) as requisitions_count'))
+                ->where('status', DB::table('estados_requisicion')->where('name', 'Enviada')->value('id'))
+                ->where('director', Auth::user()->id)
+                ->where('alert', 1)
+                ->first();
+
+        $requisition2 = DB::table('requisiciones')
+                ->select(DB::raw('count(*) as requisitions_count'))
+                ->where('status', DB::table('estados_requisicion')->where('name', 'Enviada')->value('id'))
+                ->Where('partner_director', Auth::user()->id)
+                ->where('alert', 1)
+                ->first();
+
+        $requisitions = $requisition1->requisitions_count + $requisition2->requisitions_count;
+        
+        return $requisitions;
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getCountRequestReceived()
+    { 
+        $requisition1 = DB::table('requisiciones')
+                ->select(DB::raw('count(*) as requisitions_count'))
+                ->where('status', DB::table('estados_requisicion')->where('name', 'Autorizada')->value('id'))
+                ->where('alert', 1)
+                ->first();;
+
+        $requisitions = $requisition1->requisitions_count;
+        
+        return $requisitions;
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function main_getOwnRequests()
     { 
         $requests = array();
@@ -121,6 +205,7 @@ class RequisitionController extends Controller
                 "empresa" => $rm->getCompanyAssociated()->first()->name,
                 "estado" => $rm->getStatusAssociated()->first()->name,
                 "aleta" => $rm->alert,
+                'alert' => $rm->alert,
 
                 "status" => $rm->status
             ]);
@@ -160,7 +245,8 @@ class RequisitionController extends Controller
                 "area" => $rm->getAreaAssociated()->first()->name,
                 "empresa" => $rm->getCompanyAssociated()->first()->name,
                 "estado" => $rm->getStatusAssociated()->first()->name,
-                "alerta" => $rm->alert
+                "alerta" => $rm->alert,
+                'alert' => $rm->alert,
             ]);
         }
 
@@ -176,7 +262,8 @@ class RequisitionController extends Controller
                 "area" => $rm->getAreaAssociated()->first()->name,
                 "empresa" => $rm->getCompanyAssociated()->first()->name,
                 "estado" => $rm->getStatusAssociated()->first()->name,
-                "alerta" => $rm->alert
+                "alerta" => $rm->alert,
+                'alert' => $rm->alert,
             ]);
         }
 
@@ -328,10 +415,22 @@ class RequisitionController extends Controller
     {
         $solicitud = Requisicion::find($id_requisition);
         
-        if($solicitud->status == DB::table('estados_requisicion')->where('name', 'En Proceso')->value('id')){
+        /*if(($solicitud->status == DB::table('estados_requisicion')->where('name', 'Cancelada')->value('id'))
+         || ($solicitud->status == DB::table('estados_requisicion')->where('name', 'Autorizada')->value('id'))
+         || ($solicitud->status == DB::table('estados_requisicion')->where('name', 'Rechazada')->value('id'))
+         || ($solicitud->status == DB::table('estados_requisicion')->where('name', 'En Proceso')->value('id'))
+         || ($solicitud->status == DB::table('estados_requisicion')->where('name', 'Completada')->value('id'))){
             $solicitud->alert = 0;
             $solicitud->save();
-        }
+        }*/
+
+        if(($solicitud->status == DB::table('estados_requisicion')->where('name', 'Cancelada')->value('id'))
+        || ($solicitud->status == DB::table('estados_requisicion')->where('name', 'Rechazada')->value('id'))
+        || ($solicitud->status == DB::table('estados_requisicion')->where('name', 'En Proceso')->value('id'))
+        || ($solicitud->status == DB::table('estados_requisicion')->where('name', 'Completada')->value('id'))){
+           $solicitud->alert = 0;
+           $solicitud->save();
+       }
 
         $solicitudPropia = [
             'id' => $id_requisition,
@@ -370,6 +469,7 @@ class RequisitionController extends Controller
             'razon_cancelacion' => $solicitud->razon_cancelacion,
             'estado' => $solicitud->getStatusAssociated()->first()->name,
             'status' => $solicitud->status,
+            'alert' => $solicitud->alert,
         ];
 
         return json_encode($solicitudPropia);
@@ -422,6 +522,7 @@ class RequisitionController extends Controller
             'observaciones' => $solicitud->observaciones,
             'estado' => $solicitud->getStatusAssociated()->first()->name,
             'status' => $solicitud->status,
+            'alert' => $solicitud->alert,
 
             'req_director' => $solicitud->director,
             'req_autorizador' => $solicitud->partner_director,
@@ -858,7 +959,7 @@ class RequisitionController extends Controller
         $requests = array();
         
         if($status == 0){
-            $requestModel = Requisicion::all();
+            $requestModel = Requisicion::orderBy('id', 'desc')->get();
         }else{
             $requestModel = Requisicion::where('status', $status)
             ->orderBy('id', 'desc')
@@ -879,8 +980,8 @@ class RequisitionController extends Controller
                 "area" => $rm->getAreaAssociated()->first()->name,
                 "empresa" => $rm->getCompanyAssociated()->first()->name,
                 "estado" => $rm->getStatusAssociated()->first()->name,
-                "aleta" => $rm->alert,
-
+                "alerta" => $rm->alert,
+                "alert" => $rm->alert,
                 "status" => $rm->status
             ]);
         }

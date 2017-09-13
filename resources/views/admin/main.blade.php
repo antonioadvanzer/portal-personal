@@ -147,9 +147,12 @@
 <!-- Requisicion -->
 <script src="{{ URL::to('app/admin_modules/requisiciones/requisiciones.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/requisiciones/RequisicionesModuleCtrl.js') }}"></script>
-<!-- Solicitudes -->
-<script src="{{ URL::to('app/admin_modules/solicitudes/solicitudes.module.js') }}"></script>
-<script src="{{ URL::to('app/admin_modules/solicitudes/SolicitudesModuleCtrl.js') }}"></script>
+<!-- Permisos de Ausencia -->
+<script src="{{ URL::to('app/admin_modules/permisos_de_ausencia/permisos_de_ausencia.module.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/permisos_de_ausencia/PermisosDeAusenciaModuleCtrl.js') }}"></script>
+<!-- Vacaciones -->
+<script src="{{ URL::to('app/admin_modules/vacaciones/vacaciones.module.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/vacaciones/VacacionesModuleCtrl.js') }}"></script>
 <!-- Permiso -->
 <script src="{{ URL::to('app/admin_modules/permisos/permisos.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/permisos/PermisosModuleCtrl.js') }}"></script>
@@ -269,7 +272,8 @@
 <script src="{{ URL::to('app/theme/components/baWizard/baWizardStep.directive.js') }}"></script>
 <script src="{{ URL::to('app/theme/components/contentTop/contentTop.directive.js') }}"></script>
 <script src="{{ URL::to('app/theme/components/msgCenter/msgCenter.directive.js') }}"></script>
-<script src="{{ URL::to('app/theme/components/msgCenter/MsgCenterCtrl.js') }}"></script>
+<!--<script src="{{ URL::to('app/theme/components/msgCenter/MsgCenterCtrl.js') }}"></script>-->
+<script src="{{ URL::to('app/theme/components/msgCenter/MsgCenterAdminCtrl.js') }}"></script>
 <script src="{{ URL::to('app/theme/components/pageTop/pageTop.directive.js') }}"></script>
 <script src="{{ URL::to('app/theme/components/progressBarRound/progressBarRound.directive.js') }}"></script>
 <script src="{{ URL::to('app/theme/components/widgets/widgets.directive.js') }}"></script>

@@ -30,6 +30,20 @@ Route::group(['prefix' => 'advanzer/service'], function () {
 
     // Take days off
     Route::get('/consume_days', 'VacationController@service_removeDaysVacations');
+
+    // Total requests
+    Route::get('/count_vacations_requests_sended', 'VacationController@main_getCountRequestSended');
+    Route::get('/count_absences_requests_sended', 'AbsenceController@main_getCountRequestSended');
+    Route::get('/count_requisitions_requests_sended', 'RequisitionController@main_getCountRequestSended');
+    Route::get('/count_vacations_requests_received', 'VacationController@main_getCountRequestReceived');
+    Route::get('/count_absences_requests_received', 'AbsenceController@main_getCountRequestReceived');
+    Route::get('/count_requisitions_requests_received', 'RequisitionController@main_getCountRequestReceived');
+
+    /* Admin mode */
+    Route::get('/count_vacations_requests', 'VacationController@admin_getCountRequestReceived');
+    Route::get('/count_absences_requests', 'AbsenceController@admin_getCountRequestReceived');
+    Route::get('/count_requisitions_requests', 'RequisitionController@admin_getCountRequestReceived');
+
 });
 
 // HTML Theme Blur Admin Template
@@ -624,12 +638,23 @@ Route::group(['middleware' => 'auth'], function(){
                 // Table
 
                 /* Request */
-                Route::get('/get_all_requests', 'RequestController@admin_getAllRequests');
-                Route::get('/get_canceled_requests', 'RequestController@admin_getCanceledRequests');
-                Route::get('/get_sended_requests', 'RequestController@admin_getSendedRequests');
-                Route::get('/get_acepted_requests', 'RequestController@admin_getAceptedRequests');
-                Route::get('/get_rejected_requests', 'RequestController@admin_getRejectedRequests');
-                Route::get('/get_authorized_requests', 'RequestController@admin_getAuthorizedRequests');
+
+                /** Permisos de Ausencia **/
+                Route::get('/get_all_requests_absence', 'RequestController@admin_getAllRequestsAbsence');
+                Route::get('/get_canceled_requests_absence', 'RequestController@admin_getCanceledRequestsAbsence');
+                Route::get('/get_sended_requests_absence', 'RequestController@admin_getSendedRequestsAbsence');
+                Route::get('/get_acepted_requests_absence', 'RequestController@admin_getAceptedRequestsAbsence');
+                Route::get('/get_rejected_requests_absence', 'RequestController@admin_getRejectedRequestsAbsence');
+                Route::get('/get_authorized_requests_absence', 'RequestController@admin_getAuthorizedRequestsAbsence');
+
+                /** Vacaciones **/
+                Route::get('/get_all_requests_vacations', 'RequestController@admin_getAllRequestsVacations');
+                Route::get('/get_canceled_requests_vacations', 'RequestController@admin_getCanceledRequestsVacations');
+                Route::get('/get_sended_requests_vacations', 'RequestController@admin_getSendedRequestsVacations');
+                Route::get('/get_acepted_requests_vacations', 'RequestController@admin_getAceptedRequestsVacations');
+                Route::get('/get_rejected_requests_vacations', 'RequestController@admin_getRejectedRequestsVacations');
+                Route::get('/get_authorized_requests_vacations', 'RequestController@admin_getAuthorizedRequestsVacations');
+
                 Route::get('/get_all_requests_by_user/{id_user}', 'RequestController@admin_getAllRequestsByUser');
 
                 /* Letter */

@@ -35,7 +35,7 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="sl in vacations_table.solicitudesPropias" ng-click="showOwnRequest(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && ((sl.status == 1) || (sl.status == 4) || (sl.status == 5)))}">
+    <tr ng-repeat="sl in vacations_table.solicitudesPropias" ng-click="showOwnRequest(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && ((sl.status == 1) || (sl.status == 4) || (sl.status == 5)))}" class="row-table">
       <td class="table-id">@{{sl.id}}</td>
       <td>@{{sl.folio}}</td>
       <td>@{{sl.tipo}}</td>

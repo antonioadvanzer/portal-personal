@@ -131,7 +131,11 @@
             var pms = ""+response.data.us_permissions;
             var permisos = pms.split(',');
             
+            var pmsu = ""+response.data.us_permissions_user;
+            var permisos_user = pmsu.split(',');
+            
             console.log(permisos);
+            console.log(permisos_user);
             
             $scope.formEditUser.inputUserPermission1 = false;
             $scope.formEditUser.inputUserPermission2 = false;
@@ -197,6 +201,49 @@
                 }
             }
             
+            for(var i = 0; i <= permisos_user.length; i++) {
+                switch(permisos_user[i]){
+                       case '1':
+                        $scope.formEditUser.inputUserPermission1 = true;
+                        
+                       break;
+                       case '2':
+                        $scope.formEditUser.inputUserPermission2 = true;
+                        
+                        $http.get("admin-theme/modules/user/users_employed/"+response.data.id).then(function (response) {
+                            $scope.personalACargo = response.data;
+                        });
+                       break;
+                       case '3':
+                        $scope.formEditUser.inputUserPermission3 = true;
+                        
+                       break;
+                       case '4':
+                        $scope.formEditUser.inputUserPermission4 = true;
+                        
+                       break;
+                       case '5':
+                        $scope.formEditUser.inputUserPermission5 = true;
+                        
+                       break;
+                       case '6':
+                        $scope.formEditUser.inputUserPermission6 = true;
+                        
+                       break;
+                       case '7':
+                        $scope.formEditUser.inputUserPermission7 = true;
+                        
+                       break;
+                       case '8':
+                        $scope.formEditUser.inputUserPermission8 = true;
+                        
+                       break;
+                       case '9':
+                        $scope.formEditUser.inputUserPermission9 = true;
+                        
+                       break;
+                }
+            }
             
             $scope.refreshTables();
             $state.go('usuarios.usuario_detalle');
@@ -787,7 +834,7 @@
             $scope.sending = false;
             $scope.refreshTables();
             getAlert('theme/success_modal/Usuario agregado correctamente');
-            resetForm("usuarios.agregar");
+            resetForm("usuarios.colaboradores_activos");
             
         })
         .error(function (response) {
@@ -951,9 +998,44 @@
         
         $scope.sending = true;
         
+        // Permisos
+        var permisos = "";
+        
+        /*console.log($scope.formEditUser.permission1+" "+$scope.formEditUser.permission2+" "+$scope.formEditUser.permission3+" "+$scope.formEditUser.permission4+" "+$scope.formEditUser.permission5+" "+$scope.formEditUser.permission6+" "+$scope.formEditUser.permission7+" "+$scope.formEditUser.permission8+" "+$scope.formEditUser.permission9);*/
+        
+        if($scope.formEditUser.inputUserPermission1 && $scope.formEditUser.permission1){
+            permisos += "1-"; 
+        }
+        if($scope.formEditUser.inputUserPermission2 && $scope.formEditUser.permission2){
+            permisos += "2-"; 
+        }
+        if($scope.formEditUser.inputUserPermission3 && $scope.formEditUser.permission3){
+            permisos += "3-";  
+        }
+        if($scope.formEditUser.inputUserPermission4 && $scope.formEditUser.permission4){
+            permisos += "4-"; 
+        }
+        if($scope.formEditUser.inputUserPermission5 && $scope.formEditUser.permission5){
+            permisos += "5-"; 
+        }
+        if($scope.formEditUser.inputUserPermission6 && $scope.formEditUser.permission6){
+            permisos += "6-"; 
+        }
+        if($scope.formEditUser.inputUserPermission7 && $scope.formEditUser.permission7){
+            permisos += "7-"; 
+        }
+        if($scope.formEditUser.inputUserPermission8 && $scope.formEditUser.permission8){
+            permisos += "8-"; 
+        }
+        if($scope.formEditUser.inputUserPermission9 && $scope.formEditUser.permission9){
+            permisos += "9-"; 
+        }
+        
         var formData = new FormData();
         
         formData.append("_token", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+        
+        formData.append("uu_id", $scope.formEditUser.id);
         
         formData.append("uu_foto", document.getElementById("uploadFile").files[0]);
         
@@ -971,6 +1053,8 @@
         formData.append("uu_posicion", $scope.ue_selectedPosition.selected.id); 
         formData.append("uu_empresa", $scope.ue_selectedCompany.selected.id);
         formData.append("uu_boss", $scope.ue_selectedBoss.selected.id);
+        
+        formData.append("uu_permisos", permisos);
         
         $http.post('admin-theme/modules/user/update_user', formData, {
             transformRequest: angular.identity,

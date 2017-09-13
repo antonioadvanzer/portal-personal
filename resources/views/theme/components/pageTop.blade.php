@@ -15,7 +15,7 @@
   </div>-->
 
   <div class="user-profile clearfix">
-    <div class="al-user-profile" uib-dropdown>@{{ user.short_name }}
+    <div class="al-user-profile" uib-dropdown>@{{ user.short_name+' '+user.apellido_paterno }}
       <a uib-dropdown-toggle class="profile-toggle-link">
         <img ng-src="@{{::( user.nomina | profilePicture )}}">
       </a>

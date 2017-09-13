@@ -140,7 +140,7 @@
             
             <div class="col-sm-9" ng-show="formUser.email_available">
                 <br>
-                <span class="alert bg-warning">La direcci&oacute;n de correo electr&oacute;nico ya ha sido utilizado</span>
+                <span class="alert bg-warning">La direcci&oacute;n de correo electr&oacute;nico ya existe</span>
             </div>
             <div class="col-sm-9" ng-show="validIUE=(newUser.inputUserEmail.$dirty && newUser.inputUserEmail.$invalid)">
                 <br>
@@ -171,7 +171,7 @@
             
             <div class="col-sm-9" ng-show="formUser.nomina_available">
                 <br>
-                <span class="alert bg-warning">El Numero de empleado ya ha sido utilizado</span>
+                <span class="alert bg-warning">El Numero de empleado ya existe</span>
             </div>
             <div class="col-sm-9" ng-show="validIUN=(newUser.inputUserNomina.$dirty && newUser.inputUserNomina.$invalid)">
                 <br>
@@ -200,7 +200,7 @@
       </div>
       <div class="col-md-6">
         <div class="form-group row clearfix">
-          <label class="col-sm-3 control-label">Area</label>
+          <label class="col-sm-3 control-label">&Aacute;rea</label>
 
           <div class="col-sm-9">
             {{--<select class="form-control" title="Standard Select" selectpicker>
@@ -229,7 +229,9 @@
           <label for="inputUserDireccion" class="col-sm-3 control-label">Direcci&oacute;n</label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputUserDireccion" ng-model="direction" placeholder="" value="" readonly>
+            <!--<input type="text" class="form-control" id="inputUserDireccion" ng-model="direction" placeholder="" value="" readonly>-->
+              <!--<label class="form-control">@{{direction}}</label>-->
+              <p class="form-control">@{{direction}}</p>
           </div>
         </div>
         <div class="form-group row clearfix">
@@ -335,9 +337,9 @@
     </div>--}}
 
     <h3 class="with-line">Permisos Especiales</h3>
-      <h5 class="with-line">(Si el permiso no se puede habilitar o deshabilitar, significa que el Area o Posicición ya los tienen de manera predeterminada)</h5>
+      <!--<h5 class="with-line">(Si el permiso no se puede habilitar o deshabilitar, significa que el Area o Posicición ya los tienen de manera predeterminada)</h5>-->
 
-    <div class="notification row clearfix">
+    <!--<div class="notification row clearfix">
       {{--<div class="col-sm-6">
         <div class="form-group row clearfix">
           <label class="col-xs-8">When I receive a message</label>
@@ -398,7 +400,78 @@
             </div>
         @endforeach
         {{--</div>--}}
-    </div>
+    </div>-->
+          
+    <div class="notification row clearfix">
+
+            <div class="col-md-12">
+
+                  <div class="input-group">
+
+                      <div class="checkbox-demo-row">
+                        <div class="input-demo checkbox-demo row">
+                          <div class="col-md-4">
+                            <label class="checkbox-inline custom-checkbox nowrap">
+                              <input type="checkbox" id="inputUserPermission1" name="inputUserPermission1" ng-model="formUser.inputUserPermission1" ng-disabled="!formUser.permission1">
+                              <span>Administraci&oacute;n</span>
+                            </label>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="checkbox-inline custom-checkbox nowrap">
+                              <input type="checkbox" id="inputUserPermission2" name="inputUserPermission2" ng-model="formUser.inputUserPermission2" ng-disabled="!formUser.permission2">
+                              <span>Personal a cargo</span>
+                            </label>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="checkbox-inline custom-checkbox nowrap">
+                              <input type="checkbox" id="inputUserPermission3" name="inputUserPermission3" ng-model="formUser.inputUserPermission3" ng-disabled="!formUser.permission3">
+                              <span>Capturista de Gastos de Viaje</span>
+                            </label>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="checkbox-inline custom-checkbox nowrap">
+                              <input type="checkbox" id="inputUserPermission4" name="inputUserPermission4" ng-model="formUser.inputUserPermission4" ng-disabled="!formUser.permission4">
+                              <span>Capturista de Harvest</span>
+                            </label>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="checkbox-inline custom-checkbox nowrap">
+                              <input type="checkbox" id="inputUserPermission5" name="inputUserPermission5" ng-model="formUser.inputUserPermission5" ng-disabled="!formUser.permission5">
+                              <span>Vacaciones</span>
+                            </label>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="checkbox-inline custom-checkbox nowrap">
+                              <input type="checkbox" id="inputUserPermission6" name="inputUserPermission6" ng-model="formUser.inputUserPermission6" ng-disabled="!formUser.permission6">
+                              <span>Permisos de Ausencia</span>
+                            </label>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="checkbox-inline custom-checkbox nowrap">
+                              <input type="checkbox" id="inputUserPermission7" name="inputUserPermission7" ng-model="formUser.inputUserPermission7" ng-disabled="!formUser.permission7">
+                              <span>Cartas y Constancias</span>
+                            </label>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="checkbox-inline custom-checkbox nowrap">
+                              <input type="checkbox" id="inputUserPermission8" name="inputUserPermission8" ng-model="formUser.inputUserPermission8" ng-disabled="!formUser.permission8">
+                              <span>Requisiciones</span>
+                            </label>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="checkbox-inline custom-checkbox nowrap">
+                              <input type="checkbox" id="inputUserPermission9" name="inputUserPermission9" ng-model="formUser.inputUserPermission9" ng-disabled="!formUser.permission9">
+                              <span>Evaluaciones</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                  </div>
+                </div>
+
+            </div>
+          
     {{--<button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="saveUser()" ng-disabled="newUser.inputUserName.$dirty && newUser.inputUserName.$invalid || newUser.inputUserApellidoP.$dirty && newUser.inputUserApellidoP.$invalid || newUser.inputUserApellidoM.$dirty && newUser.inputUserApellidoM.$invalid || newUser.inputUserEmail.$dirty && newUser.inputUserEmail.$invalid || newUser.inputUserPlaza.$dirty && newUser.inputUserPlaza.$invalid || newUser.inputUserNomina.$dirty && newUser.inputUserNomina.$invalid "><i class="ion-android-checkmark-circle"></i>Guardar</button>--}}
     <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="saveUser()" ng-disabled="newUser.inputUserName.$invalid || newUser.inputUserApellidoP.$invalid || newUser.inputUserApellidoM.$invalid || newUser.inputUserEmail.$invalid || newUser.inputUserPlaza.$invalid || newUser.inputUserNomina.$invalid || (!selectedArea.selected.id) || (!selectedTrack.selected.id) || (!selectedPosition.selected) || (!selectedCompany.selected) || (!selectedBoss.selected) || (newUser.uploadFile.$invalid) || !(formUser.imageSrc != '') || (formUser.nomina_available) || (formUser.email_available)">
       <i class="ion-android-checkmark-circle"></i>Guardar

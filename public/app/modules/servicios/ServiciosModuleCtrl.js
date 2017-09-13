@@ -10,7 +10,7 @@
 
   /** @ngInject */
   function ServiciosModuleCtrl($scope, $http, $filter, $window, $location, $state, $uibModal, $timeout, editableOptions, editableThemes) {
-      
+
   }
 
 })();

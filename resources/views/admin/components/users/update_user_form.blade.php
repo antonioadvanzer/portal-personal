@@ -204,7 +204,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row clearfix">
-                      <label class="col-sm-3 control-label">Area</label>
+                      <label class="col-sm-3 control-label">&Aacute;rea</label>
 
                       <div class="col-sm-9">
 
@@ -234,10 +234,12 @@
 
                       <div class="col-sm-9">
                           <div ng-if="!formEditUser.editUser">
-                                <label class="form-control">@{{formEditUser.inputUserDireccion}}</label>
+                              <!--<label class="form-control">@{{formEditUser.inputUserDireccion}}</label>-->
+                              <p class="form-control">@{{formEditUser.inputUserDireccion}}</p>
                           </div>
                           <div ng-if="formEditUser.editUser">
-                                <input type="text" class="form-control" id="inputUserDireccion" ng-model="formEditUser.inputUserDireccion" placeholder="" value="" readonly>
+                                <!--<input type="text" class="form-control" id="inputUserDireccion" ng-model="formEditUser.inputUserDireccion" placeholder="" value="" readonly>-->
+                              <label class="form-control">@{{formEditUser.inputUserDireccion}}</label>
                           </div>
 
                       </div>
@@ -537,7 +539,7 @@
                     </button>
 
                     <button type="button" class="btn btn-success btn-with-icon save-profile" ng-click="formEditUser.enableEdit()">
-                      <i class="ion-android-options"></i>Habilidar Edici&oacute;n
+                      <i class="ion-android-options"></i>Habilitar Edici&oacute;n
                     </button>
 
                     <button type="button" class="btn btn-warning btn-with-icon save-profile" ng-click="formEditUser.resetPassword()">

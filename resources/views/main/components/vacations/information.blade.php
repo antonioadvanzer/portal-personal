@@ -5,11 +5,11 @@
         <div class="large-banner-wrapper">
           <img ng-src="@{{::( 'app/vacaciones/vacation1.jpg' | appImage )}}" alt=""/>
         </div>
-        <div class="banner-text-wrapper">
+        <!--<div class="banner-text-wrapper">
           <div class="banner-text">
             <h1>Vacaciones</h1>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>

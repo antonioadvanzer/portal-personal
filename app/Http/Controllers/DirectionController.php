@@ -153,7 +153,7 @@ class DirectionController extends Controller
     {   
         $directions = array();
 
-        $directionsModel = Direccion::all();
+        $directionsModel = Direccion::orderBy('name', 'asc')->get();
         
         foreach($directionsModel as $pm){
             array_push($directions,[

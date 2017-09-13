@@ -41,7 +41,7 @@
         .state('requisiciones.requisiciones_realizadas', {
           url: '/solicitudes_realizadas',
           templateUrl: 'theme/modules/requisition/requisiciones_realizadas',
-          title: 'Requisiciones Realizadas',
+          title: 'Realizadas',
           sidebarMeta: {
             order: 100,
           },
@@ -49,7 +49,7 @@
         .state('requisiciones.requisiciones_recibidas', {
           url: '/solicitudes_recibidas',
           templateUrl: 'theme/modules/requisition/requisiciones_recibidas',
-          title: 'Requisiciones Recibidas',
+          title: 'Recibidas',
           sidebarMeta: {
             order: 100,
           },

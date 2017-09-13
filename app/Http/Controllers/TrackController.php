@@ -153,7 +153,7 @@ class TrackController extends Controller
     {   
         $tracks = array();
 
-        $trackModel = Track::all();
+        $trackModel = Track::orderBy('name', 'asc')->get();
         $num = 0;
         foreach($trackModel as $tm){
             array_push($tracks,[

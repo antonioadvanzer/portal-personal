@@ -37,4 +37,6 @@ app.run(function($rootScope) {
     $rootScope.formOwnRequest = {};
     $rootScope.formRequestReceived = {};
     $rootScope.formLetterDetail={};
+    $rootScope.formLetterDetail={};
+    $rootScope.notification={};
 });

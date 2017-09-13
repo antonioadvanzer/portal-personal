@@ -50,4 +50,28 @@
       <a href>Ver todos los mensajes</a>
     </div>
   </li>-->
+      <li uib-dropdown ng-if="notification.cant_vacations_received > 0">
+    <!--<a href="#/sevicios/vacaciones/solicitudes_recibidas" class="msg" uib-dropdown-toggle>-->
+      <a href="#/vacaciones/solicitudes" class="msg" >
+      <i class="fa fa-plane"></i><span>@{{notification.cant_vacations_received}}</span>
+
+      <div class="notification-ring"></div>
+    </a>
+  </li>
+  <li uib-dropdown ng-if="notification.cant_absences_received > 0">
+    <!--<a href="#/sevicios/permisos_de_ausencia/solicitudes_recibidas" class="msg" uib-dropdown-toggle>-->
+      <a href="#/permisos_de_ausencia/solicitudes" class="msg" >
+      <i class="fa fa-hourglass-start"></i><span>@{{notification.cant_absences_received}}</span>
+
+      <div class="notification-ring"></div>
+    </a>
+  </li>
+  <li uib-dropdown ng-if="notification.cant_requisitions_received > 0">
+    <!--<a href="#/requisiciones/solicitudes_recibidas" class="msg" uib-dropdown-toggle>-->
+      <a href="#/requisiciones/requisiciones" class="msg" >
+      <i class="fa fa-file-text-o"></i><span>@{{notification.cant_requisitions_received}}</span>
+
+      <div class="notification-ring"></div>
+    </a>
+  </li>
 </ul>

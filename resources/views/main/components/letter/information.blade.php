@@ -5,11 +5,11 @@
         <div class="large-banner-wrapper">
           <img ng-src="@{{::( 'app/cartas_y_constancias_laborales/bigstock_Signing_1506185_1.jpg' | appImage )}}" alt=""/>
         </div>
-        <div class="banner-text-wrapper">
+        <!--<div class="banner-text-wrapper">
           <div class="banner-text">
             <h1>Cartas y Constancias Laborales</h1>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>

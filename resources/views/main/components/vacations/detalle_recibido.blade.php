@@ -1,7 +1,7 @@
 <form name="showVacationsReceived">
     
     <div class="progress ng-scope" ng-show="sending">
-      <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
+      <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
         <span class="sr-only">100% Complete (success)</span>
       </div>
     </div>
@@ -87,17 +87,17 @@
     
     <div class="row">
         <div class="col-md-6">
-            <div class="input-group">
+            <div class="input-group" align="center">
                 <h5 class="button-title">Jefe Directo/Jefe de Proyecto</h5><br>
-                <div type="button" ng-show="formRequestReceived.inputRequestReceivedAuthBoss == 1" class="btn btn-success btn-icon"><i class="ion-android-checkmark-circle"></i></div>
-                <div type="button" ng-show="formRequestReceived.inputRequestReceivedAuthBoss == 0" class="btn btn-info btn-icon"><i class="ion-help"></i></div>
+                <div ng-show="formRequestReceived.inputRequestReceivedAuthBoss == 1" class="alert bg-success col-md-4" align="center"><!--<i class="ion-android-checkmark-circle"></i>--><h3>Autorizado</h3></div>
+                <div ng-show="formRequestReceived.inputRequestReceivedAuthBoss == 0" class="alert bg-info col-md-4" align="center"><!--<i class="ion-help"></i>--><h3>En Espera</h3></div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="input-group">
+            <div class="input-group" align="center">
                 <h5 class="button-title">Capital Humano</h5><br>
-                <div type="button" ng-show="formRequestReceived.inputRequestReceivedAuthCh == 1" class="btn btn-success btn-icon"><i class="ion-android-checkmark-circle"></i></div>
-                <div type="button" ng-show="formRequestReceived.inputRequestReceivedAuthCh == 0" class="btn btn-info btn-icon"><i class="ion-help"></i></div>
+                <div ng-show="formRequestReceived.inputRequestReceivedAuthCh == 1" class="alert bg-success col-md-4" align="center"><!--<i class="ion-android-checkmark-circle"></i>--><h3>Autorizado</h3></div>
+                <div ng-show="formRequestReceived.inputRequestReceivedAuthCh == 0" class="alert bg-info col-md-4" align="center"><!--<i class="ion-help"></i>--><h3>En Espera</h3></div>
             </div>
         </div>
     </div>

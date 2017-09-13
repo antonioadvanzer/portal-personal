@@ -27,4 +27,5 @@ app.run(function($rootScope) {
     //$rootScope.theme.t_pageTop = "";
     //$rootScope.areas_table = {};
     //$rootScope.areas_table.listaAreas = [];
+    $rootScope.notification={};
 });

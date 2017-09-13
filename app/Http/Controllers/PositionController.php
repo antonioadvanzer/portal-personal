@@ -258,7 +258,7 @@ class PositionController extends Controller
     {   
         $positions = array();
 
-        $positionsModel = Posicion::all();
+        $positionsModel = Posicion::orderBy('name', 'asc')->get();
         
         foreach($positionsModel as $ps){
             array_push($positions,[
@@ -287,9 +287,9 @@ class PositionController extends Controller
             array_push($positions,[
                 "id" => $pm->getPosicionAssociated()->first()->id,
                 "name" => $pm->getPosicionAssociated()->first()->name
-                 ]);
+            ]);
         }
-        
+        //asort($positions);
         return json_encode($positions);
     }
 

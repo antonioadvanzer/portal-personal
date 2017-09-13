@@ -4473,7 +4473,7 @@ a.al-logo {
   transition: all .15s ease-in-out;
   padding: 0;
   /*width: 36px;*/
-    width: 146px;
+  /*width: 146px;*/
   height: 36px;
   border: 0;
   opacity: 1;
@@ -6712,4 +6712,10 @@ label.todo-checkbox {
     top: 0;
     bottom: 0;
   }
+}
+
+/* Cursor Pointer */
+
+.row-table td{
+    cursor:pointer !important;
 }

@@ -11,62 +11,29 @@
   /** @ngInject */
   function MsgCenterCtrl($scope, $sce, $http,) {
       
-      $scope.notification.cant_vacations_sended = 0;
-      $scope.notification.cant_absences_sended = 0;
-      $scope.notification.cant_requisitions_sended = 0;
       $scope.notification.cant_vacations_received = 0;
       $scope.notification.cant_absences_received = 0;
       $scope.notification.cant_requisitions_received = 0;
       
-      $scope.getCountVacationsRequestSended = function(){
-        return $http.get("advanzer/service/count_vacations_requests_sended").then(function (response) {
-            return response.data;
-        });
-      }
-      
-      $scope.getCountAbsencesRequestSended = function(){
-        return $http.get("advanzer/service/count_absences_requests_sended").then(function (response) {
-            return response.data;
-        });
-      }
-            
-      $scope.getCountRequisitionsRequestSended = function(){
-        return $http.get("advanzer/service/count_requisitions_requests_sended").then(function (response) {
-            return response.data;
-        });
-      }
-      
       $scope.getCountVacationsRequestReceived = function(){
-        return $http.get("advanzer/service/count_vacations_requests_received").then(function (response) {
+        return $http.get("advanzer/service/count_vacations_requests").then(function (response) {
             return response.data;
         });
       }
       
       $scope.getCountAbsencesRequestReceived = function(){
-        return $http.get("advanzer/service/count_absences_requests_received").then(function (response) {
+        return $http.get("advanzer/service/count_absences_requests").then(function (response) {
             return response.data;
         });
       }
             
       $scope.getCountRequisitionsRequestReceived = function(){
-        return $http.get("advanzer/service/count_requisitions_requests_received").then(function (response) {
+        return $http.get("advanzer/service/count_requisitions_requests").then(function (response) {
             return response.data;
         });
       }
       
       $scope.refreshNotifications = function(){
-          
-          $scope.getCountVacationsRequestSended().then(function(data){
-              $scope.notification.cant_vacations_sended = data;
-          });
-          
-          $scope.getCountAbsencesRequestSended().then(function(data){
-              $scope.notification.cant_absences_sended = data;
-          });
-          
-          $scope.getCountRequisitionsRequestSended().then(function(data){
-              $scope.notification.cant_requisitions_sended = data;
-          });
           
           $scope.getCountVacationsRequestReceived().then(function(data){
               $scope.notification.cant_vacations_received = data;

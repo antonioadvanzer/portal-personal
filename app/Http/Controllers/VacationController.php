@@ -133,6 +133,78 @@ class VacationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function main_getCountRequestSended()
+    { 
+        $vacations1 = DB::table('solicitudes')
+                ->select(DB::raw('count(*) as vacations_count'))
+                ->where('user', Auth::user()->id)
+                ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+                ->where('status', DB::table('estados_solicitud')->where('name', 'Cancelada')->value('id'))
+                ->where('alert', 1)
+                ->first();
+
+        $vacations2 = DB::table('solicitudes')
+                ->select(DB::raw('count(*) as vacations_count'))
+                ->where('user', Auth::user()->id)
+                ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+                ->where('status', DB::table('estados_solicitud')->where('name', 'Rechazada')->value('id'))
+                ->where('alert', 1)
+                ->first();
+
+        $vacations3 = DB::table('solicitudes')
+                ->select(DB::raw('count(*) as vacations_count'))
+                ->where('user', Auth::user()->id)
+                ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+                ->where('status', DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id'))
+                ->where('alert', 1)
+                ->first();
+
+        $vacations = $vacations1->vacations_count + $vacations2->vacations_count + $vacations3->vacations_count;
+
+        return $vacations;
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_getCountRequestReceived()
+    { 
+        $vacations = DB::table('solicitudes')
+                ->select(DB::raw('count(*) as vacations_count'))
+                ->where('authorizer', Auth::user()->id)
+                ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+                ->where('status', DB::table('estados_solicitud')->where('name', 'Enviada')->value('id'))
+                ->where('alert', 1)
+                ->first();
+
+        return $vacations->vacations_count;
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getCountRequestReceived()
+    { 
+        $vacations = DB::table('solicitudes')
+                ->select(DB::raw('count(*) as vacations_count'))
+                ->where('authorizer', Auth::user()->id)
+                ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+                ->where('status', DB::table('estados_solicitud')->where('name', 'Aceptada')->value('id'))
+                ->where('alert', 1)
+                ->first();
+
+        return $vacations->vacations_count;
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function main_tablaSolicitudesRealizadas()
     {
         return view('main.components.vacations.tabla_solicitudes_realizadas');
