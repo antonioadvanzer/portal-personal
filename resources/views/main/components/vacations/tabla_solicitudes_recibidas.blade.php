@@ -56,8 +56,12 @@
     </tr>
     </tfoot>
   </table>
-    
-    <div ng-if="!vacations_table.solicitudesRecibidas.length" class="alert bg-warning text-center">
-        <h4>Sin datos para mostrar</h4>
+
+    <div ng-if="(vacations_table.solicitudesRecibidas.length == 0) && solicitudesRecibidas_loaded" class="alert bg-warning text-center">
+        <h4><i class="fa fa-exclamation-triangle"></i> Sin datos para mostrar</h4>
     </div>
+    <div ng-if="(vacations_table.solicitudesRecibidas.length == 0) && !solicitudesRecibidas_loaded" class="alert bg-info text-center">
+        <h4><i class="fa fa-spinner fa-spin"></i> Cargando datos ...</h4>
+    </div>
+    
 </div>

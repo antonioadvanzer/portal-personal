@@ -36,7 +36,7 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="ts in requests_table.solicitudesPorUsuario" ng-click="showRequest(ts.id)" ng-class="{'primary': ((ts.alerta == 1) && (ts.status == 3))}">
+    <tr ng-repeat="ts in requests_table.solicitudesPorUsuario" ng-click="showRequest(ts.id)" ng-class="{'primary': ((ts.alerta == 1) && (ts.status == 3))}" class="row-table">
       <td class="table-id">@{{ts.id}}</td>
       <td>@{{ts.folio}}</td>
       <td>@{{ts.tipo}}</td>
@@ -47,7 +47,7 @@
       <td>@{{ts.desde}}</td>
       <td>@{{ts.hasta}}</td>
       <td>@{{ts.estado}}</td>
-        <td><i ng-if="((ts.alerta == 1) && (ts.status == 3))" class="fa fa fa-bell"></i></td>
+        <td><i ng-if="((ts.alerta == 1) && (ts.status == 3))" class="fa fa-bell"></i></td>
     </tr>
     </tbody>
     <tfoot>

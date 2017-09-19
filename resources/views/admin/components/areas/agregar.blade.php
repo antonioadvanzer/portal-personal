@@ -1,10 +1,15 @@
 <form name="newArea" ng-submit="save()">
     
-    <div class="progress ng-scope" ng-show="sending">
-      <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
-        <span class="sr-only">100% Complete (success)</span>
-      </div>
+    <div ng-show="sending">
+        <div class="progress ng-scope">
+          <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
+            <span class="sr-only">100% Complete (success)</span>
+          </div>
+        </div>
+        <h2>Enviando datos ...</h2>
     </div>
+    
+    <div ng-if="!sending">
     
     <div class="row">
         
@@ -121,6 +126,8 @@
                 <i class="ion-plus-circled"></i>Agregar
             </button>
         </div>
+    </div>
+        
     </div>
   
 </form>

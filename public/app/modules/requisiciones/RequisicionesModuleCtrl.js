@@ -27,18 +27,27 @@
     }
       
       $scope.refreshTables = function(){
+          
+        $scope.solicitudesPropias_loaded = false;
+        $scope.solicitudesRecibidas_loaded = false;
+          
           // function to get request
         $scope.getOwnRequest().then(function(data) {
             $scope.requisitions_table.solicitudesPropias = data;
             $scope.requisitions_table.propias = data;
+            $scope.solicitudesPropias_loaded = true;
         });
         $scope.getRequestReceived().then(function(data) {
             $scope.requisitions_table.solicitudesRecibidas = data;
             $scope.requisitions_table.recibidas = data;
+            $scope.solicitudesRecibidas_loaded = true;
         });
       }
       
         $scope.requisitions_table = {};
+      
+            $scope.solicitudesPropias_loaded = false;
+            $scope.solicitudesRecibidas_loaded = false;
 
         $scope.requisitions_table.tamanioTablaSolicitudesRealizadas = 10;
 

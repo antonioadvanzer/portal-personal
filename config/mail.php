@@ -59,12 +59,14 @@ return [
     |
     */
 
-    'from' => [
+    //'from' => [
         //'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         //'name' => env('MAIL_FROM_NAME', 'Example'),
-        'address' => env('MAIL_FROM_ADDRESS', 'notificaciones.ch@advanzer.com'),
-        'name' => env('MAIL_FROM_NAME', 'Portal Personal'),
-    ],
+        //'address' => env('MAIL_FROM_ADDRESS', 'notificaciones.ch@advanzer.com'),
+        //'name' => env('MAIL_FROM_NAME', 'Portal Personal'),
+    //],
+
+    'from' => ['address' => 'notificaciones.ch@advanzer.com', 'name' => 'Advanzer'],
 
     /*
     |--------------------------------------------------------------------------
@@ -77,8 +79,8 @@ return [
     |
     */
 
-    //'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    //'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 
     /*
     |--------------------------------------------------------------------------

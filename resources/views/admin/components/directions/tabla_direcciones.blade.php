@@ -19,7 +19,7 @@
   </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="dr in directions_table.listaDirecciones" ng-click="showDirection(dr.id)">
+    <tr ng-repeat="dr in directions_table.listaDirecciones" ng-click="showDirection(dr.id)" class="row-table">
         <td class="table-id">@{{dr.id}}</td>
         <td>@{{dr.name}}</td>
     </tr>
@@ -33,8 +33,11 @@
     </tfoot>
   </table>
     
-    <div ng-if="!directions_table.listaDirecciones.length" class="alert bg-warning text-center">
-        <h4>Sin datos para mostrar</h4>
+    <div ng-if="(directions_table.listaDirecciones.length == 0) && listaDirecciones_loaded" class="alert bg-warning text-center">
+        <h4><i class="fa fa-exclamation-triangle"></i> Sin datos para mostrar</h4>
+    </div>
+    <div ng-if="(directions_table.listaDirecciones.length == 0) && !listaDirecciones_loaded" class="alert bg-info text-center">
+        <h4><i class="fa fa-spinner fa-spin"></i> Cargando datos ...</h4>
     </div>
     
 </div>

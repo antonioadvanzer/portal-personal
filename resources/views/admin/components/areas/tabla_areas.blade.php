@@ -20,7 +20,7 @@
   </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="as in areas_table.listaAreas" ng-click="showArea(as.id)">
+    <tr ng-repeat="as in areas_table.listaAreas" ng-click="showArea(as.id)" class="row-table">
         <td class="table-id">@{{as.id}}</td>
         <td>@{{as.name}}</td>
         <td>@{{as.direction}}</td>
@@ -35,8 +35,11 @@
     </tfoot>
   </table>
     
-    <div ng-if="!areas_table.listaAreas.length" class="alert bg-warning text-center">
-        <h4>Sin datos para mostrar</h4>
+    <div ng-if="(areas_table.listaAreas.length == 0) && listaAreas_loaded" class="alert bg-warning text-center">
+        <h4><i class="fa fa-exclamation-triangle"></i> Sin datos para mostrar</h4>
+    </div>
+    <div ng-if="(areas_table.listaAreas.length == 0) && !listaAreas_loaded" class="alert bg-info text-center">
+        <h4><i class="fa fa-spinner fa-spin"></i> Cargando datos ...</h4>
     </div>
     
 </div>

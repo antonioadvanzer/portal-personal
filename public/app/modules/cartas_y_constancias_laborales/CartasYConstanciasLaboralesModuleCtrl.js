@@ -21,10 +21,14 @@
     }
       
     $scope.refreshTables = function(){
+        
+        $scope.solicitudesPropias_loaded = false;
+        
         // function to get request
         $scope.getRequestsLetter().then(function(data) {
             $scope.requests_table.solicitudesPropias = data;
             $scope.requests_table.propias = data;
+            $scope.solicitudesPropias_loaded = true;
         });
         
         /*if(!$.fn.DataTable.isDataTable('#solicitudesCartas')) {
@@ -39,6 +43,8 @@
     }
     
     $scope.requests_table = {};
+      
+      $scope.solicitudesPropias_loaded = false;
       
   	$scope.requests_table.tamanioTablaSolicitudes = 10;
 

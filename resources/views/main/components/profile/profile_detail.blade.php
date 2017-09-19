@@ -26,7 +26,7 @@
                             <div class="col-sm-9">
                                 <div class="userpic">
                                   <div class="userpic-wrapper">
-                                    <img id="inputUserPicture" ng-src="@{{::( user.nomina | profilePicture )}}">
+                                    <img id="inputUserPicture" ng-src="@{{::( user.picture_name | profilePicture:user.picture_ext )}}">
                                   </div>
                                 </div>
                               </div>

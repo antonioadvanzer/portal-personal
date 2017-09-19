@@ -26,15 +26,22 @@
     }
       
     $scope.refreshTables = function(){
+        
+        $scope.listaDirecciones_loaded = false;
+        
         $scope.getDirections().then(function(data) {
             $scope.directions_table.listaDirecciones = data;
             $scope.directions_table.direcciones = data;
+            $scope.listaDirecciones_loaded = true;
         });
         
         //getDirections();
     }
     
     $scope.directions_table = [];
+      
+      $scope.listaDirecciones_loaded = false;
+      
     $scope.directions_table.listaDirecciones = [];
     $scope.directions_table.tamanioTablaDirecciones = 10; 
     

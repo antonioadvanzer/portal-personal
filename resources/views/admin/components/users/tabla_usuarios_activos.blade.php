@@ -40,10 +40,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="ea in users_table.empleadosActivos" ng-click="showUser(ea.id)">
+    <tr ng-repeat="ea in users_table.empleadosActivos" ng-click="showUser(ea.id)" class="row-table">
         <!--<td class="table-id">@{{ea.id}}</td>-->
         <td class="table-id">
-            <a class="al-user-profile"><img ng-src="@{{::( ea.nomina | profilePicture )}}"></a>
+            <a class="al-user-profile"><img ng-src="@{{::( ea.photo | profilePicture:ea.photo_ext )}}"></a>
         </td>
         <td>@{{ea.nomina}}</td>
         <td>@{{ea.nombre}}</td>
@@ -64,8 +64,11 @@
     </tfoot>
   </table>
     
-    <div ng-if="!users_table.empleadosActivos.length" class="alert bg-warning text-center">
-        <h4>Sin datos para mostrar</h4>
+    <div ng-if="(users_table.empleadosActivos.length == 0) && empleadosActivos_loaded" class="alert bg-warning text-center">
+        <h4><i class="fa fa-exclamation-triangle"></i> Sin datos para mostrar</h4>
+    </div>
+    <div ng-if="(users_table.empleadosActivos.length == 0) && !empleadosActivos_loaded" class="alert bg-info text-center">
+        <h4><i class="fa fa-spinner fa-spin"></i> Cargando datos ...</h4>
     </div>
     
 </div>

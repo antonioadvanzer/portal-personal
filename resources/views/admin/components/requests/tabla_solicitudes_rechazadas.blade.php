@@ -36,7 +36,7 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="sr in requests_table.solicitudesRechazadas" ng-click="showRequest(sr.id)" ng-class="{'primary': ((sr.alerta == 1) && (sr.status == 3))}">
+    <tr ng-repeat="sr in requests_table.solicitudesRechazadas" ng-click="showRequest(sr.id)" ng-class="{'primary': ((sr.alerta == 1) && (sr.status == 3))}" class="row-table">
       <td class="table-id">@{{sr.id}}</td>
       <td>@{{sr.folio}}</td>
       <td>@{{sr.tipo}}</td>
@@ -59,8 +59,11 @@
     </tfoot>
   </table>
     
-    <div ng-if="!requests_table.solicitudesRechazadas.length" class="alert bg-warning text-center">
-        <h4>Sin datos para mostrar</h4>
+    <div ng-if="(requests_table.solicitudesRechazadas.length == 0) && solicitudesRechazadas_loaded" class="alert bg-warning text-center">
+        <h4><i class="fa fa-exclamation-triangle"></i> Sin datos para mostrar</h4>
+    </div>
+    <div ng-if="(requests_table.solicitudesRechazadas.length == 0) && !solicitudesRechazadas_loaded" class="alert bg-info text-center">
+        <h4><i class="fa fa-spinner fa-spin"></i> Cargando datos ...</h4>
     </div>
     
 </div>

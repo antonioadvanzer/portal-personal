@@ -62,7 +62,7 @@
     <img src="{{ URL::to('assets/img/logos/EN_logo.png') }}" width="30%" style="">
     @endif
   <br><br><br>
-  <h2>Bienvenido</h2>
+  <h2>HOLA {{ explode(" ",Auth::user()->name)[0]." ".Auth::user()->apellido_paterno  }}</h2>
   <div class="preloader">
     <i>.</i>
     <i>.</i>

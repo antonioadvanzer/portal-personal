@@ -38,7 +38,7 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="sl in requisitions_table.requisicionesCompletadas" ng-click="showRequisitionDatail(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && (sl.status == 4))}">
+    <tr ng-repeat="sl in requisitions_table.requisicionesCompletadas" ng-click="showRequisitionDatail(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && (sl.status == 4))}" class="row-table">
       <td class="table-id">@{{sl.id}}</td>
       <td>@{{sl.folio}}</td>
       <td>@{{sl.fecha}}</td>
@@ -62,9 +62,12 @@
     </tr>
     </tfoot>
   </table>
-    
-    <div ng-if="!requisitions_table.requisicionesCompletadas.length" class="alert bg-warning text-center">
-        <h4>Sin datos para mostrar</h4>
+
+    <div ng-if="(requisitions_table.requisicionesCompletadas.length == 0) && requisicionesCompletadas_loaded" class="alert bg-warning text-center">
+        <h4><i class="fa fa-exclamation-triangle"></i> Sin datos para mostrar</h4>
+    </div>
+    <div ng-if="(requisitions_table.requisicionesCompletadas.length == 0) && !requisicionesCompletadas_loaded" class="alert bg-info text-center">
+        <h4><i class="fa fa-spinner fa-spin"></i> Cargando datos ...</h4>
     </div>
     
 </div>

@@ -36,10 +36,15 @@
     }
     
     $scope.refreshTables = function(){
+        
+        $scope.empleadosActivos_loaded = false;
+        $scope.empleadosInactivos_loaded = false;
+        
         // functions to get users
         $scope.getEmpleadosActivos().then(function(data) {
             $scope.users_table.empleadosActivos = data;
             $scope.users_table.activos = data;
+            $scope.empleadosActivos_loaded = true;
         });
         
         //getEmpleadosActivos();
@@ -47,6 +52,7 @@
         $scope.getEmpleadosInactivos().then(function(data) {
             $scope.users_table.empleadosInactivos = data;
             $scope.users_table.inactivos = data;
+            $scope.empleadosInactivos_loaded = false;
         });
         
         //getEmpleadosInactivos();
@@ -56,6 +62,9 @@
     $scope.requests_table = [];
     $scope.letter_table = [];
     $scope.vacations_table = [];
+      
+      $scope.empleadosActivos_loaded = false;
+      $scope.empleadosInactivos_loaded = false;
     
     $scope.users_table.empleadosActivos = [];
     $scope.users_table.empleadosInactivos = [];

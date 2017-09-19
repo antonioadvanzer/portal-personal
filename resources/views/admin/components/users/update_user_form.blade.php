@@ -6,13 +6,18 @@
             
             <div class="panel-content">
 
-                  <form name="editUser" novalidate>
+              <form name="editUser" novalidate>
 
-                <div class="progress ng-scope" ng-show="sending">
-                  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
-                    <span class="sr-only">100% Complete (success)</span>
-                  </div>
+                <div ng-show="sending">
+                    <div class="progress ng-scope">
+                      <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
+                        <span class="sr-only">100% Complete (success)</span>
+                      </div>
+                    </div>
+                    <h2>Enviando datos ...</h2>
                 </div>
+                  
+                <div ng-if="!sending">
 
                 <h3 class="with-line">Informaci&oacute;n del Empleado</h3>
 
@@ -352,7 +357,7 @@
                 {{--<div ng-if="formEditUser.inputUserPermission2">
                     <h3 class="with-line">Personal a Cargo</h3>
 
-                    <div class="notification row clearfix">
+                <div class="notification row clearfix">
 
                         <div class="col-md-12">
                             <div include-with-scope="admin-theme/modules/user/tabla_personal_a_cargo"></div>
@@ -546,7 +551,9 @@
                       <i class="ion-wand"></i>Reiniciar Contraseña
                     </button>
                 </div>
-
+                    
+                </div>
+                    
                 </form>
 
               </div>

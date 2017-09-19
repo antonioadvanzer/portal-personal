@@ -77,29 +77,42 @@
     
     $scope.refreshTables = function(){
         
+        $scope.todasLasSolicitudes_loaded = false;
+        $scope.solicitudesCanceladas_loaded = false;
+        $scope.solicitudesEnviadas_loaded = false;
+        $scope.solicitudesAceptadas_loaded = false;
+        $scope.solicitudesRechazadas_loaded = false;
+        $scope.solicitudesAutorizadas_loaded = false;
+        
         $scope.getAllRequest().then(function(data) {
             $scope.requests_table.todasLasSolicitudes = data;
             $scope.requests_table.solicitudes = data;
+            $scope.todasLasSolicitudes_loaded = true;
         });
         $scope.getCanceledRequest().then(function(data) {
             $scope.requests_table.solicitudesCanceladas = data;
             $scope.requests_table.canceladas = data;
+            $scope.solicitudesCanceladas_loaded = true;
         });
         $scope.getSendedRequest().then(function(data) {
             $scope.requests_table.solicitudesEnviadas = data;
             $scope.requests_table.enviadas = data;
+            $scope.solicitudesEnviadas_loaded = true;
         });
         $scope.getAceptedRequest().then(function(data) {
             $scope.requests_table.solicitudesAceptadas = data;
             $scope.requests_table.aceptadas = data;
+            $scope.solicitudesAceptadas_loaded = true;
         });
         $scope.getRejectedRequest().then(function(data) {
             $scope.requests_table.solicitudesRechazadas = data;
             $scope.requests_table.rechazadas = data;
+            $scope.solicitudesRechazadas_loaded = true;
         });
         $scope.getAutorizedRequest().then(function(data) {
             $scope.requests_table.solicitudesAutorizadas = data;
             $scope.requests_table.autorizadas = data;
+            $scope.solicitudesAutorizadas_loaded = true;
         });
         
         /*getAllRequest();
@@ -112,6 +125,13 @@
     
     $scope.requests_table = [];
     
+      $scope.todasLasSolicitudes_loaded = false;
+      $scope.solicitudesCanceladas_loaded = false;
+      $scope.solicitudesEnviadas_loaded = false;
+      $scope.solicitudesAceptadas_loaded = false;
+      $scope.solicitudesRechazadas_loaded = false;
+      $scope.solicitudesAutorizadas_loaded = false;
+      
     $scope.requests_table.tamanioTablaTodasLasSolicitudes = 10;
     $scope.requests_table.todasLasSolicitudes = [];
     

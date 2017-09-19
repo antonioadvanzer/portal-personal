@@ -3913,7 +3913,7 @@ th {
 .panel-heading, .panel-footer {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.12);
-  height: 44px;
+  height: 55px;
   font-size: 16px;
   padding: 14px 22px; }
 
@@ -3929,8 +3929,8 @@ th {
   color: #7d7d7d; }
 
 .panel-primary > .panel-heading {
-  background-color: #4db1a7;
-  border-color: #4db1a7; }
+  background-color: #CFDB51;
+  border-color: #CFDB51; }
 
 .panel-success > .panel-heading {
   background-color: #a6c733;
@@ -6467,4 +6467,48 @@ label.todo-checkbox {
 .disabled-permission {
     pointer-events: none; 
     opacity: 0.4;
+}
+
+/* logo options */
+
+@media screen and (max-width: 600px){
+    a.al-logo{
+      /* These are just alternative ways of hiding an element */
+      display: block!important;
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    
+    .name-user{
+      /* These are just alternative ways of hiding an element */
+      display: block!important;
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+}
+
+/* Cursor Pointer */
+
+.row-table td{
+    cursor:pointer !important;
+}
+
+/* Alerts in main menu */
+
+.contextual-main-panel {
+    height: 180px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #CFDB51;
+    border-color: #CFDB51;
+}
+
+.btn-primary:hover{
+    color: #fff;
+    background-color: #A7A83A;
+    border-color: #A7A83A;
 }

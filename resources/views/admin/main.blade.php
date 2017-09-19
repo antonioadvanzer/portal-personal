@@ -6,6 +6,7 @@
     
     <!--<link rel="stylesheet" href="{{ URL::to('css/admin/main.css') }}">-->
     <!--<link rel="stylesheet" href="{{ URL::to('css/advanzer/main.css') }}">-->
+    <link rel="stylesheet" href="{{ URL::to('css/admin/reset_stylesheet.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/admin/admin_main.css') }}">
   <!-- endinject -->
   <!-- endbuild -->
@@ -54,7 +55,7 @@
     <img src="{{ URL::to('assets/img/admin_mode/admin-icon.png') }}" width="15%" style="">
     
   <br><br><br>
-  <h2>Bienvenido</h2>
+  <!--<h2>Bienvenido</h2>-->
   <div class="preloader">
     <i>.</i>
     <i>.</i>

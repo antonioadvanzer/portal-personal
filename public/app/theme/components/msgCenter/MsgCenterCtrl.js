@@ -9,7 +9,7 @@
       .controller('MsgCenterCtrl', MsgCenterCtrl);
 
   /** @ngInject */
-  function MsgCenterCtrl($scope, $sce, $http,) {
+  function MsgCenterCtrl($scope, $sce, $http) {
       
       $scope.notification.cant_vacations_sended = 0;
       $scope.notification.cant_absences_sended = 0;
@@ -17,6 +17,9 @@
       $scope.notification.cant_vacations_received = 0;
       $scope.notification.cant_absences_received = 0;
       $scope.notification.cant_requisitions_received = 0;
+      
+      // Total Notifications
+      $scope.notification.total_notifications = 0;
       
       $scope.getCountVacationsRequestSended = function(){
         return $http.get("advanzer/service/count_vacations_requests_sended").then(function (response) {
@@ -88,6 +91,9 @@
         $scope.refreshNotifications();
         setTimeout(function() {
           refreshNotificaciones();
+            
+            //$scope.notification.total_notifications = (parseInt($scope.notification.cant_vacations_sended) + parseInt($scope.notification.cant_absences_sended) + parseInt($scope.notification.cant_requisitions_sended) + parseInt($scope.notification.cant_vacations_received) + parseInt($scope.notification.cant_absences_received) + parseInt($scope.notification.cant_requisitions_received));
+            
         }, 5000);
       };
       
@@ -95,17 +101,9 @@
       
       setTimeout(function() {
           refreshNotificaciones();
+          
       }, 5000);
       
-    $scope.users = {
-      0: {
-        name: 'Amira',
-      },
-      1: {
-        name: 'Melissa',
-      }
-    };
-
     $scope.notifications = [
       {
         userId: 0,
@@ -117,7 +115,7 @@
         template: '&name ha realizado una requisición.',
         time: 'hace 2 horas'
       },
-      /*{
+      {
         image: 'assets/img/shopping-cart.svg',
         template: 'New orders received.',
         time: '5 hrs ago'
@@ -141,8 +139,55 @@
         userId: 1,
         template: '&name invited you to join the event.',
         time: '1 week ago'
-      }*/
+      }
     ];
+      
+    /*$scope.users = {
+      0: {
+        name: 'Amira',
+      },
+      1: {
+        name: 'Melissa',
+      }
+    };*/
+
+    /*$scope.notifications = [
+      {
+        userId: 0,
+        template: '&name solicito vacaciones.',
+        time: 'hace 1 minuto'
+      },
+      {
+        userId: 1,
+        template: '&name ha realizado una requisición.',
+        time: 'hace 2 horas'
+      },
+      {
+        image: 'assets/img/shopping-cart.svg',
+        template: 'New orders received.',
+        time: '5 hrs ago'
+      },
+      {
+        userId: 2,
+        template: '&name replied to your comment.',
+        time: '1 day ago'
+      },
+      {
+        userId: 3,
+        template: 'Today is &name\'s birthday.',
+        time: '2 days ago'
+      },
+      {
+        image: 'assets/img/comments.svg',
+        template: 'New comments on your post.',
+        time: '3 days ago'
+      },
+      {
+        userId: 1,
+        template: '&name invited you to join the event.',
+        time: '1 week ago'
+      }
+    ];*/
 
     $scope.messages = [
       {
@@ -189,5 +234,6 @@
       }
       return $sce.trustAsHtml(text);
     };
+      
   }
 })();

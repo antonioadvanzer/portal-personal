@@ -114,22 +114,18 @@
         <div ba-panel ba-panel-class="with-scroll more-text-widget" ba-panel-title="Opciones">
           <div class="section-block light-text">
               
-            <div class="row btns-row btns-same-width-lg ng-scope">
-                <div class="col-sm-4 col-xs-4">
-                    <button type="button" class="btn btn-primary btn-with-icon" ng-click="getForm()">
-                        <i class="ion-android-open"></i>Solicitar
-                    </button>
-                </div>
-                <div class="col-sm-4 col-xs-4">
-                    <button type="button" class="btn btn-primary btn-with-icon" ng-click="getSolicitudesRealizadas()">
-                        <i class="ion-ios-list-outline"></i>Solicitudes Realizas
-                    </button>
-                </div>
-                <div class="col-sm-4 col-xs-4">
-                    <button type="button" class="btn btn-primary btn-with-icon" ng-click="getSolicitudeRecibidas()">
-                        <i class="ion-ios-list-outline"></i>Solicitudes Recibidas
-                    </button>
-                </div>
+            <div>
+                <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="getForm()">
+                    <i class="ion-android-open"></i>Solicitar
+                </button>
+
+                <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="getSolicitudesRealizadas()">
+                    <i class="ion-ios-list-outline"></i>Solicitudes Realizas
+                </button>
+
+                <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="getSolicitudeRecibidas()">
+                    <i class="ion-ios-list-outline"></i>Solicitudes Recibidas
+                </button>
             </div>
             
           </div>

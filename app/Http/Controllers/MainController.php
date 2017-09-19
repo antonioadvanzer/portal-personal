@@ -31,21 +31,51 @@ class MainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function mainView()
-     {   
-         return view('main.components.main.main');        
-     }
+    public function mainView()
+    {   
+        return view('main.components.main.main');        
+    }
+
+     /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function adminView()
+    {   
+        return view('admin.components.main.main');        
+    }
 
     /**
      * 
      *
      * @return \Illuminate\Http\Response
      */
-     public function mainViewHome()
-     {   
-         //return view('main.components.main.home');
-         return view('main.components.main.main_wellcome');        
-     }
+    public function mainViewHome()
+    {   
+        //return view('main.components.main.home');
+        return view('main.components.main.main_wellcome');        
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function mainViewHomeAlerts()
+    {   
+        return view('main.components.main.main_alerts');        
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function adminViewHomeAlerts()
+    {   
+        return view('admin.components.main.main_alerts');        
+    }
 
     /**
      * Display a listing of the resource.
@@ -207,6 +237,8 @@ class MainController extends Controller
             "area_actual" => Auth::user()->getAreaAssociated()->first()->name,
             "antiguedad" => date_diff(date_create(Auth::user()->fecha_ingreso), date_create(date('Y-m-d')))->format('%y Años %m Meses %d días'),
             "anios_trabajando" => intval(date_diff(date_create(Auth::user()->fecha_ingreso), date_create(date('Y-m-d')))->format('%y'))+1,
+            "picture_name" => explode(".",Auth::user()->photo)[0],
+            "picture_ext" => explode(".",Auth::user()->photo)[1],
 
             "area_name" => Auth::user()->getAreaAssociated()->first()->name,
             "direction_name" => Auth::user()->getAreaAssociated()->first()->getDirectionAssociated()->first()->name,

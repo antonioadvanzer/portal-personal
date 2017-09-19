@@ -22,13 +22,20 @@
     }
     
     $scope.refreshTables = function(){
+        
+        $scope.listaTracks_loaded = false;
+        
         $scope.getTracksActive().then(function(data) {
             $scope.tracks_table.listaTracks = data;
             $scope.tracks_table.tracks = data;
+            $scope.listaTracks_loaded = true;
         });
     }
     
     $scope.tracks_table = [];
+      
+      $scope.listaTracks_loaded = false;
+      
     $scope.tracks_table.listaTracks = [];
     $scope.tracks_table.tamanioTablaTracks = 10;
       

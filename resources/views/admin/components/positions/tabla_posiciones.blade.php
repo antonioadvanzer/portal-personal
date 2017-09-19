@@ -20,7 +20,7 @@
   </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="pn in positions_table.listaPosiciones" ng-click="showPosition(pn.id)">
+    <tr ng-repeat="pn in positions_table.listaPosiciones" ng-click="showPosition(pn.id)" class="row-table">
         <td class="table-id">@{{pn.id}}</td>
         <td>@{{pn.name}}</td>
         <td>@{{pn.level}}</td>
@@ -35,8 +35,11 @@
     </tfoot>
   </table>
     
-    <div ng-if="!positions_table.listaPosiciones.length" class="alert bg-warning text-center">
-        <h4>Sin datos para mostrar</h4>
+    <div ng-if="(positions_table.listaPosiciones.length == 0) && listaPosiciones_loaded" class="alert bg-warning text-center">
+        <h4><i class="fa fa-exclamation-triangle"></i> Sin datos para mostrar</h4>
+    </div>
+    <div ng-if="(positions_table.listaPosiciones.length == 0) && !listaPosiciones_loaded" class="alert bg-info text-center">
+        <h4><i class="fa fa-spinner fa-spin"></i> Cargando datos ...</h4>
     </div>
     
 </div>

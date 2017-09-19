@@ -48,15 +48,20 @@
     
     $scope.refreshTables = function(){
         
+        $scope.solicitudesPropias_loaded = false;
+        $scope.solicitudesRecibidas_loaded = false;
+        
         // function to get request
         $scope.getOwnRequests().then(function(data) {
             $scope.vacations_table.solicitudesPropias = data;
             $scope.vacations_table.propias = data;
+            $scope.solicitudesPropias_loaded = true;
         });
         
         $scope.getRequestsReceived().then(function(data) {
             $scope.vacations_table.solicitudesRecibidas = data;
             $scope.vacations_table.recibidas = data;
+            $scope.solicitudesRecibidas_loaded = true;
         });
         
         /*if(!$.fn.DataTable.isDataTable('#solicitudesRealizadasVacaciones')) {
@@ -99,6 +104,9 @@
     }
     
     $scope.vacations_table = {};
+      
+      $scope.solicitudesPropias_loaded = false;
+      $scope.solicitudesRecibidas_loaded = false;
     
     $scope.vacations_table.tamanioTablaSolicitudesRealizadas = 10;
       

@@ -29,7 +29,7 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="ts in letter_table.solicitudesPorUsuario" ng-click="showLetter(ts.id)">
+    <tr ng-repeat="ts in letter_table.solicitudesPorUsuario" ng-click="showLetter(ts.id)" class="row-table">
       <td class="table-id">@{{ts.id}}</td>
       <td>@{{ts.folio}}</td>
       <td>@{{ts.dirigido}}</td>

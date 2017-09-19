@@ -10,11 +10,16 @@
       </div>
     </div>--}}
           
-    <div class="progress ng-scope" ng-show="sending">
-      <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
-        <span class="sr-only">100% Complete (success)</span>
-      </div>
+    <div ng-show="sending">
+        <div class="progress ng-scope">
+          <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" style="width: 100%">
+            <span class="sr-only">100% Complete (success)</span>
+          </div>
+        </div>
+        <h2>Enviando datos ...</h2>
     </div>
+          
+    <div ng-if="!sending">
 
     <h3 class="with-line">Informaci&oacute;n del Empleado</h3>
 
@@ -477,6 +482,8 @@
       <i class="ion-android-checkmark-circle"></i>Guardar
     </button>
     
+    </div>
+        
     </form>
       
   </div>

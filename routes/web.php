@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function(){
         
         Route::get('/main', 'MainController@mainView');
         Route::get('/home', 'MainController@mainViewHome');
+        Route::get('/home_alerts', 'MainController@mainViewHomeAlerts');
 
         // General Modals
         Route::get('/success_modal/{msg}', 'View\ThemeController@main_successModal');
@@ -313,6 +314,9 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/msg_center', 'View\ThemeController@admin_msgCenter');
         Route::get('/page_top', 'View\ThemeController@admin_pageTop');
         Route::get('/progress_bar_round', 'View\ThemeController@admin_progressBarRound');
+
+        Route::get('/main', 'MainController@adminView');
+        Route::get('/home_alerts', 'MainController@adminViewHomeAlerts');
 
         Route::group(['prefix' => 'modules'], function () {
             

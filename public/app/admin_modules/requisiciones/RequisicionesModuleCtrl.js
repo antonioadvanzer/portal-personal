@@ -39,7 +39,7 @@
         });  
     }
     
-    $scope.getAutorizedRequisition = function(){
+    $scope.getAuthorizedRequisition = function(){
         return $http.get("admin-theme/modules/requisition/get_authorized_requisitions").then(function (response) {
             return response.data;
         });  
@@ -65,41 +65,67 @@
     
     $scope.refreshTables = function(){
         
+        $scope.todasLasRequisiciones_loaded = false;
+        $scope.requisicionesCanceladas_loaded = false;
+        $scope.requisicionesEnviadas_loaded = false;
+        $scope.requisicionesAceptadas_loaded = false;
+        $scope.requisicionesAutorizadas_loaded = false;
+        $scope.requisicionesRechazadas_loaded = false;
+        $scope.requisicionesEnProceso_loaded = false;
+        $scope.requisicionesCompletadas_loaded = false;
+        
         $scope.getAllRequisition().then(function(data) {
             $scope.requisitions_table.todasLasRequisiciones = data;
             $scope.requisitions_table.requisiciones = data;
+            $scope.todasLasRequisiciones_loaded = true;
         });
         $scope.getCanceledRequisition().then(function(data) {
             $scope.requisitions_table.requisicionesCanceladas = data;
             $scope.requisitions_table.canceladas = data;
+            $scope.requisicionesCanceladas_loaded = true;
         });
         $scope.getSendedRequisition().then(function(data) {
             $scope.requisitions_table.requisicionesEnviadas = data;
             $scope.requisitions_table.enviadas = data;
+            $scope.requisicionesEnviadas_loaded = true;
         });
         $scope.getAceptedRequisition().then(function(data) {
             $scope.requisitions_table.requisicionesAceptadas = data;
             $scope.requisitions_table.aceptadas = data;
+            $scope.requisicionesAceptadas_loaded = true;
         });
-        $scope.getAutorizedRequisition().then(function(data) {
+        $scope.getAuthorizedRequisition().then(function(data) {
             $scope.requisitions_table.requisicionesAutorizadas = data;
             $scope.requisitions_table.autorizadas = data;
+            $scope.requisicionesAutorizadas_loaded = true;
         });
         $scope.getRejectedRequisition().then(function(data) {
             $scope.requisitions_table.requisicionesRechazadas = data;
             $scope.requisitions_table.rechazadas = data;
+            $scope.requisicionesRechazadas_loaded = true;
         });
         $scope.getProcessingRequisition().then(function(data) {
             $scope.requisitions_table.requisicionesEnProceso = data;
             $scope.requisitions_table.enproceso = data;
+            $scope.requisicionesEnProceso_loaded = true;
         });
         $scope.getCompletedRequisition().then(function(data) {
             $scope.requisitions_table.requisicionesCompletadas = data;
             $scope.requisitions_table.completadas = data;
+            $scope.requisicionesCompletadas_loaded = true;
         });
     }
     
     $scope.requisitions_table = [];
+      
+      $scope.todasLasRequisiciones_loaded = false;
+      $scope.requisicionesCanceladas_loaded = false;
+      $scope.requisicionesEnviadas_loaded = false;
+      $scope.requisicionesAceptadas_loaded = false;
+      $scope.requisicionesAutorizadas_loaded = false;
+      $scope.requisicionesRechazadas_loaded = false;
+      $scope.requisicionesEnProceso_loaded = false;
+      $scope.requisicionesCompletadas_loaded = false;
     
     $scope.requisitions_table.tamanioTablaTodasLasRequisiciones = 10;
     $scope.requisitions_table.todasLasRequisiciones = [];

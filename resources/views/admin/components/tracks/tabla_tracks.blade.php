@@ -19,7 +19,7 @@
   </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="tr in tracks_table.listaTracks" ng-click="showTrack(tr.id)">
+    <tr ng-repeat="tr in tracks_table.listaTracks" ng-click="showTrack(tr.id)" class="row-table">
         <td class="table-id">@{{tr.id}}</td>
         <td>@{{tr.name}}</td>
     </tr>
@@ -33,8 +33,11 @@
     </tfoot>
   </table>
     
-    <div ng-if="!tracks_table.listaTracks.length" class="alert bg-warning text-center">
-        <h4>Sin datos para mostrar</h4>
+    <div ng-if="(tracks_table.listaTracks.length == 0) && listaTracks_loaded" class="alert bg-warning text-center">
+        <h4><i class="fa fa-exclamation-triangle"></i> Sin datos para mostrar</h4>
+    </div>
+    <div ng-if="(tracks_table.listaTracks.length == 0) && !listaTracks_loaded" class="alert bg-info text-center">
+        <h4><i class="fa fa-spinner fa-spin"></i> Cargando datos ...</h4>
     </div>
     
 </div>

@@ -13,7 +13,8 @@
     $stateProvider
         .state('principal', {
           url: '/principal',
-          templateUrl: 'app/admin_modules/principal/principal.html',
+          /*templateUrl: 'app/admin_modules/principal/principal.html',*/
+            templateUrl: 'admin-theme/main',
           title: 'Principal',
           sidebarMeta: {
             icon: 'ion-android-home',

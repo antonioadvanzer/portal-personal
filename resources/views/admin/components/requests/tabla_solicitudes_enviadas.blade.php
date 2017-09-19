@@ -36,7 +36,7 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="se in requests_table.solicitudesEnviadas" ng-click="showRequest(se.id)" ng-class="{'primary': ((se.alerta == 1) && (se.status == 3))}">
+    <tr ng-repeat="se in requests_table.solicitudesEnviadas" ng-click="showRequest(se.id)" ng-class="{'primary': ((se.alerta == 1) && (se.status == 3))}" class="row-table">
       <td class="table-id">@{{se.id}}</td>
       <td>@{{se.folio}}</td>
       <td>@{{se.tipo}}</td>
@@ -59,8 +59,11 @@
     </tfoot>
   </table>
     
-    <div ng-if="!requests_table.solicitudesEnviadas.length" class="alert bg-warning text-center">
-        <h4>Sin datos para mostrar</h4>
+    <div ng-if="(requests_table.solicitudesEnviadas.length == 0) && solicitudesEnviadas_loaded" class="alert bg-warning text-center">
+        <h4><i class="fa fa-exclamation-triangle"></i> Sin datos para mostrar</h4>
+    </div>
+    <div ng-if="(requests_table.solicitudesEnviadas.length == 0) && !solicitudesEnviadas_loaded" class="alert bg-info text-center">
+        <h4><i class="fa fa-spinner fa-spin"></i> Cargando datos ...</h4>
     </div>
     
 </div>

@@ -26,19 +26,27 @@
     }
     
     $scope.refreshTables = function(){
+        
+        $scope.listaAreas_loaded = false;
+        
         $scope.getAreas().then(function(data) {
             $scope.areas_table.listaAreas = data;
             $scope.areas_table.areas = data;
+            $scope.listaAreas_loaded = true;
         }); 
         //$scope.areas_table.listaAreas = [].concat($scope.areas_table.listaAreas);
         //getAreas();
     }
     
     $scope.areas_table = [];
-    $scope.areas_table.areas = [];
-    $scope.areas_table.tamanioTablaAreas = 10;
+    
+      $scope.listaAreas_loaded = false;
       
-    //$scope.areas_table.listaAreas = [];
+    $scope.areas_table.areas = [];
+      
+    $scope.areas_table.tamanioTablaAreas = 10;
+    
+    $scope.areas_table.listaAreas = [];
       
     $scope.refreshTables();
     /*$timeout(function() {

@@ -22,16 +22,23 @@
     }
     
     $scope.refreshTables = function(){
+        
+        $scope.listaPosiciones_loaded = false;
+        
         $scope.getPosiciones().then(function(data) {
             //$scope.positions_table = [];
             //$scope.positions_table.tamanioTablaPosiciones = 10;
             $scope.positions_table.listaPosiciones = data;
             $scope.positions_table.posiciones = data;
+            $scope.listaPosiciones_loaded = true;
             
         });  
     }
     
     $scope.positions_table = [];
+      
+      $scope.listaPosiciones_loaded = false;
+      
     $scope.positions_table.listaPosiciones = [];
     $scope.positions_table.tamanioTablaPosiciones = 10;
       

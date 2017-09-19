@@ -33,14 +33,20 @@
     }
     
     $scope.refreshTables = function(){
+        
+        $scope.solicitudesPropias_loaded = false;
+        $scope.solicitudesRecibidas_loaded = false;
+        
         // function to get request
         $scope.getOwnRequest().then(function(data) {
             $scope.absences_table.solicitudesPropias = data;
             $scope.absences_table.propias = data;
+            $scope.solicitudesPropias_loaded = true;
         });
         $scope.getRequestReceived().then(function(data) {
             $scope.absences_table.solicitudesRecibidas = data;
             $scope.absences_table.recibidas = data;
+            $scope.solicitudesRecibidas_loaded = true;
         });
         
         
@@ -68,6 +74,9 @@
     }
     
     $scope.absences_table = {};
+      
+      $scope.solicitudesPropias_loaded = false;
+      $scope.solicitudesRecibidas_loaded = false;
       
   	$scope.absences_table.tamanioTablaSolicitudesRealizadas = 10;
     
