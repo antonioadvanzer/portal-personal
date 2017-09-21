@@ -214,7 +214,7 @@
                 switch(permisos_user[i]){
                        case '1':
                         $scope.formEditUser.inputUserPermission1 = true;
-                        
+                        $scope.formEditUser.permisosUsuario['permiso1'] = true;
                        break;
                        case '2':
                         $scope.formEditUser.inputUserPermission2 = true;
@@ -222,34 +222,36 @@
                         $http.get("admin-theme/modules/user/users_employed/"+response.data.id).then(function (response) {
                             $scope.personalACargo = response.data;
                         });
+                        
+                        $scope.formEditUser.permisosUsuario['permiso2'] = true
                        break;
                        case '3':
                         $scope.formEditUser.inputUserPermission3 = true;
-                        
+                        $scope.formEditUser.permisosUsuario['permiso3'] = true
                        break;
                        case '4':
                         $scope.formEditUser.inputUserPermission4 = true;
-                        
+                        $scope.formEditUser.permisosUsuario['permiso4'] = true
                        break;
                        case '5':
                         $scope.formEditUser.inputUserPermission5 = true;
-                        
+                        $scope.formEditUser.permisosUsuario['permiso5'] = true
                        break;
                        case '6':
                         $scope.formEditUser.inputUserPermission6 = true;
-                        
+                        $scope.formEditUser.permisosUsuario['permiso7'] = true
                        break;
                        case '7':
                         $scope.formEditUser.inputUserPermission7 = true;
-                        
+                        $scope.formEditUser.permisosUsuario['permiso7'] = true
                        break;
                        case '8':
                         $scope.formEditUser.inputUserPermission8 = true;
-                        
+                        $scope.formEditUser.permisosUsuario['permiso8'] = true
                        break;
                        case '9':
                         $scope.formEditUser.inputUserPermission9 = true;
-                        
+                        $scope.formEditUser.permisosUsuario['permiso9'] = true
                        break;
                 }
             }
@@ -686,7 +688,7 @@
         
         var cont = 9;
         //alert($scope.switches['ps1']);
-        while(cont>0){
+        /*while(cont>0){
             var permission = angular.element( document.querySelector( '#ps'+cont ) );
             if($scope.permisosArea['permiso'+cont] || $scope.permisosPosicion['permiso'+cont]){
                 //permission.attr('switcher-value',"true");
@@ -704,6 +706,61 @@
             //document.getElementById('ps'+cont).innerHTML = '<switch id="ps'+cont+'" color="primary" ng-model="switches[ps'+cont+']"></switch>';
             console.log('ps'+cont+" "+$scope.switches['ps'+cont]);
             cont--;
+        }*/
+        
+        while(cont>0){
+            
+            var valor_input = false;
+            var habilitado = true;
+            
+            var permission = angular.element( document.querySelector( '#ps'+cont ) );
+            
+            if($scope.permisosArea['permiso'+cont] || $scope.permisosPosicion['permiso'+cont]){
+                    valor_input = true;
+                    habilitado = false;
+            }
+            
+            switch(cont){
+                case 1:
+                    $scope.formUser.inputUserPermission1 = valor_input;
+                    $scope.formUser.permission1 = habilitado;
+                break;
+                case 2:
+                    $scope.formUser.inputUserPermission2 = valor_input;
+                    $scope.formUser.permission2 = habilitado;
+                break;
+                case 3:
+                    $scope.formUser.inputUserPermission3 = valor_input;
+                    $scope.formUser.permission3 = habilitado;
+                break;
+                case 4:
+                    $scope.formUser.inputUserPermission4 = valor_input;
+                    $scope.formUser.permission4 = habilitado;
+                break;
+                case 5:
+                    $scope.formUser.inputUserPermission5 = valor_input;
+                    $scope.formUser.permission5 = habilitado;
+                break;
+                case 6:
+                    $scope.formUser.inputUserPermission6 = valor_input;
+                    $scope.formUser.permission6 = habilitado;
+                break;
+                case 7:
+                    $scope.formUser.inputUserPermission7 = valor_input;
+                    $scope.formUser.permission7 = habilitado;
+                break;
+                case 8:
+                    $scope.formUser.inputUserPermission8 = valor_input;
+                    $scope.formUser.permission8 = habilitado;
+                break;
+                case 9:
+                    $scope.formUser.inputUserPermission9 = valor_input;
+                    $scope.formUser.permission9 = habilitado;
+                break;
+                       
+            }
+            
+           cont--;
         }
         
     }
@@ -772,23 +829,53 @@
       
     $scope.saveUser = function(){
         
-        var cont = 9;
+        //var cont = 9;
         var permisosSeleccionados = "";
         
-        console.log("Permiso | Disponible | Habilitado");
+        //console.log("Permiso | Disponible | Habilitado");
         
-        while(cont>0){
+        /*while(cont>0){
             
             console.log('ps'+cont+'   '+$scope.permissionsAvailable['ps'+cont]+'   '+$scope.switches['ps'+cont]);
             
             if($scope.permissionsAvailable['ps'+cont] && $scope.switches['ps'+cont]){
                 permisosSeleccionados += 'ps'+cont+",";
             }
+           
             cont--;
+        }*/
+        
+        if($scope.formUser.inputUserPermission1 && $scope.formUser.permission1){
+           permisosSeleccionados += 'ps'+1+",";
+        }
+        if($scope.formUser.inputUserPermission2 && $scope.formUser.permission2){
+           permisosSeleccionados += 'ps'+2+",";
+        }
+        if($scope.formUser.inputUserPermission3 && $scope.formUser.permission3){
+           permisosSeleccionados += 'ps'+3+",";
+        }
+        if($scope.formUser.inputUserPermission4 && $scope.formUser.permission4){
+           permisosSeleccionados += 'ps'+4+",";
+        }
+        if($scope.formUser.inputUserPermission5 && $scope.formUser.permission5){
+           permisosSeleccionados += 'ps'+5+",";
+        }
+        if($scope.formUser.inputUserPermission6 && $scope.formUser.permission6){
+           permisosSeleccionados += ''+6+",";
+        }
+        if($scope.formUser.inputUserPermission7 && $scope.formUser.permission7){
+           permisosSeleccionados += 'ps'+7+",";
+        }
+        if($scope.formUser.inputUserPermission8 && $scope.formUser.permission8){
+           permisosSeleccionados += 'ps'+8+",";
+        }
+        if($scope.formUser.inputUserPermission9 && $scope.formUser.permission9){
+           permisosSeleccionados += 'ps'+9+",";
         }
         
-        console.log(permisosSeleccionados);
         
+        console.log(permisosSeleccionados);
+       
         /*var form = "\n Nombre: " + $scope.formUser.inputUserName
                 + "\n Apellido Paterno: " + $scope.formUser.inputUserApellidoP
                 + "\n Apellido Materno: " + $scope.formUser.inputUserApellidoM
@@ -976,8 +1063,8 @@
         
         // Get permissions by area
         $http.get("admin-theme/modules/permission/permisos_por_area/"+model.id).then(function (response) {
-          $scope.permisosArea = response.data;
-          $scope.getPermissions();
+          $scope.formEditUser.permisosArea = response.data;
+          $scope.formEditUser.getPermissions();
         });
     };
       
@@ -985,6 +1072,114 @@
         $http.get("admin-theme/modules/position/posiciones_activas_por_track/"+model.id).then(function (response) {
           $scope.ue_standardSelectPositions = response.data;
         });
+    };
+      
+    $scope.formEditUser.getPermissionsPositions = function (item, model){
+        // Get permissions by area
+        $http.get("admin-theme/modules/permission/permisos_por_posicion/"+model.id).then(function (response) {
+          $scope.formEditUser.permisosPosicion = response.data;
+          $scope.formEditUser.getPermissions();
+        });
+    }
+    
+    $scope.formEditUser.getPermissions = function (){
+        
+        var cont = 9;
+        
+        while(cont>0){
+            
+            var valor_input = false;
+            var habilitado = true;
+            
+            //var permission = angular.element( document.querySelector( '#ps'+cont ) );
+            
+            if($scope.formEditUser.permisosArea['permiso'+cont] || $scope.formEditUser.permisosPosicion['permiso'+cont]){
+                    valor_input = true;
+                    habilitado = false;
+            }/*else if($scope.formEditUser.permisosUsuario['permiso'+cont]){
+                    valor_input = true;
+                    habilitado = true; 
+            }*/
+            
+            switch(cont){
+                case 1:
+                    $scope.formEditUser.inputUserPermission1 = valor_input;
+                    $scope.formEditUser.permission1 = habilitado;
+                break;
+                case 2:
+                    $scope.formEditUser.inputUserPermission2 = valor_input;
+                    $scope.formEditUser.permission2 = habilitado;
+                break;
+                case 3:
+                    $scope.formEditUser.inputUserPermission3 = valor_input;
+                    $scope.formEditUser.permission3 = habilitado;
+                break;
+                case 4:
+                    $scope.formEditUser.inputUserPermission4 = valor_input;
+                    $scope.formEditUser.permission4 = habilitado;
+                break;
+                case 5:
+                    $scope.formEditUser.inputUserPermission5 = valor_input;
+                    $scope.formEditUser.permission5 = habilitado;
+                break;
+                case 6:
+                    $scope.formEditUser.inputUserPermission6 = valor_input;
+                    $scope.formEditUser.permission6 = habilitado;
+                break;
+                case 7:
+                    $scope.formEditUser.inputUserPermission7 = valor_input;
+                    $scope.formEditUser.permission7 = habilitado;
+                break;
+                case 8:
+                    $scope.formEditUser.inputUserPermission8 = valor_input;
+                    $scope.formEditUser.permission8 = habilitado;
+                break;
+                case 9:
+                    $scope.formEditUser.inputUserPermission9 = valor_input;
+                    $scope.formEditUser.permission9 = habilitado;
+                break;
+                       
+            }
+            
+           cont--;
+        }
+        
+    }
+    
+    $scope.formEditUser.permisosArea = {
+        permiso1: false,
+        permiso2: false,
+        permiso3: false,
+        permiso4: false,
+        permiso5: false,
+        permiso6: false,
+        permiso7: false,
+        permiso8: false,
+        permiso9: false
+    };
+      
+    $scope.formEditUser.permisosPosicion = {
+        permiso1: false,
+        permiso2: false,
+        permiso3: false,
+        permiso4: false,
+        permiso5: false,
+        permiso6: false,
+        permiso7: false,
+        permiso8: false,
+        permiso9: false
+    };
+      
+    $scope.formEditUser.permisosUsuario = {
+        permiso1: false,
+        permiso2: false,
+        permiso3: false,
+        permiso4: false,
+        permiso5: false,
+        permiso6: false,
+        permiso7: false,
+        permiso8: false,
+        permiso9: false
     };
      
     $scope.formEditUser.resetPassword = function (){
@@ -1075,7 +1270,7 @@
             $scope.sending = false;
             $scope.refreshTables();
             getAlert('theme/success_modal/Usuario actualizado correctamente');
-            //resetForm("usuarios.agregar");
+            resetForm("usuarios.colaboradores_activos");
             
         })
         .error(function (response) {

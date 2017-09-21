@@ -38,7 +38,7 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="sl in requisitions_table.requisicionesCompletadas" ng-click="showRequisitionDatail(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && (sl.status == 4))}" class="row-table">
+    <tr ng-repeat="sl in requisitions_table.requisicionesCompletadas" ng-click="showRequisitionDetail(sl.id)" ng-class="{'primary': ((sl.alerta == 1) && (sl.status == 4))}" class="row-table">
       <td class="table-id">@{{sl.id}}</td>
       <td>@{{sl.folio}}</td>
       <td>@{{sl.fecha}}</td>

@@ -179,7 +179,7 @@
                                 <label class="form-control">@{{formEditUser.inputUserNomina}}</label>
                           </div>
                           <div ng-if="formEditUser.editUser">
-                                <input type="number" class="form-control" id="inputUserNomina" name="inputUserNomina" ng-model="formEditUser.inputUserNomina" placeholder="" min="0" value="" required>
+                                <input type="number" class="form-control" id="inputUserNomina" name="inputUserNomina" ng-model="formEditUser.inputUserNomina" placeholder="" min="0" value="" disables>
                           </div>
                       </div>
 
@@ -547,9 +547,9 @@
                       <i class="ion-android-options"></i>Habilitar Edici&oacute;n
                     </button>
 
-                    <button type="button" class="btn btn-warning btn-with-icon save-profile" ng-click="formEditUser.resetPassword()">
+                    <!--<button type="button" class="btn btn-warning btn-with-icon save-profile" ng-click="formEditUser.resetPassword()">
                       <i class="ion-wand"></i>Reiniciar Contraseña
-                    </button>
+                    </button>-->
                 </div>
                     
                 </div>

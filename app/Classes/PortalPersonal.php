@@ -59,9 +59,9 @@ class PortalPersonal
             $message->from('notificaciones.ch@advanzer.com', 'Portal Personal');
             //$message->to($data['to']);
             $message->to("antonio.baez@advanzer.com");//test mode
-            if(array_key_exists('cc', $data)){
+            /*if(array_key_exists('cc', $data)){
                 $message->cc($data['cc']);
-            }
+            }*/
             $message->subject($data['subject']);
         });
     }

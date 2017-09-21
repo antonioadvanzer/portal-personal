@@ -25,6 +25,7 @@ class CreateCartaTable extends Migration
             $table->boolean('puesto')->default(0);
             $table->boolean('domicilio_particular')->default(0);
             $table->string('observations')->nullable();
+            $table->boolean('alert')->default(1);
             
             $table->timestamps();
             $table->softDeletes();

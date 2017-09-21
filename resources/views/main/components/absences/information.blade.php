@@ -120,7 +120,7 @@
                 </button>
 
                 <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="getSolicitudesRealizadas()">
-                    <i class="ion-ios-list-outline"></i>Solicitudes Realizas
+                    <i class="ion-ios-list-outline"></i>Solicitudes Realizadas
                 </button>
 
                 <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="getSolicitudeRecibidas()">

@@ -215,7 +215,7 @@
             
         </uib-tab>
         
-        <uib-tab heading="Subordinados" ng-if="user.is_boss">
+        <uib-tab heading="Equipo" ng-if="user.is_boss">
             
             <div class="panel-content">
                 <div class="row">

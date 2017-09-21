@@ -8,6 +8,7 @@ use App\Models\Permisos_Usuario;
 use App\Models\Posicion_Track;
 use App\Models\Jefe;
 use App\Models\Nivel;
+use App\Models\Vacaciones;
 use App\User;
 use Auth;
 use DB;
@@ -145,7 +146,7 @@ class UserController extends Controller
     {   
         $users = array();
 
-        $userModel = User::all();
+        $userModel = User::where('status',1)->get();
         //dd($userModel);
         foreach($userModel as $um){
             array_push($users,[
@@ -175,7 +176,7 @@ class UserController extends Controller
     {   
         $users = array();
 
-        $userModel = User::onlyTrashed()->get();
+        $userModel = User::where('status',0)->get();
         //dd($userModel);
         foreach($userModel as $um){
             array_push($users,[
@@ -218,12 +219,15 @@ class UserController extends Controller
             if($this->admin_checkPermission($this->adminPermissions['PERSONAL_A_CARGO'], $pu) 
                 or $this->admin_checkPermission($this->adminPermissions['PERSONAL_A_CARGO'], $pa) 
                 or $this->admin_checkPermission($this->adminPermissions['PERSONAL_A_CARGO'], $pp)){
-                array_push($bosses,[
-                    "id" => $um->id,
-                    "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
-                    //"boss" => count($um->getPermissionsUser()->get()),
-                    //"area" => count($um->getAreaAssociated()->first()->getPermissionsArea()->get())
-                ]);
+                
+                if($um->status == 1){
+                    array_push($bosses,[
+                        "id" => $um->id,
+                        "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
+                        //"boss" => count($um->getPermissionsUser()->get()),
+                        //"area" => count($um->getAreaAssociated()->first()->getPermissionsArea()->get())
+                    ]);
+                }
             }
             
             //echo explode(" ",$um->name)[0]." ".$um->apellido_paterno;
@@ -261,12 +265,13 @@ class UserController extends Controller
                     $userModel = $psm->getUsers()->get();
 
                     foreach($userModel as $um){
-                        //echo "<br>".$um->name." ".$um->apellido_paterno."<br>";
-
-                        array_push($bosses,[
-                            "id" => $um->id,
-                            "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
-                        ]);
+                            //echo "<br>".$um->name." ".$um->apellido_paterno."<br>";
+                        if($um->status == 1){
+                            array_push($bosses,[
+                                "id" => $um->id,
+                                "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
+                            ]);
+                        }
                     }
                 }
 
@@ -303,13 +308,15 @@ class UserController extends Controller
                     
                     $userModel = $psm->getUsers()->get();
 
+                    
                     foreach($userModel as $um){
-                        //echo "<br>".$um->name." ".$um->apellido_paterno."<br>";
-
-                        array_push($bosses,[
-                            "id" => $um->id,
-                            "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
-                        ]);
+                            //echo "<br>".$um->name." ".$um->apellido_paterno."<br>";
+                        if($um->status == 1){
+                            array_push($bosses,[
+                                "id" => $um->id,
+                                "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
+                            ]);
+                        }
                     }
                 }
 
@@ -334,11 +341,13 @@ class UserController extends Controller
 
             $employed = $um->getEmployedAssociated()->first();
             //var_dump($employed);
-            array_push($employees,[
-                "id" => $employed->id,
-                "name" => explode(" ",$employed->name)[0]." ".$employed->apellido_paterno,
-                "picture" => explode(".", $employed->photo)[0]
-            ]);
+            if($employed->status == 1){
+                array_push($employees,[
+                    "id" => $employed->id,
+                    "name" => explode(" ",$employed->name)[0]." ".$employed->apellido_paterno,
+                    "picture" => explode(".", $employed->photo)[0]
+                ]);
+            }
             
         }
         return json_encode($employees);
@@ -401,6 +410,22 @@ class UserController extends Controller
             Jefe::create([
                 'boss' => $request->input('nu_boss'), 
                 'employed' => $idUser->id
+            ]);
+            
+            $cierre = PortalPersonal::calculaFechaCierre(12, $idUser->fecha_ingreso);
+            $expiracion = PortalPersonal::calculaFechaCierre(18, $cierre);
+
+            Vacaciones::create([
+                'user' => $idUser->id, 
+                'type' => DB::table('tipos_dias')->where('name', 'Proporcionales')->value('id'),
+                'accumulated_days' => 0, 
+                'increased_days' => 0, 
+                'corresponding_days' => 6, 
+                'start_date'  => $idUser->fecha_ingreso, 
+                'close_date' => $cierre, 
+                'expiration_date' => $expiracion, 
+                'year' => 1, 
+                'status' => 1
             ]);
 
         }catch(\Exception $e){
@@ -471,7 +496,10 @@ class UserController extends Controller
             $user_update->name = $user['name'];
             $user_update->apellido_paterno = $user['apellido_paterno'];
             $user_update->apellido_materno = $user['apellido_materno'];
-            //$user_update->photo = $user['name'];
+
+            if($perfil){
+                $user_update->photo = $user['photo'];
+            }
             $user_update->email = $user['email'];
             $user_update->nomina = $user['nomina'];
             $user_update->plaza = $user['plaza'];

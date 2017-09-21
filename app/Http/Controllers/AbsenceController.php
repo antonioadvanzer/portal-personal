@@ -367,7 +367,7 @@ class AbsenceController extends Controller
                 'fecha_inicio' => $request->input('abs_date_start'),
                 'fecha_fin' => $request->input('abs_date_end'),
                 'fecha_regreso' => $request->input('abs_date_return'),
-                'observations' => $request->input('abs_observations') | " ",
+                'observations' => $request->input('abs_observations') | null,
                 'dias' => $request->input('abs_days'),
                 'type' => DB::table('tipo_solicitud')->where('name', 'Ausencia')->value('id'),
                 'motivo' => $request->input('abs_ocacion')
@@ -401,9 +401,12 @@ class AbsenceController extends Controller
         
         DB::commit();
         
+        $userModel = User::find($newAbsence['authorizer']);
+
         $data = array(
             'id' => $idAbsence->id,
             'usuario' => Auth::user()->name." ".Auth::user()->apellido_paterno,
+            'autorizador' => explode(" ",$userModel->name)[0]." ".$userModel->apellido_paterno,
             'dias' => $newAbsence['dias'],
             'desde' => $newAbsence['fecha_inicio'],
             'hasta' => $newAbsence['fecha_fin'],

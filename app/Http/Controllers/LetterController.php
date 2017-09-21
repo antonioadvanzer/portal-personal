@@ -7,6 +7,7 @@ use App\Models\Carta;
 use Mail;
 use Auth;
 use DB;
+use PortalPersonal;
 
 class LetterController extends Controller
 {
@@ -169,14 +170,24 @@ class LetterController extends Controller
             'observaciones' => $newLetter['observations']
         );
 
-        $data['subject'] = "Portal Personal";
+        $data['subject'] = "Portal Personal - Constancia Laboral";
         $data['from'] = Auth::user()->email;
         
         // test mail
-        $data['to'] = "antonio.baez@advanzer.com";
+        //$data['to'] = "antonio.baez@advanzer.com";
+        
+        $data['to'] = "capitalhumano@advanzer.com";
+        
+        $mail_admins = PortalPersonal::getAdminstratorsArray();
+
+        foreach($mail_admins as $mb){
+            array_push($mail_cc, $mb['email']);
+        }
+
+        $data['cc'] = $mail_cc;
 
         try{
-            $this->main_sendMail($data, 'main.components.letter.nueva_carta');
+            PortalPersonal::sendMail($data, 'main.components.letter.nueva_carta');
         }catch(\Exception $e){
             echo $e;
             exit;
