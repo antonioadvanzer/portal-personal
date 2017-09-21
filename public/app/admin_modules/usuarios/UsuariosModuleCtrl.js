@@ -131,6 +131,10 @@
             $scope.formEditUser.inputUserCompany = response.data.us_company_name;
             $scope.formEditUser.inputUserBoss = response.data.us_boss_name;
             
+            $scope.formEditUser.inputUserStatus = response.data.estado;
+            
+            $scope.formEditUser.inputUserBaja = false;
+            
             $scope.ue_selectedArea.selected = {id: response.data.us_area_id, name: response.data.us_area_name};
             $scope.ue_selectedTrack.selected = {id: response.data.us_track_id, name: response.data.us_track_name};
             $scope.ue_selectedPosition.selected = {id: response.data.us_posicion_id, name: response.data.us_posicion_name};

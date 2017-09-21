@@ -628,6 +628,65 @@
         
         </uib-tab>
         
+        <uib-tab heading="Estado Laboral">
+            
+            <div class="panel-content">
+
+                <form name="editUser" novalidate>
+                    
+                    <h3 class="with-line">Estado actual del colaborador</h3>
+                    
+                    <div class="row">
+                      <div class="col-md-6">
+                          
+                        <div class="input-group" align="center">
+                            <div ng-show="formEditUser.inputUserStatus== 1" class="alert bg-success col-md-4" align="center"><h3>Activo</h3></div>
+                            <div ng-show="formEditUser.inputUserStatus == 0" class="alert bg-warning col-md-4" align="center"><h3>Inactivo</h3></div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="row" ng-show="formEditUser.inputUserBaja">
+                        <div class="col-md-12">
+                            <div class="alert bg-danger">
+                            Favor de redactar el motivo de la baja 
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Motivo Cancelaci&oacute;n </span>
+                                <textarea placeholder="" class="form-control" id="inputAbsenceReceivedMotivobaja" ng-model="formEditUser.inputAbsenceReceivedMotivoCancelacion" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="with-line">Opciones</h3>
+                    
+                    <div ng-if="!formEditUser.inputUserBaja">
+                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="formEditUser.inputUserStatus" ng-click="formEditUser.showBaja()">
+                          <i class="ion-arrow-return-left"></i>Dar de baja
+                        </button>
+                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="!formEditUser.inputUserStatus" ng-click="formEditUser.showBaja()">
+                          <i class="ion-arrow-return-left"></i>Reactivar
+                        </button>
+                    </div>
+                    
+                    <div ng-if="formEditUser.inputUserBaja">
+                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="formEditUser.returnTable()">
+                          <i class="ion-arrow-return-left"></i>Continuar
+                        </button>
+
+                        <button type="button" class="btn btn-warnig btn-with-icon save-profile" ng-click="formEditUser.enableEdit()">
+                          <i class="ion-android-options"></i>Cancelar
+                        </button>
+
+                    </div>
+                    
+                </form>
+            
+            </div>
+        
+        </uib-tab>
+        
     </uib-tabset>
     
 </div>

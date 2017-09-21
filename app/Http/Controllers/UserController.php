@@ -571,6 +571,7 @@ class UserController extends Controller
                 'fecha_baja' => $userModel->fecha_baja,
                 'tipo_baja' => $userModel->tipo_baja,
                 'motivo' => $userModel->motivo,
+                'estado' => $userModel->status,
 
                 // helpers
                 'us_area_id' => $userModel->getAreaAssociated()->first()->id,

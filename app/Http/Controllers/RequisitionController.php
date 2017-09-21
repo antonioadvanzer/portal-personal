@@ -150,7 +150,7 @@ class RequisitionController extends Controller
 
         $requisition2 = DB::table('requisiciones')
                 ->select(DB::raw('count(*) as requisitions_count'))
-                ->where('status', DB::table('estados_requisicion')->where('name', 'Enviada')->value('id'))
+                ->where('status', DB::table('estados_requisicion')->where('name', 'Aceptada')->value('id'))
                 ->Where('partner_director', Auth::user()->id)
                 ->where('alert', 1)
                 ->first();
