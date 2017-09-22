@@ -316,7 +316,9 @@
       
         $scope.selectedBoss = {};
         $scope.standardBoss = {};
-        $scope.standardSelectBosses = [];
+        $scope.standardSelectBosses = [
+            {id:0, name:"Cargado Datos ..."}
+        ];
       
         $http.get("theme/modules/user/get_directors").then(function (response) {
             $scope.standardSelectBosses = response.data;
@@ -337,7 +339,9 @@
       
         $scope.selectedArea = {};
         $scope.standardArea = {};
-        $scope.standardSelectAreas = [];
+        $scope.standardSelectAreas = [
+            {id:0, name:"Cargado Datos ..."}
+        ];
       
         $http.get("theme/modules/area/areas_activas").then(function (response) {
             $scope.standardSelectAreas = response.data;
@@ -345,21 +349,26 @@
       
         $scope.selectedTrack = {};
         $scope.standardTrack = {};
-        $scope.standardSelectTracks = [];
+        $scope.standardSelectTracks = [
+            {id:0, name:"Cargado Datos ..."}
+        ];
       
         $http.get("theme/modules/track/tracks_activos").then(function (response) {
             $scope.standardSelectTracks = response.data;
         });
-        
+
+              
+        $scope.selectedPosition = {};
+        $scope.standardPosition = {};
+        $scope.standardSelectPositions = [
+            {id:0, name:"Cargado Datos ..."}
+        ];
+      
         $scope.getPositions = function (item, model){
             $http.get("theme/modules/position/posiciones_activas_por_track/"+model.id).then(function (response) {
               $scope.standardSelectPositions = response.data;
             });
         };
-      
-        $scope.selectedPosition = {};
-        $scope.standardPosition = {};
-        $scope.standardSelectPositions = [];
       
         $scope.selectedCompany = {};
         $scope.standardCompany = {};

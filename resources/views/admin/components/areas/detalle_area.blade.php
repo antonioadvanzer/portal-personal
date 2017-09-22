@@ -230,6 +230,9 @@
         
         <div ng-if="!formEditArea.editArea">
             <div class="col-sm-4 col-xs-6">
+                <button type="button" class="btn btn-info btn-with-icon " ng-click="goBack()">
+                  <i class="ion-arrow-return-left"></i>Regresar
+                </button>
                 <button type="submit" class="btn btn-primary btn-with-icon" ng-click="formEditArea.enableEdit()">
                     <i class="ion-android-options"></i>Editar
                 </button>

@@ -365,14 +365,18 @@
       
     $scope.selectedBoss = {};
     $scope.standardBoss = {};
-    $scope.standardSelectBosses = [];
+    $scope.standardSelectBosses = [
+        {id:0, name:"Cargado Datos ..."}
+    ];
       
     $http.get("theme/modules/user/get_bosses").then(function (response) {
       $scope.standardSelectBosses = response.data;
     });
       
     $scope.selectedDays = {};
-    $scope.standardSelectDays = [];
+    $scope.standardSelectDays = [
+        {id:0, name:"Cargado Datos ..."}
+    ];
       
     /*$http.get("theme/modules/vacations/get_days_available").then(function (response) {
       $scope.standardSelectDays = response.data;

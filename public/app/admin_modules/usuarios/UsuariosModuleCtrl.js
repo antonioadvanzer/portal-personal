@@ -264,6 +264,10 @@
             $state.go('usuarios.usuario_detalle');
         });
         
+        $scope.goBack = function (){
+            window.history.back();
+        };
+        
         //$scope.requests_table = [];
         //$scope.requests_table.tamanioTablaSolicitudesPorUsuario = 10;
         //$scope.requests_table.solicitudesPorUsuario = [];
@@ -481,21 +485,26 @@
     
     $scope.formUser={};
       
-    $scope.formUser.imageSrc = "";      
+    //$scope.formUser.imageSrc = "";
+    
+    $scope.formUser.imageSrc = $filter('profilePicture')('picture');
     
     //$scope.imageSrc = $filter('appImage')('theme/no-photo.png');//$filter('profilePicture')('picture');
     //$scope.imageSrc = $filter('appImage')('theme/no-photo.png');
-    $scope.formUser.noPicture = false;
+    
+    //$scope.formUser.noPicture = false;
+    $scope.formUser.noPicture = true;
       
     $scope.removePicture = function () {
-      $scope.formUser.imageSrc = '';//$filter('appImage')('theme/no-photo.png');
-      $scope.formUser.noPicture = false;
+      //$scope.formUser.imageSrc = '';//$filter('appImage')('theme/no-photo.png');
+        $scope.formUser.imageSrc = $filter('profilePicture')('picture');
+      $scope.formUser.noPicture = true;
     };
 
     $scope.uploadPicture = function () {
       var fileInput = document.getElementById('uploadFile');
         $scope.formUser.noPicture = true;
-      fileInput.click();
+        fileInput.click();
     };
       
     /*$scope.getFile = function () {
@@ -1194,9 +1203,9 @@
         $scope.formEditUser.editUser = true;
     };
       
-    $scope.formEditUser.returnTable = function (){
+    /*$scope.formEditUser.returnTable = function (){
         resetForm("usuarios.colaboradores_activos");
-    };
+    };*/
       
     $scope.formEditUser.cancelEdit = function (){
         $scope.formEditUser.editUser = false;

@@ -315,7 +315,9 @@
       
     $scope.selectedBoss = {};
     $scope.standardBoss = {};
-    $scope.standardSelectBosses = [];
+    $scope.standardSelectBosses = [
+        {id:0, name:"Cargado Datos ..."}
+    ];
       
     $http.get("theme/modules/user/get_bosses").then(function (response) {
       $scope.standardSelectBosses = response.data;
@@ -323,7 +325,9 @@
     
     $scope.selectedOcacion = {};
     $scope.standardOcacion = {};
-    $scope.standardSelectOcacions = [];
+    $scope.standardSelectOcacions = [
+        {id:0, name:"Cargado Datos ..."}
+    ];
       
     $http.get("theme/modules/absence/get_ocacions").then(function (response) {
       $scope.standardSelectOcacions = response.data;

@@ -191,7 +191,7 @@ class VacationController extends Controller
     { 
         $vacations = DB::table('solicitudes')
                 ->select(DB::raw('count(*) as vacations_count'))
-                ->where('authorizer', Auth::user()->id)
+                //->where('authorizer', Auth::user()->id)
                 ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
                 ->where('status', DB::table('estados_solicitud')->where('name', 'Aceptada')->value('id'))
                 ->where('alert', 1)

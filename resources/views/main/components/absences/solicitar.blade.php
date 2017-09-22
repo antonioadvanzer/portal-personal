@@ -140,6 +140,10 @@
         </div>
     </div>
 
+    <button type="button" class="btn btn-info btn-with-icon " ng-click="goBack()">
+      <i class="ion-close-round"></i>Cancelar
+    </button>
+        
     <button type="submit" class="btn btn-primary btn-with-icon" ng-show="(selectedBoss.selected.id) && (selectedOcacion.selected.id) && (dt)">
       <i class="ion-ios-checkmark-outline"></i>Solicitar
     </button>

@@ -1812,7 +1812,8 @@ h3.with-line {
     background: rgba(0, 0, 0, 0.7);
     -webkit-transition: all 200ms ease-in-out;
     transition: all 200ms ease-in-out;
-    color: #666666;
+    /*color: #666666;*/
+    color: #fff;
     text-decoration: none;
     position: absolute;
     bottom: -1px;
@@ -4052,7 +4053,7 @@ th {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom: 1px solid transparent;
-  background-color: #63bbb2; }
+  background-color: #BABD4D; }
   .nav.nav-tabs a {
     color: #ffffff; }
     .nav.nav-tabs a:hover {
@@ -4064,7 +4065,7 @@ th {
     border: none; }
     .nav.nav-tabs > li > a:hover, .nav.nav-tabs > li > a:focus {
       border: none;
-      background-color: #63bbb2; }
+      background-color: #CFDB51; }
   .nav.nav-tabs > li.active > a {
     color: #ffffff;
     background-color: #CFDB51; }

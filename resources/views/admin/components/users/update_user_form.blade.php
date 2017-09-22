@@ -1,5 +1,13 @@
 <div ba-panel ba-panel-class="profile-page">
     
+    <div class="row">
+        <h3 class="with-line"></h3>
+            <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="goBack()">
+              <i class="ion-arrow-return-left"></i>Regresar
+            </button>
+        <h3 class="with-line"></h3>
+    </div>
+    
     <uib-tabset active="$tabSetStatus.activeTab">
         
         <uib-tab heading="General">
@@ -539,9 +547,9 @@
                 </div>
 
                 <div ng-if="!formEditUser.editUser">
-                    <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="formEditUser.returnTable()">
+                    <!--<button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="formEditUser.goBack()">
                       <i class="ion-arrow-return-left"></i>Regresar
-                    </button>
+                    </button>-->
 
                     <button type="button" class="btn btn-success btn-with-icon save-profile" ng-click="formEditUser.enableEdit()">
                       <i class="ion-android-options"></i>Habilitar Edici&oacute;n
@@ -688,5 +696,13 @@
         </uib-tab>
         
     </uib-tabset>
+    
+    <div class="row">
+        <h3 class="with-line"></h3>
+            <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="formEditUser.goBack()">
+              <i class="ion-arrow-return-left"></i>Regresar
+            </button>
+        <h3 class="with-line"></h3>
+    </div>
     
 </div>

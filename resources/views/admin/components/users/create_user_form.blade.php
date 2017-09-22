@@ -1,4 +1,13 @@
 <div ba-panel ba-panel-class="profile-page">
+    
+    <div class="row">
+        <h3 class="with-line"></h3>
+            <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="formEditUser.goBack()">
+              <i class="ion-arrow-return-left"></i>Regresar
+            </button>
+        <h3 class="with-line"></h3>
+    </div>
+    
   <div class="panel-content">
       
       <form name="newUser" novalidate>
@@ -33,8 +42,8 @@
               <div class="userpic-wrapper">
                 <img id="inputUserPicture" src="@{{ formUser.imageSrc }}" ng-click="uploadPicture()">
               </div>
-              <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="(formUser.noPicture && formUser.imageSrc != '')"></i>
-              <a href class="change-userpic" ng-click="uploadPicture()" ng-if="!(formUser.noPicture)">Agrega Foto de Perfil</a>
+              <!--<i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="(formUser.noPicture && formUser.imageSrc != '')"></i>-->
+              <a href class="change-userpic" ng-click="uploadPicture()" ng-if="(formUser.noPicture)">Agrega Foto de Perfil</a>
               <input type="file" id="uploadFile" name="uploadFile" ng-show="false" ng-file-select="onFileSelect($files)" ng-model="formUser.imageSrc" accept="image/*">
             </div>
           </div>
@@ -109,7 +118,7 @@
       </div>--}}
     </div>
 
-    <h3 class="with-line">Contraseña</h3>
+    {{--<h3 class="with-line">Contraseña</h3>
 
     <div class="row">
       <div class="col-md-6">
@@ -121,7 +130,7 @@
           </div>
         </div>
       </div>
-      {{--<div class="col-md-6">
+      <div class="col-md-6">
         <div class="form-group row clearfix">
           <label for="inputUserConfirmPassword" class="col-sm-3 control-label">Confirmar Contraseña</label>
 
@@ -129,8 +138,8 @@
             <input type="password" class="form-control" id="inputUserConfirmPassword" placeholder="">
           </div>
         </div>
-      </div>--}}
-    </div>
+      </div>
+    </div>--}}
 
     <h3 class="with-line">Informaci&oacute;n de Puesto</h3>
 
@@ -487,4 +496,13 @@
     </form>
       
   </div>
+    
+    <div class="row">
+        <h3 class="with-line"></h3>
+            <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="goBack()">
+              <i class="ion-arrow-return-left"></i>Regresar
+            </button>
+        <h3 class="with-line"></h3>
+    </div>
+    
 </div>
