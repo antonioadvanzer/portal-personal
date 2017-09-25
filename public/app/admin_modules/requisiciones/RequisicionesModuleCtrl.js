@@ -63,6 +63,10 @@
         });  
     }
     
+    $scope.goBack = function (){
+        window.history.back();
+    };
+    
     $scope.refreshTables = function(){
         
         $scope.todasLasRequisiciones_loaded = false;

@@ -12,6 +12,18 @@
     <div ng-if="!sending">
     
     <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <button type="button" class="btn btn-info btn-with-icon " ng-click="goBack()">
+                  <i class="ion-arrow-return-left"></i>Regresar
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <h3 class="with-line"></h3>
+        
+    <div class="row">
 
         <div class="col-md-6">
             

@@ -55,6 +55,10 @@
         $scope.refreshTables();
     }, 2000);*/
       
+    $scope.goBack = function (){
+        window.history.back();
+    };
+      
     $scope.showLetterDetail = function (id){
 
         $http.get("theme/modules/letter/get_letter_detail/"+id).then(function (response) {

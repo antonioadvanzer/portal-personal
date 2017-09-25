@@ -17,6 +17,7 @@ class CreateSolicitudesTable extends Migration
             $table->increments('id');
             $table->integer('user')->unsigned(); // foreign key
             $table->integer('authorizer')->unsigned(); // foreign key
+            $table->date('fecha_solicitud');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->date('fecha_regreso');

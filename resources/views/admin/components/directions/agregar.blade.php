@@ -31,6 +31,9 @@
             <button type="submit" class="btn btn-primary btn-with-icon">
                 <i class="ion-plus-circled"></i>Agregar
             </button>
+            <button type="button" class="btn btn-danger btn-with-icon" ng-click="cancelAdd()">
+                <i class="ion-android-cancel"></i>Cancelar
+            </button>
         </div>
     </div>
   

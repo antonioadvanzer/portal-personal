@@ -51,6 +51,14 @@
         $scope.refreshTables();
     }, 2000);*/
       
+    $scope.goBack = function (){
+        window.history.back();
+    };
+      
+    $scope.cancelAdd = function (){
+        resetForm("posiciones.lista_posiciones");
+    };
+      
     $scope.showPosition = function (id){
         $http.get("admin-theme/modules/position/get_position/"+id).then(function (response) {
             

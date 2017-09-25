@@ -348,6 +348,10 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::post('/update_user', 'UserController@admin_updateUser');
                 Route::get('/users_employed/{id_user}', 'UserController@main_getUsersEmployed');
 
+                Route::get('/reactive_user/{id_user}', 'UserController@admin_activeUser');
+
+                Route::post('/deactive_user', 'UserController@admin_deactivateUser');
+
                 // Edit
                 Route::get('/get_user/{id_user}', 'UserController@admin_getUserDetail');
 

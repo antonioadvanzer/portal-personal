@@ -83,6 +83,64 @@
         $scope.refreshTables();
     }, 2000);*/
     
+    $scope.goBack = function (){
+        window.history.back();
+    };
+      
+    $scope.cancelAdd = function (){
+        resetForm("usuarios.colaboradores_activos");
+    };
+      
+    $scope.deleteUser = function (){
+        $scope.formEditUser.inputUserBaja = true;
+    };
+      
+    $scope.confirmDelete = function (){
+        
+        $scope.sending = true;
+        
+        var formData = new FormData();
+        
+        formData.append("_token", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+        formData.append("u_id", $scope.formEditUser.id); 
+        formData.append("u_motivo_baja", document.getElementById("inputMotivoBaja").value); 
+        
+        $http.post("admin-theme/modules/user/deactive_user", formData,{
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function (response) {
+            console.log(response.data);
+            $scope.sending = false;
+            $scope.refreshTables();
+            resetForm("usuarios.colaboradores_inactivos");
+            getAlert('theme/success_modal/Usuario dado de baja correctamente');
+            
+        })
+        .error(function (response) {
+            console.log(response);
+            $scope.refreshTables();
+            $scope.sending = false;
+            getAlert('theme/danger_modal/Falla al eliminar usuario');
+        });
+        
+    };
+      
+    $scope.cancelDelete = function (){
+        $scope.formEditUser.inputUserBaja = false;
+    };
+      
+    $scope.reactiveUser = function (){
+        
+        $http.get("admin-theme/modules/user/reactive_user/"+$scope.formEditUser.id).then(function (response) {
+            console.log(response.data);
+            $scope.sending = false;
+            $scope.refreshTables();
+            resetForm("usuarios.colaboradores_activos");
+            getAlert('theme/success_modal/Usuario dado de alta correctamente');
+        });
+    };
+      
     $scope.showUser = function (id){
 
         $http.get("admin-theme/modules/user/get_user/"+id).then(function (response) {
@@ -132,8 +190,15 @@
             $scope.formEditUser.inputUserBoss = response.data.us_boss_name;
             
             $scope.formEditUser.inputUserStatus = response.data.estado;
+            $scope.formEditUser.inputMotivoBaja = response.data.motivo;
+            
+            $scope.formEditUser.inputShowMotivo = response.data.estado == 0 ? true : false;
+            
+            $scope.formEditUser.inputEliminable = response.data.us_eliminable > 0 ? false : true;
             
             $scope.formEditUser.inputUserBaja = false;
+            $scope.formRequest.active_view_request = false;
+            $scope.formLetter.active_view_letter = false;
             
             $scope.ue_selectedArea.selected = {id: response.data.us_area_id, name: response.data.us_area_name};
             $scope.ue_selectedTrack.selected = {id: response.data.us_track_id, name: response.data.us_track_name};
@@ -263,11 +328,7 @@
             $scope.refreshTables();
             $state.go('usuarios.usuario_detalle');
         });
-        
-        $scope.goBack = function (){
-            window.history.back();
-        };
-        
+
         //$scope.requests_table = [];
         //$scope.requests_table.tamanioTablaSolicitudesPorUsuario = 10;
         //$scope.requests_table.solicitudesPorUsuario = [];
@@ -337,13 +398,14 @@
             $scope.formRequest.labelRequestStatus = response.data.status;
             $scope.formRequest.labelRequestType = response.data.type;
             
+            $scope.formRequest.active_view_request = true;
             $scope.formRequest.requestStatus = true;
             
             
             //$scope.refreshTables();
             //$state.go('solicitudes.detalle_autorizar');
             getAditionaInformation($scope.formEditUser.id);
-            $scope.formRequest.active_view_request = true;
+            //$scope.formRequest.active_view_request = true;
         });
         
     }

@@ -91,7 +91,10 @@
         $scope.refreshTables();
     }, 2000);*/
     
-    
+    $scope.goBack = function (){
+        window.history.back();
+    };
+      
     $scope.showOwnAbsence = function (id){
         
         $http.get("theme/modules/absence/get_own_absence/"+id).then(function (response) {

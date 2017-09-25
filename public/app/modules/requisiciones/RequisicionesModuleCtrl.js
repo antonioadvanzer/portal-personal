@@ -59,6 +59,10 @@
 
         $scope.refreshTables();
       
+        $scope.goBack = function (){
+            window.history.back();
+        };
+      
       $scope.showOwnRequisition = function (id){
         
         $http.get("theme/modules/requisition/get_own_request/"+id).then(function (response) { 

@@ -50,6 +50,18 @@
         $scope.refreshTables();
     }, 2000);*/
       
+    $scope.goBack = function (){
+        window.history.back();
+    };
+      
+    $scope.cancelAdd = function (){
+        resetForm("areas.lista_areas");
+    };
+      
+    $scope.cancelAdd = function (){
+        resetForm("direcciones.lista_direcciones");
+    };
+      
     $scope.showDirection = function (id){
         $http.get("admin-theme/modules/direction/get_direction/"+id).then(function (response) {
             

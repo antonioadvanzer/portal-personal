@@ -1,12 +1,12 @@
 <div ba-panel ba-panel-class="profile-page">
     
-    <div class="row">
+    <!--<div class="row">
         <h3 class="with-line"></h3>
             <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="formEditUser.goBack()">
               <i class="ion-arrow-return-left"></i>Regresar
             </button>
         <h3 class="with-line"></h3>
-    </div>
+    </div>-->
     
   <div class="panel-content">
       
@@ -491,18 +491,22 @@
       <i class="ion-android-checkmark-circle"></i>Guardar
     </button>
     
+    <button type="button" class="btn btn-danger btn-with-icon save-profile" ng-click="cancelAdd()">
+        <i class="ion-android-cancel"></i>Cancelar
+    </button>
+        
     </div>
         
     </form>
       
   </div>
     
-    <div class="row">
+    <!--<div class="row">
         <h3 class="with-line"></h3>
-            <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="goBack()">
-              <i class="ion-arrow-return-left"></i>Regresar
+            <button type="button" class="btn btn-danger btn-with-icon" ng-click="goBack()">
+                <i class="ion-android-cancel"></i>Cancelar
             </button>
         <h3 class="with-line"></h3>
-    </div>
+    </div>-->
     
 </div>

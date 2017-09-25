@@ -155,6 +155,10 @@
         $scope.refreshTables();
     }, 2000);*/
       
+    $scope.goBack = function (){
+        window.history.back();
+    };
+      
     $scope.showRequest = function (id){
         
         $http.get("admin-theme/modules/request/get_request/"+id).then(function (response) {

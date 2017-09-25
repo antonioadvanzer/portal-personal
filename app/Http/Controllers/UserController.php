@@ -142,6 +142,51 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin_activeUser($id_user)
+    { 
+
+        $user = User::find($id_user);
+        $user->status = 1;
+        $user->save();
+
+        return "success";
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_deactivateUser(Request $request)
+    { 
+        DB::beginTransaction();
+        
+        try{
+            $user = User::find($request->input('u_id'));
+
+            $user->status = 0;
+            $user->motivo = $request->input('u_motivo_baja');
+            $user->save();
+
+            // Pendiente, si se eliminan las vacaciones
+            //Vacaciones::where('user',$request->input('u_id'))->delete();
+
+        }catch(\Exception $e){
+            echo $e;
+            DB::rollBack();
+            exit;
+        }
+
+        DB::commit();
+
+        return "success";  
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin_getUsersActive()
     {   
         $users = array();
@@ -588,7 +633,8 @@ class UserController extends Controller
                 'us_boss_id' => $userModel->getBoss()->first()->getBossAssociated()->first()->id,
                 'us_boss_name' => $userModel->getBoss()->first()->getBossAssociated()->first()->name." ".$userModel->getBoss()->first()->getBossAssociated()->first()->apellido_paterno,
                 'us_permissions' => $this->admin_getPermissionsEnabledByUser($id_user),
-                'us_permissions_user' => PortalPersonal::getPermissionsToEditUser($id_user)
+                'us_permissions_user' => PortalPersonal::getPermissionsToEditUser($id_user),
+                'us_eliminable' => $userModel->getEmployees()->get()->count()
             ];
 
         return json_encode($user);

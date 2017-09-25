@@ -44,6 +44,14 @@
         $scope.refreshTables();
     }, 2000);*/
       
+    $scope.goBack = function (){
+        window.history.back();
+    };
+      
+    $scope.cancelAdd = function (){
+        resetForm("tracks.lista_tracks");
+    };
+      
     $scope.showTrack = function (id){
         
         $http.get("admin-theme/modules/track/get_track/"+id).then(function (response) {

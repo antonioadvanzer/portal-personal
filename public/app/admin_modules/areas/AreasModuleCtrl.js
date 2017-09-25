@@ -53,6 +53,14 @@
         $scope.refreshTables();
     }, 2000);*/
       
+    $scope.goBack = function (){
+        window.history.back();
+    };
+      
+    $scope.cancelAdd = function (){
+        resetForm("areas.lista_areas");
+    };
+    
     $scope.showArea = function (id){
         $http.get("admin-theme/modules/area/get_area/"+id).then(function (response) {
             

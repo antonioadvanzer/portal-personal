@@ -153,6 +153,10 @@
         
     }
       
+    $scope.goBack = function (){
+        window.history.back();
+    };
+      
     $scope.showOwnRequest = function (id){
         
         $http.get("theme/modules/vacations/get_own_request/"+id).then(function (response) {

@@ -648,45 +648,66 @@
                       <div class="col-md-6">
                           
                         <div class="input-group" align="center">
-                            <div ng-show="formEditUser.inputUserStatus== 1" class="alert bg-success col-md-4" align="center"><h3>Activo</h3></div>
+                            <div ng-show="formEditUser.inputUserStatus == 1" class="alert bg-success col-md-4" align="center"><h3>Activo</h3></div>
                             <div ng-show="formEditUser.inputUserStatus == 0" class="alert bg-warning col-md-4" align="center"><h3>Inactivo</h3></div>
                         </div>
 
                       </div>
                     </div>
-
+                    
+                    <div class="row" ng-show="formEditUser.inputShowMotivo">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Motivo </span>
+                                <p class="form-control">@{{formEditUser.inputMotivoBaja}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="row" ng-show="formEditUser.inputUserBaja">
                         <div class="col-md-12">
                             <div class="alert bg-danger">
                             Favor de redactar el motivo de la baja 
                             </div>
                             <div class="input-group">
-                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Motivo Cancelaci&oacute;n </span>
-                                <textarea placeholder="" class="form-control" id="inputAbsenceReceivedMotivobaja" ng-model="formEditUser.inputAbsenceReceivedMotivoCancelacion" required></textarea>
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Motivo </span>
+                                <textarea placeholder="" class="form-control" id="inputMotivoBaja" name="inputMotivoBaja" ng-model="formEditUser.inputMotivoBaja" required></textarea>
                             </div>
                         </div>
                     </div>
                     
                     <h3 class="with-line">Opciones</h3>
                     
+                    <div ng-if="!formEditUser.inputEliminable">
+                    
                     <div ng-if="!formEditUser.inputUserBaja">
-                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="formEditUser.inputUserStatus" ng-click="formEditUser.showBaja()">
-                          <i class="ion-arrow-return-left"></i>Dar de baja
+                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="formEditUser.inputUserStatus" ng-click="deleteUser()">
+                          <i class="ion-toggle"></i>Dar de baja
                         </button>
-                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="!formEditUser.inputUserStatus" ng-click="formEditUser.showBaja()">
-                          <i class="ion-arrow-return-left"></i>Reactivar
+                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="!formEditUser.inputUserStatus" ng-click="reactiveUser()">
+                          <i class="ion-toggle-filled"></i>Dar de alta
                         </button>
                     </div>
                     
                     <div ng-if="formEditUser.inputUserBaja">
-                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="formEditUser.returnTable()">
+                        <button type="submit" class="btn btn-primary btn-with-icon save-profile" ng-click="confirmDelete()" ng-disabled="(formEditUser.inputMotivoBaja == '')">
                           <i class="ion-arrow-return-left"></i>Continuar
                         </button>
 
-                        <button type="button" class="btn btn-warnig btn-with-icon save-profile" ng-click="formEditUser.enableEdit()">
+                        <button type="button" class="btn btn-warning btn-with-icon save-profile" ng-click="cancelDelete()">
                           <i class="ion-android-options"></i>Cancelar
                         </button>
 
+                    </div>
+                        
+                    </div>
+                    
+                    <div ng-if="formEditUser.inputEliminable">
+                        <div class="col-md-12">
+                            <div class="alert bg-danger">
+                            Este usuario tiene gente a cargo, tendra que cambiar de jefe a los empleados antes de poder eliminar al usuario
+                            </div>
+                        </div>
                     </div>
                     
                 </form>
@@ -697,12 +718,12 @@
         
     </uib-tabset>
     
-    <div class="row">
+    <!--<div class="row">
         <h3 class="with-line"></h3>
             <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="formEditUser.goBack()">
               <i class="ion-arrow-return-left"></i>Regresar
             </button>
         <h3 class="with-line"></h3>
-    </div>
+    </div>-->
     
 </div>
