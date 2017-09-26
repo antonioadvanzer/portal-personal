@@ -94,6 +94,18 @@
     $scope.deleteUser = function (){
         $scope.formEditUser.inputUserBaja = true;
     };
+  
+    $scope.cancelDelete = function (){
+        $scope.formEditUser.inputUserBaja = false;
+    };
+      
+    $scope.restoreUser = function (){
+        $scope.formEditUser.inputUserAlta = true;
+    };
+  
+    $scope.cancelRestore = function (){
+        $scope.formEditUser.inputUserAlta = false;
+    };
       
     $scope.confirmDelete = function (){
         
@@ -103,14 +115,19 @@
         
         formData.append("_token", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
         formData.append("u_id", $scope.formEditUser.id); 
-        formData.append("u_motivo_baja", document.getElementById("inputMotivoBaja").value); 
+        formData.append("u_motivo_baja", document.getElementById("inputMotivoBaja").value);
+        formData.append("u_fecha_baja", document.getElementById("inputFechaBaja").value);
+        formData.append("u_tipo_baja", $scope.selectedTipoBaja.selected.name);
+        
+        //console.log(formData);
+        //console.log($scope.formEditUser.id+" "+document.getElementById("inputFechaBaja").value+" "+$scope.selectedTipoBaja.selected.name);
         
         $http.post("admin-theme/modules/user/deactive_user", formData,{
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })
         .success(function (response) {
-            console.log(response.data);
+            console.log(response);
             $scope.sending = false;
             $scope.refreshTables();
             resetForm("usuarios.colaboradores_inactivos");
@@ -126,19 +143,35 @@
         
     };
       
-    $scope.cancelDelete = function (){
-        $scope.formEditUser.inputUserBaja = false;
-    };
-      
-    $scope.reactiveUser = function (){
+    $scope.confirmRestore = function (){
         
-        $http.get("admin-theme/modules/user/reactive_user/"+$scope.formEditUser.id).then(function (response) {
-            console.log(response.data);
+        $scope.sending = true;
+        
+        var formData = new FormData();
+        
+        formData.append("_token", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+        formData.append("u_id", $scope.formEditUser.id);
+        formData.append("u_fecha_reingreso", document.getElementById("inputFechaReingreso").value);
+        
+        $http.post("admin-theme/modules/user/reactive_user", formData,{
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function (response) {
+            console.log(response);
             $scope.sending = false;
             $scope.refreshTables();
             resetForm("usuarios.colaboradores_activos");
             getAlert('theme/success_modal/Usuario dado de alta correctamente');
+            
+        })
+        .error(function (response) {
+            console.log(response);
+            $scope.refreshTables();
+            $scope.sending = false;
+            getAlert('theme/danger_modal/Falla al eliminar usuario');
         });
+        
     };
       
     $scope.showUser = function (id){
@@ -182,6 +215,9 @@
             $scope.formEditUser.inputUserPlaza = response.data.plaza;
             $scope.formEditUser.inputUserNomina = response.data.nomina;
             $scope.formEditUser.inputUserFechaIngreso = response.data.fecha_ingreso;
+            $scope.formEditUser.inputUserFechaBaja = response.data.fecha_baja;
+            $scope.formEditUser.inputUserFechaReingreso = response.data.fecha_reingreso;
+            $scope.formEditUser.inputUserTipoBaja = response.data.tipo_baja;
             $scope.formEditUser.inputUserArea = response.data.us_area_name;
             $scope.formEditUser.inputUserDireccion = response.data.us_direccion_name;
             $scope.formEditUser.inputUserTrack = response.data.us_track_name;
@@ -194,9 +230,10 @@
             
             $scope.formEditUser.inputShowMotivo = response.data.estado == 0 ? true : false;
             
-            $scope.formEditUser.inputEliminable = response.data.us_eliminable > 0 ? false : true;
+            $scope.formEditUser.inputEliminable = response.data.us_eliminable > 0 ? false: true;
             
             $scope.formEditUser.inputUserBaja = false;
+            $scope.formEditUser.inputUserAlta = false;
             $scope.formRequest.active_view_request = false;
             $scope.formLetter.active_view_letter = false;
             
@@ -1096,6 +1133,14 @@
       fileInput.click();
     };
     
+    $scope.selectedTipoBaja = {};
+    //$scope.selectedArea.selected = "";
+    $scope.standardTipoBaja = {};
+    $scope.standardSelectTiposBajas = [
+        {id:1, name:"Voluntaria"},
+        {id:2, name:"Involuntaria"}
+    ];
+      
     $scope.formEditUser.dt = new Date();
     /*$scope.open = open;
     $scope.opened = false;

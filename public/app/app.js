@@ -40,4 +40,12 @@ app.run(function($rootScope) {
     $rootScope.formLetterDetail={};
     $rootScope.notification={};
     
+    $rootScope.formEditUser = {};
+    $rootScope.requests_table = {};
+    $rootScope.letter_table = {};
+    $rootScope.vacations_table = {};
+    
+    $rootScope.formRequest = {};
+    $rootScope.formLetter = {};
+    
 });

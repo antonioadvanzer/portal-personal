@@ -180,7 +180,7 @@
                         </div>
                     </div>
                     <div class="form-group row clearfix" ng-class="{'has-error': validIUN}">
-                      <label for="inputUserNomina" class="col-sm-3 control-label"># Nomina</label>
+                      <label for="inputUserNomina" class="col-sm-3 control-label"># N&oacute;mina</label>
 
                       <div class="col-sm-9">
                           <div ng-if="!formEditUser.editUser">
@@ -656,10 +656,18 @@
                     </div>
                     
                     <div class="row" ng-show="formEditUser.inputShowMotivo">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Tipo Baja </span>
+                                <p class="form-control">@{{formEditUser.inputUserTipoBaja}}</p>
+                            </div>
                             <div class="input-group">
                                 <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Motivo </span>
                                 <p class="form-control">@{{formEditUser.inputMotivoBaja}}</p>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Fecha Baja </span>
+                                <p class="form-control">@{{formEditUser.inputUserFechaBaja}}</p>
                             </div>
                         </div>
                     </div>
@@ -674,17 +682,61 @@
                                 <textarea placeholder="" class="form-control" id="inputMotivoBaja" name="inputMotivoBaja" ng-model="formEditUser.inputMotivoBaja" required></textarea>
                             </div>
                         </div>
+                        <div class="col-md-6" ng-controller="UsuariosModuleCtrl">
+                            
+                              <!--<label>Fecha Seleccionada: <em>@{{formUser.dt | date:'fullDate' }}</em></label>-->
+                                <p class="input-group">
+                                    <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">Fecha Baja</span>
+                                    <input id="inputFechaBaja" type="text" class="form-control" uib-datepicker-popup="@{{format}}" datepicker-options="options" ng-model="formUser.dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" readonly/>
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">Tipo Baja</span>
+                                <ui-select id="inputTipoBaja" ng-model="selectedTipoBaja.selected"
+                                   class="btn-group bootstrap-select form-control"
+                                   ng-disabled="false"
+                                   append-to-body="true"
+                                   search-enabled="false">
+                                  <ui-select-match placeholder="Seleccionar">
+                                    <span> @{{$select.selected.name}}</span>
+                                  </ui-select-match>
+                                  <ui-select-choices repeat="standardTipoBaja in standardSelectTiposBajas | filter: $select.search">
+                                    <span ng-bind-html="standardTipoBaja.name"></span>
+                                  </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
                     </div>
                     
+                    <div class="row" ng-show="formEditUser.inputUserAlta">
+                        
+                        <div class="col-md-6" ng-controller="UsuariosModuleCtrl">
+                            
+                              <!--<label>Fecha Seleccionada: <em>@{{formUser.dt | date:'fullDate' }}</em></label>-->
+                                <p class="input-group">
+                                    <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">Fecha de Reingreso</span>
+                                    <input id="inputFechaReingreso" type="text" class="form-control" uib-datepicker-popup="@{{format}}" datepicker-options="options" ng-model="formUser.dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" readonly/>
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </p>
+                        </div>
+                        
+                    </div>
+                     
                     <h3 class="with-line">Opciones</h3>
                     
-                    <div ng-if="!formEditUser.inputEliminable">
+                    <div ng-if="formEditUser.inputEliminable">
                     
-                    <div ng-if="!formEditUser.inputUserBaja">
+                    <div ng-if="(!formEditUser.inputUserBaja) && (!formEditUser.inputUserAlta)">
                         <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="formEditUser.inputUserStatus" ng-click="deleteUser()">
                           <i class="ion-toggle"></i>Dar de baja
                         </button>
-                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="!formEditUser.inputUserStatus" ng-click="reactiveUser()">
+                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="!formEditUser.inputUserStatus" ng-click="restoreUser()">
                           <i class="ion-toggle-filled"></i>Dar de alta
                         </button>
                     </div>
@@ -700,9 +752,20 @@
 
                     </div>
                         
+                    <div ng-if="formEditUser.inputUserAlta">
+                        <button type="submit" class="btn btn-primary btn-with-icon save-profile" ng-click="confirmRestore()">
+                          <i class="ion-arrow-return-left"></i>Continuar
+                        </button>
+
+                        <button type="button" class="btn btn-warning btn-with-icon save-profile" ng-click="cancelRestore()">
+                          <i class="ion-android-options"></i>Cancelar
+                        </button>
+
+                    </div>
+                        
                     </div>
                     
-                    <div ng-if="formEditUser.inputEliminable">
+                    <div ng-if="!formEditUser.inputEliminable">
                         <div class="col-md-12">
                             <div class="alert bg-danger">
                             Este usuario tiene gente a cargo, tendra que cambiar de jefe a los empleados antes de poder eliminar al usuario

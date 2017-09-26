@@ -9,7 +9,7 @@
     .controller('ProfilePageCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, $http, fileReader, $filter, $uibModal) {
+  function ProfilePageCtrl($scope, $http, $state, fileReader, $filter, $uibModal) {
     
     var vm = this;
       
@@ -35,35 +35,20 @@
     
     $scope.refreshTables();
       
+    //$scope.formEditUser = [];
+      
+    $scope.goBack = function (){
+        window.history.back();
+    };
+      
     $scope.showUser = function (id){
 
-        $http.get("admin-theme/modules/user/get_user/"+id).then(function (response) {
+        $http.get("theme/modules/user/get_user/"+id).then(function (response) {
             
             console.log(response.data);
             
-            /*$http.get("admin-theme/modules/area/areas_activas").then(function (response) {
-              $scope.ue_standardSelectAreas = response.data;
-            });
-            
-            $http.get("admin-theme/modules/track/tracks_activos").then(function (response) {
-              $scope.ue_standardSelectTracks = response.data;
-            });
-            
-            $http.get("admin-theme/modules/position/posiciones_activas_por_track/"+response.data.us_track_id).then(function (response) {
-              $scope.ue_standardSelectPositions = response.data;
-            });
-            
-            $scope.ue_standardSelectCompanies = [
-              {id: 1, name: 'Advanzer'},
-              {id: 2, name: 'Entuizer'}
-            ];
-            
-            $http.get("admin-theme/modules/user/get_bosses").then(function (response) {
-              $scope.ue_standardSelectBosses = response.data;
-            });*/ 
-            
-            $scope.formEditUser.editUser = false;
-            $scope.formEditUser.noPicture = true;
+            /*$scope.formEditUser.editUser = false;
+            $scope.formEditUser.noPicture = true;*/
             
             $scope.formEditUser.id = response.data.id;
             //$scope.formUser.imageSrc = response.data.photo;
@@ -82,53 +67,116 @@
             $scope.formEditUser.inputUserPosicion = response.data.us_posicion_name;
             $scope.formEditUser.inputUserCompany = response.data.us_company_name;
             $scope.formEditUser.inputUserBoss = response.data.us_boss_name;
-            
-            /*$scope.formEditUser.inputUserStatus = response.data.estado;
-            $scope.formEditUser.inputMotivoBaja = response.data.motivo;
-            
-            $scope.formEditUser.inputShowMotivo = response.data.estado == 0 ? true : false;
-            
-            $scope.formEditUser.inputEliminable = response.data.us_eliminable > 0 ? false : true;
-            
-            $scope.formEditUser.inputUserBaja = false;
-            $scope.formRequest.active_view_request = false;
-            $scope.formLetter.active_view_letter = false;*/
-            
-            /*$scope.ue_selectedArea.selected = {id: response.data.us_area_id, name: response.data.us_area_name};
-            $scope.ue_selectedTrack.selected = {id: response.data.us_track_id, name: response.data.us_track_name};
-            $scope.ue_selectedPosition.selected = {id: response.data.us_posicion_id, name: response.data.us_posicion_name};
-            $scope.ue_selectedCompany.selected = {id: response.data.us_company_id, name: response.data.us_company_name};
-            $scope.ue_selectedBoss.selected = {id: response.data.us_boss_id, name: response.data.us_boss_name};*/
-            
-            
+                
             //$scope.refreshTables();
-            //$state.go('perfil.usuario_detalle');
+            $state.go('empleado');
         });
         
-        //getAditionaInformation(id);
+        getAditionaInformation(id);
     }
       
     function getAditionaInformation(id_user){
-        $.getJSON("admin-theme/modules/request/get_all_requests_by_user/"+id_user, function( data ) {
+        $.getJSON("theme/modules/user/get_all_requests_by_user/"+id_user, function( data ) {
             $scope.requests_table.tamanioTablaSolicitudesPorUsuario = 10;
             $scope.requests_table.solicitudesPorUsuario = data;
-            //console.log(data);
+            console.log(data);
             $scope.$apply();
         });
         
-        $.getJSON("admin-theme/modules/request/get_all_letter_by_user/"+id_user, function( data ) {
+        $.getJSON("theme/modules/user/get_all_letter_by_user/"+id_user, function( data ) {
             $scope.letter_table.tamanioTablaSolicitudesPorUsuario = 10;
             $scope.letter_table.solicitudesPorUsuario = data;
             //console.log(data);
             $scope.$apply();
         });
         
-        $.getJSON("admin-theme/modules/vacations/list_days_by_user/"+id_user, function( data ) {
+        $.getJSON("theme/modules/user/list_days_by_user/"+id_user, function( data ) {
             $scope.vacations_table.vacations_days = data;
             //console.log(data);
             $scope.$apply();
         });
     }
+      
+    /* Show formRequest by User ------------------------------------------------------------------------------------*/
+      
+    $scope.formRequest.active_view_request = false;
+    
+    $scope.showRequest = function (id){
+        
+        $http.get("theme/modules/user/get_request/"+id).then(function (response) {
+          //console.log(response.data);
+            $scope.formRequest.inputRequestId = response.data.id;
+            $scope.formRequest.inputRequestColaborador = response.data.nombre_colaborador;
+            $scope.formRequest.inputRequestAutorizador = response.data.nombre_autorizador;
+            $scope.formRequest.inputRequestDias = response.data.dias;
+            $scope.formRequest.inputRequestEstado = response.data.estado;
+            $scope.formRequest.inputRequestTipo = response.data.tipo;
+            $scope.formRequest.inputRequestMotivo = response.data.motivo;
+            $scope.formRequest.inputRequestDesde = response.data.desde;
+            $scope.formRequest.inputRequestHasta = response.data.hasta;
+            $scope.formRequest.inputRequestRegresa = response.data.regresa;
+            $scope.formRequest.inputRequestObservationes = response.data.observaciones;
+            $scope.formRequest.inputRequestAuthBoss = response.data.aut_jefe;
+            $scope.formRequest.inputRequestAuthCh = response.data.aut_ch;
+            
+            $scope.formRequest.inputRequestMotivoCancelacion = response.data.razon_cancelacion;
+            $scope.formRequest.inputRequestOcacion = response.data.ocacion;
+            
+            $scope.formRequest.labelRequestStatus = response.data.status;
+            $scope.formRequest.labelRequestType = response.data.type;
+            
+            $scope.formRequest.active_view_request = true;
+            $scope.formRequest.requestStatus = true;
+            
+            getAditionaInformation($scope.formEditUser.id);
+        });
+        
+    }
+      
+    $scope.getComprobante = function(){
+        getAlert('theme/modules/absence/comprobante_medico/'+$scope.formRequest.inputRequestId);
+    }
+    
+    $scope.returnRequestByUser = function() {
+        $scope.formRequest.active_view_request = false;
+    };
+    
+    /*--------------------------------------------------------------------------------------------------*/
+    
+    /* Show formLetter by User ------------------------------------------------------------------------------------*/
+      
+      $scope.formLetter.active_view_letter = false;
+      
+      $scope.showLetter = function (id){
+        
+        $http.get("theme/modules/user/get_letter/"+id).then(function (response) {
+            //console.log(response.data);
+            
+            $scope.formLetter.inputLetterId = response.data.id;
+            $scope.formLetter.inputLetterColaborador = response.data.colaborador;
+            $scope.formLetter.inputLetterDirigidoA = response.data.dirigido;
+            $scope.formLetter.inputLetterSueldo = response.data.sueldo;
+            $scope.formLetter.inputLetterIMSS = response.data.imss;
+            $scope.formLetter.inputLetterRFC = response.data.rfc;
+            $scope.formLetter.inputLetterCURP = response.data.curp;
+            $scope.formLetter.inputLetterAntiguedad = response.data.antiguedad;
+            $scope.formLetter.inputLetterPuesto = response.data.puesto;
+            $scope.formLetter.inputLetterDomicilio = response.data.domicilio;
+            $scope.formLetter.inputLetterObservaciones = response.data.observaciones;
+            
+            getAditionaInformation($scope.formEditUser.id);
+            $scope.formLetter.active_view_letter = true;
+        });
+        
+    }
+    
+    $scope.returnLetterByUser = function() {
+
+        $scope.formLetter.active_view_letter = false;
+        
+    };
+      
+    /*--------------------------------------------------------------------------------------------------*/
       
   }
 

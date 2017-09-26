@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
 
             $table->date('fecha_ingreso');
             $table->date('fecha_baja')->nullable();
+            $table->date('fecha_reingreso')->nullable();
             $table->enum('tipo_baja',['Voluntaria', 'Involuntaria'])->nullable();
             $table->string('motivo')->nullable();
 

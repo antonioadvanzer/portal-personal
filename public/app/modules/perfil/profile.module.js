@@ -16,6 +16,12 @@
           title: 'Perfil',
           templateUrl: 'theme/modules/user/get_profile',
           controller: 'ProfilePageCtrl',
+        })
+        .state('empleado', {
+          url: '/empleado',
+          title: 'Perfil Empleado',
+          templateUrl: 'theme/modules/user/get_profile_employed',
+          controller: 'ProfilePageCtrl',
         });
   }
 

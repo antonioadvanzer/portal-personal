@@ -72,6 +72,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function main_getEmployedInformationForm()
+    {
+        return view('main.components.profile.employed_detail');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin_usuariosActivos()
     {
         return view('admin.components.users.usuarios_activos');
@@ -142,12 +152,44 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin_activeUser($id_user)
+    public function admin_activeUser(Request $request)
     { 
+        DB::beginTransaction();
+        
+        try{
+            $user = User::find($request->input('u_id'));
+            
+            $user->status = 1;
+            $user->fecha_reingreso = $request->input('u_fecha_reingreso');
+            
+            $user->save();
 
-        $user = User::find($id_user);
-        $user->status = 1;
-        $user->save();
+            $fecha_cierre = PortalPersonal::calculaFechaCierre($request->input('u_fecha_reingreso'), 12);
+
+            $fecha_expiracion = PortalPersonal::calculaFechaCierre($fecha_cierre, 18);
+
+            $vr = [
+                'user' => $request->input('u_id'),
+                'type' => 2,
+                'accumulated_days' => 0, 
+                'increased_days' => 0, 
+                'corresponding_days' => 6, 
+                'start_date' => $request->input('u_fecha_reingreso'), 
+                'close_date' => $fecha_cierre, 
+                'expiration_date' => $fecha_expiracion, 
+                'year' => 1, 
+                'status'=> 1
+                ];
+
+            Vacaciones::create($vr);
+
+        }catch(\Exception $e){
+            echo $e;
+            DB::rollBack();
+            exit;
+        }
+        
+        DB::commit();
 
         return "success";
     }
@@ -166,10 +208,13 @@ class UserController extends Controller
 
             $user->status = 0;
             $user->motivo = $request->input('u_motivo_baja');
+            $user->fecha_baja = $request->input('u_fecha_baja');
+            $user->tipo_baja = $request->input('u_tipo_baja');
+
             $user->save();
 
             // Pendiente, si se eliminan las vacaciones
-            //Vacaciones::where('user',$request->input('u_id'))->delete();
+            Vacaciones::where('user',$request->input('u_id'))->delete();
 
         }catch(\Exception $e){
             echo $e;
@@ -614,8 +659,10 @@ class UserController extends Controller
                 'company' => $userModel->company,
                 'fecha_ingreso' => $userModel->fecha_ingreso,
                 'fecha_baja' => $userModel->fecha_baja,
+                'fecha_reingreso' => $userModel->fecha_reingreso,
                 'tipo_baja' => $userModel->tipo_baja,
                 'motivo' => $userModel->motivo,
+                'tipo_baja' => $userModel->tipo_baja,
                 'estado' => $userModel->status,
 
                 // helpers

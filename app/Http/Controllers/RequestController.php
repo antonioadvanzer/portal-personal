@@ -337,6 +337,16 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function main_getRequestByUserForm()
+    {   
+        return view('main.components.profile.solicitada_por_usuario');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin_getLetterByUserForm()
     {   
         return view('admin.components.requests.carta_por_usuario');

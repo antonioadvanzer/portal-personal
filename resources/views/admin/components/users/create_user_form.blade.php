@@ -177,7 +177,7 @@
             </div>
         </div>
         <div class="form-group row clearfix" ng-class="{'has-error': validIUN}">
-          <label for="inputUserNomina" class="col-sm-3 control-label"># Nomina</label>
+          <label for="inputUserNomina" class="col-sm-3 control-label"># N&oacute;mina</label>
 
           <div class="col-sm-9">
             <input type="number" class="form-control" id="inputUserNomina" name="inputUserNomina" ng-model="formUser.inputUserNomina" placeholder="" min="0" value="" ng-keyup="formUser.checkNomina(newUser)" required>

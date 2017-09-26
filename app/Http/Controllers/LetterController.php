@@ -178,6 +178,8 @@ class LetterController extends Controller
         
         $data['to'] = "capitalhumano@advanzer.com";
         
+        $mail_cc = array();
+
         $mail_admins = PortalPersonal::getAdminstratorsArray();
 
         foreach($mail_admins as $mb){

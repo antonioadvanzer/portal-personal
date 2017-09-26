@@ -84,11 +84,32 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/get_profile', 'UserController@main_getPersonalInformationForm');
                 Route::get('/tabla_personal_a_cargo', 'UserController@main_tablaPersonalACargo');
 
+                /* Employed Information **************/
+                Route::get('/get_profile_employed', 'UserController@main_getEmployedInformationForm');
+                Route::get('/lista_solicitudes_por_usuario', 'RequestController@admin_requestsByUser');
+                Route::get('/lista_cartas_solicitadas_por_usuario', 'RequestController@admin_letterByUser');
+                Route::get('/lista_dias_por_usuario', 'VacationController@admin_tableAccumulatedDays');
+                
+                Route::get('/solicitada_por_usuario', 'RequestController@main_getRequestByUserForm');
+                Route::get('/carta_solicitada_por_usuario', 'RequestController@admin_getLetterByUserForm');
+
+                /*************************************/
+
                 // Resources
                 Route::get('/get_directors', 'UserController@main_getDirectors');
                 Route::get('/get_authorizers', 'UserController@main_getAuthorizers');
                 
                 Route::get('/users_employed/{id_user}', 'UserController@main_getUsersEmployed');
+
+                /* Employed Information **************/
+                Route::get('/get_user/{id_user}', 'UserController@admin_getUserDetail');
+                Route::get('/get_all_requests_by_user/{id_user}', 'RequestController@admin_getAllRequestsByUser');
+                Route::get('/get_all_letter_by_user/{id_user}', 'RequestController@admin_getAllLetterByUser');
+                Route::get('/list_days_by_user/{id_user}', 'VacationController@admin_getAccumulatedDaysByUser');
+
+                Route::get('/get_request/{id_request}', 'RequestController@admin_getRequest');
+                Route::get('/get_letter/{id_letter}', 'RequestController@admin_getLetter');
+                /*************************************/
 
             });
 
@@ -348,7 +369,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::post('/update_user', 'UserController@admin_updateUser');
                 Route::get('/users_employed/{id_user}', 'UserController@main_getUsersEmployed');
 
-                Route::get('/reactive_user/{id_user}', 'UserController@admin_activeUser');
+                Route::post('/reactive_user', 'UserController@admin_activeUser');
 
                 Route::post('/deactive_user', 'UserController@admin_deactivateUser');
 

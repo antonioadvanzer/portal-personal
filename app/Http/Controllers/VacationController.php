@@ -654,7 +654,7 @@ class VacationController extends Controller
         # Se hace la busqueda de solicitudes de vacaciones, con el estado de activo
         $total_days = DB::table('solicitudes')
              ->select(DB::raw("SUM(dias) as total_days"))
-             ->where('user', Auth::user()->id)
+             ->where('user', $id_user)
              ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
              ->where('used', 1)
              ->whereIn('status',[
@@ -907,7 +907,7 @@ class VacationController extends Controller
             'corresponding_days' => 6, 
             'start_date' => '2017-03-01', 
             'close_date' => '2018-03-01', 
-            'expiration_date' => ' 2019-09-01', 
+            'expiration_date' => '2019-09-01', 
             'year' => 1, 
             'status'=> 1
             ];
