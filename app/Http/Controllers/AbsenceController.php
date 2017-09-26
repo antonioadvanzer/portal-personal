@@ -368,7 +368,7 @@ class AbsenceController extends Controller
                 'fecha_fin' => $request->input('abs_date_end'),
                 'fecha_regreso' => $request->input('abs_date_return'),
                 'fecha_solicitud' => date('Y-m-d'),
-                'observations' => $request->input('abs_observations') | null,
+                'observations' => $request->input('abs_observations') | " ",
                 'dias' => $request->input('abs_days'),
                 'type' => DB::table('tipo_solicitud')->where('name', 'Ausencia')->value('id'),
                 'motivo' => $request->input('abs_ocacion')
