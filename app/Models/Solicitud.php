@@ -22,7 +22,7 @@ class Solicitud extends Model
      * @var array
      */
     protected $fillable = [
-        'user', 'authorizer', 'fecha_inicio', 'fecha_fin', 'fecha_regreso', 'voucher', 'observations', 'razon_cancelacion', 'status', 'dias', 'type', 'motivo', 'auth_boss', 'auth_ch', 'alert', 'used'
+        'user', 'authorizer', 'fecha_solicitud', 'fecha_inicio', 'fecha_fin', 'fecha_regreso', 'voucher', 'observations', 'razon_cancelacion', 'status', 'dias', 'type', 'motivo', 'auth_boss', 'auth_ch', 'alert', 'used'
     ];
 
     /**

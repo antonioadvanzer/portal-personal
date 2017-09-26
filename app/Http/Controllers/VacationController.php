@@ -327,7 +327,8 @@ class VacationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function main_storeNewVacationRequest(Request $request)
-    {   
+    {   //echo date('Y-m-d');
+        //exit;
         DB::beginTransaction();
 
         $newVacationRequest = array();
@@ -341,6 +342,7 @@ class VacationController extends Controller
                 'fecha_inicio' => $request->input('vr_date_start'),
                 'fecha_fin' => $request->input('vr_date_end'),
                 'fecha_regreso' => $request->input('vr_date_return'),
+                'fecha_solicitud' => date('Y-m-d'),
                 'observations' => $request->input('vr_observations') | " ",
                 'dias' => $request->input('vr_days'),
                 'type' => DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'),
@@ -585,7 +587,8 @@ class VacationController extends Controller
         $data = array(
             'id' => $solicitud->id,
             'autorizador' => $solicitud->getAuthorizerAssociated()->first()->name." ".$solicitud->getAuthorizerAssociated()->first()->apellido_paterno,
-            'usuario' => $solicitud->getEmployedAssociated->first()->name." ".$solicitud->getEmployedAssociated->first()->apellido_paterno,
+            //'usuario' => $solicitud->getEmployedAssociated->first()->name." ".$solicitud->getEmployedAssociated->first()->apellido_paterno,
+            'usuario' => User::find($solicitud->user)->name." ".User::find($solicitud->user)->apellido_paterno,
             'dias' => $solicitud->dias,
             'desde' => $solicitud->fecha_inicio,
             'hasta' => $solicitud->fecha_fin,

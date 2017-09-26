@@ -28,4 +28,6 @@ app.run(function($rootScope) {
     //$rootScope.areas_table = {};
     //$rootScope.areas_table.listaAreas = [];
     $rootScope.notification={};
+    $rootScope.formEditUser={};
+    
 });

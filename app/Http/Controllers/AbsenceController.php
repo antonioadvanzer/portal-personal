@@ -367,6 +367,7 @@ class AbsenceController extends Controller
                 'fecha_inicio' => $request->input('abs_date_start'),
                 'fecha_fin' => $request->input('abs_date_end'),
                 'fecha_regreso' => $request->input('abs_date_return'),
+                'fecha_solicitud' => date('Y-m-d'),
                 'observations' => $request->input('abs_observations') | null,
                 'dias' => $request->input('abs_days'),
                 'type' => DB::table('tipo_solicitud')->where('name', 'Ausencia')->value('id'),
@@ -639,7 +640,8 @@ class AbsenceController extends Controller
         $data = array(
             'id' => $solicitud->id,
             'autorizador' => $solicitud->getAuthorizerAssociated()->first()->name." ".$solicitud->getAuthorizerAssociated()->first()->apellido_paterno,
-            'usuario' => $solicitud->getEmployedAssociated->first()->name." ".$solicitud->getEmployedAssociated->first()->apellido_paterno,
+            //'usuario' => $solicitud->getEmployedAssociated->first()->name." ".$solicitud->getEmployedAssociated->first()->apellido_paterno,
+            'usuario' => User::find($solicitud->user)->name." ".User::find($solicitud->user)->apellido_paterno,
             'dias' => $solicitud->dias,
             'desde' => $solicitud->fecha_inicio,
             'hasta' => $solicitud->fecha_fin,

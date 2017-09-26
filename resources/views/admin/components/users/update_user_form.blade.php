@@ -52,7 +52,7 @@
                               <div class="userpic-wrapper">
                                 <img id="inputUserPicture" src="@{{ formEditUser.imageSrc }}" ng-click="formEditUser.uploadPicture()">
                               </div>
-                              <i class="ion-ios-close-outline" ng-click="formEditUser.removePicture()" ng-if="(formEditUser.noPicture && formEditUser.imageSrc != '')"></i>
+                              <!--<i class="ion-ios-close-outline" ng-click="formEditUser.removePicture()" ng-if="(formEditUser.noPicture && formEditUser.imageSrc != '')"></i>-->
                               <a href class="change-userpic" ng-click="formEditUser.uploadPicture()" ng-if="!(formEditUser.noPicture)">Agrega Foto de Perfil</a>
                               <input type="file" id="uploadFile" name="uploadFile" ng-show="false" ng-file-select="onFileSelect($files)" ng-model="formEditUser.imageSrc" accept="image/*">
                             </div>
@@ -202,17 +202,40 @@
                       <label for="inputUserFechaIngreso" class="col-sm-3 control-label">Fecha de Ingreso</label>
 
                         <div class="col-sm-9"  ng-if="!formEditUser.editUser">
-                                <label class="form-control">@{{formEditUser.inputUserFechaIngreso}}</label>
-                          </div>
-                        <div class="col-sm-9" ng-if="formEditUser.editUser" ng-controller="UsuariosModuleCtrl">
-                            <label>Fecha Seleccionada: <em>@{{formEditUser.dt | date:'fullDate' }}</em></label>
-                            <p class="input-group">
-                                <input id="inputUserFechaIngreso" type="text" class="form-control" uib-datepicker-popup="@{{format}}" datepicker-options="options" ng-model="formEditUser.dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" readonly/>
-                              <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
-                              </span>
-                            </p>
+                            <label class="form-control">@{{formEditUser.inputUserFechaIngreso}}</label>
                         </div>
+                        <div class="col-sm-9"  ng-if="formEditUser.editUser && !formEditUser.editDate">
+                            <div class="input-group">
+                                <label class="form-control">@{{formEditUser.inputUserFechaIngreso}}</label>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info" ng-click="editDate()" type="button">Cambiar</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div ng-if="formEditUser.editDate">
+                            
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <button class="btn btn-warning" ng-click="cancelEditDate()" type="button">Cancelar</button>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-9"  ng-controller="UsuariosModuleCtrl">
+                                <label>Fecha Seleccionada: <em>@{{formEditUser.dt | date:'fullDate' }}</em></label>
+                                <p class="input-group">
+                                    <input id="inputUserFechaIngreso" type="text" class="form-control" uib-datepicker-popup="@{{format}}" datepicker-options="options" ng-model="formEditUser.dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" readonly/>
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </p>
+                            </div>
+                            
+                        </div>
+                        <!--<div class="col-sm-9" ng-if="formEditUser.editUser">
+                            <p class="input-group"> 
+                                <input type="text" id="fecha" ng-model="formEditUser.fecha" class="form-control" value="">
+                            </p>
+                        </div>-->
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -658,16 +681,25 @@
                     <div class="row" ng-show="formEditUser.inputShowMotivo">
                         <div class="col-md-6">
                             <div class="input-group">
-                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Tipo Baja </span>
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-tipoBaja">Tipo Baja </span>
                                 <p class="form-control">@{{formEditUser.inputUserTipoBaja}}</p>
                             </div>
                             <div class="input-group">
-                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Motivo </span>
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-motivoBaja">Motivo </span>
                                 <p class="form-control">@{{formEditUser.inputMotivoBaja}}</p>
                             </div>
                             <div class="input-group">
-                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-observaciones">Fecha Baja </span>
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-fechaBaja">Fecha Baja </span>
                                 <p class="form-control">@{{formEditUser.inputUserFechaBaja}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row" ng-show="formEditUser.inputUserFechaReingreso && !formEditUser.inputUserBaja">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="basic-fechaReingreso">Fecha de Reingreso </span>
+                                <p class="form-control">@{{formEditUser.inputUserFechaReingreso}}</p>
                             </div>
                         </div>
                     </div>

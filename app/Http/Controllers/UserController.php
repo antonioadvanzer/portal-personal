@@ -502,8 +502,8 @@ class UserController extends Controller
                 'employed' => $idUser->id
             ]);
             
-            $cierre = PortalPersonal::calculaFechaCierre(12, $idUser->fecha_ingreso);
-            $expiracion = PortalPersonal::calculaFechaCierre(18, $cierre);
+            $cierre = PortalPersonal::calculaFechaCierre($idUser->fecha_ingreso, 12);
+            $expiracion = PortalPersonal::calculaFechaCierre($cierre, 18);
 
             Vacaciones::create([
                 'user' => $idUser->id, 
@@ -560,16 +560,16 @@ class UserController extends Controller
             //'photo' => $request->input('uu_nomina').".".$perfil->getClientOriginalExtension(),
             'email' => $request->input('uu_email'),
             //'password' => bcrypt("password"),
-            'status' => 1,
+            //'status' => 1,
             'nomina' => $request->input('uu_nomina'),
             'plaza' => $request->input('uu_plaza'),
             'area' => $request->input('uu_area'),
             'posicion_track' => Posicion_Track::where('track',$request->input('uu_track'))->where('posicion',$request->input('uu_posicion'))->first()->id,
             'company' => $request->input('uu_empresa'),
             'fecha_ingreso' => $request->input('uu_fecha_ingreso'),
-            'fecha_baja' => null,
-            'tipo_baja' => null,
-            'motivo' => null
+            //'fecha_baja' => null,
+            //'tipo_baja' => null,
+            //'motivo' => null
         ];
 
         if($perfil = $request->file('uu_foto')){

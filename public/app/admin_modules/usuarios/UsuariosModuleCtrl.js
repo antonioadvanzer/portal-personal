@@ -173,7 +173,7 @@
         });
         
     };
-      
+    
     $scope.showUser = function (id){
 
         $http.get("admin-theme/modules/user/get_user/"+id).then(function (response) {
@@ -225,12 +225,26 @@
             $scope.formEditUser.inputUserCompany = response.data.us_company_name;
             $scope.formEditUser.inputUserBoss = response.data.us_boss_name;
             
+            // Altas y bajas
             $scope.formEditUser.inputUserStatus = response.data.estado;
             $scope.formEditUser.inputMotivoBaja = response.data.motivo;
-            
             $scope.formEditUser.inputShowMotivo = response.data.estado == 0 ? true : false;
-            
             $scope.formEditUser.inputEliminable = response.data.us_eliminable > 0 ? false: true;
+            
+            // Fechas ingreso
+            var str = $scope.formEditUser.inputUserFechaIngreso;
+            var res = str.split("-");
+            $scope.formEditUser.dt = new Date(res[0],res[1],res[2]);
+            console.log($scope.formEditUser.inputUserFechaIngreso);
+            console.log($scope.formEditUser.dt);
+            console.log(res);
+            console.log(new Date());
+            //document.getElementById("inputUserFechaIngreso").value = str;
+            //$("#datepicker").datepicker();
+            //$("#fecha").val("My value");
+            $scope.formEditUser.fecha = str;
+            $scope.formEditUser.editDate = false;
+            
             
             $scope.formEditUser.inputUserBaja = false;
             $scope.formEditUser.inputUserAlta = false;
@@ -1141,6 +1155,19 @@
         {id:2, name:"Involuntaria"}
     ];
       
+    //$("#fecha").datepicker();
+    //$("#fecha").datepick({dateFormat: 'yyyy-mm-dd'});
+      
+    $scope.formEditUser.editDate = false;
+      
+    $scope.editDate = function(){
+        $scope.formEditUser.editDate = true;
+    }
+    
+    $scope.cancelEditDate = function(){
+        $scope.formEditUser.editDate = false;
+    }
+      
     $scope.formEditUser.dt = new Date();
     /*$scope.open = open;
     $scope.opened = false;
@@ -1370,7 +1397,14 @@
         formData.append("uu_email", $scope.formEditUser.inputUserEmail); 
         formData.append("uu_plaza", $scope.formEditUser.inputUserPlaza); 
         formData.append("uu_nomina", $scope.formEditUser.inputUserNomina); 
-        formData.append("uu_fecha_ingreso", document.getElementById("inputUserFechaIngreso").value);
+        
+        //$scope.formEditUser.editDate = false;
+        
+        if($scope.formEditUser.editDate){
+            formData.append("uu_fecha_ingreso", document.getElementById("inputUserFechaIngreso").value);
+        }else{
+            formData.append("uu_fecha_ingreso", $scope.formEditUser.inputUserFechaIngreso);
+        }
         
         formData.append("uu_area", $scope.ue_selectedArea.selected.id); 
         formData.append("uu_track", $scope.ue_selectedTrack.selected.id); 

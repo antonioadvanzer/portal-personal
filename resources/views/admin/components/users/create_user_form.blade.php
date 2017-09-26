@@ -47,6 +47,7 @@
               <input type="file" id="uploadFile" name="uploadFile" ng-show="false" ng-file-select="onFileSelect($files)" ng-model="formUser.imageSrc" accept="image/*">
             </div>
           </div>
+            
         </div>
       </div>
       <div class="col-md-6"></div>
