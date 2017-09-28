@@ -782,10 +782,10 @@
                     <div ng-if="formEditUser.inputEliminable">
                     
                     <div ng-if="(!formEditUser.inputUserBaja) && (!formEditUser.inputUserAlta)">
-                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="formEditUser.inputUserStatus" ng-click="deleteUser()">
+                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="formEditUser.inputUserStatus == 1" ng-click="deleteUser()">
                           <i class="ion-toggle"></i>Dar de baja
                         </button>
-                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="!formEditUser.inputUserStatus" ng-click="restoreUser()">
+                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="formEditUser.inputUserStatus == 0" ng-click="restoreUser()">
                           <i class="ion-toggle-filled"></i>Reingreso
                         </button>
                     </div>
