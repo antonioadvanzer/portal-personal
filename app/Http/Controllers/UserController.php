@@ -681,7 +681,8 @@ class UserController extends Controller
                 'us_boss_name' => $userModel->getBoss()->first()->getBossAssociated()->first()->name." ".$userModel->getBoss()->first()->getBossAssociated()->first()->apellido_paterno,
                 'us_permissions' => $this->admin_getPermissionsEnabledByUser($id_user),
                 'us_permissions_user' => PortalPersonal::getPermissionsToEditUser($id_user),
-                'us_eliminable' => $userModel->getEmployees()->get()->count()
+                'us_eliminable' => $userModel->getEmployees()->get()->count(),
+                "us_total_days_available" => PortalPersonal::getTotalDays($id_user) - PortalPersonal::getDaysInRequests($id_user)
             ];
 
         return json_encode($user);

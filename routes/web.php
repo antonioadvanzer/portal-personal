@@ -213,6 +213,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/information', 'VacationController@main_information');
                 Route::get('/days_for_year', 'VacationController@main_tablaDiasPorAnio');
                 Route::get('/days_available', 'VacationController@main_tablaDiasDisponibles');
+                Route::get('/reporte_dias_por_usuario', 'VacationController@admin_tablaDiasDeVacaciones');                
 
                 // New Vacations Request
                 Route::get('/solicitar_vacaciones', 'VacationController@main_getNewVacationRequestLetter');
@@ -262,6 +263,11 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/get_days_to_expire', 'VacationController@main_getVacationsToExpirate'); // Days to expire
 
                 Route::get('/get_days_in_requests', 'VacationController@get_getDaysInRequests'); // Days to expire
+
+                Route::get('/own_list_days_vacations', 'VacationController@main_getOwnResportDaysVacations');
+
+                Route::get('/list_days_vacations_by_user/{id_user}', 'VacationController@admin_getResportDaysVacationsByUser');
+                
 
             });
 
@@ -710,12 +716,14 @@ Route::group(['middleware' => 'auth'], function(){
                 /* Vacations Admin Views -------------------- */
 
                 // Days table
-                Route::get('/lista_dias_por_usuario', 'VacationController@admin_tableAccumulatedDays');
+                //Route::get('/lista_dias_por_usuario', 'VacationController@admin_tableAccumulatedDays');
+                Route::get('/reporte_dias_por_usuario', 'VacationController@admin_tablaDiasDeVacaciones');
 
                 /* Vacations Admin Resources -------------------- */
 
                 // Days by user
-                Route::get('/list_days_by_user/{id_user}', 'VacationController@admin_getAccumulatedDaysByUser');
+                //Route::get('/list_days_by_user/{id_user}', 'VacationController@admin_getAccumulatedDaysByUser');
+                Route::get('/list_days_vacations_by_user/{id_user}', 'VacationController@admin_getResportDaysVacationsByUser');
 
                 // Calculate dates
                 Route::get('/calcular_fechas/{fecha}', 'VacationController@admin_calculaFechas');

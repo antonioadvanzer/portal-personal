@@ -46,6 +46,12 @@
         });  
     }
     
+    $scope.getTableDays = function(){
+        return $http.get("theme/modules/vacations/own_list_days_vacations").then(function (response) {
+            return response.data;
+        });  
+    }
+    
     $scope.refreshTables = function(){
         
         $scope.solicitudesPropias_loaded = false;
@@ -101,6 +107,10 @@
             });
         });
         
+        $scope.getTableDays().then(function(data) {
+            $scope.vacations_table.vacations_days = data;
+        });
+        
     }
     
     $scope.vacations_table = {};
@@ -115,6 +125,8 @@
     $scope.vacations_table.solicitudesPropias = [];
     
     $scope.vacations_table.solicitudesRecibidas = [];
+    
+    $scope.vacations_table.vacations_days = [];
       
     $scope.diasDisponibles = 0;
       

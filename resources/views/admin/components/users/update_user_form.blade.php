@@ -649,10 +649,27 @@
         <uib-tab heading="Vacaciones">
             
             <div class="panel-content">
-                <h3 class="with-line">Dias Acumulados</h3>
+                <h3 class="with-line">D&iacute;as Acumulados</h3>
                 <div class="notification row clearfix">
-                    <div class="col-md-8">
-                        <div include-with-scope="admin-theme/modules/vacations/lista_dias_por_usuario"></div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Fecha Ingreso</span>
+                            <label class="form-control with-primary-addon">@{{formEditUser.inputUserFechaIngreso}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="notification row clearfix">
+                    <div class="col-md-12">
+                        {{--<div include-with-scope="admin-theme/modules/vacations/lista_dias_por_usuario"></div>--}}
+                        <div include-with-scope="admin-theme/modules/vacations/reporte_dias_por_usuario"></div>
+                    </div>
+                </div><br>
+                <div class="notification row clearfix">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Total de d&iacute;as disponibles</span>
+                            <label class="form-control with-primary-addon">@{{formEditUser.inputTotalDays}}</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -769,7 +786,7 @@
                           <i class="ion-toggle"></i>Dar de baja
                         </button>
                         <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-if="!formEditUser.inputUserStatus" ng-click="restoreUser()">
-                          <i class="ion-toggle-filled"></i>Dar de alta
+                          <i class="ion-toggle-filled"></i>Reingreso
                         </button>
                     </div>
                     
@@ -786,11 +803,11 @@
                         
                     <div ng-if="formEditUser.inputUserAlta">
                         <button type="submit" class="btn btn-primary btn-with-icon save-profile" ng-click="confirmRestore()">
-                          <i class="ion-arrow-return-left"></i>Continuar
+                          <i class="ion-checkmark-circled"></i>Continuar
                         </button>
 
                         <button type="button" class="btn btn-warning btn-with-icon save-profile" ng-click="cancelRestore()">
-                          <i class="ion-android-options"></i>Cancelar
+                          <i class="ion-close-circled"></i>Cancelar
                         </button>
 
                     </div>

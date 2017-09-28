@@ -31,7 +31,22 @@
     <div ba-panel ba-panel-title="Relación de Dias" ba-panel-class="with-scroll more-text-widget">
       <div include-with-scope="theme/modules/vacations/days_for_year"></div>
       <br><br>
-      <div include-with-scope="theme/modules/vacations/days_available"></div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Fecha Ingreso</span>
+                <label class="form-control with-primary-addon">@{{user.fecha_ingreso}}</label>
+            </div>
+        </div>
+      <br><br>
+      {{--<div include-with-scope="theme/modules/vacations/days_available"></div>––}}
+      <div include-with-scope="theme/modules/vacations/reporte_dias_por_usuario"></div>
+      <br><br>
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Total de d&iacute;as disponibles</span>
+                <label class="form-control with-primary-addon">@{{user.total_days_available}}</label>
+            </div>
+        </div>
     </div>
   
   </div>

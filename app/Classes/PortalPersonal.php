@@ -10,6 +10,7 @@ namespace App\Classes;
 
 use App\User;
 use App\Models\Permiso;
+use App\Models\Vacaciones;
 use Session;
 use Hash;
 use Html;
@@ -331,6 +332,45 @@ class PortalPersonal
         $modules = substr($modules, 1);
         //dd($modules);
         return $modules;
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public static function getTotalDays($id_user)
+    {
+        $total_days = DB::table('vacaciones')
+            ->select(DB::raw("SUM(accumulated_days) as total_days"))
+            ->where('user', $id_user)
+            ->where('status', 1)
+            ->value('total_days');
+
+        return $total_days;
+    }
+
+    /**
+     * Se obtiene los dias solicitados en las solicitudes activas
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public static function getDaysInRequests($id_user)
+    {
+        $total_days = DB::table('solicitudes')
+        ->select(DB::raw("SUM(dias) as total_days"))
+        ->where('user', $id_user)
+        ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+        ->where('used', 1)
+        ->whereIn('status',[
+               DB::table('estados_solicitud')->where('name', 'Enviada')->value('id'),
+               DB::table('estados_solicitud')->where('name', 'Aceptada')->value('id'),
+               DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id')
+           ])
+        //->first();
+        ->value('total_days');
+
+        return $total_days;
     }
 
     /**

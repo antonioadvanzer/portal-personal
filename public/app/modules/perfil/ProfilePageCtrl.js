@@ -67,7 +67,7 @@
             $scope.formEditUser.inputUserPosicion = response.data.us_posicion_name;
             $scope.formEditUser.inputUserCompany = response.data.us_company_name;
             $scope.formEditUser.inputUserBoss = response.data.us_boss_name;
-                
+            $scope.formEditUser.inputTotalDays = response.data.us_total_days_available;
             //$scope.refreshTables();
             $state.go('empleado');
         });
@@ -90,7 +90,13 @@
             $scope.$apply();
         });
         
-        $.getJSON("theme/modules/user/list_days_by_user/"+id_user, function( data ) {
+        /*$.getJSON("theme/modules/user/list_days_by_user/"+id_user, function( data ) {
+            $scope.vacations_table.vacations_days = data;
+            console.log(data);
+            $scope.$apply();
+        });*/
+        
+        $.getJSON("theme/modules/vacations/list_days_vacations_by_user/"+id_user, function( data ) {
             $scope.vacations_table.vacations_days = data;
             //console.log(data);
             $scope.$apply();

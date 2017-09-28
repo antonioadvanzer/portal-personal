@@ -73,6 +73,16 @@ class VacationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin_tablaDiasDeVacaciones()
+    {
+        return view('admin.components.users.vacations.table_report_vacations');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function main_getNewVacationRequestLetter()
     {
         return view('main.components.vacations.solicitar_vacaciones');
@@ -624,6 +634,93 @@ class VacationController extends Controller
 
         return "success"; 
     }
+
+    /**
+     * Reporte para el usuario y para el modo administrador
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function main_getOwnResportDaysVacations()
+     {
+         return $this->admin_getResportDaysVacationsByUser(Auth::user()->id);
+     }
+
+    /**
+     * Reporte para el usuario y para el modo administrador
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function admin_getResportDaysVacationsByUser($id_user)
+     {
+        $user_vacation = User::find($id_user);
+        
+        $diasVacaciones = $user_vacation->getVacations()->get();
+
+        $regs_days = array();
+        $cal_regs_days = array();
+        
+        
+        # Se guardan los registros de vacaciones
+        foreach($diasVacaciones as $dv){
+            
+            $cal_regs_days[] = [
+                'close_date' => $dv->close_date,
+                'expiration_date' => $dv->expiration_date,
+                'increased_days' => $dv->increased_days,
+                'accumulated_days' => $dv->accumulated_days,
+                'status' => "Vigentes" 
+            ];
+
+        }
+
+        $days_in_requests = PortalPersonal::getDaysInRequests($id_user);
+        //dd($days_in_requests);
+        if($days_in_requests > 0){
+
+            foreach($cal_regs_days as $rs => $dv){
+                
+                if($days_in_requests > intval($dv["accumulated_days"])){
+
+                    $days_in_requests -= intval($dv["accumulated_days"]);
+                    $cal_regs_days[$rs]["accumulated_days"] = 0;
+                    $cal_regs_days[$rs]["status"] = "Disfrutados";
+                
+                }else{
+                    
+                    $cal_regs_days[$rs]["accumulated_days"] = intval($dv["accumulated_days"]) - $days_in_requests;
+                    
+                    if($cal_regs_days[$rs]["accumulated_days"] == 0){
+                        $cal_regs_days[$rs]["status"] = "Disfrutados";
+                    }
+
+                    break;
+                
+                }
+
+            }
+
+        }
+        //dd($cal_regs_days);
+        $saldo_acumulado = 0;
+
+        # Se almacenan los datos de vacaciones en el arreglo
+        foreach($cal_regs_days as $dv){
+
+            # Calculamos los dias que se han tomado
+            $dias_difrutados = ($dv['increased_days'] - $dv['accumulated_days']);
+
+            # Se calcula los dias totales
+            $saldo_acumulado += $dv['accumulated_days'];
+
+            $regs_days[] = ['fecha' => $dv['close_date'], 'dias' => $dv['increased_days'], 'vencen' => $dv['expiration_date'], 'disfrutados' => $dias_difrutados, 'saldo' => $saldo_acumulado, 'status' => $dv['status'] ];
+            
+            unset($dias_difrutados);
+        }
+
+        unset($saldo_acumulado);
+
+        return json_encode($regs_days);
+     }
 
     /**
      * 

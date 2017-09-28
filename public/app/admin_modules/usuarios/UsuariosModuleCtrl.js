@@ -231,6 +231,8 @@
             $scope.formEditUser.inputShowMotivo = response.data.estado == 0 ? true : false;
             $scope.formEditUser.inputEliminable = response.data.us_eliminable > 0 ? false: true;
             
+            $scope.formEditUser.inputTotalDays = response.data.us_total_days_available;
+            
             // Fechas ingreso
             var str = $scope.formEditUser.inputUserFechaIngreso;
             var res = str.split("-");
@@ -410,7 +412,13 @@
             $scope.$apply();
         });
         
-        $.getJSON("admin-theme/modules/vacations/list_days_by_user/"+id_user, function( data ) {
+        /*$.getJSON("admin-theme/modules/vacations/list_days_by_user/"+id_user, function( data ) {
+            $scope.vacations_table.vacations_days = data;
+            //console.log(data);
+            $scope.$apply();
+        });*/
+        
+        $.getJSON("admin-theme/modules/vacations/list_days_vacations_by_user/"+id_user, function( data ) {
             $scope.vacations_table.vacations_days = data;
             //console.log(data);
             $scope.$apply();

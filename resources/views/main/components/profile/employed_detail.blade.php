@@ -248,8 +248,25 @@
             <div class="panel-content">
                 <h3 class="with-line">Dias Acumulados</h3>
                 <div class="notification row clearfix">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Fecha Ingreso</span>
+                            <label class="form-control with-primary-addon">@{{formEditUser.inputUserFechaIngreso}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="notification row clearfix">
                     <div class="col-md-8">
-                        <div include-with-scope="theme/modules/user/lista_dias_por_usuario"></div>
+                        {{--<div include-with-scope="theme/modules/user/lista_dias_por_usuario"></div>--}}
+                        <div include-with-scope="theme/modules/vacations/reporte_dias_por_usuario"></div>
+                    </div>
+                </div><br>
+                <div class="notification row clearfix">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Total de d&iacute;as disponibles</span>
+                            <label class="form-control with-primary-addon">@{{formEditUser.inputTotalDays}}</label>
+                        </div>
                     </div>
                 </div>
             </div>

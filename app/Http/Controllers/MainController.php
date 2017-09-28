@@ -246,6 +246,8 @@ class MainController extends Controller
             "position_name" => Auth::user()->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->name,
             "company_name" => Auth::user()->getCompanyAssociated()->first()->name,
             "boss_name" => Auth::user()->getBoss()->first()->getBossAssociated()->first()->name,
+
+            "total_days_available" => PortalPersonal::getTotalDays(Auth::user()->id) - PortalPersonal::getDaysInRequests(Auth::user()->id),
         );
 
         foreach($fields as $fie => $f){
