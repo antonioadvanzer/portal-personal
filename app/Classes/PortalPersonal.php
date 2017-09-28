@@ -35,6 +35,7 @@ class PortalPersonal
                 'CARTAS_Y_CONSTANCIAS' => '6',
                 'REQUISICIONES' => '7',
                 'EVALUACIONES' => '8',
+                'NOTIFICACIONES' => '9',
              );
 
     /**
@@ -243,6 +244,21 @@ class PortalPersonal
  
          return $permissions;
      }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public static function isAdministratorWithNotifications($id_user)
+    {   
+        $um = User::find($id_user);
+        
+        $pu = $um->getPermissionsUser()->get();
+                
+        return PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['NOTIFICACIONES'], $pu);
+        
+    }
 
     /**
      * 

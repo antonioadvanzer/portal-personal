@@ -187,7 +187,7 @@
                                 <label class="form-control">@{{formEditUser.inputUserNomina}}</label>
                           </div>
                           <div ng-if="formEditUser.editUser">
-                                <input type="number" class="form-control" id="inputUserNomina" name="inputUserNomina" ng-model="formEditUser.inputUserNomina" placeholder="" min="0" value="" disables>
+                                <input type="number" class="form-control" id="inputUserNomina" name="inputUserNomina" ng-model="formEditUser.inputUserNomina" placeholder="" min="0" value="">
                           </div>
                       </div>
 
@@ -236,6 +236,33 @@
                                 <input type="text" id="fecha" ng-model="formEditUser.fecha" class="form-control" value="">
                             </p>
                         </div>-->
+                        
+                        <div class="form-group row clearfix" ng-if="formEditUser.inputUserAdminNotification">
+                            <!--<label for="inputUserNomina" class="col-sm-3 control-label">Notificaciones Email</label>-->
+
+                            <div class="col-sm-9">
+                              <div ng-if="!formEditUser.editUser">
+                                    <!--<input type="checkbox" id="inputUserNotification" name="inputUserNotification" ng-model="formEditUser.inputUserNotification" disabled>-->
+                                  <div class="col-md-4">
+                                      <label class="checkbox-inline custom-checkbox nowrap">
+                                          <input type="checkbox" id="inputUserNotification" name="inputUserNotification" ng-model="formEditUser.inputUserNotification" disabled>
+                                          <span>Notificaciones Email</span>
+                                      </label>
+                                  </div>
+                                  
+                              </div>
+                              <div ng-if="formEditUser.editUser">
+                                    <!--<input type="checkbox" id="inputUserNotification" name="inputUserNotification" ng-model="formEditUser.inputUserNotification">-->
+                                  <div class="col-md-4">
+                                      <label class="checkbox-inline custom-checkbox nowrap">
+                                          <input type="checkbox" id="inputUserNotification" name="inputUserNotification" ng-model="formEditUser.inputUserNotification">
+                                          <span>Notificaciones Email</span>
+                                      </label>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                        
                     </div>
                   </div>
                   <div class="col-md-6">

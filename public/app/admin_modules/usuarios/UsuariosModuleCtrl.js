@@ -225,6 +225,10 @@
             $scope.formEditUser.inputUserCompany = response.data.us_company_name;
             $scope.formEditUser.inputUserBoss = response.data.us_boss_name;
             
+            // is Admin 
+            $scope.formEditUser.inputUserAdminNotification = response.data.us_is_admin;
+            $scope.formEditUser.inputUserNotification = response.data.us_is_admin;
+            
             // Altas y bajas
             $scope.formEditUser.inputUserStatus = response.data.estado;
             $scope.formEditUser.inputMotivoBaja = response.data.motivo;

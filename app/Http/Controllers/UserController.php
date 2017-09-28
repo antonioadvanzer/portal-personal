@@ -617,6 +617,14 @@ class UserController extends Controller
 
             //var_dump($user);
 
+            if($request->input('uu_nofificacion') == "1"){
+                Permisos_Usuario::create([
+                    "permiso" => 10,
+                    "usuario" => $request->input('uu_id')
+                ]);
+            }
+            
+
         }catch(\Exception $e){
             echo $e;
             DB::rollBack();
@@ -682,7 +690,8 @@ class UserController extends Controller
                 'us_permissions' => $this->admin_getPermissionsEnabledByUser($id_user),
                 'us_permissions_user' => PortalPersonal::getPermissionsToEditUser($id_user),
                 'us_eliminable' => $userModel->getEmployees()->get()->count(),
-                "us_total_days_available" => PortalPersonal::getTotalDays($id_user) - PortalPersonal::getDaysInRequests($id_user)
+                "us_total_days_available" => (PortalPersonal::getTotalDays($id_user) - PortalPersonal::getDaysInRequests($id_user)),
+                "us_is_admin" => PortalPersonal::isAdministrator($id_user),
             ];
 
         return json_encode($user);
