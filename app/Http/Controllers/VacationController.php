@@ -636,6 +636,16 @@ class VacationController extends Controller
     }
 
     /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function main_getTotalDaysAvailable()
+     {
+         return PortalPersonal::getTotalDays(Auth::user()->id) - PortalPersonal::getDaysInRequests(Auth::user()->id);
+     }
+
+    /**
      * Reporte para el usuario y para el modo administrador
      *
      * @return \Illuminate\Http\Response
@@ -843,6 +853,7 @@ class VacationController extends Controller
              ->select(DB::raw("SUM(dias) as total_days"))
              ->where('user', Auth::user()->id)
              ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+             ->whereDate('fecha_inicio', '>=', date('Y-m-d'))
              ->where('used', 1)
              ->whereIn('status',[
                     DB::table('estados_solicitud')->where('name', 'Enviada')->value('id'),

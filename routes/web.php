@@ -260,6 +260,8 @@ Route::group(['middleware' => 'auth'], function(){
 
                 Route::get('/get_total_days', 'VacationController@main_getTotalDays'); // Total days available
 
+                Route::get('/get_total_days_available', 'VacationController@main_getTotalDaysAvailable'); // Total days available
+
                 Route::get('/get_days_to_expire', 'VacationController@main_getVacationsToExpirate'); // Days to expire
 
                 Route::get('/get_days_in_requests', 'VacationController@get_getDaysInRequests'); // Days to expire

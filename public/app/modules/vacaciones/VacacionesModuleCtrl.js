@@ -29,22 +29,28 @@
     }
     
     $scope.getTotalDays = function(){
+        return $http.get("theme/modules/vacations/get_total_days_available").then(function (response) {
+            return response.data;
+        });  
+    }
+    
+    /*$scope.getTotalDays = function(){
         return $http.get("theme/modules/vacations/get_total_days").then(function (response) {
             return response.data;
         });  
-    }
+    }*/
     
-    $scope.getDaysToExpire = function(){
+    /*$scope.getDaysToExpire = function(){
         return $http.get("theme/modules/vacations/get_days_to_expire").then(function (response) {
             return response.data;
         });  
-    }
+    }*/
     
-    $scope.getDaysInRequest = function(){
+    /*$scope.getDaysInRequest = function(){
         return $http.get("theme/modules/vacations/get_days_in_requests").then(function (response) {
             return response.data;
         });  
-    }
+    }*/
     
     $scope.getTableDays = function(){
         return $http.get("theme/modules/vacations/own_list_days_vacations").then(function (response) {
@@ -93,10 +99,10 @@
         
         $scope.getTotalDays().then(function(data) {
             $scope.diasDisponibles = data;
-            //$scope.standardSelectDays = getDaysList(data);
+            $scope.standardSelectDays = getDaysList(data);
         });
         
-        $scope.getDaysToExpire().then(function(data) {
+        /*$scope.getDaysToExpire().then(function(data) {
             $scope.days_expire = data.dias;
             $scope.date_expire = data.fecha;
             
@@ -105,7 +111,7 @@
                 calculateTotalDays();
                 $scope.standardSelectDays = getDaysList($scope.diasDisponibles);
             });
-        });
+        });*/
         
         $scope.getTableDays().then(function(data) {
             $scope.vacations_table.vacations_days = data;
@@ -382,7 +388,7 @@
     $scope.selectedBoss = {};
     $scope.standardBoss = {};
     $scope.standardSelectBosses = [
-        {id:0, name:"Cargado Datos ..."}
+        {id:0, name:"Cargando Datos ..."}
     ];
       
     $http.get("theme/modules/user/get_bosses").then(function (response) {
@@ -391,7 +397,7 @@
       
     $scope.selectedDays = {};
     $scope.standardSelectDays = [
-        {id:0, name:"Cargado Datos ..."}
+        {dias: 0, days: "Cargando Datos ..."}
     ];
       
     /*$http.get("theme/modules/vacations/get_days_available").then(function (response) {

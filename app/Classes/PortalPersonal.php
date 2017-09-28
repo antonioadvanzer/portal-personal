@@ -99,18 +99,20 @@ class PortalPersonal
         
         foreach($userModel as $um){
             
-            $pu = $um->getPermissionsUser()->get();
-            $pa = $um->getAreaAssociated()->first()->getPermissionsArea()->get();
-            $pp = $um->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->getPermissionsPositions()->get();
-            
-            if(PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pu) 
-                or PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pa) 
-                or PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pp)){
-                array_push($admins,[
-                    "id" => $um->id,
-                    "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
-                    "email" => $um->email,
-                ]);
+            if($um->status == 1){
+                $pu = $um->getPermissionsUser()->get();
+                $pa = $um->getAreaAssociated()->first()->getPermissionsArea()->get();
+                $pp = $um->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->getPermissionsPositions()->get();
+                
+                if(PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pu) 
+                    or PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pa) 
+                    or PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pp)){
+                    array_push($admins,[
+                        "id" => $um->id,
+                        "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
+                        "email" => $um->email,
+                    ]);
+                }
             }
         }
         
@@ -361,6 +363,7 @@ class PortalPersonal
         ->select(DB::raw("SUM(dias) as total_days"))
         ->where('user', $id_user)
         ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+        ->whereDate('fecha_inicio', '>=', date('Y-m-d'))
         ->where('used', 1)
         ->whereIn('status',[
                DB::table('estados_solicitud')->where('name', 'Enviada')->value('id'),

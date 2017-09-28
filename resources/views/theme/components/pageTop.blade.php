@@ -23,7 +23,7 @@
         <li><i class="dropdown-arr"></i></li>
         <li><a href="#/profile"><i class="fa fa-user"></i>Perfil</a></li>
         {{--<li><a href><i class="fa fa-cog"></i>Ajustes</a></li>--}}
-        <li ng-if="user.is_admin"><a href="{{ URL::to('/advanzer-admin') }}"><i class="fa fa-cogs"></i>Modo Administrador</a></li>
+        <li ng-if="user.is_admin"><a href="{{ URL::to('/advanzer-admin') }}" target="_blank"><i class="fa fa-cogs"></i>Modo Administrador</a></li>
         {{--<li><a href class="signout"><i class="fa fa-power-off"></i>Cerrar Sesión</a></li>--}}
         <li>
             <a href="{{ route('logout') }}" class="signout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
