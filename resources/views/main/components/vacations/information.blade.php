@@ -38,7 +38,7 @@
             </div>
         </div>
       <br><br>
-      {{--<div include-with-scope="theme/modules/vacations/days_available"></div>––}}
+      <!--<div include-with-scope="theme/modules/vacations/days_available"></div>-->
       <div include-with-scope="theme/modules/vacations/reporte_dias_por_usuario"></div>
       <br><br>
         <div class="col-md-4">

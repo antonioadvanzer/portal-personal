@@ -257,7 +257,7 @@
                 </div>
                 <div class="notification row clearfix">
                     <div class="col-md-8">
-                        {{--<div include-with-scope="theme/modules/user/lista_dias_por_usuario"></div>--}}
+                        <!--<div include-with-scope="theme/modules/user/lista_dias_por_usuario"></div>-->
                         <div include-with-scope="theme/modules/vacations/reporte_dias_por_usuario"></div>
                     </div>
                 </div><br>
