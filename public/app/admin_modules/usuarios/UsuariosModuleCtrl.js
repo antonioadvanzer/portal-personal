@@ -174,6 +174,10 @@
         
     };
     
+    $scope.historicoVacaciones = function (){
+        $scope.historialVacaciones = !$scope.historialVacaciones;
+    };
+      
     $scope.showUser = function (id){
 
         $http.get("admin-theme/modules/user/get_user/"+id).then(function (response) {
@@ -226,8 +230,8 @@
             $scope.formEditUser.inputUserBoss = response.data.us_boss_name;
             
             // is Admin 
-            $scope.formEditUser.inputUserAdminNotification = response.data.us_is_admin;
-            $scope.formEditUser.inputUserNotification = response.data.us_is_admin;
+            $scope.formEditUser.inputUserAdmin = response.data.us_is_admin;
+            $scope.formEditUser.inputUserAdminNotification = response.data.us_is_admin_with_notifications;
             
             // Altas y bajas
             $scope.formEditUser.inputUserStatus = response.data.estado;
@@ -250,12 +254,15 @@
             //$("#fecha").val("My value");
             $scope.formEditUser.fecha = str;
             $scope.formEditUser.editDate = false;
+            $scope.formEditUser.editDate2 = false;
             
             
             $scope.formEditUser.inputUserBaja = false;
             $scope.formEditUser.inputUserAlta = false;
             $scope.formRequest.active_view_request = false;
             $scope.formLetter.active_view_letter = false;
+            
+            
             
             $scope.ue_selectedArea.selected = {id: response.data.us_area_id, name: response.data.us_area_name};
             $scope.ue_selectedTrack.selected = {id: response.data.us_track_id, name: response.data.us_track_name};
@@ -422,10 +429,19 @@
             $scope.$apply();
         });*/
         
-        $.getJSON("admin-theme/modules/vacations/list_days_vacations_by_user/"+id_user, function( data ) {
+        /*$.getJSON("admin-theme/modules/vacations/list_days_vacations_by_user/"+id_user, function( data ) {
             $scope.vacations_table.vacations_days = data;
-            //console.log(data);
+            console.log(data);
             $scope.$apply();
+        });*/
+        
+        $http.get("admin-theme/modules/vacations/list_days_vacations_by_user/"+id_user).then(function (response) {
+            $scope.vacations_table.vacations_days = response.data;
+            
+            $http.get("admin-theme/modules/vacations/list_days_vacations_expired_by_user/"+id_user).then(function (response) {
+                var expirados = response.data;
+                $scope.vacations_table.vacations_days_expired = expirados.concat($scope.vacations_table.vacations_days);
+            });
         });
     }
       
@@ -1058,6 +1074,8 @@
         
         formData.append("nu_permisos", permisosSeleccionados);
         
+        formData.append("nu_notificacion", $scope.formUser.inputUserAdminNotification ? "1" : "0");
+        
         $http.post('admin-theme/modules/user/save_new_user', formData, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
@@ -1068,8 +1086,8 @@
             $scope.sending = false;
             $scope.refreshTables();
             getAlert('theme/success_modal/Usuario agregado correctamente');
-            resetForm("usuarios.colaboradores_activos");
-            
+            //resetForm("usuarios.colaboradores_activos");
+            resetForm("usuarios.agregar");
         })
         .error(function (response) {
             //alert('error sending.');
@@ -1174,10 +1192,12 @@
       
     $scope.editDate = function(){
         $scope.formEditUser.editDate = true;
+        $scope.formEditUser.editDate2 = true;
     }
     
     $scope.cancelEditDate = function(){
         $scope.formEditUser.editDate = false;
+        $scope.formEditUser.editDate2 = false;
     }
       
     $scope.formEditUser.dt = new Date();
@@ -1417,6 +1437,19 @@
         }else{
             formData.append("uu_fecha_ingreso", $scope.formEditUser.inputUserFechaIngreso);
         }
+        //alert($scope.formEditUser.inputUserFechaReingreso);
+        if($scope.formEditUser.inputUserFechaReingreso){
+            
+            if($scope.formEditUser.editDate2){
+                formData.append("uu_fecha_reingreso", document.getElementById("inputUserFechaReingreso").value);
+            }else{
+                formData.append("uu_fecha_reingreso", $scope.formEditUser.inputUserFechaReingreso);
+            }
+            
+            formData.append("uu_frv", "1");
+        }else{
+            formData.append("uu_frv", "0");
+        }
         
         formData.append("uu_area", $scope.ue_selectedArea.selected.id); 
         formData.append("uu_track", $scope.ue_selectedTrack.selected.id); 
@@ -1425,6 +1458,13 @@
         formData.append("uu_boss", $scope.ue_selectedBoss.selected.id);
         
         formData.append("uu_permisos", permisos);
+        
+        
+        // Permiso de notificaciones para administradores
+        if($scope.formEditUser.inputUserAdmin){
+            var pn = $scope.formEditUser.inputUserAdminNotification ? "1" : "0";
+            formData.append("uu_notificacion", pn);
+        }
         
         $http.post('admin-theme/modules/user/update_user', formData, {
             transformRequest: angular.identity,

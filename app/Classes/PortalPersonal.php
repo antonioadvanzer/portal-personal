@@ -126,6 +126,41 @@ class PortalPersonal
      *
      * @return \Illuminate\Http\Response
      */
+     public static function getAdminstratorsArrayWithNotifications()
+     {   
+         $admins = array();
+ 
+         $userModel = User::all();
+         
+         foreach($userModel as $um){
+             
+             if($um->status == 1){
+                 $pu = $um->getPermissionsUser()->get();
+                 $pa = $um->getAreaAssociated()->first()->getPermissionsArea()->get();
+                 $pp = $um->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->getPermissionsPositions()->get();
+                 
+                 if((PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pu) 
+                     or PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pa) 
+                     or PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pp))
+                     and (PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Notificaciones')->value('access'), $pu))){
+                     array_push($admins,[
+                         "id" => $um->id,
+                         "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,
+                         "email" => $um->email,
+                     ]);
+                 }
+             }
+         }
+         
+         //return json_encode($admins);
+         return $admins;
+     }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public static function getPermissionsEnabledByUser($id_user)
     {   
         $um = User::find($id_user);
@@ -363,6 +398,7 @@ class PortalPersonal
             ->select(DB::raw("SUM(accumulated_days) as total_days"))
             ->where('user', $id_user)
             ->where('status', 1)
+            ->where('deleted_at', null)
             ->value('total_days');
 
         return $total_days;

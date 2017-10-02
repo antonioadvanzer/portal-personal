@@ -159,9 +159,12 @@
                 <button type="button" ng-click="rejectRequest()" class="btn btn-warning btn-lg">Declinar</button>
             </div>
             </div>
-            <div class="col-sm-4 col-xs-6" ng-if="((formRequest.inputRequestOcacion==8) || (formRequest.inputRequestOcacion==9)) && ((formRequest.labelRequestStatus != 4) &&(formRequest.labelRequestStatus != 5) && (formRequest.labelRequestStatus != 1))">
+            <!--<div class="col-sm-4 col-xs-6" ng-if="((formRequest.inputRequestOcacion==8) || (formRequest.inputRequestOcacion==9)) && ((formRequest.labelRequestStatus != 4) &&(formRequest.labelRequestStatus != 5) && (formRequest.labelRequestStatus != 1))">
                 <button type="button" ng-click="cancelRequest()" class="btn btn-danger btn-lg">Cancelar</button>
-            </div>
+            </div>-->
+            <!--<div class="col-sm-4 col-xs-6" ng-if="((formRequest.inputRequestOcacion==8) || (formRequest.inputRequestOcacion==9)) && ((formRequest.labelRequestStatus != 4) && (formRequest.labelRequestStatus != 1))">
+                <button type="button" ng-click="cancelRequest()" class="btn btn-danger btn-lg">Cancelar</button>
+            </div>-->
         </div>
 
         </div>

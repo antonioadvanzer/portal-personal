@@ -497,6 +497,13 @@ class UserController extends Controller
                 }
             }
 
+            if($request->input('nu_notificacion') == "1"){
+                Permisos_Usuario::create([
+                    "permiso" => 10,
+                    "usuario" => $idUser->id
+                ]);
+            }
+
             Jefe::create([
                 'boss' => $request->input('nu_boss'), 
                 'employed' => $idUser->id
@@ -567,11 +574,15 @@ class UserController extends Controller
             'posicion_track' => Posicion_Track::where('track',$request->input('uu_track'))->where('posicion',$request->input('uu_posicion'))->first()->id,
             'company' => $request->input('uu_empresa'),
             'fecha_ingreso' => $request->input('uu_fecha_ingreso'),
+            //'fecha_reingreso' => $request->input('uu_fecha_reingreso'),
             //'fecha_baja' => null,
             //'tipo_baja' => null,
             //'motivo' => null
         ];
 
+        if($request->input('uu_frv') == "1"){
+            $user['fecha_reingreso'] = $request->input('uu_fecha_reingreso');
+        }
         if($perfil = $request->file('uu_foto')){
             $user['photo'] = $request->input('uu_nomina').".".$perfil->getClientOriginalExtension();
             $upload_success = $perfil->move($this->urlFotoPerfil, $user['photo']);
@@ -597,6 +608,12 @@ class UserController extends Controller
             $user_update->posicion_track = $user['posicion_track'];
             $user_update->company = $user['company'];
             $user_update->fecha_ingreso = $user['fecha_ingreso'];
+            
+
+            if($request->input('uu_frv') == "1"){
+                //$user['fecha_reingreso'] = $request->input('uu_fecha_reingreso');
+                $user_update->fecha_reingreso = $user['fecha_reingreso'];
+            }
 
             $user_update->save();
             
@@ -617,7 +634,7 @@ class UserController extends Controller
 
             //var_dump($user);
 
-            if($request->input('uu_nofificacion') == "1"){
+            if($request->input('uu_notificacion') == "1"){
                 Permisos_Usuario::create([
                     "permiso" => 10,
                     "usuario" => $request->input('uu_id')
@@ -692,6 +709,7 @@ class UserController extends Controller
                 'us_eliminable' => $userModel->getEmployees()->get()->count(),
                 "us_total_days_available" => (PortalPersonal::getTotalDays($id_user) - PortalPersonal::getDaysInRequests($id_user)),
                 "us_is_admin" => PortalPersonal::isAdministrator($id_user),
+                "us_is_admin_with_notifications" => PortalPersonal::isAdministratorWithNotifications($id_user),
             ];
 
         return json_encode($user);

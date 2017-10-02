@@ -83,6 +83,16 @@ class VacationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin_tablaDiasExpiradosDeVacaciones()
+    {
+        return view('admin.components.users.vacations.table_report_vacations_expired');
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function main_getNewVacationRequestLetter()
     {
         return view('main.components.vacations.solicitar_vacaciones');
@@ -308,6 +318,7 @@ class VacationController extends Controller
         $requestModel = Solicitud::where('authorizer', Auth::user()->id)
                         ->where('status', DB::table('estados_solicitud')
                         ->where('name', 'Enviada')->value('id'))
+                        ->where('used', 1)
                         ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
                         ->orderBy('id', 'desc')
                         ->get();
@@ -477,7 +488,10 @@ class VacationController extends Controller
                 'aut_ch' => $solicitud->auth_ch,
                 'razon_cancelacion' => $solicitud->razon_cancelacion,
                 'ocacion' => $solicitud->motivo,
-                'status' => $solicitud->status
+                'status' => $solicitud->status,
+
+                // Revisamos si la fecha ha sido alcanzada
+                'noncancellable' => strtotime(date($solicitud->fecha_inicio)) > strtotime(date("Y-m-d")) ? "1" : "0"
             ];
 
         return json_encode($solicitudPropia);
@@ -615,7 +629,7 @@ class VacationController extends Controller
         
         $mail_cc = array();
 
-        $mail_admins = PortalPersonal::getAdminstratorsArray();
+        $mail_admins = PortalPersonal::getAdminstratorsArrayWithNotifications();
         
         foreach($mail_admins as $mb){
             array_push($mail_cc, $mb['email']);
@@ -640,31 +654,46 @@ class VacationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function main_getTotalDaysAvailable()
-     {
-         return PortalPersonal::getTotalDays(Auth::user()->id) - PortalPersonal::getDaysInRequests(Auth::user()->id);
-     }
+    public function main_getTotalDaysAvailable()
+    {
+        return PortalPersonal::getTotalDays(Auth::user()->id) - PortalPersonal::getDaysInRequests(Auth::user()->id);
+    }
 
     /**
      * Reporte para el usuario y para el modo administrador
      *
      * @return \Illuminate\Http\Response
      */
-     public function main_getOwnResportDaysVacations()
-     {
-         return $this->admin_getResportDaysVacationsByUser(Auth::user()->id);
-     }
+    public function main_getOwnResportDaysVacations()
+    {
+        return $this->admin_getResportDaysVacationsByUser(Auth::user()->id);
+    }
 
     /**
      * Reporte para el usuario y para el modo administrador
      *
      * @return \Illuminate\Http\Response
      */
-     public function admin_getResportDaysVacationsByUser($id_user)
-     {
-        $user_vacation = User::find($id_user);
+    public function main_getOwnResportDaysExpiredVacations()
+    {
+        return $this->admin_getResportDaysVacationsExpiredByUser(Auth::user()->id);
+    }
+
+    /**
+     * Reporte para el usuario y para el modo administrador
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_getResportDaysVacationsByUser($id_user)
+    {
+        //$user_vacation = User::find($id_user);
         
-        $diasVacaciones = $user_vacation->getVacations()->get();
+        //$diasVacaciones = $user_vacation->getVacations()->get();
+
+        $diasVacaciones = Vacaciones::where('user', $id_user)
+                        ->where('status',1)
+                        ->orderBy('close_date', 'asc')
+                        ->get();
 
         $regs_days = array();
         $cal_regs_days = array();
@@ -673,13 +702,15 @@ class VacationController extends Controller
         # Se guardan los registros de vacaciones
         foreach($diasVacaciones as $dv){
             
-            $cal_regs_days[] = [
-                'close_date' => $dv->close_date,
-                'expiration_date' => $dv->expiration_date,
-                'increased_days' => $dv->increased_days,
-                'accumulated_days' => $dv->accumulated_days,
-                'status' => "Vigentes" 
-            ];
+            if($dv->status == 1){
+                $cal_regs_days[] = [
+                    'close_date' => $dv->close_date,
+                    'expiration_date' => $dv->expiration_date,
+                    'increased_days' => $dv->increased_days,
+                    'accumulated_days' => $dv->accumulated_days,
+                    'status' => "Vigentes" 
+                ];
+            }
 
         }
 
@@ -724,6 +755,62 @@ class VacationController extends Controller
 
             $regs_days[] = ['fecha' => $dv['close_date'], 'dias' => $dv['increased_days'], 'vencen' => $dv['expiration_date'], 'disfrutados' => $dias_difrutados, 'saldo' => $saldo_acumulado, 'status' => $dv['status'] ];
             
+            unset($dias_difrutados);
+        }
+
+        unset($saldo_acumulado);
+
+        return json_encode($regs_days);
+    }
+
+    /**
+     * Reporte de dias expirador para el usuario y para el modo administrador
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function admin_getResportDaysVacationsExpiredByUser($id_user)
+     {
+        //$user_vacation = User::find($id_user);
+        
+        //$diasVacaciones = $user_vacation->getVacations()->get();
+
+        $diasVacaciones = Vacaciones::where('user', $id_user)
+        ->where('status',0)
+        ->orderBy('close_date', 'asc')
+        ->get();
+
+        $regs_days = array();
+        $cal_regs_days = array();
+
+
+        # Se guardan los registros de vacaciones
+        foreach($diasVacaciones as $dv){
+
+                $cal_regs_days[] = [
+                    'close_date' => $dv->close_date,
+                    'expiration_date' => $dv->expiration_date,
+                    'increased_days' => $dv->increased_days,
+                    'accumulated_days' => $dv->accumulated_days,
+                    'status' => "Disfrutados" 
+                ];
+
+        }
+
+        $saldo_acumulado = 0;
+
+        # Se almacenan los datos de vacaciones en el arreglo
+        foreach($cal_regs_days as $dv){
+
+            # Calculamos los dias que se han tomado
+            $dias_difrutados = ($dv['increased_days'] - $dv['accumulated_days']);
+
+            # Se calcula los dias totales
+            $saldo_acumulado += $dv['accumulated_days'];
+
+            $status = $dv['increased_days'] == 0 ? $dv['status'] : "Expirados";
+
+            $regs_days[] = ['fecha' => $dv['close_date'], 'dias' => $dv['increased_days'], 'vencen' => $dv['expiration_date'], 'disfrutados' => $dias_difrutados, 'saldo' => $saldo_acumulado, 'status' => $status ];
+
             unset($dias_difrutados);
         }
 
@@ -1314,8 +1401,8 @@ class VacationController extends Controller
              ->whereDate('fecha_inicio', '<=', date('Y-m-d'))
              ->where('used', 1)
              ->whereIn('status',[
-                    //DB::table('estados_solicitud')->where('name', 'Enviada')->value('id'),
-                    //DB::table('estados_solicitud')->where('name', 'Aceptada')->value('id'),
+                    DB::table('estados_solicitud')->where('name', 'Enviada')->value('id'),
+                    DB::table('estados_solicitud')->where('name', 'Aceptada')->value('id'),
                     DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id')
                 ])
              ->first();
@@ -1364,7 +1451,7 @@ class VacationController extends Controller
                 echo "<br>";
                 echo "Dias : ".$dv["Dias"];
                 echo "<br>";
-                echo "Estaus : ".$dv["Status"];
+                echo "Estatus : ".$dv["Status"];
                 echo "<br>";
                 echo "..................................";
                 echo "<br>";
@@ -1375,7 +1462,7 @@ class VacationController extends Controller
                 $registro_vacaciones->status = $dv["Status"];
                 $registro_vacaciones->save();
                 if($dv["Status"] == 0){
-                    $registro_vacaciones->delete();
+                    //$registro_vacaciones->delete();
                 }
                 
             }

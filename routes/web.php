@@ -213,7 +213,8 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/information', 'VacationController@main_information');
                 Route::get('/days_for_year', 'VacationController@main_tablaDiasPorAnio');
                 Route::get('/days_available', 'VacationController@main_tablaDiasDisponibles');
-                Route::get('/reporte_dias_por_usuario', 'VacationController@admin_tablaDiasDeVacaciones');                
+                Route::get('/reporte_dias_por_usuario', 'VacationController@admin_tablaDiasDeVacaciones');
+                Route::get('/reporte_dias_expirados_por_usuario', 'VacationController@admin_tablaDiasExpiradosDeVacaciones');                
 
                 // New Vacations Request
                 Route::get('/solicitar_vacaciones', 'VacationController@main_getNewVacationRequestLetter');
@@ -256,6 +257,9 @@ Route::group(['middleware' => 'auth'], function(){
                 
                 Route::post('/reject_request', 'VacationController@main_rejectRequest'); // Reject request
 
+                // Cancel request
+                Route::get('/cancel_request/{id_request}', 'RequestController@admin_cancelRequest');
+
                 /* Days information */
 
                 Route::get('/get_total_days', 'VacationController@main_getTotalDays'); // Total days available
@@ -267,8 +271,10 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/get_days_in_requests', 'VacationController@get_getDaysInRequests'); // Days to expire
 
                 Route::get('/own_list_days_vacations', 'VacationController@main_getOwnResportDaysVacations');
+                Route::get('/own_list_days_vacations_expired', 'VacationController@main_getOwnResportDaysExpiredVacations');
 
                 Route::get('/list_days_vacations_by_user/{id_user}', 'VacationController@admin_getResportDaysVacationsByUser');
+                Route::get('/list_days_vacations_expired_by_user/{id_user}', 'VacationController@admin_getResportDaysVacationsExpiredByUser');
                 
 
             });
@@ -720,12 +726,14 @@ Route::group(['middleware' => 'auth'], function(){
                 // Days table
                 //Route::get('/lista_dias_por_usuario', 'VacationController@admin_tableAccumulatedDays');
                 Route::get('/reporte_dias_por_usuario', 'VacationController@admin_tablaDiasDeVacaciones');
+                Route::get('/reporte_dias_expirados_por_usuario', 'VacationController@admin_tablaDiasExpiradosDeVacaciones');
 
                 /* Vacations Admin Resources -------------------- */
 
                 // Days by user
                 //Route::get('/list_days_by_user/{id_user}', 'VacationController@admin_getAccumulatedDaysByUser');
                 Route::get('/list_days_vacations_by_user/{id_user}', 'VacationController@admin_getResportDaysVacationsByUser');
+                Route::get('/list_days_vacations_expired_by_user/{id_user}', 'VacationController@admin_getResportDaysVacationsExpiredByUser');
 
                 // Calculate dates
                 Route::get('/calcular_fechas/{fecha}', 'VacationController@admin_calculaFechas');

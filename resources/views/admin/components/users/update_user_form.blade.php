@@ -198,18 +198,20 @@
                             <br><br>
                         </div>
                     </div>
-                    <div class="form-group row clearfix">
+                    <div class="form-group row clearfix" ng-show="!formEditUser.inputUserFechaReingreso">
                       <label for="inputUserFechaIngreso" class="col-sm-3 control-label">Fecha de Ingreso</label>
 
                         <div class="col-sm-9"  ng-if="!formEditUser.editUser">
                             <label class="form-control">@{{formEditUser.inputUserFechaIngreso}}</label>
                         </div>
-                        <div class="col-sm-9"  ng-if="formEditUser.editUser && !formEditUser.editDate">
-                            <div class="input-group">
-                                <label class="form-control">@{{formEditUser.inputUserFechaIngreso}}</label>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-info" ng-click="editDate()" type="button">Cambiar</button>
-                                </span>
+                        <div ng-if="formEditUser.editUser && !formEditUser.editDate">
+                            <div class="col-sm-9" >
+                                <div class="input-group">
+                                    <label class="form-control">@{{formEditUser.inputUserFechaIngreso}}</label>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" ng-click="editDate()" type="button">Cambiar</button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div ng-if="formEditUser.editDate">
@@ -237,7 +239,49 @@
                             </p>
                         </div>-->
                         
-                        <div class="form-group row clearfix" ng-if="formEditUser.inputUserAdminNotification">
+                    </div>
+                    <div class="form-group row clearfix" ng-show="formEditUser.inputUserFechaReingreso">
+                      <label for="inputUserFechaIngreso" class="col-sm-3 control-label">Fecha Ingreso</label>
+                        <div class="col-sm-9"  ng-if="!formEditUser.editUser">
+                            <label class="form-control">@{{formEditUser.inputUserFechaReingreso}}</label>
+                        </div>
+                        <div ng-if="formEditUser.editUser && !formEditUser.editDate2">
+                            <div class="col-sm-9" >
+                                <div class="input-group">
+                                    <label class="form-control">@{{formEditUser.inputUserFechaReingreso}}</label>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" ng-click="editDate()" type="button">Cambiar</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="formEditUser.editDate2">
+                            
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <button class="btn btn-warning" ng-click="cancelEditDate()" type="button">Cancelar</button>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-9"  ng-controller="UsuariosModuleCtrl">
+                                <label>Fecha Seleccionada: <em>@{{formEditUser.dt | date:'fullDate' }}</em></label>
+                                <p class="input-group">
+                                    <input id="inputUserFechaReingreso" type="text" class="form-control" uib-datepicker-popup="@{{format}}" datepicker-options="options" ng-model="formEditUser.dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" readonly/>
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </p>
+                            </div>
+                            
+                        </div>
+                        <!--<div class="col-sm-9" ng-if="formEditUser.editUser">
+                            <p class="input-group"> 
+                                <input type="text" id="fecha" ng-model="formEditUser.fecha" class="form-control" value="">
+                            </p>
+                        </div>-->
+                        
+                    </div>
+                      <div class="form-group row clearfix" ng-if="formEditUser.inputUserAdmin">
                             <!--<label for="inputUserNomina" class="col-sm-3 control-label">Notificaciones Email</label>-->
 
                             <div class="col-sm-9">
@@ -245,7 +289,7 @@
                                     <!--<input type="checkbox" id="inputUserNotification" name="inputUserNotification" ng-model="formEditUser.inputUserNotification" disabled>-->
                                   <div class="col-md-4">
                                       <label class="checkbox-inline custom-checkbox nowrap">
-                                          <input type="checkbox" id="inputUserNotification" name="inputUserNotification" ng-model="formEditUser.inputUserNotification" disabled>
+                                          <input type="checkbox" id="inputUserAdminNotification" name="inputUserAdminNotification" ng-model="formEditUser.inputUserAdminNotification" disabled>
                                           <span>Notificaciones Email</span>
                                       </label>
                                   </div>
@@ -255,7 +299,7 @@
                                     <!--<input type="checkbox" id="inputUserNotification" name="inputUserNotification" ng-model="formEditUser.inputUserNotification">-->
                                   <div class="col-md-4">
                                       <label class="checkbox-inline custom-checkbox nowrap">
-                                          <input type="checkbox" id="inputUserNotification" name="inputUserNotification" ng-model="formEditUser.inputUserNotification">
+                                          <input type="checkbox" id="inputUserAdminNotification" name="inputUserAdminNotification" ng-model="formEditUser.inputUserAdminNotification">
                                           <span>Notificaciones Email</span>
                                       </label>
                                   </div>
@@ -263,8 +307,8 @@
                             </div>
                         </div>
                         
-                    </div>
-                  </div>
+                      
+                </div>
                   <div class="col-md-6">
                     <div class="form-group row clearfix">
                       <label class="col-sm-3 control-label">&Aacute;rea</label>
@@ -677,28 +721,68 @@
             
             <div class="panel-content">
                 <h3 class="with-line">D&iacute;as Acumulados</h3>
-                <div class="notification row clearfix">
-                    <div class="col-md-4">
+                
+                <div ng-if="!historialVacaciones">
+                    <div class="notification row clearfix">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Fecha Ingreso</span>
+                                <label class="form-control with-primary-addon">@{{formEditUser.inputUserFechaIngreso}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notification row clearfix">
+                        <div class="col-md-12">
+                            <!--<div include-with-scope="admin-theme/modules/vacations/lista_dias_por_usuario"></div>-->
+                            <div include-with-scope="admin-theme/modules/vacations/reporte_dias_por_usuario"></div>
+                        </div>
+                    </div><br>
+                    <div class="notification row clearfix">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Total de d&iacute;as disponibles</span>
+                                <label class="form-control with-primary-addon">@{{formEditUser.inputTotalDays}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notification row clearfix">
                         <div class="input-group">
-                            <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Fecha Ingreso</span>
-                            <label class="form-control with-primary-addon">@{{formEditUser.inputUserFechaIngreso}}</label>
+                            <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="historicoVacaciones()">
+                                <i class="ion-android-open"></i>Mostrar Historial
+                            </button> 
                         </div>
                     </div>
                 </div>
-                <div class="notification row clearfix">
-                    <div class="col-md-12">
-                        <!--<div include-with-scope="admin-theme/modules/vacations/lista_dias_por_usuario"></div>-->
-                        <div include-with-scope="admin-theme/modules/vacations/reporte_dias_por_usuario"></div>
-                    </div>
-                </div><br>
-                <div class="notification row clearfix">
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Total de d&iacute;as disponibles</span>
-                            <label class="form-control with-primary-addon">@{{formEditUser.inputTotalDays}}</label>
+                
+                <div ng-if="historialVacaciones">
+                    <div class="notification row clearfix">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Fecha Ingreso</span>
+                                <label class="form-control with-primary-addon">@{{formEditUser.inputUserFechaIngreso}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Total de d&iacute;as disponibles</span>
+                                <label class="form-control with-primary-addon">@{{formEditUser.inputTotalDays}}</label>
+                            </div>
                         </div>
                     </div>
+                    <div class="notification row clearfix">
+                        <div class="input-group">
+                            <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="historicoVacaciones()">
+                                <i class="ion-android-open"></i>Mostrar Normal
+                            </button> 
+                        </div>
+                    </div>
+                    <div class="notification row clearfix">
+                        <div class="col-md-12">
+                            <div include-with-scope="admin-theme/modules/vacations/reporte_dias_expirados_por_usuario"></div>
+                        </div>
+                    </div><br>
                 </div>
+                
             </div>
         
         </uib-tab>

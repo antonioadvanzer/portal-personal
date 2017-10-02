@@ -113,5 +113,10 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6" ng-if="(formOwnRequest.noncancellable == 1) && ((formOwnRequest.inputOwnRequestStatus == 2) || (formOwnRequest.inputOwnRequestStatus == 3) || (formOwnRequest.inputOwnRequestStatus == 5))">
+            <button type="button" ng-click="cancelRequest()" class="btn btn-danger btn-lg">Cancelar</button>
+        </div>
+    </div>
     
 </form>

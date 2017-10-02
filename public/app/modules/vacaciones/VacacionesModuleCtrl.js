@@ -58,6 +58,12 @@
         });  
     }
     
+    $scope.getTableDaysExpired = function(){
+        return $http.get("theme/modules/vacations/own_list_days_vacations_expired").then(function (response) {
+            return response.data;
+        });  
+    }
+    
     $scope.refreshTables = function(){
         
         $scope.solicitudesPropias_loaded = false;
@@ -117,6 +123,13 @@
             $scope.vacations_table.vacations_days = data;
         });
         
+        $scope.getTableDaysExpired().then(function(data) {
+            //$scope.vacations_table.vacations_days_expired = data;
+            
+            var expirados = data;
+            $scope.vacations_table.vacations_days_expired = expirados.concat($scope.vacations_table.vacations_days); 
+        });
+        
     }
     
     $scope.vacations_table = {};
@@ -133,6 +146,7 @@
     $scope.vacations_table.solicitudesRecibidas = [];
     
     $scope.vacations_table.vacations_days = [];
+    $scope.vacations_table.vacations_days_expired = [];
       
     $scope.diasDisponibles = 0;
       
@@ -140,6 +154,8 @@
     $scope.date_expire = " ";
       
     $scope.diasDeSolicitud = 0;
+      
+    $scope.historialVacaciones = false;
     
     $scope.refreshTables();
     /*$timeout(function() {
@@ -175,6 +191,10 @@
         window.history.back();
     };
       
+    $scope.historicoVacaciones = function (){
+        $scope.historialVacaciones = !$scope.historialVacaciones;
+    };
+      
     $scope.showOwnRequest = function (id){
         
         $http.get("theme/modules/vacations/get_own_request/"+id).then(function (response) {
@@ -195,6 +215,8 @@
             $scope.formOwnRequest.inputOwnRequestMotivoCancelacion = response.data.razon_cancelacion;
             $scope.formOwnRequest.inputOwnRequestOcacion = response.data.ocacion;
             $scope.formOwnRequest.inputOwnRequestStatus = response.data.status;
+            
+            $scope.formOwnRequest.noncancellable = response.data.noncancellable;
             
             //getOwnRequest();
             $scope.refreshTables();
@@ -333,7 +355,21 @@
             getAlert('theme/danger_modal/Falla al rechazar la solicitud');
         });
         
-    };
+    }
+    
+    $scope.cancelRequest = function (){
+        
+        $scope.sending = true;
+        
+        $http.get("theme/modules/vacations/cancel_request/"+$scope.formOwnRequest.inputOwnRequestId).then(function (response) {
+            console.log(response.data);
+            $scope.sending = false;
+            $scope.refreshTables();
+            $scope.getSolicitudesRealizadas();
+            getAlert('theme/success_modal/Solicitud cancelada correctamente');
+        });
+        
+    }
       
 /*--------------------------------------------------------------------------------------------------*/
     
@@ -342,7 +378,7 @@
     $scope.formRequest={};
       
     //$scope.disabled = undefined;
-      
+    
     $scope.dt = new Date();
     
     //$scope.dt = undefined;
@@ -360,11 +396,58 @@
     function open() {
         $scope.opened = true;
     }
-    
-    function disabled(data) {
+    // Pendiente de revisar.......
+    /*function disabled(data) {
         var date = data.date,
         mode = data.mode;
         return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+    }*/
+      
+    function disabled(data) {
+        var date = data.date,
+        mode = data.mode;
+        
+        //console.log(date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear());
+        
+        //return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        //return mode === 'day' && (date.getDate() === 20 && date.getMonth() === 10 && date.getFullYear() === 2017);
+        
+        return mode === 'day' && ((date.getDay() === 0) || (date.getDay() === 6) || holidays(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()))
+                                  
+    }
+      
+    function holidays(date){
+        
+        var dias_festivos = [
+            '2017-11-20',
+            '2017-12-24',
+            '2017-12-25',
+            '2017-12-31',
+            '2018-1-1',
+            '2018-3-19',
+            '2018-3-29',
+            '2018-3-30',
+            '2018-5-1',
+            '2018-9-16',
+            '2018-11-19',
+            '2018-12-24',
+            '2018-12-25',
+            '2018-12-31',
+        ]
+        
+        var finded = false;
+        var i;
+        //console.log(dias_festivos.length);
+        for(i = 0; i < dias_festivos.length; i++) { 
+            
+            console.log(dias_festivos[i]+"  "+date);
+            if(dias_festivos[i] === date){
+                finded = true; 
+                break;
+            }
+        }
+            
+        return finded;
     }
       
     function dateFormat(today){

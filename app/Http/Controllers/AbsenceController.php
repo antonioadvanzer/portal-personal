@@ -426,7 +426,7 @@ class AbsenceController extends Controller
         
         if(!$ocacionJustificada){
             
-            $mail_admins = PortalPersonal::getAdminstratorsArray();
+            $mail_admins = PortalPersonal::getAdminstratorsArrayWithNotifications();
             
             foreach($mail_admins as $mb){
                 array_push($mail_cc, $mb['email']);
@@ -658,7 +658,7 @@ class AbsenceController extends Controller
         
         $mail_cc = array();
         
-        $mail_admins = PortalPersonal::getAdminstratorsArray();
+        $mail_admins = PortalPersonal::getAdminstratorsArrayWithNotifications();
         
         foreach($mail_admins as $mb){
             array_push($mail_cc, $mb['email']);

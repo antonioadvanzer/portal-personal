@@ -32,6 +32,8 @@
     $scope.perfil.personalACargo = [];
       
     $scope.perfil.tamanioTablaPersonalACargo = 10;
+      
+    $scope.historialVacaciones = false;
     
     $scope.refreshTables();
       
@@ -39,6 +41,10 @@
       
     $scope.goBack = function (){
         window.history.back();
+    };
+      
+    $scope.historicoVacaciones = function (){
+        $scope.historialVacaciones = !$scope.historialVacaciones;
     };
       
     $scope.showUser = function (id){
@@ -96,10 +102,19 @@
             $scope.$apply();
         });*/
         
-        $.getJSON("theme/modules/vacations/list_days_vacations_by_user/"+id_user, function( data ) {
+        /*$.getJSON("theme/modules/vacations/list_days_vacations_by_user/"+id_user, function( data ) {
             $scope.vacations_table.vacations_days = data;
-            //console.log(data);
+            console.log(data);
             $scope.$apply();
+        });*/
+        
+        $http.get("theme/modules/vacations/list_days_vacations_by_user/"+id_user).then(function (response) {
+            $scope.vacations_table.vacations_days = response.data;
+            
+            $http.get("theme/modules/vacations/list_days_vacations_expired_by_user/"+id_user).then(function (response) {
+                var expirados = response.data;
+                $scope.vacations_table.vacations_days_expired = expirados.concat($scope.vacations_table.vacations_days);
+            });
         });
     }
       

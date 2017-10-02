@@ -30,23 +30,64 @@
       
     <div ba-panel ba-panel-title="Relación de Dias" ba-panel-class="with-scroll more-text-widget">
       <div include-with-scope="theme/modules/vacations/days_for_year"></div>
-      <br><br>
-        <div class="col-md-4">
-            <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Fecha Ingreso</span>
-                <label class="form-control with-primary-addon">@{{user.fecha_ingreso}}</label>
+      
+        <div ng-if="!historialVacaciones">
+            <br><br>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Fecha Ingreso</span>
+                    <label class="form-control with-primary-addon">@{{user.fecha_ingreso}}</label>
+                </div>
             </div>
-        </div>
-      <br><br>
-      <!--<div include-with-scope="theme/modules/vacations/days_available"></div>-->
-      <div include-with-scope="theme/modules/vacations/reporte_dias_por_usuario"></div>
-      <br><br>
-        <div class="col-md-4">
-            <div class="input-group">
-                <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Total de d&iacute;as disponibles</span>
-                <label class="form-control with-primary-addon">@{{user.total_days_available}}</label>
+          <br><br>
+          <!--<div include-with-scope="theme/modules/vacations/days_available"></div>-->
+          <div include-with-scope="theme/modules/vacations/reporte_dias_por_usuario"></div>
+          <br><br>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Total de d&iacute;as disponibles</span>
+                    <label class="form-control with-primary-addon">@{{diasDisponibles}}</label>
+                </div>
             </div>
+            <br><br>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="historicoVacaciones()">
+                        <i class="ion-android-open"></i>Mostrar Historial
+                    </button> 
+                </div>
+            </div>
+            
         </div>
+        
+        <div ng-if="historialVacaciones">
+            <br><br>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Fecha Ingreso</span>
+                    <label class="form-control with-primary-addon">@{{user.fecha_ingreso}}</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon input-group-addon-primary addon-left" id="label-autorizador">Total de d&iacute;as disponibles</span>
+                    <label class="form-control with-primary-addon">@{{diasDisponibles}}</label>
+                </div>
+            </div>
+            <br><br>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="historicoVacaciones()">
+                        <i class="ion-android-open"></i>Mostrar Normal
+                    </button> 
+                </div>
+            </div>
+          <br><br>
+          <div include-with-scope="theme/modules/vacations/reporte_dias_expirados_por_usuario"></div>
+          <br><br>
+            
+        </div>
+        
     </div>
   
   </div>
@@ -61,12 +102,13 @@
           <li>La Prima Vacacional será pagada en la segunda quincena del mes que corresponda a tu aniversario de la empresa y corresponde al 25% de los días de vacaciones generados en el período que acabe de cerrar.</li>
           <li>Las vacaciones deberán solicitarse con un período mínimo de 30 días y las autorizaciones que deberás gestionar son las siguientes (según aplique): 
             <ul type="square">
-              <li>Si estás en proyecto: El líder de proyecto te autorizará.</li>
+              <li>Si estás en proyecto: El l&iacute;der de proyecto te autorizar&aacute;.</li>
               <li>Si no estás en proyecto o eres área administrativa: El superior inmediato de acuerdo a la estructura será quien autorice.</li>
             </ul>
           </li>
-          <li>Una vez autorizadas por tu líder/superior, tu solicitud pasará a validación por parte de Capital Humano. Una vez que Capital Humano valide, se te notificará vía correo electrónico.</li>
-          <li>Los d&iacute;as mostrados como disponibles, son los dias proporcionales disponibles al día de hoy.</li>
+          <li>Una vez autorizadas por tu l&iacute;der/superior, tu solicitud pasar&aacute; a validaci&oacute;n por parte de Capital Humano. Una vez que Capital Humano valide, se te notificar&aacute; v&iacute;a correo electrónico.</li>
+          <li>Los d&iacute;as mostrados como disponibles, son los dias proporcionales disponibles al d&iacute;a de hoy.</li>
+            <li>En caso de alg&uacute;n imprevisto y no poder disfrutar las vacaciones que solicitaste, deber&aacute;s CANCELAR tu solicitud al menos 1 antes del periodo a disfrutar. En caso de no cancelar, los días serán considerados como disfrutados y no podrán restablecerse.</li>
         </ul>
       </div>
     </div>

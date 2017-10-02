@@ -212,6 +212,18 @@
               
           </div>
         </div>
+        <div class="form-group row clearfix" ng-if="formUser.inputUserPermission1">
+            <div class="col-sm-9">
+              <div>
+                  <div class="col-md-4">
+                      <label class="checkbox-inline custom-checkbox nowrap">
+                          <input type="checkbox" id="inputUserAdminNotification" name="inputUserAdminNotification" ng-model="formUser.inputUserAdminNotification">
+                          <span>Notificaciones Email</span>
+                      </label>
+                  </div>
+              </div>
+            </div>
+        </div>            
       </div>
       <div class="col-md-6">
         <div class="form-group row clearfix">
