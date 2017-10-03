@@ -440,7 +440,7 @@
         //console.log(dias_festivos.length);
         for(i = 0; i < dias_festivos.length; i++) { 
             
-            console.log(dias_festivos[i]+"  "+date);
+            //console.log(dias_festivos[i]+"  "+date);
             if(dias_festivos[i] === date){
                 finded = true; 
                 break;
@@ -524,8 +524,10 @@
         var i=0;
         while(i < parseInt(d)){
             fecha.setTime(fecha.getTime()+24*60*60*1000);
-            if(fecha.getDay() != 6 && fecha.getDay() != 0)
+            //if(fecha.getDay() != 6 && fecha.getDay() != 0)
+            if((fecha.getDay() != 6) && (fecha.getDay() != 0) && !holidays(fecha.getFullYear()+"-"+(fecha.getMonth()+1)+"-"+fecha.getDate())){
                 i++;
+            }
         }
         //fecha.setDate(fecha.getDate()+parseInt(d));
         var anno=fecha.getFullYear();

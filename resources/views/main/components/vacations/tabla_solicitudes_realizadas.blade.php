@@ -1,3 +1,12 @@
+<div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <button type="button" class="btn btn-info btn-with-icon " ng-click="goBack()">
+                  <i class="ion-arrow-return-left"></i>Regresar
+                </button>
+            </div>
+        </div>
+    </div>
 <div class="horizontal-scroll">
   <div class="form-group select-page-size-wrap ">
     <label>Filas por p&aacute;gina

@@ -262,8 +262,6 @@
             $scope.formRequest.active_view_request = false;
             $scope.formLetter.active_view_letter = false;
             
-            
-            
             $scope.ue_selectedArea.selected = {id: response.data.us_area_id, name: response.data.us_area_name};
             $scope.ue_selectedTrack.selected = {id: response.data.us_track_id, name: response.data.us_track_name};
             $scope.ue_selectedPosition.selected = {id: response.data.us_posicion_id, name: response.data.us_posicion_name};

@@ -67,6 +67,7 @@
             $scope.formEditUser.inputUserPlaza = response.data.plaza;
             $scope.formEditUser.inputUserNomina = response.data.nomina;
             $scope.formEditUser.inputUserFechaIngreso = response.data.fecha_ingreso;
+            $scope.formEditUser.inputUserFechaReingreso = response.data.fecha_reingreso;
             $scope.formEditUser.inputUserArea = response.data.us_area_name;
             $scope.formEditUser.inputUserDireccion = response.data.us_direccion_name;
             $scope.formEditUser.inputUserTrack = response.data.us_track_name;

@@ -121,12 +121,22 @@
                       </div>
 
                     </div>
-                    <div class="form-group row clearfix">
+                    <div class="form-group row clearfix" ng-show="!user.fecha_reingreso">
                       <label class="col-sm-3 control-label">Fecha de Ingreso</label>
 
                         <div class="col-sm-9">
                             <div>
                                 <label class="form-control">@{{user.fecha_ingreso}}</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group row clearfix" ng-show="user.fecha_reingreso">
+                      <label class="col-sm-3 control-label">Fecha Ingreso</label>
+
+                        <div class="col-sm-9">
+                            <div>
+                                <label class="form-control">@{{user.fecha_reingreso}}</label>
                             </div>
                         </div>
 

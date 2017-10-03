@@ -198,6 +198,7 @@
                             <br><br>
                         </div>
                     </div>
+                    
                     <div class="form-group row clearfix" ng-show="!formEditUser.inputUserFechaReingreso">
                       <label for="inputUserFechaIngreso" class="col-sm-3 control-label">Fecha de Ingreso</label>
 
@@ -238,7 +239,6 @@
                                 <input type="text" id="fecha" ng-model="formEditUser.fecha" class="form-control" value="">
                             </p>
                         </div>-->
-                        
                     </div>
                     <div class="form-group row clearfix" ng-show="formEditUser.inputUserFechaReingreso">
                       <label for="inputUserFechaIngreso" class="col-sm-3 control-label">Fecha Ingreso</label>
@@ -281,6 +281,19 @@
                         </div>-->
                         
                     </div>
+                    
+                    <div class="form-group row clearfix">
+                        <div class="col-sm-9" ng-show="!formEditUser.inputUserFechaReingreso">
+                            <div class="alert bg-success"><h3>Nuevo</h3></div>
+                        </div>  
+                    </div>
+                      
+                    <div class="form-group row clearfix">
+                        <div class="col-sm-9" ng-show="formEditUser.inputUserFechaReingreso">
+                            <div class="alert bg-warning"><h3>Reingreso</h3></div>
+                        </div>  
+                    </div>
+                      
                       <div class="form-group row clearfix" ng-if="formEditUser.inputUserAdmin">
                             <!--<label for="inputUserNomina" class="col-sm-3 control-label">Notificaciones Email</label>-->
 

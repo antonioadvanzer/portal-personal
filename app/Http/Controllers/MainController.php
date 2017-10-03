@@ -222,6 +222,7 @@ class MainController extends Controller
             "company" => Auth::user()->company,
             "fecha_ingreso" => Auth::user()->fecha_ingreso,
             "fecha_baja" => Auth::user()->fecha_baja,
+            "fecha_reingreso" => Auth::user()->fecha_reingreso,
             "tipo_baja" => Auth::user()->tipo_baja,
             "motivo" => Auth::user()->motivo,
             "remember_token" => Auth::user()->remenber_token,

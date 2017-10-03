@@ -117,11 +117,19 @@
                       </div>
 
                     </div>
-                    <div class="form-group row clearfix">
+                    <div class="form-group row clearfix" ng-show="!formEditUser.inputUserFechaReingreso">>
                       <label for="inputUserFechaIngreso" class="col-sm-3 control-label">Fecha de Ingreso</label>
 
                         <div class="col-sm-9">
                             <label class="form-control">@{{formEditUser.inputUserFechaIngreso}}</label>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group row clearfix" ng-show="formEditUser.inputUserFechaReingreso">
+                      <label for="inputUserFechaIngreso" class="col-sm-3 control-label">Fecha Ingreso</label>
+
+                        <div class="col-sm-9">
+                            <label class="form-control">@{{formEditUser.inputUserFechaReingreso}}</label>
                         </div>
                         
                     </div>
