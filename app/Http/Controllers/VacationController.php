@@ -1098,14 +1098,14 @@ class VacationController extends Controller
     public function admin_insertarVacaciones()
     {    
         $vr1 = [
-            'user' => 125,
+            'user' => 162,
             'type' => 2,
-            'accumulated_days' => 2, 
-            'increased_days' => 6, 
+            'accumulated_days' => 0, 
+            'increased_days' => 0, 
             'corresponding_days' => 6, 
-            'start_date' => '2017-03-01', 
-            'close_date' => '2018-03-01', 
-            'expiration_date' => '2019-09-01', 
+            'start_date' => '2017-08-17', 
+            'close_date' => '2018-08-17', 
+            'expiration_date' => '2020-02-17', 
             'year' => 1, 
             'status'=> 1
             ];
@@ -1364,7 +1364,12 @@ class VacationController extends Controller
      */
     private function admin_utilizaDiasDeVacaciones($user)
     {
-        $diasVacaciones = $user->getVacations()->get();
+        //$diasVacaciones = $user->getVacations()->get();
+
+        $diasVacaciones = Vacaciones::where('user', $user->id)
+        ->where('status',1)
+        ->orderBy('close_date', 'asc')
+        ->get();
         
         echo "<br>";
         echo "----------------------------------------------";
