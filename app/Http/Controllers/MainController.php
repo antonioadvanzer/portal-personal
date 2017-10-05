@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use URL;
 use Auth;
 use Socialite;
-use User;
+use App\User;
 use PortalPersonal;
 
 class MainController extends Controller
