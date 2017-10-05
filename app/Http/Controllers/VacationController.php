@@ -1098,28 +1098,28 @@ class VacationController extends Controller
     public function admin_insertarVacaciones()
     {    
         $vr1 = [
-            'user' => 162,
-            'type' => 2,
-            'accumulated_days' => 0, 
-            'increased_days' => 0, 
-            'corresponding_days' => 6, 
-            'start_date' => '2017-08-17', 
-            'close_date' => '2018-08-17', 
-            'expiration_date' => '2020-02-17', 
-            'year' => 1, 
+            'user' => 10,
+            'type' => 1,
+            'accumulated_days' => 14, 
+            'increased_days' => 14, 
+            'corresponding_days' => 14, 
+            'start_date' => '2016-03-01', 
+            'close_date' => '2017-03-01', 
+            'expiration_date' => '2018-09-01', 
+            'year' => 6, 
             'status'=> 1
             ];
 
         $vr2 = [
-            'user' => 108,
+            'user' => 10,
             'type' => 2,
-            'accumulated_days' => 0, 
-            'increased_days' => 0, 
-            'corresponding_days' => 8, 
-            'start_date' => '2017-07-19', 
-            'close_date' => '2018-07-19', 
-            'expiration_date' => '2020-01-19',
-            'year' => 2, 
+            'accumulated_days' => 8, 
+            'increased_days' => 8, 
+            'corresponding_days' => 14, 
+            'start_date' => '2017-03-01', 
+            'close_date' => '2018-03-01', 
+            'expiration_date' => '2019-09-01',
+            'year' => 7, 
             'status'=> 1
             ];
 
@@ -1134,16 +1134,16 @@ class VacationController extends Controller
             'expiration_date' => '2020-01-01', 
             'year' => 3, 
             'status'=> 1
-            ];
+        ];
 
         $id_vr1 = Vacaciones::create($vr1);
-        //$id_vr2 = Vacaciones::create($vr2);
+        $id_vr2 = Vacaciones::create($vr2);
         //$id_vr3 = Vacaciones::create($vr3);
 
         //echo "Hecho ID's : ".$id_vr1->id."   ".$id_vr2->id."   ".$id_vr3->id;
-        //echo "Hecho ID's : ".$id_vr1->id."   ".$id_vr2->id;
+        echo "Hecho ID's : ".$id_vr1->id."   ".$id_vr2->id;
         //echo "Hecho ID's : ".$id_vr2->id."   ".$id_vr3->id;
-        echo "Hecho ID's : ".$id_vr1->id;
+        //echo "Hecho ID's : ".$id_vr1->id;
     }
 
     /**

@@ -47,20 +47,14 @@ class MainController extends Controller
     {
         $user = Socialite::driver('google')->user();
 
-        $userModel = User::where('email', $user->email)
-            ->first();
-
-        if($userModel){
-            if (Auth::attempt(['email' => $userModel->email, 'password' => $userModel->password])) {
-                // Authentication passed...
-                return redirect()->intended('/');
-            }else{
-                return redirect('/auth');
-            }
+        if (Auth::attempt(['email' => $user->email, 'password' => 'password'])) {
+        //if (Auth::attempt(['email' => $user->email, 'password' => $userModel->password])) {
+            // Authentication passed...
+            return redirect()->intended('/');
         }else{
             return redirect('/auth');
         }
-
+        
     }
 
     /**

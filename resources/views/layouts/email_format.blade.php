@@ -78,11 +78,11 @@
 </head>
 <body>
 	<div class="container">
-		<div class="col-md-12" align="center"><img width="100%" src="http://drive.google.com/uc?export=view&id=0B7vcCZhlhZiONkE0ZU9qcVU5S3M"></div>
+		<div class="col-md-12" align="center"><img width="100%" src="{{ URL::to('assets/img/barras/adv-ent_head.jpg') }}"></div>
 		<div style="width:80%" class="container">
 			@yield('message')
 		</div>
-		<div class="col-md-12" align="center"><img width="100%" src="http://drive.google.com/uc?export=view&id=0B7vcCZhlhZiOOWNiNHJnZGhnaDA"></div>
+		<div class="col-md-12" align="center"><img width="100%" src="{{ URL::to('assets/img/barras/adv-ent_foot.jpg') }}"></div>
 		<footer align="center">
 			<p>&copy; Advanzer De México, S.A de C.V. 2017</p>
 		</footer>

@@ -17,16 +17,16 @@
       
     <div class="jumbotron">
         <div class="container">
-            <div class="col-md-6 logo" align="center"><img vspace="8%" width="100%" src="http://intranet.advanzer.com:3000/assets/images/1.png"></div>
+            <div class="col-md-6 logo" align="center"><img vspace="8%" width="100%" src="{{ URL::to('/assets/img/logos/AD_logo.png') }}"></div>
 
-            <div class="col-md-6 logo" align="center"><img vspace="8%" width="100%" src="http://intranet.advanzer.com:3000/assets/images/2.png"></div>
+            <div class="col-md-6 logo" align="center"><img vspace="8%" width="100%" src="{{ URL::to('/assets/img/logos/EN_logo.png') }}"></div>
         </div>
     </div>
       
     <h1>Bienvenido(a) a tu Portal Personal</h1>
     <!--<a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a>-->
 
-    <!--<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         
       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -72,7 +72,7 @@
           <a href="{{ route('password.request') }}" class="forgot-pass">¿Olvidaste tu contraseña?</a>
         </div>
       </div>
-    </form>-->
+    </form>
 
     <div class="auth-sep"><span><span>Ingresa con un click</span></span></div>
 

@@ -739,7 +739,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/list_days_vacations_expired_by_user/{id_user}', 'VacationController@admin_getResportDaysVacationsExpiredByUser');
 
                 // Calculate dates
-                Route::get('/calcular_fechas/{fecha}', 'VacationController@admin_calculaFechas');
+                //Route::get('/calcular_fechas/{fecha}', 'VacationController@admin_calculaFechas');
                 //Route::get('/insertar_dias', 'VacationController@admin_insertarVacaciones');
                 
             });
