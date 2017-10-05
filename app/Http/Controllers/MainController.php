@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use URL;
 use Auth;
+use Socialite;
+use User;
 use PortalPersonal;
 
 class MainController extends Controller
@@ -26,7 +28,42 @@ class MainController extends Controller
             ]);        
     }
     
-     /**
+    /**
+     * call a google login account
+     *
+     * @return \Illuminate\Http\Response
+     */ 
+    public function main_redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_handleGoogleCallback(Request $request)
+    {
+        $user = Socialite::driver('google')->user();
+
+        $userModel = User::where('email', $user->email)
+            ->first();
+
+        if($userModel){
+            if (Auth::attempt(['email' => $userModel->email, 'password' => $userModel->password])) {
+                // Authentication passed...
+                return redirect()->intended('/');
+            }else{
+                return redirect('/auth');
+            }
+        }else{
+            return redirect('/auth');
+        }
+
+    }
+
+    /**
      * 
      *
      * @return \Illuminate\Http\Response

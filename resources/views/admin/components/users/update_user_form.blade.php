@@ -282,16 +282,14 @@
                         
                     </div>
                     
-                    <div class="form-group row clearfix">
+                    <div class="form-group row clearfix" ng-if="!formEditUser.editUser">
+                        <label for="" class="col-sm-3 control-label">Status</label>
                         <div class="col-sm-9" ng-show="!formEditUser.inputUserFechaReingreso">
-                            <div class="alert bg-success"><h3>Nuevo</h3></div>
-                        </div>  
-                    </div>
-                      
-                    <div class="form-group row clearfix">
+                            <label class="form-control">Nuevo</label>
+                        </div>
                         <div class="col-sm-9" ng-show="formEditUser.inputUserFechaReingreso">
-                            <div class="alert bg-warning"><h3>Reingreso</h3></div>
-                        </div>  
+                            <label class="form-control">Reingreso</label>
+                        </div>
                     </div>
                       
                       <div class="form-group row clearfix" ng-if="formEditUser.inputUserAdmin">

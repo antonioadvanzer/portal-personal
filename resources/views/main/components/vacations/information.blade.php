@@ -108,7 +108,7 @@
           </li>
           <li>Una vez autorizadas por tu l&iacute;der/superior, tu solicitud pasar&aacute; a validaci&oacute;n por parte de Capital Humano. Una vez que Capital Humano valide, se te notificar&aacute; v&iacute;a correo electrónico.</li>
           <li>Los d&iacute;as mostrados como disponibles, son los dias proporcionales disponibles al d&iacute;a de hoy.</li>
-            <li><b>En caso de alg&uacute;n imprevisto y no poder disfrutar las vacaciones que solicitaste, deber&aacute;s CANCELAR tu solicitud al menos 1 antes del periodo a disfrutar. En caso de no cancelar, los días serán considerados como disfrutados y no podrán restablecerse.</b></li>
+            <li><b>En caso de alg&uacute;n imprevisto y no poder disfrutar las vacaciones que solicitaste, deber&aacute;s CANCELAR tu solicitud al menos 1 d&iacute;a antes del periodo a disfrutar. En caso de no cancelar, los días serán considerados como disfrutados y no podrán restablecerse.</b></li>
         </ul>
       </div>
     </div>

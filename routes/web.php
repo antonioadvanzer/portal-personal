@@ -22,6 +22,9 @@ Auth::routes();
 Route::get('/auth', 'MainController@auth')->middleware('guest');
 Route::get('/not_found', 'MainController@nf404');
 
+Route::get('/auth/google', 'MainController@main_redirectToGoogle');
+Route::get('/auth/google/callback', 'MainController@main_googleCallBack');
+
 /* Static Functions */
 Route::group(['prefix' => 'advanzer/service'], function () {
     
