@@ -43,7 +43,7 @@ class MainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function main_handleGoogleCallback(Request $request)
+    public function main_handleGoogleCallback()
     {
         $user = Socialite::driver('google')->user();
 
