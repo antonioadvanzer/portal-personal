@@ -59,8 +59,8 @@ class PortalPersonal
         Mail::send($format, ['data' => $data], function ($message) use ($data) {
             //$message->from($data['from'], 'Portal Personal');
             $message->from('notificaciones.ch@advanzer.com', 'Portal Personal');
-            //$message->to($data['to']);
-            $message->to("antonio.baez@advanzer.com");//test mode
+            $message->to($data['to']);
+            //$message->to("antonio.baez@advanzer.com");//test mode
             if(array_key_exists('cc', $data)){
                 $message->cc($data['cc']);
             }

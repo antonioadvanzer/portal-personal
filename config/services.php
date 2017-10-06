@@ -38,7 +38,7 @@ return [
     'google' => [
         'client_id' => '922563461797-kq58gb6rddde5cef22idq5v5k6ps02u5.apps.googleusercontent.com',
         'client_secret' => 'JkfEiAkmDvZO7Sgh91cZQJw4',
-        'redirect' => 'http://intranet.advanzer.com:7000/auth/google/callback',
+        'redirect' => 'http://intranet.advanzer.com:3000/auth/google/callback',
     ],
 
 ];

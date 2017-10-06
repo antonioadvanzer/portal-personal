@@ -26,7 +26,7 @@
     <h1>Bienvenido(a) a tu Portal Personal</h1>
     <!--<a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a>-->
 
-    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+    <!--<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         
       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -72,7 +72,7 @@
           <a href="{{ route('password.request') }}" class="forgot-pass">¿Olvidaste tu contraseña?</a>
         </div>
       </div>
-    </form>
+    </form>-->
 
     <div class="auth-sep"><span><span>Ingresa con un click</span></span></div>
 
