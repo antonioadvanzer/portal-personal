@@ -49,7 +49,7 @@
       <td>@{{sl.area}}</td>
       <td>@{{sl.empresa}}</td>
       <td>@{{sl.estado}}</td>
-        <td><i ng-if="((sl.alert == 1) && ((sl.status == 1) || (sl.status == 5) (sl.status == 6) (sl.status == 7)))" class="fa fa fa-bell"></i></td>
+        <td><i ng-if="((sl.alert == 1) && ((sl.status == 1) || (sl.status == 5) || (sl.status == 6) || (sl.status == 7)))" class="fa fa fa-bell"></i></td>
     </tr>
     </tbody>
     <tfoot>
