@@ -180,7 +180,7 @@ class LetterController extends Controller
         
         $mail_cc = array();
 
-        $mail_admins = PortalPersonal::getAdminstratorsArray();
+        $mail_admins = PortalPersonal::getAdminstratorsArrayWithNotifications();
 
         foreach($mail_admins as $mb){
             array_push($mail_cc, $mb['email']);

@@ -52,7 +52,7 @@ class MainController extends Controller
             // Authentication passed...
             return redirect()->intended('/');
         }else{
-            return redirect('/auth');
+            return redirect('/auth')->with('status', '¡Cuenta no valida!');
         }
         
     }

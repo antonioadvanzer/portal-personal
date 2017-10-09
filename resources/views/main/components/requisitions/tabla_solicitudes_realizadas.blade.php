@@ -37,7 +37,7 @@
     </tr>-->--}}
     </thead>
     <tbody>
-    <tr ng-repeat="sl in requisitions_table.solicitudesPropias" ng-click="showOwnRequisition(sl.id)" ng-class="{'primary': ((sl.alert == 1) && ((sl.status == 1) || (sl.status == 5) (sl.status == 6) (sl.status == 7)))}" class="row-table">
+    <tr ng-repeat="sl in requisitions_table.solicitudesPropias" ng-click="showOwnRequisition(sl.id)" ng-class="{'primary': ((sl.alert == 1) && ((sl.status == 1) || (sl.status == 5) || (sl.status == 6) || (sl.status == 7)))}" class="row-table">
       <td class="table-id">@{{sl.id}}</td>
       <td>@{{sl.folio}}</td>
       <td>@{{sl.fecha}}</td>

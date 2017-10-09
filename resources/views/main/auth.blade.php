@@ -73,7 +73,13 @@
         </div>
       </div>
     </form>-->
-
+      
+    @if (session('status'))
+	    <div class="alert alert-danger">
+	        {{ session('status') }}
+	    </div>
+	@endif
+      
     <div class="auth-sep"><span><span>Ingresa con un click</span></span></div>
 
     <div class="al-share-auth">

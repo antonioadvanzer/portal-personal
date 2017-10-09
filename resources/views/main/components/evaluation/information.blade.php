@@ -61,7 +61,7 @@
         <p><b>A: </b> Es un rol model para la organizaci&oacute;n por sus m&eacute;ritos durante el año y es una persona por todos los niveles de la organizaci&oacute;n.</p><br>
         <p><b>B: </b> Excede expectativas: es quien durante el año de forma constante fue mas all&aacute; de lo que su trabajo exige.</p><br>
         <p><b>C: </b>Cumple expectativas: es lo esperado por la organizaci&oacute;n. Es aquella persona que hace muy bien su trabajo y cumple con todo lo que &eacute;ste implica.</p><br>
-        <p><b>D: </b> Cumplo pacialmente: cumpli&oacute; parcialmente con lo esperado ya sea en aptitud o en actitud.</p><br>
+        <p><b>D: </b> Cumplo parcialmente: cumpli&oacute; parcialmente con lo esperado ya sea en aptitud o en actitud.</p><br>
         <p><b>E: </b> No cumple: el desempeño fue deficiente durante el año, no cumpli&oacute; en aptitudes y/o actitudes.</p><br>
       </div>
     </div>
