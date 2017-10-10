@@ -139,10 +139,9 @@ class PortalPersonal
                  $pa = $um->getAreaAssociated()->first()->getPermissionsArea()->get();
                  $pp = $um->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->getPermissionsPositions()->get();
                  
-                 if((PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pu) 
-                     or PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pa) 
-                     or PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Administración')->value('access'), $pp))
-                     and (PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Notificaciones')->value('access'), $pu))){
+                 if(PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Notificaciones Email')->value('access'), $pu) 
+                     or PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Notificaciones Email')->value('access'), $pa) 
+                     or PortalPersonal::checkPermission(DB::table('permisos')->where('name', 'Notificaciones Email')->value('access'), $pp)){
                      array_push($admins,[
                          "id" => $um->id,
                          "name" => explode(" ",$um->name)[0]." ".$um->apellido_paterno,

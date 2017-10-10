@@ -318,7 +318,7 @@ class VacationController extends Controller
         $requestModel = Solicitud::where('authorizer', Auth::user()->id)
                         ->where('status', DB::table('estados_solicitud')
                         ->where('name', 'Enviada')->value('id'))
-                        ->where('used', 1)
+                        //->where('used', 1)
                         ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
                         ->orderBy('id', 'desc')
                         ->get();
