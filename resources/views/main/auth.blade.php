@@ -26,7 +26,7 @@
     <h1>Bienvenido(a) a tu Portal Personal</h1>
     <!--<a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a>-->
 
-    <!--<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         
       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -72,7 +72,7 @@
           <a href="{{ route('password.request') }}" class="forgot-pass">¿Olvidaste tu contraseña?</a>
         </div>
       </div>
-    </form>-->
+    </form>
       
     @if (session('status'))
 	    <div class="alert alert-danger">
@@ -91,5 +91,20 @@
     </div>
   </div>
 </main>
+
+<!-- Old Portal Personal -->
+
+<div class="row-fluid ng-hide">
+  <div class="col-xlg-3 col-lg-12 col-sm-6 col-sm-6">
+    <div ba-panel ba-panel-class="banner-column-panel">
+      <div class="banner">
+        <div class="large-banner-wrapper">
+            <iframe class="col-md-12" src="{{ 'http://localhost:8080/advanzer_evaluacion/logout' }}"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="{{ URL::to('js/index.js') }}"></script>
 @endsection

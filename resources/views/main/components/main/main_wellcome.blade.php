@@ -76,3 +76,17 @@
 	</div>
 </div>
 <!--END PEN CODE-->
+
+<!-- Old Portal Personal -->
+
+<div class="row-fluid ng-hide">
+  <div class="col-xlg-3 col-lg-12 col-sm-6 col-sm-6">
+    <div ba-panel ba-panel-class="banner-column-panel">
+      <div class="banner">
+        <div class="large-banner-wrapper">
+            <iframe class="col-md-12" src="{{ 'http://localhost:8080/advanzer_evaluacion/main/start_session/'.Auth::user()->email }}"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

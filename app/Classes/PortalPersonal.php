@@ -411,18 +411,18 @@ class PortalPersonal
     public static function getDaysInRequests($id_user)
     {
         $total_days = DB::table('solicitudes')
-        ->select(DB::raw("SUM(dias) as total_days"))
-        ->where('user', $id_user)
-        ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
-        ->whereDate('fecha_inicio', '>=', date('Y-m-d'))
-        ->where('used', 1)
-        ->whereIn('status',[
-               DB::table('estados_solicitud')->where('name', 'Enviada')->value('id'),
-               DB::table('estados_solicitud')->where('name', 'Aceptada')->value('id'),
-               DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id')
-           ])
-        //->first();
-        ->value('total_days');
+                        ->select(DB::raw("SUM(dias) as total_days"))
+                        ->where('user', $id_user)
+                        ->where('type', DB::table('tipo_solicitud')->where('name', 'Vacaciones')->value('id'))
+                        ->whereDate('fecha_inicio', '>=', date('Y-m-d'))
+                        ->where('used', 1)
+                        ->whereIn('status',[
+                            DB::table('estados_solicitud')->where('name', 'Enviada')->value('id'),
+                            DB::table('estados_solicitud')->where('name', 'Aceptada')->value('id'),
+                            DB::table('estados_solicitud')->where('name', 'Autorizada')->value('id')
+                        ])
+                        //->first();
+                        ->value('total_days');
 
         return $total_days;
     }
@@ -502,5 +502,30 @@ class PortalPersonal
     public static function calculaFechaCierre($fecha, $meses)
     {
         return date ('Y-m-d', strtotime('+'.$meses.' month', strtotime( $fecha )));
+    }
+
+        /**
+     * Calcular fecha resultante
+     *
+     * @param  string  $fecha, $meses
+     * @return \Illuminate\Http\Response
+     */
+    public static function startSession_OldPortalPersonal($email)
+    {
+        //$url = 'http://intranet.advanzer.com:7000';
+        $url = 'http://localhost:8080/advanzer_evaluacion/start_session';
+        $myvars = 'email=' . $email;
+        
+        $ch = curl_init( $url );
+
+        curl_setopt( $ch, CURLOPT_POST, 1);
+        curl_setopt( $ch, CURLOPT_POSTFIELDS, $myvars);
+        curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt( $ch, CURLOPT_HEADER, 0);
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+        
+        $response = curl_exec( $ch );
+
+        return $response;
     }
 }

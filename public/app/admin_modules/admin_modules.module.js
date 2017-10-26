@@ -17,6 +17,7 @@
     'PortalPersonal.admin_modules.requisiciones',
     'PortalPersonal.admin_modules.permisos_de_ausencia',
     'PortalPersonal.admin_modules.vacaciones',
+    'PortalPersonal.admin_modules.evaluaciones'
     //'PortalPersonal.admin_modules.permisos',
   ])
       .config(routeConfig);

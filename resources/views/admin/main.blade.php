@@ -154,6 +154,9 @@
 <!-- Vacaciones -->
 <script src="{{ URL::to('app/admin_modules/vacaciones/vacaciones.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/vacaciones/VacacionesModuleCtrl.js') }}"></script>
+<!-- Evaluaciones -->
+<script src="{{ URL::to('app/admin_modules/evaluaciones/Evaluaciones.module.js') }}"></script>
+<script src="{{ URL::to('app/admin_modules/evaluaciones/EvaluacionesModuleCtrl.js') }}"></script>
 <!-- Permiso -->
 <script src="{{ URL::to('app/admin_modules/permisos/permisos.module.js') }}"></script>
 <script src="{{ URL::to('app/admin_modules/permisos/PermisosModuleCtrl.js') }}"></script>

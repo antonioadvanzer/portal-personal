@@ -21,6 +21,10 @@ class MainController extends Controller
         //dd(Auth::user());
         //dd($this->getThemeComponets());
         
+        //$response = PortalPersonal::startSession_OldPortalPersonal(Auth::user()->email);
+
+        //dd($response);
+
         return view('main.main',[
             "components" => $this->getThemeComponets(),
             "user" => $this->getUserData(),
@@ -50,6 +54,9 @@ class MainController extends Controller
         if (Auth::attempt(['email' => $user->email, 'password' => 'password'])) {
         //if (Auth::attempt(['email' => $user->email, 'password' => $userModel->password])) {
             // Authentication passed...
+
+
+            
             return redirect()->intended('/');
         }else{
             return redirect('/auth')->with('status', '¡Cuenta no valida!');

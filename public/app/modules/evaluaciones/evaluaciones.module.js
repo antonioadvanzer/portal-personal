@@ -29,7 +29,48 @@
           sidebarMeta: {
             order: 0,
           },
-        });
+        })
+        .state('evaluaciones.evaluar', {
+          url: '/evaluar',
+          templateUrl: 'theme/modules/evaluation/evaluar',
+          title: 'Feedback',
+          sidebarMeta: {
+            order: 0,
+          },
+        })
+        .state('evaluaciones.compromisos_internos', {
+          url: '/compromisos_internos',
+          templateUrl: 'theme/modules/evaluation/compromisos_internos',
+          title: 'Compromisos Internos',
+          sidebarMeta: {
+            order: 0,
+          },
+        })
+        .state('evaluaciones.resumen_evaluacion_360', {
+          url: '/resumen_evaluacion_360',
+          templateUrl: 'theme/modules/evaluation/resumen_evaluacion_360',
+          title: 'Resumen Evaluación 360',
+          sidebarMeta: {
+            order: 0,
+          },
+        })
+        .state('evaluaciones.perfil_de_evaluacion', {
+          url: '/perfil_evaluacion',
+          templateUrl: 'theme/modules/evaluation/perfil_evaluacion',
+          title: 'Perfil de Evaluación',
+          sidebarMeta: {
+            order: 0,
+          },
+        })
+        .state('evaluaciones.historial_desempenio', {
+          url: '/historial_desempenio',
+          templateUrl: 'theme/modules/evaluation/historial_desempenio',
+          title: 'Historial de Desempeño',
+          sidebarMeta: {
+            order: 0,
+          },
+        })
+        ;
   }
 
 })();

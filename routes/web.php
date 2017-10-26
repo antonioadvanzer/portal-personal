@@ -131,6 +131,14 @@ Route::group(['middleware' => 'auth'], function(){
             Route::group(['prefix' => 'evaluation'], function () {
                 
                 Route::get('/information', 'EvaluationController@main_information');
+
+                # -------------------------------------------------------------------------
+                Route::get('/evaluar', 'EvaluationController@main_evaluar');
+                Route::get('/compromisos_internos', 'EvaluationController@main_compromisosInternos');
+                Route::get('/resumen_evaluacion_360', 'EvaluationController@main_resumenEvaluacion360');
+                Route::get('/perfil_evaluacion', 'EvaluationController@main_perfilEvaluacion');
+                Route::get('/historial_desempenio', 'EvaluationController@main_historialDesempenio');
+                # -------------------------------------------------------------------------
             
             });
 
@@ -742,6 +750,28 @@ Route::group(['middleware' => 'auth'], function(){
                 //Route::get('/calcular_fechas/{fecha}', 'VacationController@admin_calculaFechas');
                 //Route::get('/insertar_dias', 'VacationController@admin_insertarVacaciones');
                 
+            });
+
+            Route::group(['prefix' => 'evaluation'], function () {
+
+                /* Evaluation Admin Views -------------------- */
+                //Route::get('/resultados_evaluaciones', 'EvaluationController@admin_listaResultadosEvaluaciones');
+                //Route::get('/lista_resultados_evaluaciones', 'EvaluationController@admin_tablaResultadosEvaluaciones');
+                
+                /* Evaluation Admin Resources -------------------- */
+                //Route::get('/list_results_evaluations/{year}', 'EvaluationController@admin_getResultadosEvaluaciones');
+
+
+                #-------------------------------------------------
+                Route::get('/resultados_evaluaciones', 'EvaluationController@admin_resultadosEvaluaciones');
+                Route::get('/evaluaciones_por_evaluador', 'EvaluationController@admin_evaluacionesPorEvaluador');
+                Route::get('/evaluaciones_pendientes', 'EvaluationController@admin_evaluacionesPendientes');
+                Route::get('/responsabilidades_funcionales', 'EvaluationController@admin_responsabilidadesFuncionales');
+                Route::get('/competencias_laborales', 'EvaluationController@admin_competenciasLaborales');
+                Route::get('/gestion_tiempos_evaluaciones', 'EvaluationController@admin_gestionTiemposEvaluaciones');
+                Route::get('/administrar_evaluaciones', 'EvaluationController@admin_administrarEvaluaciones');
+                #-------------------------------------------------
+
             });
 
         });
