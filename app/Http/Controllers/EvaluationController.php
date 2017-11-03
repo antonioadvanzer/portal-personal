@@ -69,16 +69,6 @@ class EvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function main_resumenEvaluacion360()
-    {
-        return view('main.components.evaluation.iframe.resumen_evaluacion_360', ["url" => $this->url_gestion_desempenio.'/evaluacion/resumen']);
-    }
-
-    /**
-     * Embedded Site App - user mode
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function main_perfilEvaluacion()
     {
         return view('main.components.evaluation.iframe.perfil_evaluacion', ["url" => $this->url_gestion_desempenio.'/evaluacion/perfil']);
@@ -162,6 +152,16 @@ class EvaluationController extends Controller
     public function admin_administrarEvaluaciones()
     {
         return view('admin.components.evaluation.iframe.administrar_evaluaciones', ["url" => $this->url_gestion_desempenio.'/evaluaciones']);
+    }
+
+    /**
+     * Embedded Site App - user mode
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_resumenEvaluacion360()
+    {
+        return view('admin.components.evaluation.iframe.resumen_evaluacion_360', ["url" => $this->url_gestion_desempenio.'/evaluacion/resumen']);
     }
 
     /**

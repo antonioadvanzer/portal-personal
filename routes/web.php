@@ -135,7 +135,6 @@ Route::group(['middleware' => 'auth'], function(){
                 # -------------------------------------------------------------------------
                 Route::get('/evaluar', 'EvaluationController@main_evaluar');
                 Route::get('/compromisos_internos', 'EvaluationController@main_compromisosInternos');
-                Route::get('/resumen_evaluacion_360', 'EvaluationController@main_resumenEvaluacion360');
                 Route::get('/perfil_evaluacion', 'EvaluationController@main_perfilEvaluacion');
                 Route::get('/historial_desempenio', 'EvaluationController@main_historialDesempenio');
                 # -------------------------------------------------------------------------
@@ -770,6 +769,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('/competencias_laborales', 'EvaluationController@admin_competenciasLaborales');
                 Route::get('/gestion_tiempos_evaluaciones', 'EvaluationController@admin_gestionTiemposEvaluaciones');
                 Route::get('/administrar_evaluaciones', 'EvaluationController@admin_administrarEvaluaciones');
+                Route::get('/resumen_evaluacion_360', 'EvaluationController@admin_resumenEvaluacion360');
                 #-------------------------------------------------
 
             });

@@ -46,14 +46,6 @@
             order: 0,
           },
         })
-        .state('evaluaciones.resumen_evaluacion_360', {
-          url: '/resumen_evaluacion_360',
-          templateUrl: 'theme/modules/evaluation/resumen_evaluacion_360',
-          title: 'Resumen Evaluación 360',
-          sidebarMeta: {
-            order: 0,
-          },
-        })
         .state('evaluaciones.perfil_de_evaluacion', {
           url: '/perfil_evaluacion',
           templateUrl: 'theme/modules/evaluation/perfil_evaluacion',

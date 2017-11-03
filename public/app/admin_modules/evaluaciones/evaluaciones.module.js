@@ -94,6 +94,14 @@
             order: 0,
           },
         })
+        .state('evaluaciones.resumen_evaluacion_360', {
+          url: '/resumen_evaluacion_360',
+          templateUrl: 'admin-theme/modules/evaluation/resumen_evaluacion_360',
+          title: 'Resumen Evaluación 360',
+          sidebarMeta: {
+            order: 0,
+          },
+        })
         ;
       
     $urlRouterProvider.when('/evaluaciones','/evaluaciones/informacion');
