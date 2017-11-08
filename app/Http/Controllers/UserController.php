@@ -617,6 +617,13 @@ class UserController extends Controller
 
             $user_update->save();
             
+            Jefe::where('employed',$request->input('uu_id'))->delete();
+            
+            Jefe::create([
+                "boss" => $request->input('uu_boss'),
+                "employed" => $request->input('uu_id')
+            ]);
+
             Permisos_Usuario::where('usuario',$request->input('uu_id'))->delete();
 
             $permissions_selected = explode("-",$request->input('uu_permisos'));
