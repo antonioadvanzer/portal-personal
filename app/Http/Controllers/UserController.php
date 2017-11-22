@@ -40,6 +40,7 @@ class UserController extends Controller
                 'CARTAS_Y_CONSTANCIAS' => '6',
                 'REQUISICIONES' => '7',
                 'EVALUACIONES' => '8',
+                'CAPTURISTA_DE_CV' => '10',
              );
 
     // permissions
@@ -53,6 +54,7 @@ class UserController extends Controller
                 'ps7' => 'Cartas y Constancias',
                 'ps8' => 'Requisiciones',
                 'ps9' => 'Evaluaciones',
+                'ps10' => 'Capturista de CV',
              );
 
     private $urlFotoPerfil = "assets/img/app/perfil";
@@ -813,6 +815,11 @@ class UserController extends Controller
             or $this->admin_checkPermission($this->adminPermissions['EVALUACIONES'], $pp)){
                 $permissions.=",9";
         }
+
+        if($this->admin_checkPermission($this->adminPermissions['CAPTURISTA_DE_CV'], $pa) 
+        or $this->admin_checkPermission($this->adminPermissions['CAPTURISTA_DE_CV'], $pp)){
+            $permissions.=",11";
+    }
 
         return $permissions;
     }

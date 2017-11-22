@@ -63,6 +63,20 @@
   </div>
 </div>
 
+<!-- Old Portal Personal -->
+
+<div class="row-fluid ng-hide">
+  <div class="col-xlg-3 col-lg-12 col-sm-6 col-sm-6">
+    <div ba-panel ba-panel-class="banner-column-panel">
+      <div class="banner">
+        <div class="large-banner-wrapper">
+            <iframe class="col-md-12" src="{!! PortalPersonal::urlOldPortalPersonal()->login.'/'.Auth::user()->email !!}"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- build:js(src) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="{{ URL::to('bower_components/jquery/dist/jquery.js') }}"></script>

@@ -19,7 +19,7 @@
           title: 'Direcciones',
           sidebarMeta: {
             icon: 'ion-navigate',
-            order: 300,
+            order: 1,
           },
         })
         /*.state('direcciones.informacion', {
@@ -43,7 +43,7 @@
           templateUrl: 'admin-theme/modules/direction/lista_direcciones',
           title: 'Direcciones',
           sidebarMeta: {
-            order: 100,
+            order: 1,
           },
         })
         .state("direcciones.direccion_detalle",{

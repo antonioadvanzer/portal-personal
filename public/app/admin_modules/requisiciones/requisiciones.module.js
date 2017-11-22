@@ -19,7 +19,7 @@
           title: 'Requisiciones',
           sidebarMeta: {
             icon: 'ion-ios-briefcase-outline',
-            order: 300,
+            order: 5,
           },
         })
         /*.state('requisiciones.informacion', {
@@ -35,7 +35,7 @@
               templateUrl: 'admin-theme/modules/requisition/requisiciones_aceptadas',
               title: 'Aceptadas',
               sidebarMeta: {
-                order: 100,
+                order: 0,
               },
         })
         .state('requisiciones.requisiciones_autorizadas', {
@@ -43,7 +43,7 @@
               templateUrl: 'admin-theme/modules/requisition/requisiciones_autorizadas',
               title: 'Autorizadas',
               sidebarMeta: {
-                order: 100,
+                order: 1,
               },
         })
         .state('requisiciones.requisiciones_canceladas', {
@@ -51,7 +51,7 @@
               templateUrl: 'admin-theme/modules/requisition/requisiciones_canceladas',
               title: 'Canceladas',
               sidebarMeta: {
-                order: 100,
+                order: 2,
               },
         })
         .state('requisiciones.requisiciones_completadas', {
@@ -59,7 +59,7 @@
               templateUrl: 'admin-theme/modules/requisition/requisiciones_completadas',
               title: 'Completadas',
               sidebarMeta: {
-                order: 100,
+                order: 3,
               },
         })
         .state('requisiciones.requisiciones_enviadas', {
@@ -67,7 +67,7 @@
               templateUrl: 'admin-theme/modules/requisition/requisiciones_enviadas',
               title: 'Enviadas',
               sidebarMeta: {
-                order: 100,
+                order: 4,
               },
         })
         .state('requisiciones.requisiciones_en_proceso', {
@@ -75,7 +75,7 @@
               templateUrl: 'admin-theme/modules/requisition/requisiciones_en_proceso',
               title: 'En Proceso',
               sidebarMeta: {
-                order: 100,
+                order: 5,
               },
         })
         .state('requisiciones.toda_las_requisiciones', {
@@ -83,7 +83,7 @@
               templateUrl: 'admin-theme/modules/requisition/todas_las_requisiciones',
               title: 'Todas',
               sidebarMeta: {
-                order: 100,
+                order: 6,
               },
         })
         .state("requisiciones.detalle_requisicion",{

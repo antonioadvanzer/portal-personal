@@ -36,6 +36,7 @@ class PortalPersonal
                 'REQUISICIONES' => '7',
                 'EVALUACIONES' => '8',
                 'NOTIFICACIONES' => '9',
+                'CAPTURISTA_DE_CV' => '10',
              );
 
     /**
@@ -55,17 +56,18 @@ class PortalPersonal
      * @return \Illuminate\Http\Response
      */
     public static function sendMail($data, $format)
-    {
-        Mail::send($format, ['data' => $data], function ($message) use ($data) {
-            //$message->from($data['from'], 'Portal Personal');
-            $message->from('notificaciones.ch@advanzer.com', 'Portal Personal');
-            $message->to($data['to']);
-            //$message->to("antonio.baez@advanzer.com");//test mode
-            if(array_key_exists('cc', $data)){
-                $message->cc($data['cc']);
-            }
-            $message->subject($data['subject']);
-        });
+    {   
+        if(env("SEND_MAIL")){
+            Mail::send($format, ['data' => $data], function ($message) use ($data) {
+                $message->from('notificaciones.ch@advanzer.com', 'Portal Personal');
+                $message->to($data['to']);
+                //$message->to("antonio.baez@advanzer.com");//test mode
+                if(array_key_exists('cc', $data)){
+                    $message->cc($data['cc']);
+                }
+                $message->subject($data['subject']);
+            });
+        }
     }
 
     /**
@@ -275,6 +277,10 @@ class PortalPersonal
          if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['EVALUACIONES'], $pu)){
                  $permissions.=",9";
          }
+
+         if(PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_CV'], $pu)){
+            $permissions.=",11";
+    }
  
          return $permissions;
      }
@@ -337,6 +343,63 @@ class PortalPersonal
      *
      * @return \Illuminate\Http\Response
      */
+    public static function isCapturistaDeGastosDeViaje($id_user)
+    {   
+        $um = User::find($id_user);
+        
+        $pu = $um->getPermissionsUser()->get();
+        $pa = $um->getAreaAssociated()->first()->getPermissionsArea()->get();
+        $pp = $um->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->getPermissionsPositions()->get();
+        
+        return PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_GASTOS_DE_VIAJE'], $pu) 
+            or PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_GASTOS_DE_VIAJE'], $pa) 
+            or PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_GASTOS_DE_VIAJE'], $pp);
+        
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public static function isCapturistaDeHarvest($id_user)
+    {   
+        $um = User::find($id_user);
+        
+        $pu = $um->getPermissionsUser()->get();
+        $pa = $um->getAreaAssociated()->first()->getPermissionsArea()->get();
+        $pp = $um->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->getPermissionsPositions()->get();
+        
+        return PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_HARVEST'], $pu) 
+            or PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_HARVEST'], $pa) 
+            or PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_HARVEST'], $pp);
+        
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public static function isCapturistaDeCV($id_user)
+    {   
+        $um = User::find($id_user);
+        
+        $pu = $um->getPermissionsUser()->get();
+        $pa = $um->getAreaAssociated()->first()->getPermissionsArea()->get();
+        $pp = $um->getPositionTrackAssociated()->first()->getPosicionAssociated()->first()->getPermissionsPositions()->get();
+        
+        return PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_CV'], $pu) 
+            or PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_CV'], $pa) 
+            or PortalPersonal::checkPermission(PortalPersonal::$adminPermissions['CAPTURISTA_DE_CV'], $pp);
+        
+    }
+
+    /**
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
     public static function getModulesAccordingPermissions(Array $permissions_user)
     {  
         $modules = "";
@@ -346,14 +409,14 @@ class PortalPersonal
             $ps = "";
             
             switch($p_s){
-                case 3:
+                /*case 3:
                     $ps="-";
                     $ps.="PortalPersonal.modules.gastos_de_viaje";
                 break;
                 case 4:
                     $ps="-";
                     $ps.="PortalPersonal.modules.harvest";
-                break;
+                break;*/
                 /*case 5:
                     $ps="-";
                     $ps.="PortalPersonal.modules.vacaciones";
@@ -504,8 +567,8 @@ class PortalPersonal
         return date ('Y-m-d', strtotime('+'.$meses.' month', strtotime( $fecha )));
     }
 
-        /**
-     * Calcular fecha resultante
+    /**
+     * 
      *
      * @param  string  $fecha, $meses
      * @return \Illuminate\Http\Response
@@ -528,4 +591,23 @@ class PortalPersonal
 
         return $response;
     }
+
+    /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
+    public static function urlOldPortalPersonal()
+    {
+        $url = new \stdClass();
+
+        $app_url = env("OLD_PORTAL_PERSONAL_URL", null);
+
+        $url->logout = $app_url.'/logout';
+        $url->login = $app_url.'/main/start_session';
+        
+        return $url;
+    }
+
 }

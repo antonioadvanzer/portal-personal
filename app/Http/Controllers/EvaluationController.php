@@ -21,8 +21,6 @@ class EvaluationController extends Controller
     {
         //
     }
-
-    public $url_gestion_desempenio = 'http://localhost:8080/advanzer_evaluacion';
     
     /**
      * 
@@ -51,7 +49,17 @@ class EvaluationController extends Controller
      */
     public function main_evaluar()
     {
-        return view('main.components.evaluation.iframe.evaluar', ["url" => $this->url_gestion_desempenio.'/evaluar']);
+        return view('main.components.evaluation.iframe.evaluar', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluar']);
+    }
+
+    /**
+     * Embedded Site App - user mode
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_feedback()
+    {
+        return view('main.components.evaluation.iframe.feedback', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion/defineFeedback']);
     }
 
     /**
@@ -61,7 +69,37 @@ class EvaluationController extends Controller
      */
     public function main_compromisosInternos()
     {
-        return view('main.components.evaluation.iframe.compromisos_internos', ["url" => $this->url_gestion_desempenio.'/evaluacion/ci']);
+        return view('main.components.evaluation.iframe.compromisos_internos', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion/ci']);
+    }
+
+    /**
+     * Embedded Site App - user mode
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_compromisosInternosGV()
+    {
+        return view('main.components.evaluation.iframe.compromisos_internos', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion/ci/gv']);
+    }
+
+    /**
+     * Embedded Site App - user mode
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_compromisosInternosH()
+    {
+        return view('main.components.evaluation.iframe.compromisos_internos', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion/ci/h']);
+    }
+
+    /**
+     * Embedded Site App - user mode
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_compromisosInternosCV()
+    {
+        return view('main.components.evaluation.iframe.compromisos_internos', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion/ci/cv']);
     }
 
     /**
@@ -71,7 +109,7 @@ class EvaluationController extends Controller
      */
     public function main_perfilEvaluacion()
     {
-        return view('main.components.evaluation.iframe.perfil_evaluacion', ["url" => $this->url_gestion_desempenio.'/evaluacion/perfil']);
+        return view('main.components.evaluation.iframe.perfil_evaluacion', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion/perfil']);
     }
 
     /**
@@ -81,7 +119,7 @@ class EvaluationController extends Controller
      */
     public function main_historialDesempenio()
     {
-        return view('main.components.evaluation.iframe.historial_desempenio', ["url" => $this->url_gestion_desempenio.'/historial']);
+        return view('main.components.evaluation.iframe.historial_desempenio', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/historial']);
     }
 
     /**
@@ -91,7 +129,7 @@ class EvaluationController extends Controller
      */
     public function admin_resultadosEvaluaciones()
     {
-        return view('admin.components.evaluation.iframe.resultados_evaluaciones', ["url" => $this->url_gestion_desempenio.'/evaluacion']);
+        return view('admin.components.evaluation.iframe.resultados_evaluaciones', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion']);
     }
 
     /**
@@ -101,7 +139,7 @@ class EvaluationController extends Controller
      */ 
     public function admin_evaluacionesPorEvaluador()
     {
-        return view('admin.components.evaluation.iframe.evaluaciones_por_evaluador', ["url" => $this->url_gestion_desempenio.'/evaluacion/por_evaluador']);
+        return view('admin.components.evaluation.iframe.evaluaciones_por_evaluador', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion/por_evaluador']);
     }
 
     /**
@@ -111,7 +149,7 @@ class EvaluationController extends Controller
      */
     public function admin_evaluacionesPendientes()
     {
-        return view('admin.components.evaluation.iframe.evaluaciones_pendientes', ["url" => $this->url_gestion_desempenio.'/evaluacion/pendientes']);
+        return view('admin.components.evaluation.iframe.evaluaciones_pendientes', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion/pendientes']);
     }
 
     /**
@@ -121,7 +159,7 @@ class EvaluationController extends Controller
      */
     public function admin_responsabilidadesFuncionales()
     {
-        return view('admin.components.evaluation.iframe.responsabilidades_funcionales', ["url" => $this->url_gestion_desempenio.'/administrar_dominios']);
+        return view('admin.components.evaluation.iframe.responsabilidades_funcionales', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/administrar_dominios']);
     }
 
     /**
@@ -131,7 +169,7 @@ class EvaluationController extends Controller
      */
     public function admin_competenciasLaborales()
     {
-        return view('admin.components.evaluation.iframe.competencias_laborales', ["url" => $this->url_gestion_desempenio.'/administrar_indicadores']);
+        return view('admin.components.evaluation.iframe.competencias_laborales', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/administrar_indicadores']);
     }
 
     /**
@@ -141,7 +179,7 @@ class EvaluationController extends Controller
      */
     public function admin_gestionTiemposEvaluaciones()
     {
-        return view('admin.components.evaluation.iframe.gestion_tiempos_evaluaciones', ["url" => $this->url_gestion_desempenio.'/evaluacion/proyecto']);
+        return view('admin.components.evaluation.iframe.gestion_tiempos_evaluaciones', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion/proyecto']);
     }
 
     /**
@@ -151,7 +189,7 @@ class EvaluationController extends Controller
      */
     public function admin_administrarEvaluaciones()
     {
-        return view('admin.components.evaluation.iframe.administrar_evaluaciones', ["url" => $this->url_gestion_desempenio.'/evaluaciones']);
+        return view('admin.components.evaluation.iframe.administrar_evaluaciones', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluaciones']);
     }
 
     /**
@@ -161,7 +199,7 @@ class EvaluationController extends Controller
      */
     public function admin_resumenEvaluacion360()
     {
-        return view('admin.components.evaluation.iframe.resumen_evaluacion_360', ["url" => $this->url_gestion_desempenio.'/evaluacion/resumen']);
+        return view('admin.components.evaluation.iframe.resumen_evaluacion_360', ["url" => env("OLD_PORTAL_PERSONAL_URL", null).'/evaluacion/resumen']);
     }
 
     /**
@@ -640,6 +678,23 @@ class EvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function main_checkEvaluationActive()
+    {   
+        //dd($this->admin_getEvaluacionById($this->admin_getEvaluacionAnual())->fin." ".date('Y-m-d'));
+        //dd($this->admin_getEvaluacionAnual());
+        $id_eva = $this->admin_getEvaluacionAnual();
+        if(($id_eva) && ($this->admin_getEvaluacionById($id_eva)->fin <= date('Y-m-d'))){
+            return "1";
+        }else{
+            return "0";
+        }
+    }
+
+    /**
+     * Internal Function
+     *
+     * @return \Illuminate\Http\Response
+     */
     private function admin_getPosicionByColaborador($evaluado)
     {
        $res = DB::table('users')
@@ -693,7 +748,7 @@ class EvaluationController extends Controller
                     ->select(DB::raw("MAX(id) as id"))
                     ->where('tipo', 1)
                     ->whereDate('inicio', '<=', date('Y-m-d'))
-                    ->whereIn('estatus',[1,2])
+                    ->whereIn('estatus',[1])
                     ->first();
 
         if(count($result) != 0){
@@ -703,7 +758,7 @@ class EvaluationController extends Controller
         }  
     }
 
-/**
+    /**
      * Internal Function
      *
      * @return \Illuminate\Http\Response

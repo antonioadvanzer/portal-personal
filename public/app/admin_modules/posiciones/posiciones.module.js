@@ -19,7 +19,7 @@
           title: 'Posiciones',
           sidebarMeta: {
             icon: 'ion-android-locate',
-            order: 300,
+            order: 4,
           },
         })
         /*.state('posiciones.informacion', {
@@ -43,7 +43,7 @@
           templateUrl: 'admin-theme/modules/position/lista_posiciones',
           title: 'Posiciones',
           sidebarMeta: {
-            order: 0,
+            order: 1,
           },
         })
         .state("posiciones.posicion_detalle",{

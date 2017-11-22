@@ -19,7 +19,7 @@
           title: 'Áreas',
           sidebarMeta: {
             icon: 'ion-ios-browsers-outline',
-            order: 300,
+            order: 0,
           },
         })
         /*.state('areas.informacion', {
@@ -43,7 +43,7 @@
           templateUrl: 'admin-theme/modules/area/lista_areas',
           title: 'Áreas',
           sidebarMeta: {
-            order: 100,
+            order: 1,
           },
         })
         .state("areas.area_detalle",{

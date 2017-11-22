@@ -1396,7 +1396,7 @@ class VacationController extends Controller
             echo "..................................";
             echo "<br>";
 
-            array_push($regs,["Reg" => $an, "id_v" => $dv->id, "Tipo" => $dv->getTypeDayAssociated()->first()->name, "Dias" => $dv->accumulated_days, "Status" => $dv->status]);
+            array_push($regs,["Reg" => $an, "id_v" => $dv->id, "Tipo" => $dv->getTypeDayAssociated()->first()->name, "type_v" => $dv->type, "Dias" => $dv->accumulated_days, "Status" => $dv->status]);
         }
 
         # Se hace la busqueda de solicitudes de vacaciones, cuya fecha de inicio ya fue superada por el dia de hoy
@@ -1434,10 +1434,12 @@ class VacationController extends Controller
             # Se realiza los calculos correspondientes para descontar dias de los almacenes
             foreach($regs as $rs => $dv){
 
-                if($dias_solicitados > intval($dv["Dias"])){
+                if($dias_solicitados >= intval($dv["Dias"])){
                     $dias_solicitados -= intval($dv["Dias"]);
                     $regs[$rs]["Dias"] = 0;
-                    $regs[$rs]["Status"] = 0;
+                    if($dv["type_v"] == 1){
+                        $regs[$rs]["Status"] = 0;
+                    }
                 }else{
                     $regs[$rs]["Dias"] = intval($dv["Dias"]) - $dias_solicitados;
                     break;

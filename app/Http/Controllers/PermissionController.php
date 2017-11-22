@@ -107,7 +107,8 @@ class PermissionController extends Controller
             "permiso6" => 0,
             "permiso7" => 0,
             "permiso8" => 0,
-            "permiso9" => 0
+            "permiso9" => 0,
+            "permiso10" => 0
         ];
 
         $permissionsAreaModel = Area::where("id",$id)->first()->getPermissionsArea()->get();
@@ -168,7 +169,8 @@ class PermissionController extends Controller
             "permiso6" => 0,
             "permiso7" => 0,
             "permiso8" => 0,
-            "permiso9" => 0
+            "permiso9" => 0,
+            "permiso10" => 0
         ];
 
         $permissionsPosicionModel = Posicion::where("id",$id)->first()->getPermissionsPositions()->get();

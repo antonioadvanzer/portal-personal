@@ -286,6 +286,7 @@
             $scope.formEditUser.inputUserPermission7 = false;
             $scope.formEditUser.inputUserPermission8 = false;
             $scope.formEditUser.inputUserPermission9 = false;
+            $scope.formEditUser.inputUserPermission10 = false;
             
             $scope.formEditUser.permission1 = true;
             $scope.formEditUser.permission2 = true;
@@ -296,6 +297,7 @@
             $scope.formEditUser.permission7 = true;
             $scope.formEditUser.permission8 = true;
             $scope.formEditUser.permission9 = true;
+            $scope.formEditUser.permission10 = true;
             
             for(var i = 0; i <= permisos.length; i++) {
                 switch(permisos[i]){
@@ -337,6 +339,10 @@
                        case '9':
                         $scope.formEditUser.inputUserPermission9 = true;
                         $scope.formEditUser.permission9 = false;
+                       break;
+                       case '11':
+                        $scope.formEditUser.inputUserPermission10 = true;
+                        $scope.formEditUser.permission10 = false;
                        break;
                 }
             }
@@ -383,6 +389,10 @@
                        case '9':
                         $scope.formEditUser.inputUserPermission9 = true;
                         $scope.formEditUser.permisosUsuario['permiso9'] = true
+                       break;
+                       case '11':
+                        $scope.formEditUser.inputUserPermission10 = true;
+                        $scope.formEditUser.permisosUsuario['permiso10'] = true
                        break;
                 }
             }
@@ -838,7 +848,7 @@
         
     $scope.getPermissions = function (){
         
-        var cont = 9;
+        var cont = 10;
         //alert($scope.switches['ps1']);
         /*while(cont>0){
             var permission = angular.element( document.querySelector( '#ps'+cont ) );
@@ -909,6 +919,10 @@
                     $scope.formUser.inputUserPermission9 = valor_input;
                     $scope.formUser.permission9 = habilitado;
                 break;
+                case 10:
+                    $scope.formUser.inputUserPermission10 = valor_input;
+                    $scope.formUser.permission10 = habilitado;
+                break;
                        
             }
             
@@ -926,7 +940,8 @@
         permiso6: false,
         permiso7: false,
         permiso8: false,
-        permiso9: false
+        permiso9: false,
+        permiso10: false
     };
       
     $scope.permisosPosicion = {
@@ -938,7 +953,8 @@
         permiso6: false,
         permiso7: false,
         permiso8: false,
-        permiso9: false
+        permiso9: false,
+        permiso10: false
     };
     
     //var vm = this;
@@ -964,7 +980,8 @@
         ps6: false,
         ps7: false,
         ps8: false,
-        ps9: false
+        ps9: false,
+        ps10: false
     };
       
     $scope.permissionsAvailable = {
@@ -976,7 +993,8 @@
         ps6: true,
         ps7: true,
         ps8: true,
-        ps9: true
+        ps9: true,
+        ps10: true
     };
       
     $scope.saveUser = function(){
@@ -1013,7 +1031,7 @@
            permisosSeleccionados += 'ps'+5+",";
         }
         if($scope.formUser.inputUserPermission6 && $scope.formUser.permission6){
-           permisosSeleccionados += ''+6+",";
+           permisosSeleccionados += 'ps'+6+",";
         }
         if($scope.formUser.inputUserPermission7 && $scope.formUser.permission7){
            permisosSeleccionados += 'ps'+7+",";
@@ -1023,6 +1041,9 @@
         }
         if($scope.formUser.inputUserPermission9 && $scope.formUser.permission9){
            permisosSeleccionados += 'ps'+9+",";
+        }
+        if($scope.formUser.inputUserPermission10 && $scope.formUser.permission10){
+           permisosSeleccionados += 'ps'+11+",";
         }
         
         
@@ -1261,7 +1282,7 @@
     
     $scope.formEditUser.getPermissions = function (){
         
-        var cont = 9;
+        var cont = 10;
         
         while(cont>0){
             
@@ -1315,6 +1336,10 @@
                     $scope.formEditUser.inputUserPermission9 = valor_input;
                     $scope.formEditUser.permission9 = habilitado;
                 break;
+                case 10:
+                    $scope.formEditUser.inputUserPermission10 = valor_input;
+                    $scope.formEditUser.permission10 = habilitado;
+                break;
                        
             }
             
@@ -1332,7 +1357,8 @@
         permiso6: false,
         permiso7: false,
         permiso8: false,
-        permiso9: false
+        permiso9: false,
+        permiso10: false
     };
       
     $scope.formEditUser.permisosPosicion = {
@@ -1344,7 +1370,8 @@
         permiso6: false,
         permiso7: false,
         permiso8: false,
-        permiso9: false
+        permiso9: false,
+        permiso10: false
     };
       
     $scope.formEditUser.permisosUsuario = {
@@ -1356,7 +1383,8 @@
         permiso6: false,
         permiso7: false,
         permiso8: false,
-        permiso9: false
+        permiso9: false,
+        permiso10: false
     };
      
     $scope.formEditUser.resetPassword = function (){
@@ -1410,6 +1438,9 @@
         }
         if($scope.formEditUser.inputUserPermission9 && $scope.formEditUser.permission9){
             permisos += "9-"; 
+        }
+        if($scope.formEditUser.inputUserPermission10 && $scope.formEditUser.permission10){
+            permisos += "11-"; 
         }
         
         var formData = new FormData();

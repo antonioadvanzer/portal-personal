@@ -516,6 +516,12 @@
                                   </div>
                                   <div class="col-md-4">
                                     <label class="checkbox-inline custom-checkbox nowrap">
+                                      <input type="checkbox" id="inputUserPermission10" name="inputUserPermission10" ng-model="formEditUser.inputUserPermission10" disabled>
+                                      <span>Capturista de CV</span>
+                                    </label>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
                                       <input type="checkbox" id="inputUserPermission5" name="inputUserPermission5" ng-model="formEditUser.inputUserPermission5" disabled>
                                       <span>Vacaciones</span>
                                     </label>
@@ -582,6 +588,12 @@
                                     <label class="checkbox-inline custom-checkbox nowrap">
                                       <input type="checkbox" id="inputUserPermission4" name="inputUserPermission4" ng-model="formEditUser.inputUserPermission4" ng-disabled="!formEditUser.permission4">
                                       <span>Capturista de Harvest</span>
+                                    </label>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <label class="checkbox-inline custom-checkbox nowrap">
+                                      <input type="checkbox" id="inputUserPermission10" name="inputUserPermission10" ng-model="formEditUser.inputUserPermission10" ng-disabled="!formEditUser.permission10">
+                                      <span>Capturista de CV</span>
                                     </label>
                                   </div>
                                   <div class="col-md-4">

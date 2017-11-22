@@ -66,5 +66,49 @@
       </div>
     </div>
   </div>
+    
+    <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6">
+        <div ba-panel ba-panel-class="with-scroll more-text-widget" ba-panel-title="Opciones">
+          <div class="section-block light-text">
+              
+            <div>
+                <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-show='evaluation_active' ng-click="evaluar()">
+                    <i class="ion-paper-airplane"></i>Evaluar
+                </button>
+                
+                <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-show='!evaluation_active' ng-click="feedback()">
+                    <i class="ion-refresh"></i>Feedback
+                </button>
+                    
+                <!--<button type="button" class="btn btn-primary btn-with-icon save-profile" ng-show='evaluation_active' ng-click="comprimsosInternos()">
+                    <i class="ion-ios-settings-strong"></i>Compromisos Internos
+                </button>-->
+            </div>
+            
+          </div>
+        </div>
+    </div>
+    
+    <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6" ng-show='evaluation_active'>
+        <div ba-panel ba-panel-class="with-scroll more-text-widget" ba-panel-title="Compromisos Internos">
+          <div class="section-block light-text">
+              
+            <div>
+                <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-show='user.capturista_gastos_viaje' ng-click="capturarGastosDeViaje()">
+                    <i class="ion-paper-airplane"></i>Capturar de Gastos de Viaje
+                </button>
+                
+                <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-show='user.capturista_harvest' ng-click="capturarHarvest()">
+                    <i class="ion-refresh"></i>Capturar Harvest
+                </button>
+                    
+                <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-show='user.capturista_cv' ng-click="capturarCV()">
+                    <i class="ion-ios-settings-strong"></i>Capturar CV
+                </button>
+            </div>
+            
+          </div>
+        </div>
+    </div>
 
 </div><br>

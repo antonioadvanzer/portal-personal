@@ -19,7 +19,7 @@
           title: 'Usuarios',
           sidebarMeta: {
             icon: 'ion-person-stalker',
-            order: 300,
+            order: 7,
           },
         })
         /*.state('usuarios.informacion', {
@@ -47,7 +47,7 @@
             templateUrl: 'admin-theme/modules/user/usuarios_activos',
           title: 'Colaboradores Activos',
           sidebarMeta: {
-            order: 100,
+            order: 1,
           },
         })
         .state('usuarios.colaboradores_inactivos', {
@@ -55,7 +55,7 @@
           templateUrl: 'admin-theme/modules/user/usuarios_inactivos',
           title: 'Colaboradores Inactivos',
           sidebarMeta: {
-            order: 100,
+            order: 2,
           },
         })
         .state("usuarios.usuario_detalle",{

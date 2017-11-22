@@ -19,7 +19,7 @@
           title: 'Permisos de Ausencia',
           sidebarMeta: {
             icon: 'ion-ios-list-outline',
-            order: 300,
+            order: 3,
           },
         })
         /*.state('permisos_de_ausencia.informacion', {
@@ -35,7 +35,7 @@
           templateUrl: 'admin-theme/modules/request/solicitudes_aceptadas',
           title: 'Aceptadas',
           sidebarMeta: {
-            order: 100,
+            order: 0,
           },
         })
         .state('permisos_de_ausencia.solicitudes_autorizadas', {
@@ -43,7 +43,7 @@
           templateUrl: 'admin-theme/modules/request/solicitudes_autorizadas',
           title: 'Autorizadas',
           sidebarMeta: {
-            order: 100,
+            order: 1,
           },
         })
         .state('permisos_de_ausencia.solicitudes_canceladas', {
@@ -51,7 +51,7 @@
           templateUrl: 'admin-theme/modules/request/solicitudes_canceladas',
           title: 'Canceladas',
           sidebarMeta: {
-            order: 100,
+            order: 3,
           },
         })
         .state('permisos_de_ausencia.solicitudes_enviadas', {
@@ -59,7 +59,7 @@
           templateUrl: 'admin-theme/modules/request/solicitudes_enviadas',
           title: 'Enviadas',
           sidebarMeta: {
-            order: 100,
+            order: 4,
           },
         })
         .state('permisos_de_ausencia.solicitudes_rechazadas', {
@@ -67,7 +67,7 @@
           templateUrl: 'admin-theme/modules/request/solicitudes_rechazadas',
           title: 'Rechazadas',
           sidebarMeta: {
-            order: 100,
+            order: 5,
           },
         })
         .state('permisos_de_ausencia.toda_las_solicitudes', {
@@ -75,7 +75,7 @@
           templateUrl: 'admin-theme/modules/request/todas_las_solicitudes',
           title: 'Todas',
           sidebarMeta: {
-            order: 100,
+            order: 6,
           },
         })
         .state("permisos_de_ausencia.detalle_autorizar",{

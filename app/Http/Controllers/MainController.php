@@ -24,12 +24,14 @@ class MainController extends Controller
         //$response = PortalPersonal::startSession_OldPortalPersonal(Auth::user()->email);
 
         //dd($response);
-
+        //dd(PortalPersonal::urlOldPortalPersonal());
+        //dd(env("SEND_MAIL")?"asd":"zxc");
+        
         return view('main.main',[
             "components" => $this->getThemeComponets(),
             "user" => $this->getUserData(),
             "permissions" => $this->getUserPermissions()
-            ]);        
+        ]);        
     }
     
     /**
@@ -287,6 +289,11 @@ class MainController extends Controller
             "boss_name" => Auth::user()->getBoss()->first()->getBossAssociated()->first()->name,
 
             "total_days_available" => PortalPersonal::getTotalDays(Auth::user()->id) - PortalPersonal::getDaysInRequests(Auth::user()->id),
+        
+            //Evaluation
+            "capturista_gastos_viaje" => PortalPersonal::isCapturistaDeGastosDeViaje(Auth::user()->id),
+            "capturista_harvest" => PortalPersonal::isCapturistaDeHarvest(Auth::user()->id),
+            "capturista_cv" => PortalPersonal::isCapturistaDeCV(Auth::user()->id),
         );
 
         foreach($fields as $fie => $f){

@@ -134,11 +134,20 @@ Route::group(['middleware' => 'auth'], function(){
 
                 # -------------------------------------------------------------------------
                 Route::get('/evaluar', 'EvaluationController@main_evaluar');
-                Route::get('/compromisos_internos', 'EvaluationController@main_compromisosInternos');
+                Route::get('/feedback', 'EvaluationController@main_feedback');
+                //Route::get('/compromisos_internos', 'EvaluationController@main_compromisosInternos');
+                Route::get('/compromisos_internos_gv', 'EvaluationController@main_compromisosInternosGV');
+                Route::get('/compromisos_internos_h', 'EvaluationController@main_compromisosInternosH');
+                Route::get('/compromisos_internos_cv', 'EvaluationController@main_compromisosInternosCV');
                 Route::get('/perfil_evaluacion', 'EvaluationController@main_perfilEvaluacion');
                 Route::get('/historial_desempenio', 'EvaluationController@main_historialDesempenio');
                 # -------------------------------------------------------------------------
-            
+
+                /* Resources -------------------- */
+                
+                // Check if there are evaluation active
+                Route::get('/evaluation_active', 'EvaluationController@main_checkEvaluationActive');
+
             });
 
             Route::group(['prefix' => 'requisition'], function () {

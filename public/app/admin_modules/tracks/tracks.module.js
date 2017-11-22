@@ -19,7 +19,7 @@
           title: 'Tracks',
           sidebarMeta: {
             icon: 'ion-ios-briefcase',
-            order: 300,
+            order: 6,
           },
         })
         /*.state('tracks.informacion', {
@@ -43,7 +43,7 @@
           templateUrl: 'admin-theme/modules/track/lista_tracks',
           title: 'Tracks',
           sidebarMeta: {
-            order: 100,
+            order: 1,
           },
         })
         .state("tracks.track_detalle",{

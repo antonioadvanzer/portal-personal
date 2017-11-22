@@ -25,7 +25,8 @@
       
     <h1>Bienvenido(a) a tu Portal Personal</h1>
     <!--<a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a>-->
-
+  
+    @if (env('USE_LOGIN'))
     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         
@@ -74,6 +75,8 @@
       </div>
     </form>
       
+    @endif
+      
     @if (session('status'))
 	    <div class="alert alert-danger">
 	        {{ session('status') }}
@@ -99,7 +102,7 @@
     <div ba-panel ba-panel-class="banner-column-panel">
       <div class="banner">
         <div class="large-banner-wrapper">
-            <iframe class="col-md-12" src="{{ 'http://localhost:8080/advanzer_evaluacion/logout' }}"></iframe>
+            <iframe class="col-md-12" src="{!! PortalPersonal::urlOldPortalPersonal()->logout !!}"></iframe>
         </div>
       </div>
     </div>

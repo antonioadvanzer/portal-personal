@@ -19,7 +19,7 @@
           title: 'Vacaciones',
           sidebarMeta: {
             icon: 'ion-ios-calendar-outline',
-            order: 300,
+            order: 8,
           },
         })
         /*.state('vacaciones.informacion', {
@@ -35,7 +35,7 @@
           templateUrl: 'admin-theme/modules/request/solicitudes_aceptadas',
           title: 'Aceptadas',
           sidebarMeta: {
-            order: 100,
+            order: 0,
           },
         })
         .state('vacaciones.solicitudes_autorizadas', {
@@ -43,7 +43,7 @@
           templateUrl: 'admin-theme/modules/request/solicitudes_autorizadas',
           title: 'Autorizadas',
           sidebarMeta: {
-            order: 100,
+            order: 1,
           },
         })
         .state('vacaciones.solicitudes_canceladas', {
@@ -51,7 +51,7 @@
           templateUrl: 'admin-theme/modules/request/solicitudes_canceladas',
           title: 'Canceladas',
           sidebarMeta: {
-            order: 100,
+            order: 2,
           },
         })
         .state('vacaciones.solicitudes_enviadas', {
@@ -59,7 +59,7 @@
           templateUrl: 'admin-theme/modules/request/solicitudes_enviadas',
           title: 'Enviadas',
           sidebarMeta: {
-            order: 100,
+            order: 3,
           },
         })
         .state('vacaciones.solicitudes_rechazadas', {
@@ -67,7 +67,7 @@
           templateUrl: 'admin-theme/modules/request/solicitudes_rechazadas',
           title: 'Rechazadas',
           sidebarMeta: {
-            order: 100,
+            order: 4,
           },
         })
         .state('vacaciones.toda_las_solicitudes', {
@@ -75,7 +75,7 @@
           templateUrl: 'admin-theme/modules/request/todas_las_solicitudes',
           title: 'Todas',
           sidebarMeta: {
-            order: 100,
+            order: 5,
           },
         })
         .state("vacaciones.detalle_autorizar",{

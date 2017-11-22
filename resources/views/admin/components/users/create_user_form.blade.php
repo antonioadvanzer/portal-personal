@@ -463,6 +463,12 @@
                           </div>
                           <div class="col-md-4">
                             <label class="checkbox-inline custom-checkbox nowrap">
+                              <input type="checkbox" id="inputUserPermission10" name="inputUserPermission10" ng-model="formUser.inputUserPermission10" ng-disabled="!formUser.permission10">
+                              <span>Capturista de CV</span>
+                            </label>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="checkbox-inline custom-checkbox nowrap">
                               <input type="checkbox" id="inputUserPermission5" name="inputUserPermission5" ng-model="formUser.inputUserPermission5" ng-disabled="!formUser.permission5">
                               <span>Vacaciones</span>
                             </label>
