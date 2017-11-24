@@ -218,6 +218,9 @@ class UserController extends Controller
             // Pendiente, si se eliminan las vacaciones
             Vacaciones::where('user',$request->input('u_id'))->delete();
 
+            // Deleting boss
+            Jefe::where('employed',$request->input('u_id'))->delete();
+
         }catch(\Exception $e){
             echo $e;
             DB::rollBack();
