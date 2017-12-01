@@ -147,6 +147,7 @@ Route::group(['middleware' => 'auth'], function(){
                 
                 // Check if there are evaluation active
                 Route::get('/evaluation_active', 'EvaluationController@main_checkEvaluationActive');
+                Route::get('/evaluation_expire', 'EvaluationController@main_checkEvaluationExpire');
 
             });
 

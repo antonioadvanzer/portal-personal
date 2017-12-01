@@ -46,6 +46,10 @@
             $scope.evaluation_active = response.data == '1' ? true : false;
       });
       
+      $http.get('theme/modules/evaluation/evaluation_expire').then(function (response) {
+            $scope.evaluation_expired = response.data == '1' ? true : false;
+      });
+      
       
       /*--------------------------------------------------------------------------------------------------*/
     

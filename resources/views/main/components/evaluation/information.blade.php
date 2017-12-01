@@ -89,7 +89,7 @@
         </div>
     </div>
     
-    <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6" ng-show='evaluation_active'>
+    <div class="col-xlg-3 col-lg-12  col-md-6 col-sm-6" ng-show='evaluation_expired && (user.capturista_gastos_viaje || user.capturista_harvest || user.capturista_cv)'>
         <div ba-panel ba-panel-class="with-scroll more-text-widget" ba-panel-title="Compromisos Internos">
           <div class="section-block light-text">
               

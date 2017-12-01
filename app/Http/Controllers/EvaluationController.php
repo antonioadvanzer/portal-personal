@@ -683,7 +683,24 @@ class EvaluationController extends Controller
         //dd($this->admin_getEvaluacionById($this->admin_getEvaluacionAnual())->fin." ".date('Y-m-d'));
         //dd($this->admin_getEvaluacionAnual());
         $id_eva = $this->admin_getEvaluacionAnual();
-        if(($id_eva) && ($this->admin_getEvaluacionById($id_eva)->fin <= date('Y-m-d'))){
+        if(($id_eva) && ($this->admin_getEvaluacionById($id_eva)->fin >= date('Y-m-d'))){
+            return "1";
+        }else{
+            return "0";
+        }
+    }
+
+    /**
+     * Internal Function
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function main_checkEvaluationExpire()
+    {   
+        //dd($this->admin_getEvaluacionById($this->admin_getEvaluacionAnual())->fin." ".date('Y-m-d'));
+        //dd($this->admin_getEvaluacionAnual());
+        $id_eva = $this->admin_getLastEvaluacionExpired();
+        if(($id_eva)){
             return "1";
         }else{
             return "0";
@@ -748,6 +765,27 @@ class EvaluationController extends Controller
                     ->select(DB::raw("MAX(id) as id"))
                     ->where('tipo', 1)
                     ->whereDate('inicio', '<=', date('Y-m-d'))
+                    ->whereIn('estatus',[1])
+                    ->first();
+
+        if(count($result) != 0){
+            return $result->id;
+        }else{
+            return false;
+        }  
+    }
+
+        /**
+     * Internal Function
+     *
+     * @return \Illuminate\Http\Response
+     */
+    private function admin_getLastEvaluacionExpired()
+    {
+        $result = DB::table('gd_evaluaciones')
+                    ->select(DB::raw("MAX(id) as id"))
+                    ->where('tipo', 1)
+                    ->whereDate('fin', '<=', date('Y-m-d'))
                     ->whereIn('estatus',[1])
                     ->first();
 
