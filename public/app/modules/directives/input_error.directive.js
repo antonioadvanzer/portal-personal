@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  angular.module('PortalPersonal.admin_modules')
+  angular.module('PortalPersonal.modules')
       .directive('inputError', inputError);
 
   /** @ngInject */

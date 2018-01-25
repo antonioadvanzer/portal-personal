@@ -141,7 +141,7 @@
 <script src="{{ URL::to('bower_components/jstree/dist/jstree.js') }}"></script>
 <script src="{{ URL::to('bower_components/ng-js-tree/dist/ngJsTree.js') }}"></script>
 <script src="{{ URL::to('bower_components/angular-ui-select/dist/select.js') }}"></script>
-<script src="{{ URL::to('bower_components/angular-filereader/angular-filereader.min.js') }}"></script>
+<!--<script src="{{ URL::to('bower_components/angular-filereader/angular-filereader.min.js') }}"></script>-->
 <script src="{{ URL::to('bower_components/at-table/dist/angular-table.js') }}"></script>
 <!-- endbower -->
 <!-- endbuild -->
